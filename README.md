@@ -18,7 +18,7 @@ This repository is packed with powerful, ready-to-use skills tailored for design
 
 | Skill Name | Location | Description |
 | :--- | :--- | :--- |
-| **`ui-ux-pro-max`** | `.agent/skills/` | Comprehensive UI/UX design intelligence. 50+ styles, 21+ palettes, 50+ font pairings, 20 charts, and support for 9+ tech stacks. |
+| **`ui-ux-pro-max`** | `.agents/skills/` | Comprehensive UI/UX design intelligence. 50+ styles, 21+ palettes, 50+ font pairings, 20 charts, and support for 9+ tech stacks. |
 | **`advanced-ui-styling`** | `.agents/skills/` | Apply advanced, premium UI design styles including glassmorphism, neoclassical, aurora, ethereal, vaporwave, and neo-brutalism. |
 | **`awesome-design-skills`** | `.agents/skills/` | Curated design integrations and best practices for elevating base components. |
 | **`stitch-kit`** | `.agents/skills/` | Utilities and logic for robust component generation and stitching. |
@@ -36,7 +36,6 @@ To use these skills in your AntiGravity IDE agentic environment, you can install
    ```bash
    git clone https://github.com/ianuj-yadav/AntiGravity-Design-Skills.git .agents
    ```
-   *(Note: You can also rename `.agent` to `.agents` if you want all skills in the same directory).*
 3. Restart or reload your AntiGravity agent conversation. The skills will be automatically discovered and loaded!
 
 ### Option 2: Global Installation (Available across all projects)
