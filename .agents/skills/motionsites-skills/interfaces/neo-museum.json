@@ -1,0 +1,122 @@
+{
+  "id": "neo-museum",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "ExploreOurWorld",
+    "AncientCollection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping background video behind the hero; fades in after a 2800ms delay, muted/autoplay/playsInline, pointer-events-none."
+    },
+    {
+      "id": "chapter-gallery",
+      "type": "image",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Set of 5 specimen/chapter images cycled in the dark section's left panel via the SandTransitionImage SVG-dissolve component (object-contain, mix-blend-lighten, transparent PNGs); auto-advances every 3500ms. Each pairs with a chapter name copy slot."
+    },
+    {
+      "id": "overlap-hero-specimen",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Oversized transparent-PNG specimen (pterodactyl) absolutely positioned to overlap upward between the light and dark sections; whileInView parallax from y:-65% to y:-78%, pointer-events-none."
+    },
+    {
+      "id": "wordmark-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Custom inline geometric letter-block wordmark (viewBox 0 0 840 100), full-width header logo built from per-letter polygons each animating up via the letterBlock variant; fill is the fg color."
+    },
+    {
+      "id": "cta-leaf-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Custom inline 4-path stylized leaf/plant icon inside the primary CTA button; white by default, turns fg color on hover with scale/rotate transform."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 8,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Lucide React line icons used across nav/pills/affordances: ArrowRight, Plus, ArrowUpRight, Bone, Dna, Gem, Leaf, BookOpen. Stroke-based, inherit current text color."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "alpha": false,
+      "notes": "Inter (Google Fonts, weights 300/400/500/600) — drives display headlines, body, and the ultra-large text-mega utility (21vw). Single family serves both display and body roles."
+    },
+    {
+      "id": "mono-font",
+      "type": "font",
+      "card": 1,
+      "alpha": false,
+      "notes": "JetBrains Mono (Google Fonts, weights 400/500) — all uppercase tracked mono labels, eyebrows, nav, stats, and counters."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+      "mono": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, monospace"
+    },
+    "colorRoles": {
+      "bg": "#fcfcfc",
+      "surface": "#0a0a0a",
+      "fg": "#111111",
+      "fgMuted": "#888888",
+      "accent": "#1a1a1a",
+      "border": "#333333"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "subnav-brand-lines",
+      "subnav-mission",
+      "nav-labels",
+      "hero-section-index",
+      "hero-headline",
+      "hero-description",
+      "hero-cta-label",
+      "specimen-name",
+      "specimen-period",
+      "specimen-stat-labels",
+      "specimen-stat-values",
+      "view-details-label",
+      "scroll-to-explore-label",
+      "explore-section-eyebrow",
+      "explore-heading",
+      "explore-pill-labels",
+      "explore-footer-left",
+      "explore-footer-right",
+      "collection-heading",
+      "collection-tagline",
+      "collection-trait-pills",
+      "collection-panel-top-bar",
+      "chapter-names",
+      "collection-footer-label"
+    ]
+  },
+  "mechanic": "A single-scroll editorial museum hero: a letter-block SVG wordmark animates up over a delayed fullscreen looping video, then scroll drives an oversized transparent specimen that overlaps into a dark chapter browser whose images swap through an SVG feTurbulence sand-dissolve as the active chapter auto-cycles.",
+  "techDelivery": "React 19 + Vite 6 + Tailwind CSS 4 (@theme tokens + @layer utilities) + Motion (Framer Motion) variants + Lucide React, TypeScript; entire page is one App.tsx plus an inline SandTransitionImage helper.",
+  "reskinNotes": "Heavy reskin friction: the wordmark is hand-authored inline SVG polygons (per-letter geometry, not editable as text) and the CTA leaf is a 4-path inline SVG — both bake fill colors and shapes into markup. All copy (headline, chapter names, mission, stats, nav, footers) is hardcoded in JSX. The chapters array length (5) is wired into auto-cycle modulo and the 01/05 counter, so swapping image count requires code changes. Many one-off hex/rgba values are inline in Tailwind arbitrary classes (e.g. #1a1a1a, rgba(17,17,17,0.5), gray-800 borders) rather than theme tokens, and the text-mega/headline sizing is viewport-width and font-metric dependent (Inter tracking)."
+}

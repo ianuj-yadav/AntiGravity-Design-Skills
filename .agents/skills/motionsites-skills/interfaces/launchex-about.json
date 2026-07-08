@@ -1,0 +1,55 @@
+{
+  "id": "launchex-about",
+  "role": "about",
+  "ownSections": [
+    "About"
+  ],
+  "slots": [
+    {
+      "id": "stat-card-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "The three stat-card background images, one per card, loaded via inline backgroundImage (bg-cover bg-center, mixBlendMode Normal) on a relative w-full h-[280px] sm:h-[340px] frame. Each is masked by a unique chamfered clip-path polygon (large 64px chamfer on a different corner per card) and inset 1.5px inside a white rgba(255,255,255,0.8) border, so framing must survive cover-cropping and the angular crop. A gradient stat value and a description sit absolutely over each image, so the imagery should stay calm/low-contrast in the overlay zones for #154359 text legibility. Supply three brand photos as sockets to fill, not the placeholder images.higgs.ai/cloudfront URLs declared in the spec."
+    },
+    {
+      "id": "link-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The lucide-react ArrowUpRight glyph (w-3.5 h-3.5, strokeWidth 2) inside the 'Launchex.Hub website' external-link button, a w-8 h-8 chamfered-clip-path square with a #154359 border that lifts (group-hover:-translate-y-0.5) on hover. Supply as a currentColor-driven icon so the dark-teal tint and the hover lift still apply; single logical icon socket."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'TT Firs Neue', 'Inter', system-ui, sans-serif",
+      "body": "'Inter', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F0F5F7",
+      "surface": "rgba(255, 255, 255, 0.8)",
+      "fg": "#154359",
+      "accent": "#185B7B",
+      "accent2": "#4BBDF0",
+      "border": "#154359"
+    },
+    "copySlots": [
+      "heading-line-1",
+      "heading-line-2",
+      "body-paragraph-1",
+      "body-paragraph-2",
+      "link-label",
+      "stat-1-value",
+      "stat-1-text",
+      "stat-2-value",
+      "stat-2-text",
+      "stat-3-value",
+      "stat-3-text"
+    ]
+  },
+  "mechanic": "A single static min-h-screen About section centering a two-line .font-firs heading beside a two-paragraph description with a chamfered-clip-path external-link button, above an mt-14 1/2/3-column grid of three angular clip-path stat cards (the 2nd offset down lg:mt-24 for a staggered masonry feel) whose gradient-clipped values overlay brand images, capped by a bottom fade-to-bg overlay, with no motion beyond the link icon's group-hover lift.",
+  "techDelivery": "Single React component spec using Tailwind CSS utility classes (with text-[..]/h-[..] arbitrary values) and lucide-react for the ArrowUpRight icon; a .font-firs CSS class plus an Inter html/body family declared in CSS, no state/effects/scroll logic — only a CSS group-hover transform.",
+  "reskinNotes": "Every color is baked as inline styles / Tailwind arbitrary values with no :root token, so a recolor is a markup edit across many spots: the #F0F5F7 background also appears hardcoded inside the bottom-fade linear-gradient (3 rgba/hex stops) and must change together, the #154359 dark-teal is repeated on all text, the link border, and the icon, and the stat-value gradient 'linear-gradient(294deg, #185B7B 20%, #4BBDF0)' is applied via WebkitBackgroundClip:text + color:transparent so re-tinting means editing that inline gradient string. All copy is hardcoded in JSX: the 'About' / 'the founders' two-line heading (split by <br/>), both body paragraphs, the 'Launchex.Hub website' link label, the https://base.launchex.vc/ href, and the three stat value/text pairs. Each of the three cards carries its own multi-point clip-path polygon (different chamfered corner per card, plus the matching polygon on the inner image div for the inset-border effect) and the chamfered link-button polygon, all literal CSS strings, so changing card shape or the white-frame thickness (1.5px outer padding) is per-card hand-editing. The 2nd card's lg:mt-24 stagger and the cards' fixed h-[280px] sm:h-[340px] heights assume the current 3-up composition. The heading and stat values use 'TT Firs Neue' but the spec declares no @font-face/<link> for it (only the .font-firs family), so it silently falls back to Inter unless the brand provides the face; the tight leading-[0.95]/leading-none sizing is tuned to that font's metric and longer copy can break the intended line composition."
+}

@@ -1,0 +1,100 @@
+{
+  "id": "portfolio-cosmic-hero",
+  "role": "hero",
+  "ownSections": [
+    "LoadingScreen",
+    "Hero",
+    "SelectedWorks",
+    "Journal",
+    "Explorations",
+    "Stats",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video, and the SAME source reused in the Contact/Footer section flipped vertically (scale-y-[-1]). Native source is an HLS (.m3u8) Mux stream (stream.mux.com/...m3u8) played via hls.js: if Hls.isSupported() build an Hls instance, else fall back to native video.src. Attributes autoPlay muted loop playsInline, absolutely centered with min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2. Hero darkens it with a bg-black/20 overlay plus a bottom h-48 from-bg gradient fade; Footer uses a heavier bg-black/60 overlay. Supply a brand HLS rendition (not a short mp4); footage should be dark/low-contrast so white display type and the bottom fade read cleanly in both orientations."
+    },
+    {
+      "id": "work-project-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Background images for the four bento cards in the SelectedWorks section (titles: Automotive Motion, Urban Architecture, Human Perspective, Brand Identity). Mounted object-cover inside bg-surface border border-stroke rounded-3xl cells whose column spans alternate 7/5/5/7 with varying aspect ratios, scaling group-hover:scale-105. Each card overlays a radial-gradient halftone dot pattern (#000 1px dots on a 4x4px grid, opacity-20, mix-blend-multiply) and on hover a bg-bg/70 + backdrop-blur-lg wash with a 'View — {Title}' gradient-border pill. Provide brand portfolio/case-study imagery; mid-to-dark tonality keeps the halftone and hover wash legible."
+    },
+    {
+      "id": "exploration-gallery-images",
+      "type": "image",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Six images for the Explorations parallax gallery (Layer 2, z-20) over the min-h-[300vh] scroll section. Split into two columns (grid grid-cols-2 gap-12 md:gap-40 inside max-w-[1400px]) as aspect-square cards (max-w-[320px]) that are GSAP scroll-driven with per-card rotation and open in a lightbox on click, behind a GSAP-pinned 'Visual playground' center panel (Layer 1, z-10). Supply brand explorations/shots; square crop expected."
+    },
+    {
+      "id": "journal-entry-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Thumbnail images for the four Journal entries, rendered as horizontal pills (rounded-[40px] sm:rounded-full, flex items-center gap-6 p-4 bg-surface/30 hover:bg-surface border border-stroke) alongside a title, read-time and date. Small left-aligned thumbnails, effectively square; supply brand article/journal cover images."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 4%)",
+      "surface": "hsl(0 0% 8%)",
+      "fg": "hsl(0 0% 96%)",
+      "fgMuted": "hsl(0 0% 53%)",
+      "accent": "#89AACC",
+      "accent2": "#4E85BF",
+      "border": "hsl(0 0% 12%)"
+    },
+    "copySlots": [
+      "loading-label",
+      "loading-rotating-words",
+      "hero-eyebrow",
+      "hero-name",
+      "hero-roles",
+      "hero-role-template",
+      "hero-description",
+      "hero-cta-primary",
+      "hero-cta-secondary",
+      "logo-monogram",
+      "nav-labels",
+      "say-hi-label",
+      "scroll-label",
+      "works-eyebrow",
+      "works-heading",
+      "works-subtext",
+      "works-cta-label",
+      "work-titles",
+      "journal-eyebrow",
+      "journal-heading",
+      "journal-subtext",
+      "journal-entries",
+      "explorations-eyebrow",
+      "explorations-heading",
+      "explorations-subtext",
+      "explorations-cta-label",
+      "stats-items",
+      "footer-marquee",
+      "footer-email",
+      "footer-social-labels",
+      "footer-availability"
+    ]
+  },
+  "mechanic": "A forced-dark single-page portfolio: an rAF 000-100 loading counter with rotating display words hands off to a full-viewport hls.js hero video with GSAP power3 blur/translate entrance, then scroll flows through a 7/5/5/7 bento works grid, journal pills, a 300vh GSAP-pinned parallax explorations gallery with lightbox, stats, and a footer with a vertically-flipped reuse of the hero video behind an infinite GSAP xPercent marquee.",
+  "techDelivery": "React + Vite + Tailwind CSS + TypeScript multi-component spec; GSAP (Timeline + ScrollTrigger) for entrance, pinning and the marquee, Framer Motion (AnimatePresence + whileInView) for the loader word-cycle and section reveals, hls.js for the Mux HLS hero/footer stream, react-router-dom for routing/page transitions and tailwindcss-animate; Inter + Instrument Serif via Google Fonts, HSL design tokens as CSS custom properties consumed through Tailwind, custom keyframes in index.css.",
+  "reskinNotes": "The accent is a fixed two-stop linear-gradient(90deg, #89AACC 0%, #4E85BF 100%) hardcoded in the .accent-gradient utility (and reused on the logo ring, hover border rings, progress bar and pill borders) rather than driven by a single token, and the loader/progress glow is a literal box-shadow rgba(137,170,204,0.35) baked into CSS, so retinting the accent means editing CSS in multiple places, not flipping one variable. Colors are HSL triples (e.g. --bg: 0 0% 4%) supplied without the hsl() wrapper because Tailwind adds it. All copy is hardcoded in JSX: the 'Portfolio' loader label and ['Design','Create','Inspire'] word cycle; the hero eyebrow \"COLLECTION '26\", name 'Michael Smith', the 'A {role} lives in Chicago.' line with its ['Creative','Fullstack','Founder','Scholar'] cycle keyed on roleIndex, the description, and the See Works / Reach out CTA labels; the 'JA' logo monogram and ['Home','Work','Resume'] nav + 'Say hi' button; the four work titles (Automotive Motion / Urban Architecture / Human Perspective / Brand Identity), the four journal entries (titles/read-times/dates), section eyebrows + italicized headings (Featured projects / Recent thoughts / Visual playground), the three stats (20+ / 95+ / 200%), the 'BUILDING THE FUTURE • ' marquee (repeated 10x), the mailto hello@michaelsmith.com, the [Twitter, LinkedIn, Dribbble, GitHub] social labels and 'Available for projects'. Display type leans on Instrument Serif italic at huge clamp-free sizes (text-9xl, leading-[0.9], tracking-tight) and labels on uppercase tracking-[0.3em]/[0.2em], so a replacement display face with different metrics will shift the hero and section layout. The hero asset is an HLS (.m3u8) stream, not an mp4, and is reused flipped in the footer, so a reskin must keep the hls.js detection/fallback path and supply a stream that reads in both orientations. Social links are authored as a plain text-label array, not icon files."
+}

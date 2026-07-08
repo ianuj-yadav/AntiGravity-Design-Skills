@@ -1,0 +1,71 @@
+{
+  "id": "stellar-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navigation",
+    "Hero",
+    "CompanyLogos"
+  ],
+  "slots": [
+    {
+      "id": "product-demo-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The single product/demo hero video, NOT a fullscreen background. It lives inside a rounded-3xl overflow-hidden card (h-[400px] md:h-[500px], max-w-7xl wide) below the CTA, rendered object-cover w-full h-full so it crops to the card. autoPlay + loop + muted + playsInline. Native source is a CloudFront-hosted MP4. The four per-tab UI overlay cards (Analyse/Train/Testing/Deploy wizards) float ON TOP of this footage, so the footage should read as a calm, mid-toned app/abstract backdrop that does not fight the white/colored overlay cards layered above it. The container reveals via .animate-fade-in-up at 0.7s delay."
+    },
+    {
+      "id": "partner-logos",
+      "type": "image",
+      "card": 6,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "OPTIONAL socket for the bottom 'trusted by' logo strip (mt-24 flex row). Natively these are NOT image assets — the six marks (INTERSCOPE, SPOTIFY, Nexera as a dot grid, M3 in serif italic, LAURA COLE as an 'LC' circle, vertex as dots) are CSS/text treatments rendered in muted gray, so by default no asset is needed. Only fill this socket if the brand wants real partner/client logos: supply 6 monochrome transparent marks that read as muted gray (gray-400-ish) on white. The strip reveals via .animate-fade-in-up at 0.8s delay."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react, NOT brand assets: Star (the nav lockup mark, w-5 h-5 fill-black, AND the filled star inside the reviews-badge bordered square), ChevronDown (the 'Solutions' and 'For Teams' nav dropdown carets), and the four tab-bar glyphs BarChart3 (Analyse), BookOpen (Train), Users (Testing), Rocket (Deploy). Rendered in currentColor (black/gray). Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand. Note the nav Star doubles as the de-facto logomark — a brand may replace it with a wordmark/logo."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#f3f4f6",
+      "fg": "#000000",
+      "fgMuted": "#4b5563",
+      "accent": "#000000",
+      "border": "#d1d5db"
+    },
+    "copySlots": [
+      "nav-wordmark",
+      "nav-menu-labels",
+      "nav-login-label",
+      "nav-cta-label",
+      "hero-reviews-badge",
+      "hero-headline-line1",
+      "hero-headline-line2-gradient",
+      "hero-subheading",
+      "hero-cta-label",
+      "tab-bar-labels",
+      "overlay-card-titles",
+      "overlay-card-body",
+      "company-logos-labels"
+    ]
+  },
+  "mechanic": "A single static white-background hero column (centered nav, reviews badge, two-line headline with a black-to-gray gradient-clipped second line, subheading, pill CTA, and a 4-button tab bar) over a rounded-3xl looping product video card, where each tab swaps a different floating UI overlay card and the tabs auto-cycle every 4s via setInterval — the only entrance motion being staggered .animate-fade-in-up reveals (0.1s-incrementing delays) plus fade-in/slide-up of the active overlay.",
+  "techDelivery": "React component spec on Tailwind CSS utility classes (default Tailwind config, no theme extensions) with lucide-react icons; Inter is loaded from Google Fonts (weights 400/500/600/700), tab state is a useState('analyse') driven by a 4s setInterval auto-cycle, and three keyframe animations (fadeInUp / fadeInOverlay / fadeInDialog) are authored in index.css and applied via .animate-fade-in-up / .animate-fade-in-overlay / .animate-slide-up-overlay classes with per-element inline animationDelay + opacity:0.",
+  "reskinNotes": "The signature visual is the headline gradient text — the second line uses Tailwind's bg-gradient-to-r from-black via-gray-500 to-gray-400 + bg-clip-text text-transparent, so retinting it to a brand color means editing those grayscale utility stops, not flipping a token. The palette is otherwise stock Tailwind grays referenced by class name (bg-white, text-black, text-gray-700/600, border-gray-300, bg-gray-100, hover:bg-gray-800), so the colorRoles hexes above are the resolved Tailwind defaults rather than declared custom vars; a true brand reskin must override these utility classes throughout the markup. The four per-tab overlay cards carry their own hardcoded accent colors NOT in any token (purple progress at 25%, orange progress at 67%, green success for 127/127 tests, and a blue-ish deploy card) plus fixed mock data (the '4.9 rating from 18.3K+ users' badge, step counts, 127/127), so each overlay is a bespoke UI mock to rebuild per brand. Inter is a single Google Fonts family used for both display and body, and the headline leans on tight metrics (lg:text-[80px], leading-[1.1], tracking-tight) so a different display face will reflow it. All copy is hardcoded in markup: the 'Stellar.ai' wordmark, nav items (Solutions / For Teams / About Us / Learn Hub / Login / 'Get started free'), the reviews badge text, the two headline lines ('Work Smarter. Move Faster.' / 'AI Powers You Up.'), the subheading, the 'Begin Free Trial' CTA, the four tab labels (Analyse / Train / Testing / Deploy), every overlay card's title + body, and the six company-logo labels. The bottom company-logo strip is rendered as CSS/text treatments (dot grids, serif italic, an 'LC' circle), not image assets, so it is only an asset socket if the brand opts to supply real logos. The product video URL is baked inline as a CloudFront MP4."
+}

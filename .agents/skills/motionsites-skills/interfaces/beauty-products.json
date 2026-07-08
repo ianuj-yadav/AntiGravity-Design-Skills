@@ -1,0 +1,41 @@
+{
+  "id": "beauty-products",
+  "role": "carousel",
+  "ownSections": [
+    "BestSellersCarousel"
+  ],
+  "slots": [
+    {
+      "id": "product-images",
+      "type": "image",
+      "card": 7,
+      "aspect": "3:4",
+      "alpha": false,
+      "notes": "Product shot for each of the 7 horizontally-scrollable Best Sellers cards. Rendered object-cover inside an mx-4 aspect-[3/4] rounded-lg overflow-hidden well on a #F9F4F0 (cream) background, scaling to 105% over duration-500 on card hover. Seven independent fillable sockets (the native prompt reuses only 3 unique placeholder source URLs across the 7 cards). Each image pairs with its own category / optional-subcategory / name / price / optional-old-price copy slots. Frame for an object-cover 3:4 portrait crop sized to the fixed card widths (260/280/300px / lg:25%)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "system-ui sans stack (Tailwind default font-sans; no custom font face declared, only font-medium weight used)"
+    },
+    "colorRoles": {
+      "bg": "#F9F4F0",
+      "surface": "#F9F4F0",
+      "fg": "#000000",
+      "fgMuted": "#9ca3af",
+      "accent": "#1a1a1a",
+      "border": "#e5e7eb"
+    },
+    "copySlots": [
+      "tab-labels",
+      "product-category-labels",
+      "product-subcategory-labels",
+      "product-names",
+      "product-prices",
+      "product-old-prices"
+    ]
+  },
+  "mechanic": "A min-h-screen cream section whose IntersectionObserver-revealed (opacity/translate-y) tab header and staggered product cards feed a wheel-hijacked horizontal overflow carousel of border-collapsed 3:4 image cards, tracked by a translateX scroll-progress thumb, with the active tab marked by a cubic-bezier scale-in dot.",
+  "techDelivery": "Plain React + Tailwind CSS (utility classes + arbitrary values); no animation library — a custom useInView IntersectionObserver hook (threshold 0.1, unobserve-on-first-intersect) plus global-stylesheet CSS (.scrollbar-hide and a scale-in keyframe) and React state-driven inline transforms for the wheel-to-horizontal scroll and progress bar.",
+  "reskinNotes": "No custom font is loaded (system-ui sans at font-medium), so there is no native display face to map — a brand display typeface is a net-new addition, not a swap, and the large fluid tab type (text-2xl -> sm:text-4xl -> md:text-5xl) plus the fixed product-card widths (w-[260px]/280/300 / lg:calc(25%-1px)) and -ml-[1px] border-collapse are metric-dependent. Brand colors are baked into Tailwind arbitrary-value classes and inline styles, not CSS variables: #F9F4F0 (section bg + image wells), #1a1a1a (active-tab text, active-tab dot, progress thumb), and gray-200/300/400/500/600 (#e5e7eb card borders, #d1d5db track, #9ca3af inactive-tab + strikethrough, #6b7280 subcategory) — retinting means editing many literal occurrences. The 'best sellers'/'sets' tab labels and all 7 products' category / subcategory / name / price / old-price strings are hardcoded in JSX, with 'best sellers' as the default-active tab. The scroll-progress thumb math (fixed width 30%, translateX scrollProgress * 100/0.3 where scrollProgress = scrollLeft / (scrollWidth - clientWidth)) and the per-card staggered transitionDelay (200 + index*80 ms) are tuned to the declared card count and widths."
+}

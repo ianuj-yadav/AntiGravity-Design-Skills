@@ -1,0 +1,66 @@
+{
+  "id": "securify-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Rendered as <video autoPlay loop muted playsInline> with className 'absolute inset-0 w-full h-full object-cover', sitting behind all foreground content on a black section. Cover-cropped (object-cover) so it fills any viewport; a bottom-to-black gradient overlay (h-48) darkens the lower edge for stat-block legibility. Pick footage that reads well under white overlay text and stays calm/dark in the lower third. Currently a CloudFront placeholder mp4."
+    },
+    {
+      "id": "brand-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo mark in the left navbar pill, beside the brand name. Inline SVG, viewBox 0 0 256 256, rendered at h-5 w-5. Spec ships a custom four-quadrant interlocking-arrows path filled #ffffff (hard-coded white fill on the path, not currentColor). Supply the brand mark as a single-color SVG; to keep it tintable by the surrounding white-on-dark scheme, deliver it as a currentColor / fill-inheriting glyph rather than a baked hex."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global UI typeface applied via body font-family. Spec loads Google font 'Readex Pro' (weights 300/400/500/600/700) and sets body font-family: 'Readex Pro', system-ui, -apple-system, sans-serif. Drives everything: the three text-[14vw] headline words (font-medium, .hero-title letter-spacing -0.04em / line-height 0.95), nav links, CTA, brand name, the +65k/+1.5b/+300k stat numbers, and body/sublabel copy. Swap with the brand display sans; layout is tuned to Readex Pro's metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Readex Pro', system-ui, -apple-system, sans-serif",
+      "body": "'Readex Pro', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(23,23,23,0.9)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#ffffff",
+      "accent2": "#e5e5e5",
+      "border": "rgba(255,255,255,0.4)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "body",
+      "stat-1-number",
+      "stat-1-label",
+      "stat-2-number",
+      "stat-2-label",
+      "stat-3-number",
+      "stat-3-label"
+    ]
+  },
+  "mechanic": "A single full-viewport (h-screen) black hero layering an autoplaying object-cover looping background video, a floating frosted pill navbar, three absolutely-positioned giant text-[14vw] headline words staggered down the diagonal, and three corner stat blocks with rotated hairline dividers, capped by a bottom-to-black gradient fade; the only motion is CSS hover color/background transitions on the nav links and CTA (no scroll or entrance animation).",
+  "techDelivery": "React + TypeScript + Tailwind CSS single hero <section> (utility classes only, mobile-first md: breakpoints, no router or state); 'Readex Pro' loaded from Google Fonts; the body reset, the .hero-title class (letter-spacing -0.04em / line-height 0.95) and html/body/#root height:100% are the only custom CSS; no animation library and the logo is inline SVG.",
+  "reskinNotes": "The navbar logo is an inline SVG <path> with fill #ffffff baked into markup, so reskinning the mark means editing JSX, not swapping a file. All copy is hard-coded lowercase in the JSX (brand name 'securify', the four nav labels platform/solutions/company/support, 'get started' CTA, the three headline words protect/your/data, the body sentence, and all three stat numbers +65k/+1.5b/+300k with their sublabels) and must be edited in the markup. The palette is monochrome and expressed via Tailwind opacity utilities (bg-neutral-900/90, white/40, white/70, white/90, text-black/text-white) rather than CSS custom properties, so there is no single token block to retheme; a colored brand reskin requires touching utility classes throughout. The whole composition is absolutely positioned with viewport-unit type (text-[14vw]/md:text-[13vw]) and percentage top/left offsets tuned to Readex Pro's metrics and the three specific headline words, so longer copy or a wider typeface will overlap the stat blocks. There is no real accent hue: the 'accent' color is plain white (CTA button, hover:bg-neutral-200)."
+}

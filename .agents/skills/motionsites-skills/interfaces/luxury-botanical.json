@@ -1,0 +1,97 @@
+{
+  "id": "luxury-botanical",
+  "role": "hero",
+  "ownSections": [
+    "OrbitImages",
+    "StaySection",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping muted autoplay hero background video sitting behind the clip-path reveal."
+    },
+    {
+      "id": "orbit-images",
+      "type": "image",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Orbit of 6 product/bottle images circling an elliptical path; rendered object-contain on a circular mask, so each needs a transparent or seamless background. Each image pairs with a title + desc copy slot."
+    },
+    {
+      "id": "stay-section-backdrop",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Decorative full-width botanical illustration pinned to the bottom of StaySection (object-cover, center bottom); transparent PNG layered over the white section background."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline header logo glyph (currently a hand-drawn winged crest with an embedded italic 'B'); fills with currentColor so it tints to the fg color — swap for the brand mark."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Manrope",
+      "accent": "Great Vibes"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#ffffff",
+      "fg": "#000000",
+      "fgMuted": "rgba(0,0,0,0.78)",
+      "accent2": "#f4ecdc",
+      "border": "rgba(0,0,0,0.40)"
+    },
+    "copySlots": [
+      "logo-line-1",
+      "logo-line-2",
+      "logo-line-3",
+      "nav-brand-label",
+      "nav-cta-label",
+      "hero-center-line-1",
+      "hero-center-line-2",
+      "hero-center-line-3",
+      "hero-year-tag",
+      "hero-year-caption",
+      "hero-collection-number",
+      "hero-collection-caption",
+      "hero-body",
+      "hero-cta-label",
+      "orbit-item-titles",
+      "orbit-item-descs",
+      "stay-headline-1",
+      "stay-headline-2",
+      "stay-headline-3",
+      "stay-body",
+      "stay-email-placeholder",
+      "stay-cta-label",
+      "footer-column-headings",
+      "footer-column-links",
+      "footer-newsletter-heading",
+      "footer-newsletter-body",
+      "footer-email-placeholder",
+      "footer-cta-label",
+      "footer-copyright",
+      "footer-social-labels",
+      "footer-locale"
+    ]
+  },
+  "mechanic": "An ellipse clip-path reveal driven by a 600vh sticky-scroll progress expands a white panel over a looping hero video while a counter-rotating image orbit scales up, fans out, and translates across the viewport, then collapses back.",
+  "techDelivery": "Single-file CDN: Tailwind Play CDN + @babel/standalone in-browser JSX + esm.sh React 18.3.1 with framer-motion 11.18.2 as ES modules.",
+  "reskinNotes": "Brand colors are hardcoded as inline-style hex/rgba and Tailwind utility classes throughout the JSX (not CSS variables), so reskinning requires editing many literal #000/#ffffff/#f4ecdc/rgba(0,0,0,*) occurrences. Font-family strings are repeated inline in dozens of style objects rather than referenced from the Tailwind theme tokens. The Bentley wordmark is a hand-drawn inline SVG with an embedded italic 'B' text node using Instrument Serif and a fixed currentColor fill. All copy (headlines, nav, footer columns, orbit titles/descs, captions, social labels) is hardcoded in markup. Orbit geometry (radii, item sizes, focal scaling) is tuned to 6 items and a square aspect; changing the image count shifts the spacing. Great Vibes (accent/script) is loaded and configured but not actually rendered in the markup."
+}

@@ -1,0 +1,56 @@
+{
+  "id": "terra-hero",
+  "role": "hero",
+  "ownSections": [
+    "NavBar",
+    "HeroContent"
+  ],
+  "slots": [
+    {
+      "id": "product-demo-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Inline product-demo video sitting below the CTA (mt-12, max-w-5xl, rounded-xl overflow-hidden, no drop shadow); muted autoPlay loop playsInline. Shows the Terra map product itself, not a fullscreen background."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally; drives the logo wordmark, all nav links + buttons, the Product Hunt badge, the two-line display headline, the subtext and the CTA label. Spec declares Inter (Google Fonts, weights 400/500/700)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "fg": "#0A0A0A",
+      "fgMuted": "#737373",
+      "accent": "#2E7DF3",
+      "accent2": "#767676",
+      "border": "#E5E5E5"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "login-cta-label",
+      "signup-cta-label",
+      "badge-eyebrow",
+      "badge-headline",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-emphasis",
+      "subtext",
+      "primary-cta-label"
+    ]
+  },
+  "mechanic": "A static (non-scrolling) min-h-screen nav + centered flex-column hero whose signature device is a hand-drawn dotted 'selection box' SVG framing the gradient-clipped word 'builder', with a muted autoplay-looping product video below; motion is limited to the looping video and nav hover/foreground transitions.",
+  "techDelivery": "Single-file React component spec on Tailwind CSS utility classes (mobile-first lg: breakpoint), lucide-react for the Menu/X hamburger icons and dropdown chevrons, hand-authored inline-styled SVG for the dotted selection box (viewBox 0 0 200 95, preserveAspectRatio=\"none\", inline rotate(-0.5deg)) and an inline linear-gradient + bg-clip-text/text-transparent treatment for the 'builder' word; Inter loaded from Google Fonts (weights 400/500/700).",
+  "reskinNotes": "The dotted selection-box SVG is fully hardcoded: the #B0B0B0 stroke/dot fills, the strokeDasharray 6 4, the irregular-quadrilateral path (M5 5 L195 5 L195 88 L5 72 Z, deliberately asymmetric so the bottom-right corner drops lower) and the 8 corner/midpoint circle coordinates are all baked into markup, so retinting or resizing the frame means editing the SVG, not swapping a token. The 'builder' gradient (#767676 -> #D3D3D3, 135deg) is an inline background-image, and the Product Hunt badge bakes in Tailwind red-200/red-50/red-400/red-500 utility colors that ignore the brand palette. The headline uses a hardcoded inline letter-spacing:-0.2em plus per-line/per-word color spans (primary line 1, primary 'map' + gradient 'builder'), so layout is tuned to Inter metrics and the line break is hardcoded. Background/foreground/muted/border read from Tailwind semantic tokens (bg-background, foreground, muted-foreground, primary-foreground) whose hex is not declared in the spec (values recorded here are the conventional Tailwind defaults); only the primary blue #2E7DF3 and the SVG/gradient greys are literal. All nav labels, badge text, headline, subtext, CTA labels and the 🌍/🏆 emojis are hardcoded in the JSX; the logo is a CSS gradient circle (from-primary to-blue-400) wrapping the globe emoji rather than a fillable image asset."
+}

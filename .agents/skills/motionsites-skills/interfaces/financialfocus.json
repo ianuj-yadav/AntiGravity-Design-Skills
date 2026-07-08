@@ -1,0 +1,69 @@
+{
+  "id": "financialfocus",
+  "role": "hero",
+  "ownSections": [
+    "HeaderBrandOverlay",
+    "CardCarousel",
+    "BottomLeftBrandContent",
+    "BottomRightBrandLogo",
+    "WaveBackground"
+  ],
+  "slots": [
+    {
+      "id": "card-face-videos",
+      "type": "video",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Object-cover looping muted video filling each credit-card front face in the magnetic 3D vertical carousel (one per card, also blurred on the back face); cycles via modulo so count can be 5+."
+    },
+    {
+      "id": "wave-background",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Full-screen ambient wave artwork rendered behind the card carousel (z-0, pointer-events none, w-full h-auto max-h-screen); transparent so the #000 backdrop shows through."
+    },
+    {
+      "id": "brand-logo-corner",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Brand mark pinned bottom-right of the screen at fixed 40px height, hover opacity 85->100; transparent background."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Manrope",
+      "body": "Inter",
+      "mono": "JetBrains Mono",
+      "accent": "Mr Dafoe"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#0f0f0f",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.5)",
+      "accent": "#00FF88",
+      "accent2": "#808080",
+      "border": "rgba(255,255,255,0.15)"
+    },
+    "copySlots": [
+      "eyebrow-signature",
+      "headline",
+      "body",
+      "cta-label",
+      "nav-button-aria",
+      "card-number",
+      "card-holder-name",
+      "card-cvv"
+    ]
+  },
+  "mechanic": "An always-on magnetic vertical 3D carousel of volumetric credit cards (5 stacked z-layers each) that flow upward on a perspective stage with an eased dwell-at-center step and cursor-driven parallax tilt, over a static fullscreen wave backdrop with corner brand overlays.",
+  "techDelivery": "single-file CDN Tailwind v4 browser + React 18 UMD + Babel standalone (react,typescript presets), authored as one inline <script type=\"text/babel\"> App component",
+  "reskinNotes": "Three brand wordmark/chip SVGs (WaveBank header logo, JWT card wordmark, contact chip) are inlined directly in JSX with fill=\"white\" and a white->#999999 gradient, so re-tinting them means editing path markup, not a token. Fonts are wired through Tailwind v4 @theme custom properties (--font-sans/mono/manrope/signature) plus a Google Fonts link, so swapping families needs both updated. All copy (headline, descriptor, Order Card CTA) and the five card-detail records (number/name/CVV) are hardcoded in markup. Card and typography sizing are computed in JS from viewport width/height with hard clamps (card max 336px, 1.5925 ratio), making layout font-metric- and aspect-sensitive."
+}

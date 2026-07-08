@@ -1,0 +1,78 @@
+{
+  "id": "bold-studio",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the single viewport-height section; rendered as an object-cover <video> with autoPlay + muted + loop + playsInline, sitting behind all overlaid navbar/hero content. No explicit darkening scrim is declared, so a video with enough contrast that white text stays legible reads best."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display face for the brand wordmark 'VANGUARD', the three-line clamp() main heading, and the large mobile-menu nav links. Native family 'FSP DEMO - PODIUM Sharp 4.11', loaded in index.html, exposed as a .font-podium utility and registered as fontFamily.podium in tailwind.config.js. Always rendered white/uppercase."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fgMuted",
+      "notes": "UI/body face for the tagline, nav links, subtext, CTA labels, and stats. Native family 'Inter' from Google Fonts (weights 400/500/600/700), registered as fontFamily.inter. Used at small tracked uppercase sizes for labels and at leading-relaxed for the subtext sentence."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 4,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four lucide-react glyphs used inline as UI/decoration: ArrowUpRight (nav 'GET IN TOUCH' + 'SEE OUR WORK' button, animates on group-hover), Crown (tagline marker, text-white/70), Award (CTA-row 'Top-Rated Brand Studio' badge, text-white/50), and X (mobile-menu close). All currentColor-tinted via text-white/* opacity utilities, so supply as currentColor-driven icons so the white tint and hover transitions still apply."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'FSP DEMO - PODIUM Sharp 4.11', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0,0,0,0.95)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#000000",
+      "accent2": "#171717",
+      "border": "rgba(255,255,255,0.3)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "eyebrow",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "body",
+      "body-accent",
+      "cta-label",
+      "badge-label",
+      "stat-1-value",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-label",
+      "stat-3-value",
+      "stat-3-label"
+    ]
+  },
+  "mechanic": "Single fullscreen object-cover looping video hero with overlaid navbar, left-aligned hero copy and a stats row, where every element rises in on a shared fade-up keyframe (translateY(30px)->0, opacity 0->1, 0.8s ease-out) staggered in 0.2s increments, and the sub-md hamburger opens a fixed black/95 backdrop-blur overlay whose links cascade in with per-item transitionDelay (i*80+100ms).",
+  "techDelivery": "React + Tailwind CSS + Vite single App.tsx component (useState for the menu toggle, no router); fonts loaded via index.html (FSP DEMO PODIUM self-hosted CDN + Inter Google Fonts) and registered in tailwind.config.js; lucide-react for icons; fade-up/fade-in/scale-in keyframes plus .animate-fade-up(-delay-1..4) classes defined in index.css under @layer utilities.",
+  "reskinNotes": "All copy is hardcoded in JSX and must be edited in markup: brand name 'VANGUARD', the 4 nav labels (Projects/Studio/Offerings/Inquire), 'GET IN TOUCH', the 'World-Class Digital Collective' tagline, the three heading lines (Design./Disrupt./Conquer.), the split subtext sentence with its bold 'they lead.' accent span, the 'SEE OUR WORK' button, the 'Top-Rated / Brand Studio' badge, and all three stat value/label pairs (250+, 95%, 10+). The neutral palette (white at /80,/70,/60,/50, black buttons via bg-black/hover:bg-neutral-900, border-white/30->/60, overlay bg-black/95) is expressed as inline Tailwind opacity utilities rather than CSS custom properties, so a reskin means editing utility classes across the markup, not flipping :root vars. The heading relies on Tailwind config wiring (fontFamily.podium / the .font-podium class) plus a clamp(2.8rem,8vw,7rem) size tuned to PODIUM's wide uppercase metrics and leading-[0.92]/tracking-tight, so swapping the display font or using longer words can break the intended three-line composition. The display font is a third-party onlinewebfonts CDN face whose availability/licensing should be verified, and there is no separate scrim layer over the video, so legibility depends on the chosen footage."
+}

@@ -1,0 +1,103 @@
+{
+  "id": "halo-usd-landing",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "InfoSection",
+    "BackedBySection",
+    "UseCasesSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the rounded hero card (relative rounded-2xl overflow-hidden, inline height calc(100vh - 96px)), rendered as a bare <video> at object-cover absolute inset-0 w-full h-full with autoPlay/muted/loop/playsInline. All hero foreground sits over it at z-10 (black h1 'Your Wealth Works', black/70 subcopy, black 'Join us' pill, and the bottom-left brand marquee), and there is NO scrim/overlay between video and text, so the copy is pure black on the raw footage. Pick a light/bright, low-contrast-in-the-upper-left clip so black text and the black pill stay legible. Native source is a CloudFront-hosted MP4."
+    },
+    {
+      "id": "usecases-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Background video for the tall right-hand panel of the Use Cases section (relative rounded-3xl overflow-hidden min-h-[720px]), object-cover absolute inset-0 with autoPlay/muted/loop/playsInline, distinct from the hero clip. Foreground 'Commerce' content sits over it at z-10 with no scrim: a black h3, black/70 body copy, and a white/80 backdrop-blur circular 'Know more' arrow button. Favor footage that keeps black headline text readable on the upper-left and tolerates a portrait/tall crop. Native source is a CloudFront-hosted MP4."
+    },
+    {
+      "id": "info-card-bloom-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Background image for InfoSection Card 1 ('Savings that bloom'), the wide card that spans 2 columns on lg, applied via inline style backgroundSize cover / backgroundPosition center on a rounded-2xl p-7 min-h-80 flex-col card. Black title sits at the top and black/70 body at the bottom directly over the image with no overlay, so choose a soft/light image that keeps black text legible at top-left and bottom-left. Native source is an images.higgs.ai webp proxy wrapping a CloudFront PNG."
+    },
+    {
+      "id": "logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand 'halo' mark: an inline SVG component LogoIcon (viewBox 0 0 256 256, single path of two interlocking rounded squares) drawn with fill currentColor. Placed once as the w-7 h-7 black logo at the left of the Navbar beside the 'Halo' wordmark. Because it uses currentColor (not a hardcoded fill), retinting is just a CSS color/text-* utility on the wrapper — supply a transparent single-color glyph and it inherits fg. Sits on the transparent navbar over the hero video, so a dark/solid mark reads best against light footage."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI typeface TT Norms Pro, self-hosted via @font-face from /fonts/tt-norms-pro-regular.woff2 (400) and /fonts/tt-norms-pro-semibold.woff2 (600) with font-display swap, applied to html/body and inherited on *. font-medium (600) is the heaviest weight used. Drives the 'Halo' wordmark, nav links, all section headings (hero h1 up to text-6xl with letterSpacing -0.04em, 'Meet USD Halo.' h2, 'Use modes' h2, 'Commerce' h3 — all leaning on negative tracking) and most body copy. NOTE: the hero subcopy paragraph deliberately overrides this with an inline fontFamily 'Inter', ui-sans-serif, system-ui, and the two marquee rows use per-item system-font families (see reskinNotes), so this socket only covers the TT Norms Pro layer."
+    },
+    {
+      "id": "ui-arrow-glyphs",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI icon (lucide-react ArrowRight), a dependency rather than a brand asset, reused as the trailing glyph inside the white circular chip of every pill CTA: hero 'Join us' (w-5 h-5 text-black in a bg-white rounded-full chip), InfoSection 'Discover it', and the Use Cases 'Know more' circle (w-4 h-4 text-black on bg-white/80 backdrop-blur). Optional socket: only swap if the brand ships its own arrow/line-icon; otherwise the lucide default stands. Tinted black (text-black) via currentColor."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'TT Norms Pro', sans-serif",
+      "body": "'TT Norms Pro', sans-serif",
+      "accent": "'Inter', ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F5F5F5",
+      "surface": "#2B2644",
+      "fg": "#000000",
+      "fgMuted": "rgba(0, 0, 0, 0.7)",
+      "border": "rgba(0, 0, 0, 0.1)"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-subcopy",
+      "hero-cta-label",
+      "hero-marquee-brands",
+      "info-heading",
+      "info-cta-label",
+      "info-lead-paragraph",
+      "info-card-titles",
+      "info-card-bodies",
+      "backedby-intro",
+      "backedby-marquee-brands",
+      "usecases-eyebrow",
+      "usecases-heading",
+      "usecases-lead-paragraph",
+      "usecases-card-heading",
+      "usecases-card-body",
+      "usecases-card-cta-label"
+    ]
+  },
+  "mechanic": "A static (non-scroll-driven) stacked fintech layout on a #F5F5F5 page: a full-height (h-screen overflow-hidden) opening block with an absolute transparent navbar over a rounded hero card holding a fullscreen looping video, black hero copy and a pill CTA, beneath which a CSS-keyframe marquee track (translate 0 -> -50% over a duplicated brand list, 22s linear infinite) loops the partner names; followed by an info section of bento cards (one image-bg card + two solid #2B2644 cards), a 'Backed By' row driven by a second identical-pattern marquee (30s linear infinite), and a Use Cases split with a tall looping-video panel; the only motion is the two infinite CSS marquees plus transition-colors duration-200 hover states on buttons and nav links.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS (base/components/utilities in src/index.css, default config) multi-component spec (App composing Navbar + HeroSection + InfoSection + BackedBySection + UseCasesSection); lucide-react for icons (ArrowRight); TT Norms Pro self-hosted via @font-face (woff2, font-display swap); animation is plain CSS @keyframes marquees injected as scoped <style> blocks (no external animation library); videos are native <video autoplay muted loop playsInline> and the InfoSection bloom card uses a CSS background-image.",
+  "reskinNotes": "Two marquee rows hardcode their visual identity as literal partner-brand names paired with per-item system-font styling rather than images or tokens, so reskinning them means rewriting both the names AND the inline type styles. Hero marquee: Stripe (Georgia serif 700, ls -0.02em, 15px), Coinbase (Arial 900, ls 0.08em, 13px, uppercase), Uniswap (Trebuchet MS 600, ls 0.01em, 15px, italic), Aave (Courier New 700, ls 0.12em, 13px, uppercase), Compound (Palatino/Book Antiqua 400, ls -0.01em, 16px), MakerDAO (Impact/Arial Narrow 400, ls 0.04em, 14px), Chainlink (Verdana 700, ls -0.03em, 13px). Backed-By marquee: Fundamental Labs (Times New Roman 400, ls 0.02em, 14px), KUCOIN (Arial Black 900, ls 0.08em, 16px), NGC (Impact 700, ls 0.05em, 18px), NxGen (Georgia 600, ls -0.02em, 17px), Matter Labs (Helvetica 700, ls -0.01em, 15px), DEXTools (Verdana 700, ls 0.06em, 14px, uppercase), NGRAVE (Courier New 700, ls 0.18em, 14px), Polychain (Palatino 500, ls 0.03em, 15px). Each brand list must be rendered twice for the seamless -50% loop. Palette is expressed almost entirely as Tailwind arbitrary/utility classes, not a :root token block: the page/section bg is bg-[#F5F5F5], the two dark info cards are a hardcoded solid #2B2644, foreground text is text-black with text-black/70, /60, /50 opacity variants, and white text uses text-white/60 — so reskinning the surface tone or muted-text ladder means editing class names across the markup. All copy is hardcoded in JSX: the 'Halo' wordmark, the five nav labels (Network/Ecosystem/Rewards/Help/News) + 'Open Wallet', the two-line hero headline 'Your Wealth<br/>Works' (with a manual <br/> and inline letterSpacing -0.04em tuned to TT Norms Pro at text-6xl) + its subcopy + 'Join us', the 'Meet USD Halo.' heading + 'Discover it' + lead paragraph, the three info-card titles/bodies (including the literal '\\n' line breaks in 'Always fluid,\\nalways pegged.' and 'Fully\\nautomated'), the 'Funded by premier partners\\nand forward-thinking leaders.' intro, and the Use Cases eyebrow 'USD Halo in Practice' + 'Use modes' + lead + 'Commerce' card heading/body + 'Know more'. All headings rely on negative letter-spacing values (-0.02 to -0.04em) tuned to the TT Norms Pro metrics, and font-medium (600) is treated as the heaviest available weight, so a swapped typeface with different metrics or no 600 face can shift the tight-heading look. The LogoIcon is the easy case: its inline path uses fill currentColor, so it retints via a CSS color rather than editing SVG markup. Both marquee durations (22s hero / 30s backers) and their 0 -> -50% keyframes are fixed in scoped <style> injections."
+}

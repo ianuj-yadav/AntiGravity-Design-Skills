@@ -1,0 +1,60 @@
+{
+  "id": "flowmate-carousal",
+  "role": "carousel",
+  "ownSections": [
+    "CardsCarousel"
+  ],
+  "slots": [
+    {
+      "id": "card-images",
+      "type": "image",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": null,
+      "notes": "Rotating pool of 5 full-bleed card background images (3 shown at a time). Each fills an h-[500px] rounded card via bg-cover bg-center and zooms to scale-105 on hover. A bottom-up black gradient overlay sits on top for text legibility, so images need no built-in transparency or safe-area; subjects should read with a dark lower third."
+    },
+    {
+      "id": "nav-prev-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Previous/left chevron glyph inside a w-10 h-10 round outline button; rendered w-5 h-5, stroke tinted by fg (black). Defaults to Lucide ChevronLeft."
+    },
+    {
+      "id": "nav-next-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Next/right chevron glyph inside a w-10 h-10 round outline button; rendered w-5 h-5, stroke tinted by fg (black). Defaults to Lucide ChevronRight."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+      "body": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#ffffff",
+      "fg": "#000000",
+      "fgMuted": "#ffffff",
+      "accent": "#000000",
+      "border": "#e8e8e8"
+    },
+    "copySlots": [
+      "brand-wordmark",
+      "card-eyebrow-labels",
+      "card-headlines",
+      "nav-prev-aria-label",
+      "nav-next-aria-label"
+    ]
+  },
+  "mechanic": "A 3-up card grid windowing a 5-card pool that auto-advances every 4s (and via prev/next chevrons), where each slot swaps with a direction-aware AnimatePresence popLayout slide (opacity + x + scale), all staggered into view on a once-only scroll reveal.",
+  "techDelivery": "standalone Vite + React 18 + TypeScript, Tailwind CSS utility classes, Framer Motion (AnimatePresence/motion/useInView), and Lucide React icons",
+  "reskinNotes": "Card text legibility depends on the hardcoded bottom-up black gradient overlay (from-black/80 via-black/20 to-transparent) plus white label/description text, so light or low-contrast brand images and any non-white fg color will break readability. The on-image label and description copy use a fixed white (fgMuted is white, not a true muted tone) and are not theme-driven. Card count is pinned to 5 in the data array with exactly 3 visible via modulo windowing; supplying a different number of images requires editing the array and the slice logic. The pool labels/headlines and the 'FlowMate' wordmark are hardcoded in markup, and nav arrows are Lucide components (swapping icon sets means changing imports, not just an asset)."
+}

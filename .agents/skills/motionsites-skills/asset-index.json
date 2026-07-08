@@ -1,0 +1,2032 @@
+{
+  "generated_at": "2026-06-19T13:43:57.996Z",
+  "templates": {
+    "0": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/0/videos/hf_20260207_050933_33e2620d-09cd-43a2-80ef-4cdbb42f4194_deafb5.mp4"
+      ],
+      "fonts": []
+    },
+    "1": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/1/videos/hf_20260206_044704_dd33cb15-c23f-4cfc-aa09-a0465d4dcb54_2f2df0.mp4"
+      ],
+      "fonts": []
+    },
+    "2": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/2/videos/hf_20260201_052917_7fc4e418-3123-40bf-b5ba-394c28eb4b3a_19205b.mp4"
+      ],
+      "fonts": []
+    },
+    "3": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/3/videos/mux_hUT6X11m1Vkw1QMxPOLgI761x2cfpi9bHFbi5cNg4014.mp4"
+      ],
+      "fonts": []
+    },
+    "5": {
+      "preview": null,
+      "images": [
+        "assets/5/images/openai_5841c2.svg",
+        "assets/5/images/nvidia_381611.svg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "8": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/8/videos/hf_20260213_051817_c7d8ccc6-bfaa-417c-8474-e5cefeea26b4_8b96c6.mp4"
+      ],
+      "fonts": []
+    },
+    "9": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/9/videos/hf_20260217_030345_246c0224-10a4-422c-b324-070b7c0eceda_42dab7.mp4"
+      ],
+      "fonts": []
+    },
+    "11": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/11/videos/hf_20260221_085953_8463b46e-ba85-4bb7-912a-1feaf346e970_56eb51.mp4"
+      ],
+      "fonts": []
+    },
+    "12": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/12/videos/hf_20260227_042027_c4b2f2ea-1c7c-4d6e-9e3d-81a78063703f_b6811b.mp4"
+      ],
+      "fonts": []
+    },
+    "13": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/13/videos/hf_20260223_063954_03a5f7ec-5f10-4acb-ba8d-dce4815217db_b41e5d.mp4",
+        "assets/13/videos/hf_20260223_060517_9feec9ab-18e4-477a-b034-de5903a67e91_b5aeb1.mp4"
+      ],
+      "fonts": []
+    },
+    "14": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/14/videos/hf_20260228_065522_522e2295-ba22-457e-8fdb-fbcd68109c73_5b37b7.mp4"
+      ],
+      "fonts": []
+    },
+    "16": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/16/videos/hf_20260302_085640_276ea93b-d7da-4418-a09b-2aa5b490e838_ce49e0.mp4"
+      ],
+      "fonts": []
+    },
+    "19": {
+      "preview": null,
+      "images": [
+        "assets/19/images/200_f1835b.photos__200_f1835b21"
+      ],
+      "videos": [
+        "assets/19/videos/hf_20260304_101127_49ce07b7-f19a-4882-b19c-1d2a27d97ac3_1957ce.mp4",
+        "assets/19/videos/hf_20260304_102019_f84678ca-ffe7-49a5-895a-75ac1f71ad46_82cb3d.mp4"
+      ],
+      "fonts": []
+    },
+    "20": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/20/videos/hf_20260306_115329_5e00c9c5-4d69-49b7-94c3-9c31c60bb644_10a043.mp4"
+      ],
+      "fonts": []
+    },
+    "404": {
+      "preview": "assets/404/preview.png",
+      "images": [
+        "assets/404/images/alien-spaceship_aaf6f3.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "prioritize-hero": {
+      "preview": null,
+      "images": [
+        "assets/prioritize-hero/images/svg_577a10.com__svg_577a1010",
+        "assets/prioritize-hero/images/svg_97fed3.com__svg_97fed3e6"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "arceage-stats": {
+      "preview": "assets/arceage-stats/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/arceage-stats/videos/7f348c17-c3aa-40c9-9d5b-a2bed9a72c2e_e7d7e7.mp4"
+      ],
+      "fonts": []
+    },
+    "yacht-club-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/yacht-club-hero/videos/08006647-1c55-4823-b35d-e40d57c66bf8_fd20a6.mp4",
+        "assets/yacht-club-hero/videos/91fd9932-6194-4d58-ada0-955692853019_d08342.mp4",
+        "assets/yacht-club-hero/videos/95fb3282-d7cf-448e-9202-ef0662541c83_ed537e.mp4"
+      ],
+      "fonts": []
+    },
+    "finflow": {
+      "preview": "assets/finflow/preview.mp4",
+      "images": [
+        "assets/finflow/images/applepay_a5572d.svg",
+        "assets/finflow/images/mastercard_1e1197.svg",
+        "assets/finflow/images/paypal_bf7a91.svg",
+        "assets/finflow/images/shopify_324613.svg",
+        "assets/finflow/images/stripe_2589c2.svg",
+        "assets/finflow/images/visa_42376c.svg"
+      ],
+      "videos": [
+        "assets/finflow/videos/hf_20260602_132418_e0e79d08-5d1f-42d9-b8ae-8dd69217aacf_832730.mp4"
+      ],
+      "fonts": []
+    },
+    "aerocore": {
+      "preview": "assets/aerocore/preview.mp4",
+      "images": [
+        "assets/aerocore/images/hero-engine_isebcf_66dcc9.png"
+      ],
+      "videos": [
+        "assets/aerocore/videos/6853-720_7b3eab.mp4"
+      ],
+      "fonts": []
+    },
+    "duolingo-styleguide-hero": {
+      "preview": null,
+      "images": [
+        "assets/duolingo-styleguide-hero/images/f92d5f2f7d56636846861c458c0d0b6c_09a314.svg",
+        "assets/duolingo-styleguide-hero/images/59a90a2cedd48b751a8fd22014768fd7_01346f.svg",
+        "assets/duolingo-styleguide-hero/images/c71db846ffab7e0a74bc6971e34ad82e_8634b5.svg",
+        "assets/duolingo-styleguide-hero/images/edea4fa18ff3e7d8c0282de3f102aaed_25846c.svg",
+        "assets/duolingo-styleguide-hero/images/482fda142ee4abd728ebf4ccce5d3307_52e3c1.svg",
+        "assets/duolingo-styleguide-hero/images/pexels-photo-1222271_4645f3.jpeg",
+        "assets/duolingo-styleguide-hero/images/pexels-photo-267669_ec84c9.jpeg",
+        "assets/duolingo-styleguide-hero/images/pexels-photo-4145354_f2f245.jpeg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "finlytic-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/finlytic-hero/videos/hf_20260215_121759_424f8e9c-d8bd-4974-9567-52709dfb6842_6c02f2.mp4"
+      ],
+      "fonts": []
+    },
+    "datacore-booking-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/datacore-booking-hero/videos/hf_20260210_031346_d87182fb-b0af-4273-84d1-c6fd17d6bf0f_84a027.mp4"
+      ],
+      "fonts": []
+    },
+    "pro-ai-deck": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/pro-ai-deck/videos/hf_20260302_085844_21a8f4b3-dea5-4ede-be16-d53f6973bb14_3cef8f.mp4",
+        "assets/pro-ai-deck/videos/hf_20260411_104032_69319010-2458-492b-b04d-b40a5dfa4482_1a311c.mp4",
+        "assets/pro-ai-deck/videos/hf_20260411_104229_49794008-3d16-4cb6-9a8c-73d7751b0e79_d4bc9a.mp4"
+      ],
+      "fonts": []
+    },
+    "neovision-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/neovision-landing/videos/hf_20260314_131232_feeda0b7-d00d-4bfa-a9d5-5d38648a4214_8048ed.mp4",
+        "assets/neovision-landing/videos/hf_20260314_132809_d6ea910f-d700-44f7-afea-27d517487177_c98c8a.mp4"
+      ],
+      "fonts": []
+    },
+    "planet-orbit-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/planet-orbit-hero/videos/hf_20260309_042944_4a2205b7-b061-490a-852b-92d9e9955ce9_d9dc08.mp4"
+      ],
+      "fonts": []
+    },
+    "orbit-engineers": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/orbit-engineers/videos/hf_20260314_190803_f5595254-156c-4d10-ad09-51a56eb4bc1e_772511.mp4",
+        "assets/orbit-engineers/videos/hf_20260314_204728_2dbcd1c4-63bc-4779-b06c-b7e2d5788ea7_2b906d.mp4",
+        "assets/orbit-engineers/videos/hf_20260314_210050_14d4d9cf-782b-4f6f-9764-08d793cf427c_a8930a.mp4"
+      ],
+      "fonts": []
+    },
+    "railroad-ai-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/railroad-ai-hero/videos/hf_20260317_100335_dc625816-c3c1-4b00-b93e-4cb301cf5ea5_6eaf4c.mp4"
+      ],
+      "fonts": []
+    },
+    "nexora-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/nexora-hero/videos/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6_4d204a.mp4"
+      ],
+      "fonts": []
+    },
+    "akor-security-landing": {
+      "preview": null,
+      "images": [
+        "assets/akor-security-landing/images/hf_20260322_015134_c80a3c98-609e-4526-b79e-94dc96cd34e8_a5c97d.png"
+      ],
+      "videos": [
+        "assets/akor-security-landing/videos/hf_20260322_011532_86f9b93a-2ffc-42fd-8735-12a4c55ab536_9f4472.mp4",
+        "assets/akor-security-landing/videos/hf_20260322_013248_a74099a8-be2b-4164-a823-eddd5e149fa1_894dcf.mp4"
+      ],
+      "fonts": []
+    },
+    "stellar-ai-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/stellar-ai-hero/videos/hf_20260319_165750_358b1e72-c921-48b7-aaac-f200994f32fb_b535e0.mp4"
+      ],
+      "fonts": []
+    },
+    "nickel-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/nickel-hero/videos/hf_20260319_192508_4eecde4c-f835-4f4b-b255-eafd1156da99_6f4226.mp4"
+      ],
+      "fonts": []
+    },
+    "clubx-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/clubx-hero/videos/hf_20260323_071151_38c3924f-c312-48af-a196-3fbb80e4226f_3b2d43.mp4"
+      ],
+      "fonts": []
+    },
+    "nexus-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/nexus-hero/videos/hf_20260324_065810_0098b193-498c-4d26-9abd-5db8bf4fb479_8e200f.mp4"
+      ],
+      "fonts": []
+    },
+    "terra-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/terra-hero/videos/hf_20260325_092310_5c71bab5-63cd-4a95-9390-cc6a1189d553_98491c.mp4"
+      ],
+      "fonts": []
+    },
+    "orbit-web3-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/orbit-web3-hero/videos/hf_20260325_094440_a3592600-bd1e-49e5-9bce-a73662061d83_56a608.mp4"
+      ],
+      "fonts": []
+    },
+    "mindloop-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/mindloop-landing/videos/hf_20260325_125119_8e5ae31c-0021-4396-bc08-f7aebeb877a2_5c463e.mp4",
+        "assets/mindloop-landing/videos/hf_20260325_120549_0cd82c36-56b3-4dd9-b190-069cfc3a623f_5f9d51.mp4",
+        "assets/mindloop-landing/videos/hf_20260325_132944_a0d124bb-eaa1-4082-aa30-2310efb42b4b_3a1c01.mp4"
+      ],
+      "fonts": []
+    },
+    "power-ai-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/power-ai-hero/videos/hf_20260328_065045_c44942da-53c6-4804-b734-f9e07fc22e08_8248e7.mp4"
+      ],
+      "fonts": []
+    },
+    "skyelite-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/skyelite-hero/videos/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238_6221c6.mp4"
+      ],
+      "fonts": []
+    },
+    "ai-designer-agency": {
+      "preview": null,
+      "images": [
+        "assets/ai-designer-agency/images/hero-neuralyn-preview-Br4FRDQA_5b3ba2.gif"
+      ],
+      "videos": [
+        "assets/ai-designer-agency/videos/hf_20260326_073936_8dd07fdb-4f6b-4220-a3f0-9dedfaab0c88_636c9b.mp4"
+      ],
+      "fonts": []
+    },
+    "xportfolio-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/xportfolio-hero/videos/hf_20260328_102305_3a7cab3b-7a86-46e8-a0f9-6937f035b087_6b37a4.mp4"
+      ],
+      "fonts": []
+    },
+    "designpro-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/designpro-hero/videos/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a_d8418c.mp4"
+      ],
+      "fonts": []
+    },
+    "transform-data-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/transform-data-hero/videos/hf_20260329_050842_be71947f-f16e-4a14-810c-06e83d23ddb5_a361b2.mp4"
+      ],
+      "fonts": []
+    },
+    "orbis-nft-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/orbis-nft-landing/videos/hf_20260331_045634_e1c98c76-1265-4f5c-882a-4276f2080894_3bf689.mp4"
+      ],
+      "fonts": []
+    },
+    "innovation-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/innovation-landing/videos/hf_20260402_054547_9875cfc5-155a-4229-8ec8-b7ba7125cbf8_6c269c.mp4",
+        "assets/innovation-landing/videos/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a_3989da.mp4"
+      ],
+      "fonts": []
+    },
+    "ecovolta-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/ecovolta-hero/videos/hf_20260402_161801_19c1f902-b569-4d42-87b0-4de571a14399_89946b.mp4"
+      ],
+      "fonts": []
+    },
+    "vex-ventures-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/vex-ventures-hero/videos/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959_d4d469.mp4"
+      ],
+      "fonts": []
+    },
+    "vitara-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/vitara-hero/videos/hf_20260402_134434_5de46cb4-38e7-42a6-a8bc-6e62b2fd6c7b_f776f3.mp4"
+      ],
+      "fonts": []
+    },
+    "nexar-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/nexar-hero/videos/hf_20260403_054410_6b17f7f9-d11e-44f1-90b0-75ee563d1971_9b5978.mp4"
+      ],
+      "fonts": []
+    },
+    "flowmate-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/flowmate-landing/videos/hf_20260405_073438_071156e5-2a7a-45d8-a8d9-c628d2144e88_4432c4.mp4"
+      ],
+      "fonts": [
+        "assets/flowmate-landing/fonts/17330fd087386262-s.p_545f3c.woff2"
+      ]
+    },
+    "veloce-finance-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/veloce-finance-landing/videos/hf_20260405_154629_a31a2372-bd54-4f7e-ac9b-21246141a664_d57ed2.mp4"
+      ],
+      "fonts": []
+    },
+    "prisma-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/prisma-landing/videos/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41_ebd59a.mp4",
+        "assets/prisma-landing/videos/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4_e23c32.mp4"
+      ],
+      "fonts": []
+    },
+    "social-media-posts-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/social-media-posts-hero/videos/hf_20260407_080531_1fe9b14c-9396-4b78-9372-42f4ddbd74c7_e3b6bc.mp4"
+      ],
+      "fonts": []
+    },
+    "design-rocket-email-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/design-rocket-email-hero/videos/hf_20260417_110451_9f82b157-dc92-4a9f-a341-c25594ec20e1_cede26.mp4",
+        "assets/design-rocket-email-hero/videos/hf_20260419_064822_f120e48a-d545-45dd-a02d-facb07829888_4a58c9.mp4",
+        "assets/design-rocket-email-hero/videos/hf_20260419_065931_e3ca7b53-d32e-4ad5-81de-dc9d6fcfda6d_504d49.mp4"
+      ],
+      "fonts": []
+    },
+    "crypto-wealth-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/crypto-wealth-hero/videos/hf_20260415_154932_f36efd90-557d-4cfb-add6-79336918bd53_bc7acc.mp4",
+        "assets/crypto-wealth-hero/videos/hf_20260417_061226_74f0749c-a22d-42b3-895e-5d6203bc741c_7a1c38.mp4"
+      ],
+      "fonts": []
+    },
+    "aetheris-voyage-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/aetheris-voyage-hero/videos/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50_ac31ce.mp4",
+        "assets/aetheris-voyage-hero/videos/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13_87a53c.mp4"
+      ],
+      "fonts": []
+    },
+    "securify-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/securify-hero/videos/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4_4c78a6.mp4"
+      ],
+      "fonts": []
+    },
+    "guardnet-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/guardnet-landing/videos/hf_20260421_074215_f4339e1c-0b1a-4f60-98b2-90e3d7840cb7_bf6462.mp4"
+      ],
+      "fonts": []
+    },
+    "impressive-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/impressive-hero/videos/hf_20260423_084718_72a17915-4964-4059-afcd-22d59399b72e_6a20a6.mp4"
+      ],
+      "fonts": []
+    },
+    "codercrest-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/codercrest-hero/videos/hf_20260424_093237_ff0ddc63-c068-4e29-96da-fdd0e40af133_9f4c1b.mp4",
+        "assets/codercrest-hero/videos/hf_20260424_090051_64ea5059-da6b-492b-a171-aa7ecc767dc3_172482.mp4"
+      ],
+      "fonts": []
+    },
+    "convix-software-hero": {
+      "preview": null,
+      "images": [
+        "assets/convix-software-hero/images/photo-1557683316-973673baf926_856e70.com__photo-1557683316-973673baf926_856e70d3"
+      ],
+      "videos": [
+        "assets/convix-software-hero/videos/hf_20260424_064411_9e9d7f84-9277-41f4-ab10-59172d89e6be_1180ec.mp4"
+      ],
+      "fonts": []
+    },
+    "slate-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/slate-hero/videos/hf_20260425_081506_cfddbdab-90d5-49b8-aa1a-8f52de33d335_dd71ac.mp4"
+      ],
+      "fonts": []
+    },
+    "benefits-features": {
+      "preview": null,
+      "images": [
+        "assets/benefits-features/images/_D0_A1_D0_BA_D1_80_D0_B8_D0_BD_D1_88_D0_BE_D1_82_26-04-2026__b1f3e2.png"
+      ],
+      "videos": [
+        "assets/benefits-features/videos/hf_20260426_105815_d66e9c4c-a1f8-4011-9ee5-f0cace24e642_4d19fc.mp4"
+      ],
+      "fonts": []
+    },
+    "dot-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/dot-hero/videos/hf_20260427_054418_a6d194f0-ac86-4df9-abe5-ded73e596d7c_9df5c0.mp4"
+      ],
+      "fonts": []
+    },
+    "nexora-features": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/nexora-features/videos/hf_20260427_104605_2700410c-4303-4d44-a368-e1b8c84eca8c_ec2d80.mp4",
+        "assets/nexora-features/videos/hf_20260427_104758_e7d78f06-3700-4862-8c9b-595ed447e81a_2f0870.mp4",
+        "assets/nexora-features/videos/hf_20260427_105007_f90de0f3-0f93-44d4-9b71-7446f78c4bd2_228534.mp4"
+      ],
+      "fonts": []
+    },
+    "lumina-footer": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/lumina-footer/videos/hf_20260429_114316_1c7889ad-2885-410e-b493-98119fee0ddb_2794ac.mp4"
+      ],
+      "fonts": []
+    },
+    "zenith-footer": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/zenith-footer/videos/hf_20260429_111347_9cf2a2b0-2c10-475b-a132-147a046b4927_fbc4f0.mp4"
+      ],
+      "fonts": []
+    },
+    "digital-reality-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/digital-reality-hero/videos/hf_20260429_212252_7d25a6d2-cf7f-465c-9bd1-a1496112806e_3829b4.mp4"
+      ],
+      "fonts": []
+    },
+    "community-cta": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/community-cta/videos/hf_20260503_101827_abebfeec-f243-466b-b494-7f6814c0fbbf_f3ef9a.mp4"
+      ],
+      "fonts": []
+    },
+    "zenith-realty-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/zenith-realty-landing/videos/hf_20260503_144509_89e2d612-8af2-45c3-90f4-4831bc60715d_987259.mp4"
+      ],
+      "fonts": []
+    },
+    "digital-epoch-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/digital-epoch-hero/videos/hf_20260505_101331_74f9b798-3f00-4e86-8a01-377aa16ffeaa_3a5bc3.mp4"
+      ],
+      "fonts": []
+    },
+    "vertex-ai-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/vertex-ai-hero/videos/hf_20260503_162107_3cd240af-dff4-4396-b8b7-22e25c9adb1c_e2b0f7.mp4"
+      ],
+      "fonts": []
+    },
+    "velorah-focus-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/velorah-focus-hero/videos/hf_20260505_105838_084968f2-4415-42a4-971a-3bec54539549_080f45.mp4",
+        "assets/velorah-focus-hero/videos/hf_20260505_110052_2e127257-5236-40b1-ba48-4690260f1185_157bc9.mp4"
+      ],
+      "fonts": []
+    },
+    "aurora-onboard": {
+      "preview": "assets/aurora-onboard/preview.png",
+      "images": [],
+      "videos": [
+        "assets/aurora-onboard/videos/hf_20260506_081238_406ed0e3-5d83-436e-a512-0bbff7ec5b95_76f21b.mp4"
+      ],
+      "fonts": []
+    },
+    "auramail": {
+      "preview": "assets/auramail/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/auramail/videos/hf_20260506_124911_3ed2d5b7-1604-4a4d-acbf-a28fd6c79348_fe934c.mp4"
+      ],
+      "fonts": []
+    },
+    "max-reed-portfolio": {
+      "preview": "assets/max-reed-portfolio/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/max-reed-portfolio/videos/hf_20260507_150203_44a5bd32-516a-47ce-a077-8acbf9aa8991_174f29.mp4",
+        "assets/max-reed-portfolio/videos/hf_20260507_153148_d7a3e1dd-e5d0-4ce6-8306-00d7522ecc44_589a2c.mp4",
+        "assets/max-reed-portfolio/videos/hf_20260507_154543_d5b83fc1-9cea-44f3-b5e8-8f325935211a_b74175.mp4"
+      ],
+      "fonts": []
+    },
+    "nex-max-upgrade": {
+      "preview": "assets/nex-max-upgrade/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/nex-max-upgrade/videos/hf_20260508_064209_0cb7d815-ff61-4caa-a6d5-bbff145ab272_50d706.mp4"
+      ],
+      "fonts": []
+    },
+    "blog-showcase": {
+      "preview": "assets/blog-showcase/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/blog-showcase/videos/hf_20260507_154232_f8809bd2-a6c3-4a38-908d-2005e5b3cb3e_6ee037.mp4",
+        "assets/blog-showcase/videos/hf_20260507_155500_808e6fdd-761f-4acd-b3be-cb7e6e700def_7dd9d4.mp4"
+      ],
+      "fonts": []
+    },
+    "velorix-iic": {
+      "preview": "assets/velorix-iic/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/velorix-iic/videos/hf_20260508_155101_f2540600-6fe9-433e-8e48-b3f4b72f0727_54dfa1.mp4"
+      ],
+      "fonts": []
+    },
+    "speakup-venture-hero": {
+      "preview": "assets/speakup-venture-hero/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/speakup-venture-hero/videos/hf_20260508_150921_27df94bd-d1e3-4440-9f55-314c4611902b_5805b7.mp4"
+      ],
+      "fonts": []
+    },
+    "prosthetics-hero": {
+      "preview": "assets/prosthetics-hero/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/prosthetics-hero/videos/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711_a9e8d5.mp4"
+      ],
+      "fonts": []
+    },
+    "novadesk-signup": {
+      "preview": "assets/novadesk-signup/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/novadesk-signup/videos/hf_20260508_191911_e7dc783e-a580-4974-8971-9796ecffd3bd_df3b85.mp4"
+      ],
+      "fonts": []
+    },
+    "travel-hero": {
+      "preview": "assets/travel-hero/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/travel-hero/videos/hf_20260509_073207_eeb9b7e5-7df4-4204-80c2-163eb46466e8_89f376.mp4",
+        "assets/travel-hero/videos/hf_20260508_220929_e6719f25-1ba0-45c2-97fc-0148805d9fb9_915c65.mp4"
+      ],
+      "fonts": []
+    },
+    "wanderful-hero": {
+      "preview": "assets/wanderful-hero/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/wanderful-hero/videos/hf_20260510_060007_60275ce7-030c-4668-a160-8f364ec537d3_536421.mp4"
+      ],
+      "fonts": []
+    },
+    "ai-workflow": {
+      "preview": "assets/ai-workflow/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/ai-workflow/videos/hf_20260511_131941_d136af49-e243-493a-be14-6ff3f24e09e6_8470a6.mp4"
+      ],
+      "fonts": []
+    },
+    "shop": {
+      "preview": "assets/shop/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/shop/videos/hf_20260511_142713_322c5ac5-8a5d-413b-be68-4a0e82014264_23a3b4.mp4"
+      ],
+      "fonts": []
+    },
+    "creative-agency": {
+      "preview": "assets/creative-agency/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/creative-agency/videos/hf_20260511_213626_db1bde2b-521c-4b22-91f3-35c072eb8771_4ea41f.mp4"
+      ],
+      "fonts": []
+    },
+    "stellar-launch": {
+      "preview": "assets/stellar-launch/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/stellar-launch/videos/hf_20260511_151648_2bdfbd1c-6bde-4f5d-a967-f57cbced97f6_ae7a77.mp4"
+      ],
+      "fonts": []
+    },
+    "dashboard": {
+      "preview": "assets/dashboard/preview.mp4",
+      "images": [
+        "assets/dashboard/images/100_b4e495.cc__100_b4e495a9",
+        "assets/dashboard/images/100_0db29c.cc__100_0db29c52",
+        "assets/dashboard/images/200_4d5f7f.photos__200_4d5f7f69"
+      ],
+      "videos": [
+        "assets/dashboard/videos/hf_20260514_102933_4e8f73b5-775a-4179-b2fb-472f59063dcd_e0384f.mp4",
+        "assets/dashboard/videos/hf_20260514_103318_2aa26b55-df1a-43a6-903d-941e718c9366_5d4248.mp4"
+      ],
+      "fonts": []
+    },
+    "cinematic-landing-page": {
+      "preview": "assets/cinematic-landing-page/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/cinematic-landing-page/videos/hf_20260515_113235_88e0d62e-8103-40c1-948e-f0a4f886ffd1_d6a340.mp4",
+        "assets/cinematic-landing-page/videos/hf_20260515_114315_ee3663e6-bd79-41b4-9e5b-0fae62827eb9_07f359.mp4",
+        "assets/cinematic-landing-page/videos/hf_20260515_114559_dca18b14-90f5-47c4-8a84-3cbae9bd8a0c_966cf3.mp4"
+      ],
+      "fonts": []
+    },
+    "luxury-editorial-ecommerce-design": {
+      "preview": "assets/luxury-editorial-ecommerce-design/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/luxury-editorial-ecommerce-design/videos/hf_20260516_112022_cddf2487-4ffe-45b6-ba4c-99ab79003cc5_47edf0.mp4",
+        "assets/luxury-editorial-ecommerce-design/videos/hf_20260518_175400_b46d1cd2-2050-45e2-9d13-b9c0bacb16b3_27894b.mp4",
+        "assets/luxury-editorial-ecommerce-design/videos/hf_20260518_182440_671605c8-2ed8-4507-a4cb-a62a8f61316f_2567da.mp4"
+      ],
+      "fonts": []
+    },
+    "modern-agency": {
+      "preview": "assets/modern-agency/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/modern-agency/videos/hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28_c4b08c.mp4",
+        "assets/modern-agency/videos/hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5_a42d96.mp4"
+      ],
+      "fonts": []
+    },
+    "vaultshield": {
+      "preview": "assets/vaultshield/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/vaultshield/videos/hf_20260518_003132_8b7edcb6-c64d-4a52-a9ca-879942e122ad_6a4e87.mp4"
+      ],
+      "fonts": []
+    },
+    "creative-studio": {
+      "preview": "assets/creative-studio/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/creative-studio/videos/hf_20260517_222138_3e3205be-3364-417b-a64a-bfe087acbec4_781dd6.mp4"
+      ],
+      "fonts": []
+    },
+    "evergreen-finance": {
+      "preview": "assets/evergreen-finance/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/evergreen-finance/videos/hf_20260517_070729_32a7eb4e-d6e2-4571-badc-91b4dab1ecbe_4e3b3c.mp4"
+      ],
+      "fonts": []
+    },
+    "growth-marketing-saas": {
+      "preview": "assets/growth-marketing-saas/preview.mp4",
+      "images": [
+        "assets/growth-marketing-saas/images/landing_2Fhero-bottom-bg_1b1372.png"
+      ],
+      "videos": [
+        "assets/growth-marketing-saas/videos/hf_20260521_014404_fadafdb1-4df6-4699-be9c-77d25f39a3d0_b4218f.mp4"
+      ],
+      "fonts": []
+    },
+    "futuristic-tech": {
+      "preview": "assets/futuristic-tech/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/futuristic-tech/videos/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358_4ad062.mp4"
+      ],
+      "fonts": []
+    },
+    "cursor-follow": {
+      "preview": "assets/cursor-follow/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/cursor-follow/videos/hf_20260525_095441_eb28d7e5-72cf-4336-a4cd-543f46f4ff20_0d50aa.mp4"
+      ],
+      "fonts": []
+    },
+    "minimal-workflow-saas": {
+      "preview": "assets/minimal-workflow-saas/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/minimal-workflow-saas/videos/hf_20260525_064035_ff2947db-c2f5-47e4-818d-0e985c6ea0fc_cedd9c.mp4"
+      ],
+      "fonts": []
+    },
+    "luxury-real-estate": {
+      "preview": "assets/luxury-real-estate/preview.mp4",
+      "images": [
+        "assets/luxury-real-estate/images/building_bzziky_cd34e4.png"
+      ],
+      "videos": [
+        "assets/luxury-real-estate/videos/hf_20260528_154751_39b1b9bb-2708-4211-b6a2-d39f93309e52_e086b9.mp4",
+        "assets/luxury-real-estate/videos/hf_20260528_154737_eba7900c-0313-483c-a30a-632c747ccc42_35ccc3.mp4",
+        "assets/luxury-real-estate/videos/hf_20260528_154759_4cdc8175-8261-497c-b688-9477c76545d4_9d1e9c.mp4",
+        "assets/luxury-real-estate/videos/hf_20260602_145337_e44eaa8c-6bb1-4a6e-a70f-ed0231cbaccb_544e8a.mp4",
+        "assets/luxury-real-estate/videos/hf_20260602_144009_4348fe33-f885-4345-8e92-3fe1c2625d32_0f4037.mp4"
+      ],
+      "fonts": []
+    },
+    "naturecore-saas": {
+      "preview": "assets/naturecore-saas/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/naturecore-saas/videos/hf_20260527_061033_0f369854-8849-4214-8787-9181479c8121_2ebba8.mp4"
+      ],
+      "fonts": []
+    },
+    "contact-cybernetic": {
+      "preview": "assets/contact-cybernetic/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/contact-cybernetic/videos/hf_20260601_110537_3a579fa0-7bbc-4d94-9d25-0e816c7840f5_6e6883.mp4"
+      ],
+      "fonts": []
+    },
+    "bio-digital": {
+      "preview": "assets/bio-digital/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/bio-digital/videos/hf_20260530_061107_6567e617-ee84-4c3e-ac81-f2d9dda9121a_a4e53d.mp4"
+      ],
+      "fonts": []
+    },
+    "retro-futurist": {
+      "preview": "assets/retro-futurist/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/retro-futurist/videos/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08_31a31b.mp4"
+      ],
+      "fonts": []
+    },
+    "intelligentx": {
+      "preview": "assets/intelligentx/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/intelligentx/videos/hf_20260603_132049_036591b8-6e92-4760-b94c-a7ea6eef315c_e88ae7.mp4"
+      ],
+      "fonts": []
+    },
+    "editorial-collection-cta": {
+      "preview": "assets/editorial-collection-cta/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/editorial-collection-cta/videos/hf_20260603_202301_db51e299-b2f4-4cea-80de-8a6465b7532a_7703c7.mp4"
+      ],
+      "fonts": []
+    },
+    "portal": {
+      "preview": "assets/portal/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/portal/videos/hf_20260606_131516_eca35265-ea66-4fbd-8d52-22aae6e1a503_25f7c4.mp4"
+      ],
+      "fonts": []
+    },
+    "global-cta-footer": {
+      "preview": "assets/global-cta-footer/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/global-cta-footer/videos/hf_20260604_125109_19424216-4e2a-4560-b9f2-f1b5f6eb2c2e_9f90f5.mp4"
+      ],
+      "fonts": []
+    },
+    "build-with-us": {
+      "preview": "assets/build-with-us/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/build-with-us/videos/hf_20260602_150901_c45b90ec-18d7-42ff-90e2-b95d7109e330_96e889.mp4"
+      ],
+      "fonts": []
+    },
+    "bold-studio": {
+      "preview": "assets/bold-studio/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/bold-studio/videos/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0_375761.mp4"
+      ],
+      "fonts": []
+    },
+    "interior-features": {
+      "preview": "assets/interior-features/preview.mp4",
+      "images": [
+        "assets/interior-features/images/room2_pihyox_f6a96b.png",
+        "assets/interior-features/images/room2_night_qc4qeq_727411.png"
+      ],
+      "videos": [
+        "assets/interior-features/videos/hf_20260609_072414_1e4448ec-537f-4f94-b56b-19e00c1550e8_7ff017.mp4"
+      ],
+      "fonts": []
+    },
+    "solace-sign-in": {
+      "preview": "assets/solace-sign-in/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/solace-sign-in/videos/hf_20260606_135315_5f9e8a4c-09bc-4a97-9f75-8a387d4258ee_b3ce58.mp4"
+      ],
+      "fonts": []
+    },
+    "luxury-botanical": {
+      "preview": "assets/luxury-botanical/preview.mp4",
+      "images": [
+        "assets/luxury-botanical/images/BL1996-Beyond_wild_vetiver_Flakon_100ml_300dpi_a55ie5_ea6f6f.webp",
+        "assets/luxury-botanical/images/BL2156_BEYOND_RADIANT_OSMANTHUS_1_hlc4v1_780894.webp",
+        "assets/luxury-botanical/images/BL2158_BEYOND_MELLOW_HELIOTROPE_agqych_96a92e.webp",
+        "assets/luxury-botanical/images/BL2156_BEYOND_RADIANT_OSMANTHUS_hoc3up_acaae8.webp",
+        "assets/luxury-botanical/images/BL2157_BEYOND_VIBRANT_HIBISCUS_pgiehq_25e925.webp",
+        "assets/luxury-botanical/images/BL2371-BL2372-BL2373-Magnetic-Amber_web_2_dbmtpy_b78666.webp",
+        "assets/luxury-botanical/images/pasted-1779282335552-1_gmztyi_5ebb05.png"
+      ],
+      "videos": [
+        "assets/luxury-botanical/videos/hf_20260520_114550_b72cc2b7-2267-4d9e-b19f-f3bb4b0c7084_7a155e.mp4"
+      ],
+      "fonts": []
+    },
+    "taskly-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/taskly-hero/videos/orb-purple_611845.webm"
+      ],
+      "fonts": []
+    },
+    "cinematic-brand": {
+      "preview": "assets/cinematic-brand/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/cinematic-brand/videos/hf_20260606_170109_f96e01a5-b0db-4274-b24d-8d97e99ec928_e69567.mp4"
+      ],
+      "fonts": []
+    },
+    "urban-jungle-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/urban-jungle-hero/videos/mux_43NlHXsaMrmyzWamMk87m01fNyxSTekAD669BBAPBNm00.mp4"
+      ],
+      "fonts": [
+        "assets/urban-jungle-hero/fonts/Dirtyline-36daysoftype-2022_096ed5.woff2"
+      ]
+    },
+    "nike-premium-landing": {
+      "preview": null,
+      "images": [
+        "assets/nike-premium-landing/images/0098888_526226.jpg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "arceage-services": {
+      "preview": "assets/arceage-services/preview.mp4",
+      "images": [
+        "assets/arceage-services/images/1_eca6d5.jpg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "glassmorphic-feature-tabs": {
+      "preview": "assets/glassmorphic-feature-tabs/preview.mp4",
+      "images": [
+        "assets/glassmorphic-feature-tabs/images/64_503d50.cc__64_503d5016",
+        "assets/glassmorphic-feature-tabs/images/play_icon_2ebc77.svg",
+        "assets/glassmorphic-feature-tabs/images/module-cover-1_b0288a.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "modern-hr-dashboard": {
+      "preview": "assets/modern-hr-dashboard/preview.png",
+      "images": [
+        "assets/modern-hr-dashboard/images/pexels-photo-1130626_fff6c0.jpeg",
+        "assets/modern-hr-dashboard/images/pexels-photo-1239291_9e34a2.jpeg",
+        "assets/modern-hr-dashboard/images/pexels-photo_35fe1a.jpg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "feedback-slider": {
+      "preview": "assets/feedback-slider/preview.mp4",
+      "images": [
+        "assets/feedback-slider/images/pexels-photo-220453_dc1224.jpeg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "pixel-grid-hover": {
+      "preview": "assets/pixel-grid-hover/preview.mp4",
+      "images": [
+        "assets/pixel-grid-hover/images/pexels-photo-2559941_d6cf6d.jpeg",
+        "assets/pixel-grid-hover/images/pexels-photo-2800832_451664.jpeg",
+        "assets/pixel-grid-hover/images/pexels-photo-5428003_9834ec.jpeg",
+        "assets/pixel-grid-hover/images/pexels-photo-7691249_2c1643.jpeg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "bento-grid-stats": {
+      "preview": "assets/bento-grid-stats/preview.mp4",
+      "images": [
+        "assets/bento-grid-stats/images/pexels-photo-3184291_04e723.jpeg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "layered-depth": {
+      "preview": "assets/layered-depth/preview.mp4",
+      "images": [
+        "assets/layered-depth/images/pexels-photo-3184465_c2d210.jpeg",
+        "assets/layered-depth/images/q-logo_isvugc_b70552.png",
+        "assets/layered-depth/images/slab_v1_kb4vqk_d54c4e.png"
+      ],
+      "videos": [
+        "assets/layered-depth/videos/bird-entrada_e72qt7_a3c61e.webm",
+        "assets/layered-depth/videos/bird-idle_fzjami_d44f24.webm",
+        "assets/layered-depth/videos/bg-video_xsmysw_a3c8e8.mp4",
+        "assets/layered-depth/videos/bird-idle2_rajmgo_57f590.webm",
+        "assets/layered-depth/videos/bird-saida_ifroz1_a90dba.webm"
+      ],
+      "fonts": []
+    },
+    "radial-diagram": {
+      "preview": "assets/radial-diagram/preview.mp4",
+      "images": [
+        "assets/radial-diagram/images/pexels-photo-3778212_be1db6.jpeg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "learnly": {
+      "preview": "assets/learnly/preview.mp4",
+      "images": [
+        "assets/learnly/images/pexels-photo-5212675_144316.jpeg",
+        "assets/learnly/images/pexels-photo-6333648_a9aae3.jpeg",
+        "assets/learnly/images/pexels-photo-8617763_8173ae.jpeg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "bookedup": {
+      "preview": "assets/bookedup/preview.mp4",
+      "images": [
+        "assets/bookedup/images/photo-1494790108377-be9c29b29330_1d51ee.com__photo-1494790108377-be9c29b29330_1d51eeb0",
+        "assets/bookedup/images/photo-1500648767791-00dcc994a43e_b5e726.com__photo-1500648767791-00dcc994a43e_b5e72613",
+        "assets/bookedup/images/photo-1507003211169-0a1dd7228f2d_8c6fe5.com__photo-1507003211169-0a1dd7228f2d_8c6fe5fc",
+        "assets/bookedup/images/photo-1534528741775-53994a69daeb_82d2e2.com__photo-1534528741775-53994a69daeb_82d2e290"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "digitwist-hero": {
+      "preview": null,
+      "images": [
+        "assets/digitwist-hero/images/photo-1647356191320-d7a1f80ca777_4d2aba.com__photo-1647356191320-d7a1f80ca777_4d2aba91"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "vortex-studio-hero": {
+      "preview": null,
+      "images": [
+        "assets/vortex-studio-hero/images/hero-automation-machines-preview-DlTveRIN_7187d0.gif",
+        "assets/vortex-studio-hero/images/hero-portfolio-cosmic-preview-BpvWJ3Nc_d2a252.gif",
+        "assets/vortex-studio-hero/images/hero-velorah-preview-CJNTtbpd_8ddb10.gif"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "liquid-glass-features": {
+      "preview": "assets/liquid-glass-features/preview.mp4",
+      "images": [
+        "assets/liquid-glass-features/images/hero-glassmorphism-agency-preview-CGqeRoqP_c51630.gif"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "liquid-glass-agency": {
+      "preview": null,
+      "images": [
+        "assets/liquid-glass-agency/images/hero-finlytic-preview-CV9g0FHP_4bf165.gif"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "arceage-testimonial": {
+      "preview": "assets/arceage-testimonial/preview.mp4",
+      "images": [
+        "assets/arceage-testimonial/images/100_2f3764.photos__100_2f3764e1",
+        "assets/arceage-testimonial/images/100_540f79.photos__100_540f79b2",
+        "assets/arceage-testimonial/images/100_f91a5e.photos__100_f91a5e96"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "package-fits-pricing": {
+      "preview": null,
+      "images": [
+        "assets/package-fits-pricing/images/gold_20tree_917dc4.webp",
+        "assets/package-fits-pricing/images/purple_20tree_14f415.webp",
+        "assets/package-fits-pricing/images/landscape_37c67a.webp"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "ai-image-generator-ui": {
+      "preview": "assets/ai-image-generator-ui/preview.png",
+      "images": [
+        "assets/ai-image-generator-ui/images/network_abd1ec.svg",
+        "assets/ai-image-generator-ui/images/library_20icon_52b5fe.svg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "pulse-3d": {
+      "preview": "assets/pulse-3d/preview.mp4",
+      "images": [
+        "assets/pulse-3d/images/canva-logo-svg-150px_1c305f.svg",
+        "assets/pulse-3d/images/glide-logo-svg-150px_cf5983.svg",
+        "assets/pulse-3d/images/pendo-logo-svg-150px_c07a9d.svg",
+        "assets/pulse-3d/images/voiceflow-logo-svg-150px_91bc08.svg",
+        "assets/pulse-3d/images/zendesk-logo-svg-150px_04d587.svg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "arceage-contact-us": {
+      "preview": "assets/arceage-contact-us/preview.mp4",
+      "images": [
+        "assets/arceage-contact-us/images/close-circle_37e8b0.svg",
+        "assets/arceage-contact-us/images/tick-circle_d8dadb.svg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "solar-energy-hero": {
+      "preview": "assets/solar-energy-hero/preview.mp4",
+      "images": [
+        "assets/solar-energy-hero/images/hf_20260515_092045_b654224c-4741-458f-8596-fa5bfeffabbc_1_oy_78d619.jpg",
+        "assets/solar-energy-hero/images/hf_20260515_092102_24e30358-d694-4b70-8a56-a4f0887cf8ae_1_ry_a23b9e.jpg"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "dreamcore-landing": {
+      "preview": "assets/dreamcore-landing/preview.mp4",
+      "images": [
+        "assets/dreamcore-landing/images/image_2_gkcdlx_eeb657.png",
+        "assets/dreamcore-landing/images/curtain_left_znkmva_77b5ea.png",
+        "assets/dreamcore-landing/images/bottom_clouds_xskut6_c7addf.png",
+        "assets/dreamcore-landing/images/curtain_right_paeyym_fed3cd.png",
+        "assets/dreamcore-landing/images/image_1_vdzwae_f54ef8.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "rocket-cta": {
+      "preview": "assets/rocket-cta/preview.mp4",
+      "images": [
+        "assets/rocket-cta/images/cta-bg_mlwy5s_cdbd47.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "3d-jack-portfolio-hero": {
+      "preview": null,
+      "images": [
+        "assets/3d-jack-portfolio-hero/images/Rectangle_40443.81459862_30c9e3.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "saas-value": {
+      "preview": "assets/saas-value/preview.png",
+      "images": [
+        "assets/saas-value/images/grass_eam204_9c44ce.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "3d-story": {
+      "preview": "assets/3d-story/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/3d-story/videos/hf_20260616_212935_bbf608da-62d1-4f25-9be4-c346e4d09cc8_bd331e.mp4"
+      ],
+      "fonts": []
+    },
+    "wellness-hero": {
+      "preview": "assets/wellness-hero/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/wellness-hero/videos/hf_20260618_174853_aac61aa2-0f3f-4cf1-bc78-7f657dd11164_7a26f4.mp4"
+      ],
+      "fonts": []
+    },
+    "audio-showcase": {
+      "preview": "assets/audio-showcase/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/audio-showcase/videos/hf_20260611_183632_c311af08-e4b7-458f-81e7-79847a49b3d3_84b76f.mp4"
+      ],
+      "fonts": []
+    },
+    "haul-footer": {
+      "preview": null,
+      "images": [
+        "assets/haul-footer/images/truck_1.8c4bff83_70c0a1.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "cosmic": {
+      "preview": "assets/cosmic/preview.mp4",
+      "images": [
+        "assets/cosmic/images/rock_vca457_eee425.png"
+      ],
+      "videos": [
+        "assets/cosmic/videos/hf_20260613_233050_b3f1adc5-8b5f-41bb-b52a-0a79bd796ba8_f4d793.mp4"
+      ],
+      "fonts": []
+    },
+    "neural-interface": {
+      "preview": "assets/neural-interface/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/neural-interface/videos/hf_20260613_120544_a609e0c2-e52d-4bd5-b10f-b66ac51f1965_ecf7b5.mp4"
+      ],
+      "fonts": []
+    },
+    "404-planet": {
+      "preview": "assets/404-planet/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/404-planet/videos/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67_54f99e.mp4"
+      ],
+      "fonts": []
+    },
+    "bl": {
+      "preview": "assets/bl/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/bl/videos/202606101700_hglz7q_0f7865.mp4",
+        "assets/bl/videos/202606101703_jmidj2_2ef572.mp4",
+        "assets/bl/videos/202606101702_sd50y0_61f7ae.mp4"
+      ],
+      "fonts": []
+    },
+    "luxury-focus": {
+      "preview": "assets/luxury-focus/preview.mp4",
+      "images": [
+        "assets/luxury-focus/images/rng_awymkj_edfc13.png",
+        "assets/luxury-focus/images/202606091756_msbh8b_b4c5ad.jpg",
+        "assets/luxury-focus/images/2606091843_kfonxp_28a6a9.jpg"
+      ],
+      "videos": [
+        "assets/luxury-focus/videos/11111111_gvewuj_0cd286.mp4",
+        "assets/luxury-focus/videos/2222222_x4qpet_49667c.mp4"
+      ],
+      "fonts": []
+    },
+    "future-state": {
+      "preview": "assets/future-state/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/future-state/videos/hf_20260611_104107_121bfb5a-b1df-4e0d-8240-25b81f7cc85d_ecd4dc.mp4"
+      ],
+      "fonts": []
+    },
+    "conversion": {
+      "preview": "assets/conversion/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/conversion/videos/hf_20260613_235144_2f72690f-ad2d-4b1d-9dc1-96fc97d01ca5_e84932.mp4"
+      ],
+      "fonts": []
+    },
+    "synthesis": {
+      "preview": "assets/synthesis/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/synthesis/videos/hf_20260610_193933_20e7efd7-2d68-4946-a270-04cb7b9ab74b_cf2b47.mp4"
+      ],
+      "fonts": []
+    },
+    "gateway-portal": {
+      "preview": "assets/gateway-portal/preview.mp4",
+      "images": [
+        "assets/gateway-portal/images/image_1_ksxfzb_31a2d9.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "bionova-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/bionova-hero/videos/mux_1RdbcBtpEUK6501pc6yaIvwo9UfSnOg02k1uHxat00xR3w.mp4",
+        "assets/bionova-hero/videos/mux_6yvj9SR5bjmXq9N3ak7gy427RwUs8R2ZoH4ndA7Q1018.mp4",
+        "assets/bionova-hero/videos/mux_t1TbTB8M1VYHkhxBuap4A8Vm1x015HTHyuQxqchDBago.mp4"
+      ],
+      "fonts": []
+    },
+    "ecovolta-v2-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/ecovolta-v2-hero/videos/mux_02gzwandixH4J534bd00JsCvlFfw6ha101WQ00C9b3sGibM.mp4"
+      ],
+      "fonts": []
+    },
+    "focus-ai-landing": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/focus-ai-landing/videos/mux_9njY8qDfS02Uvbll018C8CK39p5EksK7mn02DDC1zYvppI.mp4"
+      ],
+      "fonts": []
+    },
+    "deck-investor": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/deck-investor/videos/mux_BuGGTsiXq1T00WUb8qfURrHkTCbhrkfFLSv4uAOZzdhw.mp4",
+        "assets/deck-investor/videos/mux_PkFsoKeakRLgL01gjf02CRcSbsJ600Z00NvLr9eRZ92pLbA.mp4"
+      ],
+      "fonts": []
+    },
+    "ember-dsgn-hero": {
+      "preview": null,
+      "images": [],
+      "videos": [
+        "assets/ember-dsgn-hero/videos/mux_Q3hYHAcLU82ceOUgwDeO4HiwOc3WZn9JD02PugwzxHOI.mp4"
+      ],
+      "fonts": []
+    },
+    "no-code-waitlist": {
+      "preview": "assets/no-code-waitlist/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/no-code-waitlist/videos/mux_kimF2ha9zLrX64H00UgLGPflCzNtl1T0215MlAmeOztv8.mp4"
+      ],
+      "fonts": []
+    },
+    "animated-cards": {
+      "preview": "assets/animated-cards/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "interactive-discovery": {
+      "preview": "assets/interactive-discovery/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "cyberpunk-reveal": {
+      "preview": "assets/cyberpunk-reveal/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "liquid-glass-cta": {
+      "preview": "assets/liquid-glass-cta/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "veloce-cards": {
+      "preview": "assets/veloce-cards/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nexacore-results": {
+      "preview": "assets/nexacore-results/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nexacore-process": {
+      "preview": "assets/nexacore-process/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nike-hover": {
+      "preview": "assets/nike-hover/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "guardnet-benefits": {
+      "preview": "assets/guardnet-benefits/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nexacore-control": {
+      "preview": "assets/nexacore-control/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "guardnet-demo": {
+      "preview": "assets/guardnet-demo/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "halo-use-case": {
+      "preview": "assets/halo-use-case/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "halo-benefits": {
+      "preview": "assets/halo-benefits/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "projects-catalog": {
+      "preview": "assets/projects-catalog/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "portfolio-about": {
+      "preview": "assets/portfolio-about/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "agency-services": {
+      "preview": "assets/agency-services/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "scroll-marquee": {
+      "preview": "assets/scroll-marquee/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "daisy-sweet": {
+      "preview": "assets/daisy-sweet/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "daisy-wild": {
+      "preview": "assets/daisy-wild/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nimbus-ops": {
+      "preview": "assets/nimbus-ops/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nimbus-demo": {
+      "preview": "assets/nimbus-demo/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nimbus-sticky-cards": {
+      "preview": "assets/nimbus-sticky-cards/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nimbus-pricing": {
+      "preview": "assets/nimbus-pricing/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "tech-noir-about": {
+      "preview": "assets/tech-noir-about/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "cognitra-feature": {
+      "preview": "assets/cognitra-feature/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "cognitra-offer": {
+      "preview": "assets/cognitra-offer/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nimbus-security": {
+      "preview": "assets/nimbus-security/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "launchex-about": {
+      "preview": "assets/launchex-about/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "beauty-products": {
+      "preview": "assets/beauty-products/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "beauty-categories": {
+      "preview": "assets/beauty-categories/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "launchex-submissions": {
+      "preview": "assets/launchex-submissions/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "orbis-cards": {
+      "preview": "assets/orbis-cards/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "orbis-hello": {
+      "preview": "assets/orbis-hello/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "orbis-cta": {
+      "preview": "assets/orbis-cta/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "kova-features": {
+      "preview": "assets/kova-features/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "kova-testimonial": {
+      "preview": "assets/kova-testimonial/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "rocket-pricing": {
+      "preview": "assets/rocket-pricing/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "rocket-faq": {
+      "preview": "assets/rocket-faq/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "flowmate-carousal": {
+      "preview": "assets/flowmate-carousal/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "axion-about": {
+      "preview": "assets/axion-about/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "botanical-shadow-about": {
+      "preview": "assets/botanical-shadow-about/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "mouse-trail-cta": {
+      "preview": "assets/mouse-trail-cta/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "stark-minimal-footer": {
+      "preview": "assets/stark-minimal-footer/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "media-card-carousel": {
+      "preview": "assets/media-card-carousel/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "technical-specifications": {
+      "preview": "assets/technical-specifications/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "mythic-naturecore": {
+      "preview": "assets/mythic-naturecore/preview.mp4",
+      "images": [
+        "assets/mythic-naturecore/images/card_1_jz8otj_987a85.jpg",
+        "assets/mythic-naturecore/images/card_3_nbwm25_820e84.jpg",
+        "assets/mythic-naturecore/images/portal_bg_mu60k9_20a938.png",
+        "assets/mythic-naturecore/images/card_2_wr6al6_62bb86.jpg",
+        "assets/mythic-naturecore/images/world_bg_jzzcn1_677258.jpg",
+        "assets/mythic-naturecore/images/curtain_left_cdht6q_6e36bd.png",
+        "assets/mythic-naturecore/images/curtain_right_a9bn3i_fe8929.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "3d-collectible-hero": {
+      "preview": "assets/3d-collectible-hero/preview.mp4",
+      "images": [
+        "assets/3d-collectible-hero/images/1.02464a56_6f8e47.png",
+        "assets/3d-collectible-hero/images/2.b977faab_15f4a0.png",
+        "assets/3d-collectible-hero/images/4.4457fbce_fa5b2e.png",
+        "assets/3d-collectible-hero/images/3.4df853b4_fda59a.png"
+      ],
+      "videos": [],
+      "fonts": []
+    },
+    "features": {
+      "preview": "assets/features/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "scroll-landing": {
+      "preview": "assets/scroll-landing/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/scroll-landing/videos/hf_20260521_064421_279656fd-e76f-40a0-8fed-7456d4f7715a_339d21.mp4"
+      ],
+      "fonts": []
+    },
+    "art-landing": {
+      "preview": "assets/art-landing/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "ai-automation": {
+      "preview": "assets/ai-automation/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "cybersecurity-hero-v2": {
+      "preview": "assets/cybersecurity-hero-v2/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "nimbus-grid": {
+      "preview": "assets/nimbus-grid/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "book-hero": {
+      "preview": "assets/book-hero/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "neo-museum": {
+      "preview": "assets/neo-museum/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "financialfocus": {
+      "preview": "assets/financialfocus/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "visual-hero": {
+      "preview": "assets/visual-hero/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/visual-hero/videos/hf_20260511_080827_a9e5ad52-b6ee-4e79-b393-d936f179cfd7_c20193.mp4"
+      ],
+      "fonts": []
+    },
+    "email-landing-page": {
+      "preview": "assets/email-landing-page/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "futuristic-cinematic": {
+      "preview": "assets/futuristic-cinematic/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "reveal-hero": {
+      "preview": "assets/reveal-hero/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "waitlist-hero": {
+      "preview": "assets/waitlist-hero/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "faq-cta": {
+      "preview": "assets/faq-cta/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "saas-pricing-flow": {
+      "preview": "assets/saas-pricing-flow/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "cybersecurity-hero": {
+      "preview": "assets/cybersecurity-hero/preview.mp4",
+      "images": [],
+      "videos": [],
+      "fonts": []
+    },
+    "equilibrium": {
+      "preview": "assets/equilibrium/preview.mp4",
+      "images": [],
+      "videos": [
+        "assets/equilibrium/videos/hf_20260511_230229_7c9bc431-46cf-489a-948d-e8144d8eb5d4_657735.mp4"
+      ],
+      "fonts": []
+    }
+  },
+  "_shared": {
+    "images": [
+      "assets/_shared/images/682c7cb62b8800a7594c5abd_hover_card_img_410a03.png",
+      "assets/_shared/images/683ef70a24657b10be91ef49_bullet-list_a86e68.svg",
+      "assets/_shared/images/686cc068490683bbb3377d04_bullet-list_363c82.svg",
+      "assets/_shared/images/686cc0f520a992816d8b15dc_bullet-list-cross_1bc5da.svg",
+      "assets/_shared/images/6870f623cf3df417ce45df05_icon_20logo_20eternacloud_201a2b.png",
+      "assets/_shared/images/a64ff11d2c24584c767f6257e880dc65_2a42f9.svg",
+      "assets/_shared/images/02604201313_f87ac2.png",
+      "assets/_shared/images/asset_c77cf6.ai__asset_c77cf62b",
+      "assets/_shared/images/asset_81f5b3.ai__asset_81f5b3a1",
+      "assets/_shared/images/asset_822bb5.ai__asset_822bb522",
+      "assets/_shared/images/asset_217fd1.ai__asset_217fd140",
+      "assets/_shared/images/asset_0e454c.ai__asset_0e454c01",
+      "assets/_shared/images/asset_afae74.ai__asset_afae74f9",
+      "assets/_shared/images/asset_bce342.ai__asset_bce342d7",
+      "assets/_shared/images/asset_714db1.ai__asset_714db1e2",
+      "assets/_shared/images/asset_3ba9f3.ai__asset_3ba9f346",
+      "assets/_shared/images/asset_63a9b5.ai__asset_63a9b5a9",
+      "assets/_shared/images/asset_19f0e6.ai__asset_19f0e639",
+      "assets/_shared/images/asset_40285c.ai__asset_40285c59",
+      "assets/_shared/images/asset_1b956a.ai__asset_1b956acf",
+      "assets/_shared/images/asset_bc865e.ai__asset_bc865e72",
+      "assets/_shared/images/asset_b18d28.ai__asset_b18d28f6",
+      "assets/_shared/images/asset_5da235.ai__asset_5da2355e",
+      "assets/_shared/images/asset_57eca9.ai__asset_57eca929",
+      "assets/_shared/images/asset_3a148a.ai__asset_3a148a2f",
+      "assets/_shared/images/asset_fc6c42.ai__asset_fc6c420d",
+      "assets/_shared/images/asset_64fe80.ai__asset_64fe809a",
+      "assets/_shared/images/asset_c651d7.ai__asset_c651d794",
+      "assets/_shared/images/asset_9ce7a7.ai__asset_9ce7a7c5",
+      "assets/_shared/images/asset_7ef87a.ai__asset_7ef87a39",
+      "assets/_shared/images/asset_860895.ai__asset_86089585",
+      "assets/_shared/images/asset_84ca38.ai__asset_84ca38f6",
+      "assets/_shared/images/asset_c660ae.ai__asset_c660aee1",
+      "assets/_shared/images/asset_6dba09.ai__asset_6dba0977",
+      "assets/_shared/images/asset_f401f0.ai__asset_f401f0f9",
+      "assets/_shared/images/asset_4dcf01.ai__asset_4dcf0188",
+      "assets/_shared/images/asset_e47cab.ai__asset_e47cabe0",
+      "assets/_shared/images/asset_195db0.ai__asset_195db01d",
+      "assets/_shared/images/asset_1ff517.ai__asset_1ff51722",
+      "assets/_shared/images/asset_aea84c.ai__asset_aea84ce4",
+      "assets/_shared/images/asset_e97c15.ai__asset_e97c15b1",
+      "assets/_shared/images/asset_645f6a.ai__asset_645f6a50",
+      "assets/_shared/images/asset_527845.ai__asset_52784573",
+      "assets/_shared/images/asset_16e272.ai__asset_16e2723d",
+      "assets/_shared/images/asset_d410ac.ai__asset_d410ac84",
+      "assets/_shared/images/asset_03d149.ai__asset_03d149a9",
+      "assets/_shared/images/asset_42b1d5.ai__asset_42b1d5ef",
+      "assets/_shared/images/asset_fab2c1.ai__asset_fab2c141",
+      "assets/_shared/images/asset_a75a00.ai__asset_a75a009b",
+      "assets/_shared/images/asset_24c7f2.ai__asset_24c7f2aa",
+      "assets/_shared/images/asset_75ec32.ai__asset_75ec32c8",
+      "assets/_shared/images/asset_31e80f.ai__asset_31e80fc7",
+      "assets/_shared/images/asset_5f1419.ai__asset_5f14196a",
+      "assets/_shared/images/asset_4093b2.ai__asset_4093b257",
+      "assets/_shared/images/asset_ed91c2.ai__asset_ed91c2d7",
+      "assets/_shared/images/asset_865fdc.ai__asset_865fdc14",
+      "assets/_shared/images/asset_260d03.ai__asset_260d03f3",
+      "assets/_shared/images/asset_bd11d2.ai__asset_bd11d2cd",
+      "assets/_shared/images/asset_833107.ai__asset_8331070c",
+      "assets/_shared/images/asset_0c9bfb.ai__asset_0c9bfb2b",
+      "assets/_shared/images/asset_cda0d6.ai__asset_cda0d640",
+      "assets/_shared/images/asset_73bf14.ai__asset_73bf14a1",
+      "assets/_shared/images/asset_39bccd.ai__asset_39bccdfb",
+      "assets/_shared/images/asset_cced98.ai__asset_cced9843",
+      "assets/_shared/images/asset_25874e.ai__asset_25874e3a",
+      "assets/_shared/images/asset_5d0929.ai__asset_5d092900",
+      "assets/_shared/images/asset_668ea1.ai__asset_668ea1bd",
+      "assets/_shared/images/asset_6cba46.ai__asset_6cba4619",
+      "assets/_shared/images/asset_4b14d5.ai__asset_4b14d5be",
+      "assets/_shared/images/asset_48d8a7.ai__asset_48d8a75f",
+      "assets/_shared/images/asset_cd5f86.ai__asset_cd5f8656",
+      "assets/_shared/images/asset_a578f7.ai__asset_a578f7ff",
+      "assets/_shared/images/asset_dcf05e.ai__asset_dcf05e43",
+      "assets/_shared/images/asset_b43a03.ai__asset_b43a03b6",
+      "assets/_shared/images/pexels-photo-1681010_781071.jpeg",
+      "assets/_shared/images/pexels-photo-1681010_27cd72.jpeg",
+      "assets/_shared/images/asset_3baded.ai__asset_3baded4a",
+      "assets/_shared/images/asset_2f91e7.ai__asset_2f91e7ab",
+      "assets/_shared/images/pexels-photo-415829_5ec110.jpeg",
+      "assets/_shared/images/pexels-photo-415829_12df85.jpeg",
+      "assets/_shared/images/pexels-photo-733872_c723d1.jpeg",
+      "assets/_shared/images/pexels-photo-733872_235cd3.jpeg",
+      "assets/_shared/images/pexels-photo-774909_d9a6e9.jpeg",
+      "assets/_shared/images/pexels-photo-774909_e5c9b0.jpeg",
+      "assets/_shared/images/pexels-photo-774909_7d816a.jpeg",
+      "assets/_shared/images/hero-celestia-preview-0yO3jXO8_119d80.gif",
+      "assets/_shared/images/hero-asme-preview-B_nGDnTP_462cea.gif",
+      "assets/_shared/images/hero-codenest-preview-Cgppc2qV_deda3e.gif",
+      "assets/_shared/images/hero-aethera-preview-DknSlcTa_5188f3.gif",
+      "assets/_shared/images/hero-designpro-preview-D8c5_een_fea02f.gif",
+      "assets/_shared/images/hero-nexora-preview-cx5HmUgo_234cf6.gif",
+      "assets/_shared/images/hero-evr-ventures-preview-DZxeVFEX_090afa.gif",
+      "assets/_shared/images/hero-grow-ai-preview-BlQ8tAQ-_0de689.gif",
+      "assets/_shared/images/hero-luminex-preview-CxOP7ce6_2118cd.gif",
+      "assets/_shared/images/hero-skyelite-preview-DHaZIgUv_f34568.gif",
+      "assets/_shared/images/hero-new-era-preview-CocuDUm9_fc231b.gif",
+      "assets/_shared/images/hero-orbit-web3-preview-BXt4OttD_f54fdd.gif",
+      "assets/_shared/images/hero-planet-orbit-preview-DWAP8Z1P_757149.gif",
+      "assets/_shared/images/hero-stellar-ai-v2-preview-DjvxjG3C_aa15cf.gif",
+      "assets/_shared/images/hero-stellar-ai-preview-D3HL6bw1_8521cb.gif",
+      "assets/_shared/images/hero-space-voyage-preview-eECLH3Yc_b271da.gif",
+      "assets/_shared/images/hero-terra-preview-BFjrCr7T_101da8.gif",
+      "assets/_shared/images/hero-transform-data-preview-Cx5OU29N_fa8892.gif",
+      "assets/_shared/images/hero-vitara-preview-Cjz2QYyU_f5f32d.gif",
+      "assets/_shared/images/hero-wealth-preview-B70idl_u_91bcdf.gif",
+      "assets/_shared/images/logoipsum-415_93a515.svg",
+      "assets/_shared/images/hero-xportfolio-preview-D4A8maiC_ca8266.gif",
+      "assets/_shared/images/hero-vex-ventures-preview-BczMFIiw_9a8e2f.gif",
+      "assets/_shared/images/Group_134-1.2e04f3ce_9c08bb.png",
+      "assets/_shared/images/lego_icon-1.703bb594_a40d09.png",
+      "assets/_shared/images/p59_1.4659672e_4c2c70.png",
+      "assets/_shared/images/moon_icon.11395d36_30c8e5.png",
+      "assets/_shared/images/asset_409af1.ai__asset_409af1e8",
+      "assets/_shared/images/asset_f846cc.ai__asset_f846ccd0",
+      "assets/_shared/images/asset_7ea551.ai__asset_7ea55170",
+      "assets/_shared/images/asset_c889dd.ai__asset_c889dd4e",
+      "assets/_shared/images/asset_afe8b5.ai__asset_afe8b52c",
+      "assets/_shared/images/asset_becbe9.ai__asset_becbe92f",
+      "assets/_shared/images/asset_ab67b2.ai__asset_ab67b27c"
+    ],
+    "videos": [
+      "assets/_shared/videos/23843-720_986ae1.mp4",
+      "assets/_shared/videos/23211-720_5fe046.mp4",
+      "assets/_shared/videos/45229-720_7eb1e1.mp4",
+      "assets/_shared/videos/hf_20260306_074215_04640ca7-042c-45d6-bb56-58b1e8a42489_8cf70e.mp4",
+      "assets/_shared/videos/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8_4b9fad.mp4",
+      "assets/_shared/videos/hf_20260308_114720_3dabeb9e-2c39-4907-b747-bc3544e2d5b7_3136d2.mp4",
+      "assets/_shared/videos/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31_2d82c7.mp4",
+      "assets/_shared/videos/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323_292b92.mp4",
+      "assets/_shared/videos/hf_20260324_024928_1efd0b0d-6c02-45a8-8847-1030900c4f63_06ef29.mp4",
+      "assets/_shared/videos/hf_20260324_032431_5e054107-51c0-4162-9f0f-3a40054761ef_1dd959.mp4",
+      "assets/_shared/videos/hf_20260324_033707_b842a2ea-f223-4804-96d0-737ab67510fc_b76f4c.mp4",
+      "assets/_shared/videos/hf_20260324_032535_4ccc152e-0cc8-4ee5-a698-e1a98cea8a1e_afec75.mp4",
+      "assets/_shared/videos/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4_8af1a2.mp4",
+      "assets/_shared/videos/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b_61ae64.mp4",
+      "assets/_shared/videos/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4_b10ef1.mp4",
+      "assets/_shared/videos/hf_20260330_153826_e9005cf7-a1c7-4c7d-886f-fea22d644a9c_66efba.mp4",
+      "assets/_shared/videos/hf_20260331_053923_22c0a6a5-313c-474c-85ff-3b50d25e944a_a82368.mp4",
+      "assets/_shared/videos/hf_20260331_055427_ac7035b5-9f3b-4289-86fc-941b2432317d_4477d0.mp4",
+      "assets/_shared/videos/hf_20260331_054411_511c1b7a-fb2f-42ef-bf6c-32c0b1a06e79_7f8ebf.mp4",
+      "assets/_shared/videos/hf_20260331_055729_72d66327-b59e-4ae9-bb70-de6ccb5ecdb0_31ea43.mp4",
+      "assets/_shared/videos/hf_20260331_151551_992053d1-3d3e-4b8c-abac-45f22158f411_21afc1.mp4",
+      "assets/_shared/videos/hf_20260405_140728_ae719193-f10b-4105-82fc-c989610b3aa6_6dfe80.mp4",
+      "assets/_shared/videos/hf_20260405_143605_bc7bd6c0-9c68-49ff-a9d3-073a10759fa4_3a0d5c.mp4",
+      "assets/_shared/videos/hf_20260405_145119_f4ec4d9f-3ecd-4116-baa3-26e8cf2df976_b6bd43.mp4",
+      "assets/_shared/videos/hf_20260406_094145_4a271a6c-3869-4f1c-8aa7-aeb0cb227994_ea2bbb.mp4",
+      "assets/_shared/videos/hf_20260418_115655_b4d9cd77-feed-43cd-a198-af78ebdf1f7a_a261dd.mp4",
+      "assets/_shared/videos/hf_20260421_072418_508a7d2e-396d-4f6f-9d42-ec920fcf7755_87ac9b.mp4",
+      "assets/_shared/videos/hf_20260421_072701_f6a01abb-eb30-4559-9d6e-774362defbc3_1e8bf7.mp4",
+      "assets/_shared/videos/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd_96b0a6.mp4",
+      "assets/_shared/videos/hf_20260423_183428_ab5e672a-f608-4dcb-b319-f3e040f02e2d_6ca06b.mp4",
+      "assets/_shared/videos/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad_9ebfba.mp4",
+      "assets/_shared/videos/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1_ace149.mp4",
+      "assets/_shared/videos/hf_20260503_104800_bc43ae09-f494-43e3-97d7-2f8c1692cfd7_e13aa3.mp4",
+      "assets/_shared/videos/hf_20260506_030111_a9e15665-d379-4a7f-8116-695bbe452ad1_ecec05.mp4",
+      "assets/_shared/videos/hf_20260508_064122_c4750c0e-7476-4b44-94a2-a85a65c63bf2_547dcc.mp4",
+      "assets/_shared/videos/hf_20260508_071134_9cc2f2d8-a599-4a73-8c89-6eb4af170352_87f5b0.mp4",
+      "assets/_shared/videos/hf_20260511_151802_1bbf9a81-a7cb-4be1-b858-f1cd92b62b96_e8f408.mp4",
+      "assets/_shared/videos/hf_20260511_151818_65bb22c5-33ae-4e23-85ea-0a3dd89957c2_477996.mp4",
+      "assets/_shared/videos/hf_20260513_221040_e6ba7c5a-864e-46e9-871e-341a176a7e3e_490a0f.mp4",
+      "assets/_shared/videos/hf_20260513_220333_48163edc-995f-4513-9f44-48dbb07a7329_9b1b7a.mp4",
+      "assets/_shared/videos/hf_20260513_221104_fb538584-5b87-495f-952e-09ddd5a1792a_b480b9.mp4",
+      "assets/_shared/videos/hf_20260514_135830_bb6491d1-9b66-4aec-9722-13b4dfe3fb46_4cda94.mp4",
+      "assets/_shared/videos/hf_20260514_154120_b89bfedd-530d-4ebb-9eb7-42eeafe08667_eadcd0.mp4",
+      "assets/_shared/videos/hf_20260517_074029_c7a854bd-2d6e-4b62-96b3-ae8c16311e44_a5d68a.mp4",
+      "assets/_shared/videos/hf_20260518_203023_87a26602-2898-4acc-a396-c7a2b5ad84fd_05e230.mp4",
+      "assets/_shared/videos/hf_20260518_203415_b86e3f19-2aec-46cd-9a86-b64c40118e38_fc095e.mp4",
+      "assets/_shared/videos/hf_20260518_203051_85fee398-ea01-4aa0-972b-137a74213be5_1d5824.mp4",
+      "assets/_shared/videos/bg-2-video_sgbpqt_a91bee.mp4",
+      "assets/_shared/videos/mux_4IMYGcL01xjs7ek5ANO17JC4VQVUTsojZlnw4fXzwSxc.mp4",
+      "assets/_shared/videos/mux_8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.mp4",
+      "assets/_shared/videos/mux_9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.mp4",
+      "assets/_shared/videos/mux_NcU3HlHeF7CUL86azTTzpy3Tlb00d6iF3BmCdFslMJYM.mp4",
+      "assets/_shared/videos/mux_Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.mp4",
+      "assets/_shared/videos/mux_T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.mp4",
+      "assets/_shared/videos/mux_Gs3wZfrtz6ZfqZqQ02c02Z7lugV00FGZvRpcqFTel66r3g.mp4",
+      "assets/_shared/videos/mux_s8pMcOvMQXc4GD6AX4e1o01xFogFxipmuKltNfSYza0200.mp4",
+      "assets/_shared/videos/mux_bnYL6x5cAX6WiJv2pOKpITehZd3NVdXpj3ylJFpX5Lk.mp4",
+      "assets/_shared/videos/mux_tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.mp4",
+      "assets/_shared/videos/hf_20260429_171347_f640c30d-ec21-426a-98bc-77e07c2c60cb_0d11c4.mp4"
+    ],
+    "fonts": [
+      "assets/_shared/fonts/875fffdfa62169a0f131e90f37f1faf4_cb6f0f.woff2",
+      "assets/_shared/fonts/a64ff11d2c24584c767f6257e880dc65_570a42.eot",
+      "assets/_shared/fonts/a64ff11d2c24584c767f6257e880dc65_9c551a.eot",
+      "assets/_shared/fonts/a64ff11d2c24584c767f6257e880dc65_b07b20.ttf",
+      "assets/_shared/fonts/a64ff11d2c24584c767f6257e880dc65_242ce9.woff2",
+      "assets/_shared/fonts/eb5b5ee332420add9a40ee988cb6ac37_3cf035.woff2",
+      "assets/_shared/fonts/a64ff11d2c24584c767f6257e880dc65_36ee84.woff",
+      "assets/_shared/fonts/875fffdfa62169a0f131e90f37f1faf4_7c1694.woff",
+      "assets/_shared/fonts/875fffdfa62169a0f131e90f37f1faf4_cde48e.ttf",
+      "assets/_shared/fonts/eb5b5ee332420add9a40ee988cb6ac37_e52c86.ttf",
+      "assets/_shared/fonts/eb5b5ee332420add9a40ee988cb6ac37_a86e98.woff"
+    ]
+  },
+  "_unmapped": {
+    "images": [],
+    "videos": [],
+    "fonts": []
+  }
+}

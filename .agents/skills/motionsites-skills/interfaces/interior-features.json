@@ -1,0 +1,65 @@
+{
+  "id": "interior-features",
+  "role": "features",
+  "ownSections": [
+    "DirectCard"
+  ],
+  "slots": [
+    {
+      "id": "room-photo-day-night",
+      "type": "image",
+      "card": 2,
+      "aspect": "319:404",
+      "alpha": false,
+      "notes": "The base still photo of the interior scene (placeholder 'Living room interior'), absolute inset-0 object-fit:cover object-position:50% 42% filling the fixed 660x836 artboard beneath all other layers. This is a SINGLE socket that needs a matched lighting PAIR: a day image (src) plus a dark/lit-up night variant (data-night-src) of the exact same framing; on entering body.is-night the element swaps src->data-night-src with a 4.5s cubic-bezier opacity crossfade and swaps back on day. Both frames must share identical composition/crop so the fade reads as a lighting change, not a cut. Tall portrait ratio (artboard 660x836 ~= 0.789); the 50% 42% focal point biases the visible crop toward the upper-middle of the room, and a dark linear-gradient scrim covers the bottom ~42% for footer-text legibility."
+    },
+    {
+      "id": "room-night-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "319:404",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Night-mode looping motion layer of the same interior, absolute inset-0 object-fit:cover object-position:50% 42% stacked directly over the still photo (muted loop playsinline preload=auto). Starts opacity:0 in light mode; when body.is-night is set it fades to opacity:1 over 4.5s (cubic-bezier 0.22,1,0.36,1) and video.play() is called (play() rejection caught/ignored), pausing again on leaving night. Should be a seamless dark/low-contrast clip matching the night-photo framing so the same bottom gradient scrim keeps the white footer text legible; pointer-events:none, sits beneath the gradient scrim and footer."
+    },
+    {
+      "id": "footer-badge-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single glyph centered in the round footer badge (placeholder is the Material Icons 'construction' ligature, font-size clamp(15px,5.6cqw,34px)). Rendered white (#fff) on the green badge fill, so it tints to the foreground/on-accent color, not a fill prop. Loaded from the Material Icons Google Fonts stylesheet; a reskin can substitute the equivalent glyph from any icon font."
+    },
+    {
+      "id": "primary-font",
+      "type": "font",
+      "card": 1,
+      "notes": "The single sans typeface for the footer text block, loaded as a custom @font-face (weights 400/500/700, .woff2) with a sans-serif fallback. Carries the bold footer title (weight 700, white-space:nowrap, letter-spacing -0.6px, container-query size clamp(18px,5.6cqw,36px)) and the medium description (weight 500, line-height 1.28, clamp(13px,4.2cqw,27px)). Native declaration is 'Neue Montreal'. The nowrap bold title is font-metric-sensitive: a wider substitute can overflow the card width."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Neue Montreal\", sans-serif",
+      "body": "\"Neue Montreal\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#1a1714",
+      "surface": "#0e0d0c",
+      "fg": "#ffffff",
+      "fgMuted": "#d7d2c9",
+      "accent": "#3fae6b",
+      "border": "rgba(20, 14, 8, 0.34)"
+    },
+    "copySlots": [
+      "footer-title",
+      "footer-desc",
+      "badge-icon-name",
+      "photo-alt"
+    ]
+  },
+  "mechanic": "A single product card that scales a fixed 660x836 internal artboard to fit (JS --direct-scale = min(w/660,h/836) on load+resize) and crossfades a day still photo into a same-framed night looping video plus a swapped night still, via a 4.5s cubic-bezier opacity fade toggled by a body.is-night class, with a gradient-scrimmed bottom footer (green icon badge + title + description) over it.",
+  "techDelivery": "Single static HTML + CSS card with vanilla JS (no framework): CSS grid .cards layout, an absolutely-centered transform:scale() artboard with container-type:inline-size driving cqw footer typography, clamp() fluid sizing, and a small script that computes --direct-scale on load/resize and, on the body.is-night toggle, fades/plays-pauses the video and swaps the photo src<->data-night-src on load; 'Neue Montreal' via custom @font-face .woff2 and Material Icons via the Google Fonts CDN stylesheet.",
+  "reskinNotes": "Brand color is baked literally into inline CSS, not tokenized: the green footer badge fill #3fae6b plus its matching rgba(63,174,107,.6) drop-shadow are an inline style attribute on the badge element, and the dark card bases (#0e0d0c frame, #1a1714 card/artboard), the white/#d7d2c9 footer text, and the two-layer gradient scrim (linear-gradient rgba(8,6,4,.92/.6/.1/0) bottom-up + rgba(20,14,8,.34/0) top) are all hand-coded and must be edited by hand. Footer copy is hardcoded in markup with no data source: the title 'Build the room in real time', the description 'Move pieces, explore finishes, and align with your studio on one shared canvas.', the 'construction' icon ligature, and the photo alt text. Layout is font-metric- and artboard-dependent: the entire footer is sized in container-query units (cqw) against a FIXED 660x836 artboard that is uniformly transform:scale()'d, so all positions are percentage-locked to that internal box (footer at left/right 6.2%, bottom 5.4%; badge width 9.6%); the bold title is white-space:nowrap so a wider substitute font overflows the card, and the 319:404 card aspect-ratio plus 50% 42% object-position are tuned to the placeholder room crop. Critically, the image socket is a day/night PAIR (src + data-night-src) that must be the same composition under different lighting, and the night video must match that framing, or the 4.5s crossfade reads as a hard cut rather than a lighting transition; dark-friendly low-contrast night assets are required to keep the white footer text legible under the existing scrim."
+}

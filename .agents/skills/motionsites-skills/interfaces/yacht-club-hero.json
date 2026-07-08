@@ -1,0 +1,87 @@
+{
+  "id": "yacht-club-hero",
+  "role": "hero",
+  "ownSections": [
+    "BackgroundVideo",
+    "LiquidCursorTrail",
+    "HeroContent",
+    "FleetVideoOverlay",
+    "StaggeredMenu"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Native source is delivered as a Vimeo iframe player embed (player.vimeo.com/video/...?background=1&autoplay=1&loop=1&byline=0&title=0) inside an absolute z-0 motion.div, sized w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] and centered with -translate-x/y-1/2 so it always covers the viewport at 16:9. The Vimeo URL is a placeholder socket to fill (swap for the brand's own background ocean/sailing footage, ideally a self-hosted seamless short loop or a re-pointed background player). The whole layer animates a CSS filter blur(0px)->blur(100px) (1.3s out / 1.56s in) when the Fleet overlay opens, so footage should read well both sharp and heavily blurred; no dark overlay sits on top, so keep it mid-to-dark for white serif UI legibility."
+    },
+    {
+      "id": "fleet-showcase-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The 3 yacht/vessel clips that fill the columns of the Fleet overlay modal (one per fleet entry: OCEAN ECLIPSE / BLACK SOVEREIGN / AZURE HORIZON). Each <video> is w-full h-[85vh] md:h-full md:flex-1 with object-cover, a border-r-2 border-white divider, and a bg-black/20 overlay; columns slide in from x:100vw->0 staggered by i*0.1 (duration 1.56). Videos are paused by default and .play()/.pause() on hover (wrapped in a promise resolver to avoid interruption) and scale to 105% over duration-700 on hover. Native source hardcodes 3 app-uploads.krea.ai/wan-videos/*.mp4 URLs (sockets to fill, not values to keep); supply silent seamless-looping vessel reels whose framing survives object-cover in a tall portrait-ish column."
+    },
+    {
+      "id": "display-serif-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Primary display/heading serif, used app-wide as the DEFAULT face (CSS forces all text to font-serif uppercase unless specified). Native family 'Instrument Serif', loaded from Google Fonts and mapped to BOTH --font-sans and --font-heading so it overrides the sans default. Drives the giant staggered hero headline (text-[64px] md:text-[140px], leading-none, drop-shadow-2xl, with 'ELEMENTS.'/'OCEAN' in italic), the subtext block, the CTA label (italic 'CLUB'), the menu 'MENU'/'CLOSE' slot-machine words, the menu nav items, and the fleet titles (text-5xl md:text-7xl) and spec rows. The large headline layout (leading-none at 140px) is tuned to this serif's metrics."
+    },
+    {
+      "id": "body-sans-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Secondary variable sans face. Native family Geist Variable, loaded via the @fontsource-variable/geist package as the nominal --font-sans before the theme remaps --font-sans to Instrument Serif — so Geist is the available sans fallback/UI face for any element opted out of the serif default (e.g. wide-tracking micro-labels, fleet spec values at tracking-widest). Supply a variable grotesque sans if reskinning the UI/label layer; omit only if the brand collapses everything onto the serif."
+    },
+    {
+      "id": "liquid-trail-displacement-noise",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Generative SVG filter (id='liquid-trail') that powers the interactive liquid cursor ripples — NOT a fillable brand image. It is a hidden <filter> using feTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='2' feeding a feDisplacementMap (scale 30, xChannel R / yChannel G). It is referenced as backdropFilter:'url(#liquid-trail) blur(1px)' on a DOM pool of 80 absolute empty divs spawned along the cursor path (spawn when mouse moves >25px; ring size 20 + age*280, opacity 1 - age^1.2). Listed as a slot because it is a required inline-SVG socket the template ships with; reskin only by tuning baseFrequency/scale, not by swapping an asset. Tint of the rings comes from box-shadow (inset white + a #93c5fd-alpha glow), not from this filter."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', ui-serif, serif",
+      "body": "'Geist Variable', ui-sans-serif, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "oklch(0.145 0 0)",
+      "fg": "oklch(0.985 0 0)",
+      "surface": "#1a1a1a",
+      "accent": "#93c5fd",
+      "accent2": "#ffffff",
+      "border": "#ffffff"
+    },
+    "copySlots": [
+      "hero-headline-line-1",
+      "hero-headline-line-2-italic",
+      "hero-headline-line-3",
+      "hero-headline-line-4-italic",
+      "hero-subtext",
+      "hero-cta-label",
+      "menu-toggle-label",
+      "menu-toggle-label-open",
+      "nav-labels",
+      "social-handles",
+      "fleet-titles",
+      "fleet-spec-labels",
+      "fleet-spec-values",
+      "fleet-card-cta-label"
+    ]
+  },
+  "mechanic": "A single-viewport AnimatePresence experience over a blurring fullscreen background video, where clicking 'Our Fleet' swaps the staggered serif hero for a fleet overlay of full-height video columns sliding in from x:100vw (stagger i*0.1, 1.56s) that play/scale on hover, all under a right-side GSAP off-canvas menu (prelayer masks sliding from 100vw, slot-machine MENU/CLOSE text, plus-to-X icon) and an 80-node SVG-displacement liquid cursor ripple trail.",
+  "techDelivery": "React 19 + Vite + TypeScript + Tailwind CSS v4, multi-file: App.tsx holds global state (isMenuOpen/isFleetOpen), the background video, the liquid cursor system and hero/fleet content using motion/react (Framer Motion) with AnimatePresence; a separate StaggeredMenu.jsx drives the off-canvas nav with gsap; fonts via @fontsource-variable/geist + Google Fonts (Instrument Serif) and tw-animate-css; theme + font mapping declared in src/index.css with Tailwind v4 @layer/OKLCH tokens.",
+  "reskinNotes": "All copy is hardcoded in JSX/markup, not data — the four-line hero headline ('MASTER THE' / 'ELEMENTS.' italic / 'EMBRACE THE' / 'OCEAN' italic), the long subtext paragraph, the 'JOIN THE CLUB' CTA, the six nav labels (Home, Our Fleet, Membership, Regattas & Events, Academy, Contact), the three social handles, and the entire fleet dataset (3 titles plus 5 label/value spec rows each, e.g. 'OCEAN ECLIPSE' / 'LENGTH 28 M (92 FT)') live as inline literals and must be edited in code. The base palette is authored in OKLCH (--background oklch(0.145 0 0), --foreground oklch(0.985 0 0)) as Tailwind v4 :root tokens, while the accent blue #93c5fd appears in THREE disconnected places — the GSAP menu color array ['#1a1a1a','#93c5fd'], and as rgb(147,197,253) baked into the ripple box-shadow glow — so a brand-accent swap must be made in both the JS config and the inline shadow string, not a single token. The menu button color hard-flips #ffffff->#000000 on open and the fleet column dividers/text are pure white, so the design assumes a dark video backdrop. Layout is font-metric-dependent: the 140px leading-none Instrument-Serif headline and the strictly w-[260px] tracking-widest subtext are tuned to the serif and to these exact strings, so a font swap or longer copy will reflow them. The whole experience defaults every element to font-serif uppercase, so mixed-case or non-serif brand wording requires per-element overrides. The hero background is a Vimeo iframe embed rather than a self-hosted asset, so reskinning the background means re-pointing or replacing the player. The liquid-trail feTurbulence/feDisplacementMap filter and the 80-div ripple pool are inline and tuned by numeric constants (baseFrequency 0.02, scale 30, size 20+age*280), not swappable assets."
+}

@@ -1,0 +1,110 @@
+{
+  "id": "cinematic-landing-page",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "FloatingNav",
+    "Hero",
+    "ProductGallery",
+    "AboutUs",
+    "PartneringWithUs",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-video-slides",
+      "type": "video",
+      "card": 3,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping background videos for the scroll-driven hero slider; autoPlay/muted/playsInline, revealed one into the next via the clip-path ellipse transition."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Center navbar brand mark (currently a 4-leaf clover, 305x304 viewBox, solid white fill). Single-color flat shape that tints to fg; scales h-[32px]..h-[48px] (h-[24px]..h-[32px] when scrolled)."
+    },
+    {
+      "id": "social-linkedin-glyph",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline LinkedIn glyph SVG (32x32, fill=currentColor) used in the floating nav and footer social column; inherits text color, turns accent on hover."
+    },
+    {
+      "id": "gallery-product-images",
+      "type": "image",
+      "card": 7,
+      "aspect": "3:4",
+      "alpha": false,
+      "notes": "Masonry product-gallery background images (Viennese Pastry, Bread, Dessert, Savory, Sweet Treats, Culinary Aid, Ingredient); 3:4 portrait, scale(1.2) ken-burns hover over 6s, blur-in scroll entry."
+    },
+    {
+      "id": "partnering-background",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Full-width background image for the 'Partnering With Us' section with dark overlay content (title + 4 black cards) layered on top."
+    },
+    {
+      "id": "partnering-card-icons",
+      "type": "lottie",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Looping Lottie animation icons, one per 'Partnering With Us' card (Trusted Sourcing, Food Safety Standards, Operational Efficiency, Expert Support); w-10..w-12 on black card backgrounds."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Open Sans",
+      "accent": "Luxurious Script"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 9%)",
+      "surface": "hsl(0 0% 15%)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(0 0% 75%)",
+      "accent": "#CB9D06",
+      "border": "hsl(0 0% 20%)"
+    },
+    "copySlots": [
+      "nav-region-label",
+      "nav-regions",
+      "nav-left-menu",
+      "nav-right-menu",
+      "nav-language-switcher",
+      "floating-nav-labels",
+      "hero-headline",
+      "hero-subtitle",
+      "gallery-item-labels",
+      "about-eyebrow",
+      "about-body",
+      "about-cta-label",
+      "partners-marquee-names",
+      "partnering-title",
+      "partnering-card-labels",
+      "footer-phone",
+      "footer-email",
+      "footer-nav-links",
+      "footer-social-links",
+      "footer-office-addresses",
+      "footer-copyright",
+      "footer-legal-links"
+    ]
+  },
+  "mechanic": "A 400vh sticky hero stacks fullscreen looping videos and reveals each one into the next via a scroll-driven clip-path ellipse() expansion, with per-character GSAP SplitText headline reveals, then ScrollTrigger blur/translate entrances down through masonry gallery, scrubbed word-by-word reveal copy, and a marquee partner loop.",
+  "techDelivery": "React 18 + Vite + TypeScript + Tailwind CSS v3 (CSS-variable HSL tokens) component spec, animated entirely with GSAP 3 (ScrollTrigger + SplitText) and lottie-react; lucide-react for utility icons. No Framer Motion.",
+  "reskinNotes": "Brand mark, LinkedIn glyph, and clip-path geometry live as hardcoded inline SVG/markup in components, not asset files. Color tokens are space-separated HSL channel triples consumed via hsl(var(--x)) — but the #CB9D06 gold accent is hardcoded as a literal hex across many Tailwind classes (bg-[#CB9D06], text-[#CB9D06], hover states) rather than read from a token, so it must be find-replaced everywhere. All copy (nav menus, addresses, partner names, body essay) is hardcoded in markup. Hero H1 uses a viewport-scaled whitespace-nowrap size (text-[9.7vw]) tuned to the Instrument Serif metrics, so swapping the display font can overflow on one line."
+}

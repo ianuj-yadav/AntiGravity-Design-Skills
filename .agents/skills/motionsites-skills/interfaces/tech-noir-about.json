@@ -1,0 +1,47 @@
+{
+  "id": "tech-noir-about",
+  "role": "about",
+  "ownSections": [
+    "About"
+  ],
+  "slots": [
+    {
+      "id": "brand-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The centered logo/brand mark sitting above the mission statement (rendered 80x80 from a viewBox 0 0 120 120, mb-12). In the spec it is a single inline <path> with fill=\"white\" (solid mark knocked out of the red field). Supply as a 1:1 alpha glyph that can be tinted to the foreground (white) color so it reads against the saturated background; it is one logical mark socket. Do not store the spec's inline path as a value."
+    },
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The full-width video anchored to the bottom of the section (autoPlay loop muted playsInline, object-contain so it keeps its native aspect ratio at full width with no cropping; shrink-0 so flexbox never compresses it). A 100px top gradient overlay fades the red background (#FF0000) into the clip, so the video's own top edge should blend cleanly. Supply a silent, seamlessly looping short-loop clip. This is a socket to fill with a brand asset, not the placeholder Cloudinary track-video URL declared in the spec."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "\"Manrope\", sans-serif",
+      "accent": "\"Marck Script\", cursive"
+    },
+    "colorRoles": {
+      "bg": "#FF0000",
+      "fg": "#FFFFFF"
+    },
+    "copySlots": [
+      "mission-statement",
+      "signature",
+      "body-paragraph-1",
+      "body-paragraph-2"
+    ]
+  },
+  "mechanic": "A single full-screen solid-red About section that stacks a centered column (brand mark, uppercase mission statement, an oversized cursive signature, and two Title-Case paragraphs) above a full-width bottom video, whose only motion is the autoplaying muted loop blended into the background by a 100px top-to-transparent red gradient mask.",
+  "techDelivery": "Single React 19 + TypeScript component spec built with Vite and Tailwind CSS v4 (@tailwindcss/vite) using @theme webfont tokens (Italiana / Manrope / Marck Script imported from Google Fonts in index.css); motion (motion/react) is listed as a dependency but the section itself is static — no scroll, state, or effect logic, only an autoplaying <video> and a CSS gradient overlay.",
+  "reskinNotes": "The brand red is baked as Tailwind arbitrary classes in multiple places with no :root/@theme token (bg-[#FF0000] on the section, plus the gradient from-[#FF0000] to-transparent over the video), so a recolor is a multi-spot markup edit. The brand mark is an inline SVG <path> with fill=\"white\" hardcoded (not currentColor), so retinting it means editing the SVG markup. All copy is hardcoded in JSX: the uppercase mission statement, the 'S.P.D' cursive signature, and the two Title-Case paragraphs (note the body copy is manually Title-Cased, so new copy must be re-cased to match). Layout carries font-metric-dependent fixed pixels tuned to Manrope/Marck Script: the signature is text-[120px] leading-none, the mission block is h-[100px] max-w-[400px], the paragraphs are fixed w-[400px], and the video blend is a fixed h-[100px] gradient, so a brand font with different metrics or longer copy can overflow these boxes. The @theme declares --font-italiana but no element in the spec uses it (dead token). The video relies on object-contain (native ratio, letterboxed if narrower than the column rather than cropped)."
+}

@@ -1,0 +1,48 @@
+{
+  "id": "mindloop-hero",
+  "role": "hero",
+  "ownSections": [
+    "BackgroundVideo",
+    "Navbar",
+    "HeroContent"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the entire min-h-screen overflow-hidden section. Rendered as <video autoPlay loop muted playsInline> positioned absolute inset-0 w-full h-full object-cover z-0, sitting beneath the relative z-10 navbar and centered hero content. Native source is a CloudFront-hosted MP4. The page is a dark theme with all white text and a black (hsl 0 0% 0%) page background, so supply dark/moody footage that keeps the white Instrument Serif headline, paragraph, and glass buttons legible without any scrim overlay (the spec adds no dark gradient over the video)."
+    },
+    {
+      "id": "brand-typefaces",
+      "type": "font",
+      "card": 2,
+      "notes": "Two-family Google Fonts type system. Instrument Serif (display) drives every heading and the 'Velorah' brand wordmark; Inter (body) drives paragraph and UI text. Native loading is via a Google Fonts import. All headings use font-family 'Instrument Serif', serif and body text uses Inter, sans-serif. Replace as a coordinated display-serif + body-sans pair; the headline layout is tuned to Instrument Serif metrics (see reskinNotes)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 0%)",
+      "fg": "rgba(255, 255, 255, 1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-body",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "Fullscreen min-h-screen hero where an absolute-inset autoplay/loop/muted object-cover background video sits at z-0 behind a relative z-10 glass-pill navbar (brand wordmark, centered nav links, liquid-glass 'Begin Journey' button) and a centered Instrument Serif headline + Inter paragraph + liquid-glass CTA that fade-rise in (opacity 0->1, translateY 24px->0, 0.8s ease-out) on staggered 0s/0.2s/0.4s delays.",
+  "techDelivery": "Authored as a MotionSites prose design spec (not a built repo): it declares Tailwind utility classes for every element (absolute inset-0 object-cover, max-w-7xl flex justify-between, text-8xl leading/tracking, hover:scale-[1.03]) plus a hand-written CSS layer (the .liquid-glass utility with its ::before mask-composite gradient border, and the fade-rise @keyframes / .animate-fade-rise[-delay/-delay-2] classes) and a Google Fonts import of Instrument Serif + Inter. No build harness, framework, or bundler is specified in the prompt (no CDN script tags, Vite, or React mount), so the runtime stack is implementation-defined.",
+  "reskinNotes": "The .liquid-glass effect is load-bearing identity and fully hardcoded in CSS keyed to a white-on-dark theme: background rgba(255,255,255,0.01), background-blend-mode:luminosity, backdrop-filter blur(4px), an inset 0 1px 1px rgba(255,255,255,0.1) highlight shadow, and a ::before gradient-border built from a white linear-gradient (rgba(255,255,255,0.45/0.15/0) stops) plus -webkit-mask-composite:xor / mask-composite:exclude — retinting the glass means editing these encoded rgba stops, not flipping a token. Used on both the navbar 'Begin Journey' button and the hero CTA. The whole page is a black/white monochrome system (bg-black hsl(0 0% 0%), all text white) with no named accent color, so introducing a colored brand means more than retinting one variable. The 'Velorah' brand mark is text, not an asset, and carries a hardcoded ® wrapped in <sup className='text-xs'>; there is no logo image/icon socket. Headline layout is font-metric dependent on Instrument Serif: 'Focus in a Distracted World' runs text-5xl -> text-8xl with leading-[0.95] and a pixel-baked tracking-[-2.46px] over max-w-7xl, so a wider/taller replacement display face will alter the tight wraps and the optical balance. All copy is hardcoded in markup: brand 'Velorah®'; nav items Home / Studio / About / Journal / Reach Us; the navbar and hero 'Begin Journey' button labels; the headline; the 'We're designing tools for deep thinkers...' paragraph; and the page is dark-theme-only (no light variant). The single placeholder CloudFront MP4 is the one media socket to fill."
+}

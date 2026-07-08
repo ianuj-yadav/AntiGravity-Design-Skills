@@ -1,0 +1,74 @@
+{
+  "id": "contact-cybernetic",
+  "role": "hero",
+  "ownSections": [
+    "ContactHero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen scrubbable hero background video pinned to the right of the frame. On desktop (>=1024px) it is NOT autoplayed: a window mousemove handler seeks video.currentTime by (deltaX / innerWidth) * 0.8 * duration (clamped 0..duration), so horizontal mouse travel scrubs the footage frame-by-frame via a seeked listener. Below 1024px scrubbing is disabled and it falls back to normal autoplay+loop. Rendered muted + playsInline + preload='auto', object-cover with object-right / lg:object-right-bottom inside an aspect-square -> md:aspect-video -> lg:full-height container (lg:absolute inset-0 z-0) behind all foreground copy. Supply a silent reel whose meaningful action reads when right-cropped and survives being seeked rather than only played; bg-neutral-50 shows only before load. Native source is a CloudFront placeholder mp4 -> replace with a brand-owned loop."
+    },
+    {
+      "id": "pill-check-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Selected-state checkmark that springs into each active service pill (type:'spring', stiffness:300, damping:20). Native glyph is lucide-react Check, rendered white (text-white) on the dark #1C2E1E active pill. Supply a single-color / currentColor stroke mark that inherits the pill's white text fill; sized to the pill label."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Trailing arrow glyph on the 'Let's Go' call-to-action inside the active-selection feedback banner. Native glyph is a lucide-react arrow (e.g. ArrowRight), tinted to the muted-green accent #4D6D47 alongside the uppercase text-xs label. Supply a single-color / currentColor stroke mark that inherits the accent text color."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global typeface for the whole section: the Inter family from Google Fonts, wired as Tailwind's default --font-sans / font-sans. Carries the large typewriter H1 (text-5xl -> lg:text-[76px], font-normal, tracking-tight, leading-[1.08]), the navbar wordmark + links, the description, the service-pill labels, and the banner copy. The H1 is revealed character-by-character with a blinking cursor span, so glyph widths affect where the two pre-wrapped lines ('we'd love to' / 'hear from you!') break; a wider substitute reflows the headline. Swap with the brand sans and keep a sans-serif fallback."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#FAFBF9",
+      "fg": "#1C2E1E",
+      "fgMuted": "#5A635A",
+      "accent": "#4D6D47",
+      "accent2": "#738273",
+      "border": "#F1F3F1"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "description",
+      "service-title",
+      "service-subtitle",
+      "service-pill-labels",
+      "banner-empty-hint",
+      "banner-ready-prefix",
+      "banner-cta-label"
+    ]
+  },
+  "mechanic": "A single white split hero where a desktop mousemove scrubs an object-cover right-anchored background video frame-by-frame (mobile falls back to autoplay) behind a left column that types out a two-line Inter headline with a blinking cursor, then drop-ins a description and a wrap of multi-select service pills whose active state springs in a lucide Check, with an AnimatePresence banner that height-springs between an empty hint and a 'Ready to inquire about: ...' acknowledgement.",
+  "techDelivery": "React + Tailwind CSS + Framer Motion (motion/react) component spec: Inter loaded via Google Fonts with a CSS @keyframes blink (.animate-blink) for the typewriter cursor; a custom useTypewriter hook plus two useEffect hooks driving a native <video> element (window mousemove scrubbing via currentTime/seeked on desktop, autoplay/play() below 1024px); lucide-react icons (Check, arrow); motion.div / motion.button entrances and AnimatePresence for the feedback banner.",
+  "reskinNotes": "Every color is a hardcoded Tailwind arbitrary-value class, not a CSS token, so reskinning is find-replace across markup: the deep green #1C2E1E recurs as the active-pill bg, the body text color, the selection text and the banner border; #5A635A (description), #738273 (pill subtitle / accent2), #4D6D47 ('Let's Go' label), #FAFBF9 (banner surface), #F1F3F1 (inactive pill border + hover at /55) and the #EAECE9 selection bg are each baked literals, and the active check is a hardcoded text-white. All copy is hardcoded in JSX: the navbar wordmark 'Mainframe(R)' plus a standalone asterisk glyph, the nav links 'Labs, Studio, Openings, Shop' joined by opacity-40 comma spans, the 'Get in touch' CTA, the two-line typewriter string \"we'd love to\\nhear from you!\" (the \\n is load-bearing for the line break and whitespace-pre-wrap), the description with an inline <br/>, and the 'What sort of service?' / 'Select all that apply' labels. The services array ['Brand','Digital','Campaign','Other'] is a load-bearing state key driving selection, the spring check, and the banner's 'Ready to inquire about: ' + array.join(', ') string, so a copy/relabel must not change the underlying values. The video scrub multiplier 0.8 and the 1024px desktop/mobile breakpoint are fixed magic numbers, and the headline metrics (font-normal, tracking-tight, leading-[1.08], text-5xl -> text-[76px]) are tuned to Inter and to that exact two-line copy, so a wider face or longer headline reflows the composition."
+}

@@ -1,0 +1,37 @@
+{
+  "id": "agency-services",
+  "role": "features",
+  "ownSections": [
+    "ServicesSection"
+  ],
+  "slots": [
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single Google-font typeface (natively Kanit, weights 300-900) carrying the entire section: the giant uppercase 'Services' heading and each service number both at font-black (900), service names at font-medium (500), and descriptions at font-light (300). Loaded via a Google Fonts <link> in the HTML head and set as font-family on html/body. All type is fluid clamp() and the heading/number are font-black uppercase leading-none tracking-tight, so a replacement must be a condensed-friendly geometric sans that holds its weight at 900 and shrinks cleanly to preserve the stacked clamp(3rem,12vw,160px) / clamp(3rem,10vw,140px) display sizing."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Kanit",
+      "body": "Kanit"
+    },
+    "colorRoles": {
+      "bg": "#0C0C0C",
+      "surface": "#FFFFFF",
+      "fg": "#0C0C0C",
+      "fgMuted": "rgba(12, 12, 12, 0.6)",
+      "border": "rgba(12, 12, 12, 0.15)"
+    },
+    "copySlots": [
+      "section-heading",
+      "service-number",
+      "service-name",
+      "service-description"
+    ]
+  },
+  "mechanic": "A white rounded-t card laid over the page's dark #0C0C0C background, holding a giant centered 'Services' heading above a vertically stacked, hairline-divided list of five numbered service rows, each fading and rising in (opacity 0->1, y 30->0, 0.7s cubic-bezier[0.25,0.1,0.25,1]) on a staggered i*0.1s delay as it scrolls into a once-only viewport trigger.",
+  "techDelivery": "Single-section React + Tailwind CSS + framer-motion component spec, with a reusable FadeIn wrapper built via motion.create() to animate any HTML tag on whileInView, and the Kanit Google Font pulled in through a <link> in the HTML head.",
+  "reskinNotes": "This section is intentionally image/icon/video-free, so its only swappable asset is the typeface. The palette is a hard black/white inversion: the card paints itself #FFFFFF but assumes the surrounding page background is #0C0C0C (the rounded-t corners only read against that dark backdrop), and the same #0C0C0C is reused as the foreground ink, the divider as rgba(12,12,12,0.15), and muted description text as that ink at opacity 0.6 — all baked as Tailwind arbitrary values in the markup, not tokens, so a reskin must retint the page bg in tandem. All copy is hardcoded in JSX: the 'Services' heading plus the five zero-padded numbers (01-05) and the 3D Modeling / Rendering / Motion Design / Branding / Web Design names and their descriptions, along with the per-row i*0.1 stagger. The display sizing is fluid clamp() tuned to Kanit's font-black metrics, so a wider replacement face will reflow the heading and the flex-shrink-0 number column."
+}

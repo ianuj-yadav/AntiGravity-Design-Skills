@@ -1,0 +1,104 @@
+{
+  "id": "dreamcore-landing",
+  "role": "hero",
+  "ownSections": [
+    "Scene1",
+    "Scene2",
+    "ArcCardSlider"
+  ],
+  "slots": [
+    {
+      "id": "portal-frame",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": true,
+      "notes": "Foreground portal/archway frame (PORTAL_BG) at z-index 15, absolute inset-0 object-cover, transformOrigin 52% 38%. It is the tunnel the viewer flies through: scroll scales it scale(lerp(1,7.5,ep)) and it fades out between scroll 0.65 and 0.85, so the center should be an open aperture (transparent or sky) the camera punches into while the ornate frame fills the edges. Also receives mouse parallax MAG.portal=7."
+    },
+    {
+      "id": "world-background",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Fullscreen world/landscape backdrop (WORLD_BG) at z-index 0, absolute inset-0 object-cover, transformOrigin 50% 50%. The deepest layer revealed once the portal opens; scroll scales it scale(lerp(1,1.18,ep)) and mouse parallax MAG.world=6. Opaque cover image; Scene 2 white headline + pastel arc cards sit over its lower half, so keep the lower-center mid-to-dark for legibility."
+    },
+    {
+      "id": "bottom-clouds",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Decorative cloud band (BOTTOM_CLOUDS) pinned to the bottom at z-index 10, width 100% height auto, transformOrigin 50% 100%. Transparent PNG layered over the world background; opacity fades 0.7->1 in the first 5% of scroll, scroll scales it scale(lerp(1,1.4,ep)), and mouse parallax MAG.clouds=9 (Y dampened 0.4x). Needs a transparent/feathered top edge so it melts into the sky."
+    },
+    {
+      "id": "portal-curtains",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Mirrored pair of theatrical curtain halves (CURTAIN_LEFT / CURTAIN_RIGHT) at z-index 16, each absolute inset-0 object-cover. Left uses transformOrigin 'left center' + object-position 'right center'; right mirrors with 'right center' / 'left center'. On mount they part outward (translateX -62% / +62% over 1.8s cubic-bezier(0.16,1,0.3,1)) to unveil the portal, then scroll drives extra translateX lerp(0,150,ep)% + scale lerp(1,1.3,ep) and mouse parallax MAG.curtain=14 (Y dampened 0.3x). Supply as two transparent-edged halves whose inner edges meet at center-screen when closed."
+    },
+    {
+      "id": "reel-cards",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Square 'View Reel' thumbnail images (CARD_IMAGES[0..2]) for the Scene 1 floating card cluster (140x140 mobile/tablet, 158x158 desktop, border-radius 22-28px), used as background-size:cover so they are cropped to square. Each sits under a bottom gradient + backdrop-blur overlay with a play-button affordance; CARD_IMAGES[0] is the lone card in the mobile layout. Photographic, no transparency needed."
+    },
+    {
+      "id": "heading-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display face mapped to 'Viaoda Libre' (Google Fonts). Drives every headline: the Scene 1 'FALL > INTO / REVERIE' lockup (with an italic 'INTO' and oversized 'REVERIE' at clamp up to 88px desktop), the Scene 2 'FORGE BEYOND THE REAL' heading, the '32' stat-card number, and each arc-card title. Layout leans on this face's metrics (negative tracking on REVERIE letter-spacing -0.02em, leading-none/0.9), so a substitute display serif will need size/tracking retuning."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans-serif body/UI face mapped to 'Imprima' (Google Fonts) and set as the global font-family. Drives nav links (12px uppercase, letter-spacing 0.12em), all Scene 1/Scene 2 subtext, the 'View Reel' / 'World Patrons' / 'DESCEND' micro-labels, and every arc-card description + numbered index. Loaded together with Viaoda Libre via the family=Viaoda+Libre&family=Imprima Google Fonts link."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline white SVG glyph set authored as raw path/polygon data in markup, all tinted white. [0] StarLogo: 28x28 nav centerpiece (5-point star path at opacity 0.9 + three small circles at 0.6/0.4/0.4). [1] Play triangle: filled polygon inside the 'View Reel' white circles (26px mobile / 30px desktop). [2] ScrollChevron: down-chevron inside a 34px ringed circle (1.5px border rgba(255,255,255,0.5)) animated by the bobUp keyframe. Geometry is hardcoded SVG, so reshaping requires editing path data while the white currentColor tint stays."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Viaoda Libre",
+      "body": "Imprima"
+    },
+    "colorRoles": {
+      "bg": "#0a0608",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.82)",
+      "accent": "#3b1a0a",
+      "accent2": "#6b2e0e",
+      "border": "rgba(80,50,60,0.3)"
+    },
+    "copySlots": [
+      "nav-labels-left",
+      "nav-labels-right",
+      "nav-labels-mobile",
+      "scene1-heading-line-1",
+      "scene1-heading-line-2",
+      "scene1-subtext",
+      "reel-card-label",
+      "stat-card-number",
+      "stat-card-label",
+      "scroll-cue-label",
+      "scene2-heading",
+      "scene2-subtext",
+      "arc-card-titles",
+      "arc-card-descs"
+    ]
+  },
+  "mechanic": "A 480vh sticky-viewport camera-push where mount-time curtains part to reveal a parallaxed world, then scroll scales an ornate portal frame scale(1->7.5) and fades it out to fly the viewer through into a second scene, while a scroll-driven rotationOffset sweeps a radial arc of pastel cards up into view as the Scene 1 hero cross-fades to the Scene 2 headline.",
+  "techDelivery": "React + TypeScript + Tailwind CSS on Vite, single-file src/App.tsx; lucide-react listed as a dep but unused; Tailwind used only for responsive breakpoints (xl overridden to 1100px) with all other styling as inline React CSSProperties; Google Fonts (Viaoda Libre + Imprima) via index.html <link>; scroll progress, easeInOut/lerp/clamp helpers, a useIsMobile matchMedia hook, and a requestAnimationFrame mouse-parallax loop (speed 0.07) hand-authored; bobUp keyframe in index.css.",
+  "reskinNotes": "All copy is hardcoded in the App.tsx markup (nav label sets, the FALL>INTO/REVERIE lockup, both subtexts, 'View Reel', the '32'/'World Patrons' stat, 'DESCEND', 'FORGE BEYOND THE REAL', and the nine arc-card title/desc strings) and must be edited in code. The nine arc cards are NOT image slots: each is a solid rounded rect whose background is a baked pastel hex in a per-card data array ('#f3cdd6','#dcedc2','#c3e3f4','#f0e4c0','#dcd2f2' cycling) with #3a2530 title ink and rgba(58,37,48,0.65) desc — these pastels plus the Scene 1 brown ink (#3b1a0a/#5c2d0e/#6b2e0e) live as inline-style literals, not CSS variables or theme tokens, so a palette reskin means editing many hex/rgba occurrences. font-family strings are repeated inline across dozens of CSSProperties objects rather than referenced from the Tailwind theme. The StarLogo, play triangle, and scroll chevron are inline SVG path/polygon data with fixed white fills. Layout is font-metric-dependent on Viaoda Libre (REVERIE letter-spacing -0.02em + leading 0.9, '›' glyph sizing). The whole experience is one continuous parallax timeline: the two 'scenes' share the same sticky stage and cross-fade by scroll thresholds (Scene 1 out by ~22%, portal fade 65-85%, Scene 2 in 68-84%, arc sweep 70-100%), so the scenes cannot be lifted apart without rebuilding the scroll choreography. The arc-slider geometry (cardSpacingDeg, arcRadius, cardW/cardH, arcSweepDeg = (totalCards-1)*10) is tuned to 9 cards; changing the card count reshapes the arc. Entrance timing (curtains 100ms, UI 600ms with 0.3/0.55/0.8/0.9s staggers, entranceDone 2200ms) and per-layer MAG parallax magnitudes are baked constants. Curtains intentionally switch their CSS transition to 'none' after the 2200ms entrance so scroll/mouse parallax is instant."
+}

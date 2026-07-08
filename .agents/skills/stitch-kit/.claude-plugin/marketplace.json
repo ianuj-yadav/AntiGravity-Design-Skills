@@ -1,0 +1,55 @@
+{
+  "name": "stitch-kit",
+  "owner": {
+    "name": "gabelul"
+  },
+  "metadata": {
+    "description": "Design superpowers for Claude Code — 35 skills that teach your agent to ideate, research trends, generate multi-screen UIs with Stitch MCP, iterate with design systems, and ship to Next.js, Svelte, React, React Native, SwiftUI, or HTML.",
+    "version": "1.11.0"
+  },
+  "plugins": [
+    {
+      "name": "stitch-kit",
+      "description": "Everything — all 35 skills in one install.",
+      "source": "./",
+      "strict": true,
+      "skills": [
+        "./skills/stitch-orchestrator",
+        "./skills/stitch-ideate",
+        "./skills/stitch-ui-design-spec-generator",
+        "./skills/stitch-ui-prompt-architect",
+        "./skills/stitch-ui-design-variants",
+        "./skills/stitch-ued-guide",
+        "./skills/stitch-mcp-create-project",
+        "./skills/stitch-mcp-list-projects",
+        "./skills/stitch-mcp-get-project",
+        "./skills/stitch-mcp-generate-screen-from-text",
+        "./skills/stitch-mcp-list-screens",
+        "./skills/stitch-mcp-get-screen",
+        "./skills/stitch-mcp-delete-project",
+        "./skills/stitch-mcp-upload-screens-from-images",
+        "./skills/stitch-mcp-edit-screens",
+        "./skills/stitch-mcp-generate-variants",
+        "./skills/stitch-mcp-create-design-system",
+        "./skills/stitch-mcp-update-design-system",
+        "./skills/stitch-mcp-list-design-systems",
+        "./skills/stitch-mcp-apply-design-system",
+        "./skills/stitch-nextjs-components",
+        "./skills/stitch-svelte-components",
+        "./skills/stitch-react-components",
+        "./skills/stitch-html-components",
+        "./skills/stitch-shadcn-ui",
+        "./skills/stitch-loop",
+        "./skills/stitch-remotion",
+        "./skills/stitch-react-native-components",
+        "./skills/stitch-swiftui-components",
+        "./skills/stitch-design-md",
+        "./skills/stitch-design-system",
+        "./skills/stitch-animate",
+        "./skills/stitch-a11y",
+        "./skills/stitch-setup",
+        "./skills/stitch-skill-creator"
+      ]
+    }
+  ]
+}

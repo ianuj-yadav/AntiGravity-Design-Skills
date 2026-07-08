@@ -1,0 +1,96 @@
+{
+  "id": "flowmate-landing",
+  "role": "hero",
+  "ownSections": [
+    "Sidebar",
+    "Navbar",
+    "Hero",
+    "VideoSection",
+    "FeaturesGrid",
+    "CardsCarousel"
+  ],
+  "slots": [
+    {
+      "id": "brand-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Brand logo image pinned at the top of the fixed 240px desktop-only left Sidebar (rendered above the Home/Video/Features/Cards nav list). Native source is a remote higgs.ai-proxied PNG. Supply a transparent (alpha) logo lockup; it sits on the light #fefffc sidebar so a dark/full-color mark reads best. Sidebar is hidden below the lg (1024px) breakpoint, so this asset only appears on desktop."
+    },
+    {
+      "id": "hero-loop-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Single product/demo video filling the Video Section, with a centered frosted liquid-glass prompt card (backdrop-blur 16px, white oklab gradient fill, 6px white/20 border) overlaid carrying a typewriter line + Paperclip and ArrowUp send-button icons. Native source is a CloudFront-hosted MP4. The card animates in on scroll via a Framer Motion spring. Pick footage that reads well behind a light translucent glass overlay; transparency not required."
+    },
+    {
+      "id": "carousel-images",
+      "type": "image",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Five full-bleed background images, one per slide of the auto-rotating (4s) Cards Carousel (shows 3 at a time on desktop, 1 on mobile; 500px-tall cards with a gradient overlay + hover scale). Slide order pairs each image with a category label + tagline: 1 For Everyone, 2 For Teams, 3 For Enterprises, 4 Platform, 5 Security. Native sources are five higgs.ai-proxied PNGs. A dark-to-transparent gradient overlay sits over each for white caption legibility, so favor imagery that tolerates a bottom scrim."
+    },
+    {
+      "id": "integration-logos",
+      "type": "image",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Third-party app/integration logos shown in circular gray icon wells at the bottom of specific Feature cards: Linear + Slack on the 'Check the dev team's progress' card, and Gmail + Google Calendar on the 'Morning schedule digest' card. These are external service marks (not the FlowMate brand) and are optional reskin sockets — swap to match whichever integrations a brand wants to showcase. Transparent square marks; the remaining four feature cards use a generic tool glyph instead (see ui-glyphs)."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a key dependency), not brand assets: the hero CTA arrow (custom arrow SVG on 'View our intro video'), Paperclip + ArrowUp (the liquid-glass prompt card's attach icon and circular send button), ChevronLeft / ChevronRight (carousel Previous/Next nav), and a generic tool glyph reused inside circular gray wells on four of the six feature cards. All currentColor-tinted (fg #2c2c2c on light surfaces). Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "The native display/brand typeface PPMondwest (a serif), supplied as a self-hosted .woff2 and used for the 'FlowMate' wordmark in the Navbar (28px mobile / 32px desktop) and the hero headline (32px -> 50px -> 70px responsive, line-height 0.95). Rendered with fontKerning:'none' and letterSpacing:'-0.04em'; system serif fallback. Replace the woff2 with the brand's own display face to reskin all large-type moments."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "PPMondwest, serif",
+      "body": "system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#fefffc",
+      "surface": "#eef1ed",
+      "fg": "#2c2c2c",
+      "fgMuted": "#646464",
+      "accent": "#000000",
+      "border": "#dde3dd"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-brand-wordmark",
+      "nav-link-labels",
+      "nav-login-label",
+      "nav-signup-label",
+      "hero-headline",
+      "hero-subheading",
+      "hero-cta-label",
+      "video-prompt-text",
+      "features-section-title",
+      "features-card-titles",
+      "features-card-bodies",
+      "carousel-card-eyebrows",
+      "carousel-card-taglines"
+    ]
+  },
+  "mechanic": "A light, fixed-sidebar single-page scroll (240px desktop rail + IntersectionObserver-tracked nav over a smooth-scrolled Hero -> liquid-glass video -> 6-card feature grid -> auto-rotating image carousel) whose signature motion is a spring-driven TextFade that staggers headings up into view (y:18/opacity:0 -> y:0/opacity:1), echoed by a scroll-triggered spring on the frosted prompt card whose text types in character-by-character, and a 4s AnimatePresence carousel that slides cards in from the side with a 0.95 scale on a [0.32,0.72,0,1] ease.",
+  "techDelivery": "React 18.3+ + TypeScript 5.5+ + Vite + Tailwind CSS 3.4+ + Framer Motion 12.38+ + lucide-react 0.344+ (PostCSS/Autoprefixer + ESLint), authored as a multi-component spec; the PPMondwest display font is self-hosted from a .woff2 URL.",
+  "reskinNotes": "Copy is hardcoded in the component markup throughout: nav items (Home/Video/Features/Cards) + brand 'FlowMate' + Pricing/Community/Log in/Sign up; the hero headline 'Transform your workflow using plain English', its subheading, and 'View our intro video'; the typewriter prompt 'Daily check rival companies and ping me on messenger'; the features title 'Discover what FlowMate can accomplish for your team' plus all six card titles and bodies; and the five carousel eyebrow/tagline pairs (For Everyone/'Unleash your creative vision', For Teams, For Enterprises, Platform, Security). Layout is font-metric dependent on PPMondwest: the hero headline runs leading-[0.95] with letterSpacing:-0.04em and fontKerning:none up to 70px, so a wider/taller replacement display face will break the intended tight wraps and the 900px (700px on lg) headline max-width. The liquid-glass prompt card is a load-bearing visual baked in CSS with literal white rgba stops (backdrop-blur 16px, linear-gradient(in oklab, rgba(255,255,255,0.35)->rgba(255,255,255,0.12)), 6px solid rgba(255,255,255,0.2) border, inset white highlight + 0 8px 32px black/12 shadow) — retinting it means editing those encoded rgba values, not a token. The near-grayscale palette is spread across many sibling hex values used directly in Tailwind arbitrary classes (text #2c2c2c/#444141/#646464/#b4b8b4; borders #dde3dd/#dee2de/#e8e8e8 with a #b8beb8 card-hover; hover bg #eef1ed) rather than CSS custom properties, so a reskin must find-and-replace these baked literals across the markup. The CTA/Sign-up button color is the literal keyword black (hover #2c2c2c). Placeholder media (one CloudFront MP4, a logo PNG + five carousel PNGs via the higgs.ai image proxy, and the PPMondwest .woff2) are inlined as the asset sockets to fill; the Linear/Slack/Gmail/Google Calendar marks are third-party integration logos, not brand assets."
+}

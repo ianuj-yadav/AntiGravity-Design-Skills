@@ -1,0 +1,92 @@
+{
+  "id": "creative-agency",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay hero background video (autoPlay muted loop playsInline), absolute inset-0 object-cover filling the single min-h-screen section behind the z-30 navbar and z-20 content; sits over a solid '#e02b10' base color, and there is no darkening scrim, so footage with enough contrast to keep white text legible reads best."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Two inline-SVG stroke-path logo variants of the same mark: LogoWhite (30x22, two white strokeWidth-3.5 round-cap wave paths) in the top-left navbar cluster, and LogoRed (26x20, identical paths but stroke '#e02b10') in the right content block above the product copy. Native art is two hand-coded <path> waves with baked stroke colors (white + the brand red), so a rebrand means swapping the SVG and retinting both variants, not retinting one raster asset."
+    },
+    {
+      "id": "display-headline-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display face for the giant two-line hero headline 'creative studio'. Native family 'Geist, sans-serif' (explicitly falls back to sans-serif if Geist is not loaded), set via inline style at fontWeight 600, fontSize clamp(56px,13vw,155px), letterSpacing -0.04em, lineHeight 0.78 — a tight oversized lockup tuned to Geist's metrics. Always rendered white."
+    },
+    {
+      "id": "stat-number-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent2",
+      "notes": "Heavy display face for the two big stat-card numbers ('80%', '92%'). Native family 'Britanica-Black, sans-serif' (@import from db.onlinewebfonts.com CDN), inline-styled at fontSize clamp(2rem,6vw,2.6rem), color '#111' on the translucent white glass cards."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "UI/body face for everything else: nav pill labels (HOME/RITUALS/RATES/Reservations), the MARKETING COLLECTIVE eyebrow, all descriptive paragraphs, keyword lines, the 'begin now' CTA, and stat labels. Native family 'Inter' from Google Fonts (weights 300/400/500/600/700), set as the body default and via inline fontFamily on labels; used uppercase+tracked for the eyebrow and at leading-relaxed/loose for body copy."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Two lucide-react glyphs in the navbar right cluster: Instagram (size 18, strokeWidth 1.5) and Send (size 16, strokeWidth 1.5, hidden on mobile). Both are white currentColor icon buttons that fade to opacity-70 on hover, so supply currentColor-driven icons so the white tint and hover transition still apply."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Geist, sans-serif",
+      "body": "'Inter', sans-serif",
+      "accent": "'Britanica-Black', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#e02b10",
+      "surface": "rgba(255,255,255,0.92)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#e02b10",
+      "accent2": "#111111",
+      "border": "rgba(255,255,255,0.6)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "eyebrow",
+      "eyebrow-subtext",
+      "product-blurb",
+      "product-keywords",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-subtext",
+      "cta-label",
+      "stat-1-value",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-label"
+    ]
+  },
+  "mechanic": "Single full-viewport (min-h-screen) hero where a fullscreen object-cover looping muted video plays over a solid red base, with an overlaid navbar plus a three-row flex column (spacer / middle marketing copy / bottom giant clamp() headline + 'begin now' button + translucent backdrop-blur stat cards); motion is hover-only CSS transitions (nav border-white/60->white, icons->opacity-70, Reservations->white-bg/red-text, button hover:bg-gray-100 + active:scale-95) — no keyframes, scroll effects, or JS state.",
+  "techDelivery": "React + TypeScript + Tailwind CSS (utility classes plus per-element inline style objects for fonts/sizes/colors) with lucide-react for the Instagram/Send icons; fonts are @import-ed in index.css (Britanica-Black from db.onlinewebfonts.com CDN + Inter from Google Fonts, with Geist assumed loaded externally). Visual-only, no state, no Supabase.",
+  "reskinNotes": "The brand red '#e02b10' is baked in three disconnected places — the root <div> inline backgroundColor, the LogoRed inline-SVG stroke attribute, and the Tailwind 'hover:text-red-600' on the Reservations button — so a recolor must touch inline style, raw SVG path markup, and a utility class together, not a single token. The logo is two hand-coded inline-SVG stroke paths (white + red variants), so rebranding the mark means editing path data and stroke colors, not swapping an asset. Type is metric-dependent: the headline size/leading/tracking (clamp 56-155px, lineHeight 0.78, letterSpacing -0.04em) is tuned to Geist and the stat numbers to Britanica-Black, and Geist is referenced but never @import-ed (relies on an external/global load, silent sans-serif fallback otherwise) while Britanica-Black comes from a third-party onlinewebfonts CDN (availability/licensing risk). Nearly all copy is hardcoded inline, including <br />-split multiline strings (the 'creative'/'studio' headline lines, 'MARKETING'/'COLLECTIVE' eyebrow, and the keyword lines) and the two stat value/label pairs mapped from an inline array, so line breaks are structural and editing means rewriting markup. The neutral/translucent palette (white/60 borders, white/0.92 glass cards, opacity 0.7/0.8 body text, '#111'/'#888' stat text) is expressed as inline rgba + Tailwind opacity utilities rather than CSS variables, so reskinning is a find-replace across markup, and the white-text-on-video composition assumes a dark-enough video since no scrim layer exists."
+}

@@ -1,0 +1,10 @@
+contact_submissions
+design_md
+lovable_templates
+motion_videos
+prompt_likes
+prompt_sections
+prompts
+public_contact_submissions
+sale_countdown
+user_access

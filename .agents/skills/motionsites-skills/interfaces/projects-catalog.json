@@ -1,0 +1,51 @@
+{
+  "id": "projects-catalog",
+  "role": "features",
+  "ownSections": [
+    "ProjectsSection",
+    "SectionHeading",
+    "ProjectCard",
+    "LiveProjectButton",
+    "FadeIn"
+  ],
+  "slots": [
+    {
+      "id": "project-card-images",
+      "type": "image",
+      "card": 9,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Project case-study photography for the 3 sticky stacking ProjectCards. Each card has a two-up image grid: a left column (md:w-[40%]) of two stacked object-cover images and a right column (md:w-[60%]) of one tall self-stretch object-cover image, for 3 images per card x 3 cards = 9 sockets total. Native prompt hardcodes 9 separate higgs.ai/CloudFront .webp URLs (sockets to fill, not values to keep). All are object-cover inside large rounded-[40-60px] frames so any crop works, but heights are fixed via clamp(): left image 1 clamp(130px,16vw,230px), left image 2 clamp(160px,22vw,340px), and the right image self-stretches to fill both, so portrait-ish or flexible-crop art reads best. Shown on a #0C0C0C card, so mid/high-key imagery keeps the layout from going flat."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single Google Font 'Kanit' (weights 300-900) used for everything: the giant gradient-clipped 'Project' heading and per-card number (font-black uppercase, clamp up to 160px / 140px), the card Category label (font-medium uppercase), the project Name (font-light tracking-wide), and the 'Live Project' button (font-medium uppercase tracking-widest). Native declaration is font-family:'Kanit',sans-serif on html/body, loaded via Google Fonts <link>. Replacement should carry weights 300 through 900 and tolerate uppercase tracking-widest plus very-large display sizes, since the heading scale and card layout assume a condensed-friendly grotesque."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Kanit",
+      "body": "Kanit"
+    },
+    "colorRoles": {
+      "bg": "#0C0C0C",
+      "surface": "#0C0C0C",
+      "fg": "#D7E2EA",
+      "fgMuted": "#646973",
+      "accent": "#BBCCD7",
+      "border": "#D7E2EA"
+    },
+    "copySlots": [
+      "section-heading",
+      "project-numbers",
+      "project-categories",
+      "project-names",
+      "cta-label"
+    ]
+  },
+  "mechanic": "Three position:sticky, top-pinned ProjectCards on a #0C0C0C rounded-top section that, driven by framer-motion useScroll over the section, stack and scale-down (earlier cards shrink toward 0.94/0.97, the last stays at 1) into a layered deck as you scroll, each card revealing a 40/60 two-column image grid.",
+  "techDelivery": "React + Tailwind CSS + framer-motion (useScroll/useTransform/motion, motion.create for the reusable FadeIn), with the Google Font 'Kanit' loaded via <link> and the .hero-heading gradient text-clip authored in plain CSS.",
+  "reskinNotes": "Colors and motion constants are baked into markup, not tokens: the heading gradient is a fixed linear-gradient(180deg,#646973,#BBCCD7) in a .hero-heading CSS rule using -webkit-background-clip:text, and the light tint #D7E2EA is hardcoded inline via Tailwind arbitrary values (text-[#D7E2EA], border #D7E2EA 2px, bg-[#D7E2EA]/10 and /20 hover/active states) on every card border, number, label, name and the Live Project button, so retinting means editing CSS/className strings rather than config. All copy is hardcoded in JSX: the 'Project' heading, the three project numbers/categories (Client/Personal)/names (Nextlevel Studio, Aura Brand Identity, Solaris Digital), and the literal 'Live Project' button label (all hrefs are '#'). The stacking effect depends on literal numeric constants -- per-card top:index*28px offset, targetScale = 1 - (totalCards-1-index)*0.03, sticky top 24/32px, 85vh wrapper height, max-width 1760px -- which must scale with any change to card count. Heading and number use clamp()-based fluid sizes (up to 160px/140px) and tracking-tight/tracking-widest, so a wider replacement font will shift the giant display type and card header layout."
+}

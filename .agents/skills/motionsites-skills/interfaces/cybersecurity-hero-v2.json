@@ -1,0 +1,82 @@
+{
+  "id": "cybersecurity-hero-v2",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroCard",
+    "BrandLogos"
+  ],
+  "slots": [
+    {
+      "id": "brand-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Center pipeline node: the brand's primary monogram/logomark, single-color fill, sits in a 64px circle as the hub of the icon pipeline (native: Xero pinwheel 'X')."
+    },
+    {
+      "id": "pipeline-icon-left",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Left pipeline node glyph in a 46px circle; source-stage concept icon (native: layers/stack). Monochrome line/fill SVG."
+    },
+    {
+      "id": "pipeline-icon-right",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Right pipeline node glyph in a 46px circle; secured/output-stage concept icon (native: shield with checkmark). Monochrome line/fill SVG."
+    },
+    {
+      "id": "brand-logo-row",
+      "type": "icon",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Social-proof logo strip below the hero card: 5 partner/customer glyphs, ~22px each, muted single-color (geometric/abstract marks paired with wordmark text), flex-wrap row."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface used across the whole hero (display + body). Native: Inter weights 300/400/500/600/700/800 from Google Fonts; weight 300 powers the thin headline lead-in."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0f",
+      "surface": "#111118",
+      "fg": "#f0f0f5",
+      "fgMuted": "#8888a8",
+      "accent": "#c8a0e0",
+      "accent2": "#b04090",
+      "border": "rgba(255, 255, 255, 0.08)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "cta-login-label",
+      "cta-signup-label",
+      "headline-lead",
+      "headline-emphasis",
+      "subtitle",
+      "cta-primary-label",
+      "brand-row-names"
+    ]
+  },
+  "mechanic": "A sticky-centered dark glass hero card layers a procedural shaders.js field (sine waves + wave distortion + film grain) under a CSS radial-arc glow and masked 40px grid, while a requestAnimationFrame loop drives a light beam through a 3-node encryption pipeline — pulsing each node active and firing a center splash on a p1 -> splash -> p2 -> idle cycle.",
+  "techDelivery": "React 18 + TypeScript + Vite 5.4 + Tailwind CSS 3.4 component build, using the `shaders` (shaders/react) package for the GPU background and `lucide-react` for icons; beam animation hand-rolled via refs + requestAnimationFrame and getBoundingClientRect.",
+  "reskinNotes": "Heavy reskin friction: the entire background palette (shader SolidColor/SineWave colors #08071a/#0582e8/#f00e94, the multi-stop pink->white radial arc, the purple/pink beam linearGradient, and the splash/node-light tints rgba(255,77,200)/rgba(200,100,255)) is hardcoded in JSX shader props and inline SVG/CSS, NOT in the CSS variables — so the declared --accent/--accent-pink tokens do not actually drive the visible color story. All copy (Xero, Method/Pricing/Docs, headline split across <strong>, subtitle with hardcoded <br>, brand names) is inline in markup, and the thin-300 headline weight plus clamp() sizing make the layout Inter-metric dependent."
+}

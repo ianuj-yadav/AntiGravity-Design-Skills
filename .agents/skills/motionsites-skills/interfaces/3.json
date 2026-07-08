@@ -1,0 +1,84 @@
+{
+  "id": "3",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay HLS background video sitting behind all content at -z-10, 100% opacity with no dark overlay; delivered as an .m3u8 stream consumed via hls.js."
+    },
+    {
+      "id": "social-proof-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Row of 3 overlapping customer/user avatar portraits with ring borders, shown beside the 'Trusted by 210k+ stores worldwide' social-proof text."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark/logo at the left of the navbar; needs transparency, monochrome to read against the dark navbar."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "lucide-react UI glyphs: the arrow that slides into the primary button on hover, and the hamburger/menu icon for the mobile nav dropdown."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading typeface 'Switzer' (Medium weight, tight tracking) for the navbar logo text and large hero headline."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Body typeface 'Geist' (clean, legible) for subhead, nav links, button labels, and social-proof copy."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Switzer",
+      "body": "Geist"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.9)",
+      "accent": "#FF3300",
+      "accent2": "#EE7926",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "headline",
+      "subhead",
+      "nav-labels",
+      "signin-label",
+      "signup-label",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "social-proof-text"
+    ]
+  },
+  "mechanic": "Fullscreen hls.js background video behind a dark hero whose text, buttons, and social-proof stagger in with a motion/react fade-up + slide on load, over a gradient glow primary button that scales and reveals a sliding arrow on hover.",
+  "techDelivery": "React (Vite) + Tailwind CSS + motion/react (Framer Motion) + lucide-react, with native HTML5 video streamed via hls.js (no react-player).",
+  "reskinNotes": "Brand accents are baked into Tailwind arbitrary-value classes rather than tokens: the 5px top bar gradient (from-[#ccf] via-[#e7d04c] to-[#31fb78]) and the primary button gradient (from-[#FF3300] to-[#EE7926]) plus its bg-orange-600 glow must be edited in markup to reskin; copy (headline, subhead, nav labels, social-proof count) is hardcoded inline; the 'Switzer' display headline assumes Medium weight with tight tracking/leading so a substitute font may need metric tuning; the background video is an HLS (.m3u8) stream, so brand replacements must also be HLS-encoded for the hls.js pipeline."
+}

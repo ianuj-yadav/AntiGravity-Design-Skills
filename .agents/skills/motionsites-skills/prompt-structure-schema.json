@@ -1,0 +1,185 @@
+{
+  "name": "motionsites_prompt_structure",
+  "purpose": "Canonical schema for generating or retrieving website prompts in the MotionSites style.",
+  "top_level_order": [
+    "retrieval_metadata",
+    "build_brief",
+    "brand_system",
+    "tech_contract",
+    "shared_design_system",
+    "asset_plan",
+    "section_plan",
+    "interaction_plan",
+    "responsive_plan",
+    "acceptance_checks"
+  ],
+  "fields": {
+    "retrieval_metadata": {
+      "scope": "website | page | section | component",
+      "category": "hero | landing | about | features | pricing | faq | footer | testimonials | form | carousel | dashboard | other",
+      "brand_archetype": "luxury-editorial | agency | saas-ai | fintech | real-estate | ecommerce | portfolio | education | service-business | other",
+      "motion_style": "cinematic | subtle | premium-ui | playful | data-driven | minimal",
+      "visual_treatment": [
+        "glassmorphism",
+        "dark-luxury",
+        "editorial",
+        "gradient",
+        "video-led",
+        "image-led",
+        "dashboard-ui"
+      ],
+      "dependencies": [
+        "react",
+        "typescript",
+        "tailwindcss",
+        "vite",
+        "framer-motion",
+        "lucide-react"
+      ]
+    },
+    "build_brief": {
+      "template": "Build a {scope_description} for a {brand_descriptor} brand called \"{brand_name}\" using {stack}. The experience should feel {mood_words}.",
+      "required": [
+        "scope_description",
+        "brand_name",
+        "stack",
+        "mood_words"
+      ]
+    },
+    "brand_system": {
+      "required": [
+        "brand_name",
+        "audience",
+        "offer",
+        "voice",
+        "headline_direction",
+        "cta_direction"
+      ],
+      "optional": [
+        "color_palette",
+        "font_roles",
+        "icon_family",
+        "proof_points",
+        "positioning_notes"
+      ]
+    },
+    "tech_contract": {
+      "required": [
+        "framework",
+        "language",
+        "styling_system"
+      ],
+      "optional": [
+        "bundler",
+        "config_notes",
+        "dependency_versions",
+        "file_requirements",
+        "helpers"
+      ]
+    },
+    "shared_design_system": {
+      "required": [
+        "fonts",
+        "colors_or_css_variables",
+        "spacing_and_radius",
+        "icon_rules"
+      ],
+      "optional": [
+        "surface_effects",
+        "animation_primitives",
+        "component_tokens"
+      ]
+    },
+    "asset_plan": {
+      "required": [
+        "hero_assets",
+        "brand_assets",
+        "section_assets"
+      ],
+      "optional": [
+        "download_and_localize_rules",
+        "fallback_assets",
+        "asset_generation_prompts",
+        "poster_strategy",
+        "thumbnail_strategy"
+      ],
+      "asset_types": [
+        "hero_video",
+        "hero_image",
+        "poster",
+        "logo",
+        "icon_set",
+        "ui_screenshot",
+        "feature_gif",
+        "testimonial_avatar",
+        "gallery_image",
+        "background_loop",
+        "illustration",
+        "font"
+      ]
+    },
+    "section_plan": {
+      "shape": [
+        {
+          "id": "hero",
+          "purpose": "Primary value proposition",
+          "copy_slots": [
+            "badge",
+            "headline",
+            "subtext",
+            "primary_cta",
+            "secondary_cta"
+          ],
+          "layout_spec": "Exact hierarchy, spacing, alignment, utility classes, wrappers, and content ordering",
+          "asset_dependencies": [
+            "hero_video",
+            "poster",
+            "logo"
+          ],
+          "interaction_dependencies": [
+            "scroll_reveal",
+            "hover",
+            "menu_state"
+          ]
+        }
+      ]
+    },
+    "interaction_plan": {
+      "required": [
+        "entrance_motion",
+        "hover_states",
+        "stateful_behaviors"
+      ],
+      "optional": [
+        "scroll_behavior",
+        "video_behavior",
+        "accordion_behavior",
+        "form_validation",
+        "cursor_effects"
+      ]
+    },
+    "responsive_plan": {
+      "required": [
+        "breakpoints",
+        "mobile_behavior",
+        "desktop_behavior"
+      ]
+    },
+    "acceptance_checks": {
+      "required": [
+        "visual_checks",
+        "content_checks",
+        "behavior_checks",
+        "asset_checks"
+      ]
+    }
+  },
+  "authoring_rules": [
+    "Specify exact copy or explicit copy slots for each section.",
+    "Treat assets as required inputs, not optional garnish.",
+    "Use reusable motion primitives instead of ad hoc one-off animation prose.",
+    "Separate brand strategy from layout so the same structure can be reused across brands.",
+    "For whole-site prompts, define shared tokens before section-by-section specs.",
+    "When possible, include localization rules for remote assets."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "id": "focus-ai-landing",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Tagline",
+    "FeatureSplit",
+    "BigStatement",
+    "CtaJoin",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background film for SECTION 1 (min-h-screen relative overflow-hidden). Rendered as a plain <video autoPlay loop muted playsInline> (NOT the HlsVideo component) at 'absolute inset-0 w-full h-full object-cover z-0'. A bottom-edge gradient overlay (inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black via-black/60 to-transparent) darkens the lower 40% so the centered 'Where dreams rise...' serif headline, body paragraph and glass CTA stay legible; the frosted navbar sits above it. Cover-cropped to any viewport — pick calm/dark footage that reads under white overlay text. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "feature-card-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Looping video filling the RIGHT card of the SECTION 3 feature split (relative rounded-2xl overflow-hidden min-h-[400px], one half of a md:grid-cols-2 pair). Rendered <video autoPlay loop muted playsInline> at 'absolute inset-0 w-full h-full object-cover'. Card-shaped (rounded corners clip it), not fullscreen, so aspect is flexible; the left card holds the '100% Electric' copy, feature tabs and progress bar. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "big-statement-hls-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background film for SECTION 4 'Big Statement' (relative min-h-[90vh] overflow-hidden). This is the ONLY video routed through the custom HlsVideo component (hls.js: builds an Hls instance when Hls.isSupported(), else native application/vnd.apple.mpegurl fallback); video element is 'absolute inset-0 w-full h-full object-cover z-0', autoPlay loop muted playsInline. Overlaid by the 'Intelligent Companion' eyebrow, 'Adventure inspired. App driven.' serif heading, a body paragraph, a 4-up stats grid (OTA / 360 / AI / 24-7) and a glass CTA — favor dark footage for white-on-video legibility. Native source is a Mux .m3u8 HLS stream (so the fill asset must be an HLS manifest, not a flat mp4, unless the HlsVideo branch is also fed a progressive file)."
+    },
+    {
+      "id": "cta-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background film for SECTION 5 'CTA / Join' (relative min-h-[90vh] overflow-hidden). Rendered as a plain <video autoPlay loop muted playsInline> at 'absolute inset-0 w-full h-full object-cover z-0' (no HlsVideo, no explicit gradient fade declared — content relies on the dark footage itself). Behind the 'Starting at $99,000' price eyebrow, the 'Join the ride' serif headline, a body paragraph and the Preorder/Schedule-a-Tour button pair. Keep footage dark so white copy and the bordered ghost button stay readable. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display/heading face: Instrument Serif (Google Fonts, ital@0;1), loaded via <link> in index.html. Applied inline as font-family 'Instrument Serif', serif to EVERY heading and display string: the 'Velorah' navbar wordmark + footer wordmark (with registered-trademark <sup>), the hero headline, the Section 2 tagline, the '100% Electric' feature title, the 'Adventure inspired. App driven.' statement heading, all four stat values, the 'Join the ride' CTA headline and both footer headings. Replace with the brand display serif; the hero/CTA headlines are tuned to its metrics (see reskinNotes)."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans body face: Inter (Google Fonts, weights 400;500), set as the global body font-family via the --font-body CSS custom property. Drives all running copy, nav links, feature tabs, button labels, stat sub-labels and footer link lists. Supply the brand's UI/text sans for these elements. Note: the index.css @import string in the spec mis-spells the family as 'Instrumental+Serif' alongside Inter, so only Inter reliably loads from that @import — the serif arrives via the separate (correct) index.html <link>."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "hsl(0 0% 6%)",
+      "fg": "#ffffff",
+      "fgMuted": "hsl(240 4% 66%)",
+      "accent": "#ffffff",
+      "accent2": "hsl(0 0% 10%)",
+      "border": "hsl(0 0% 18%)"
+    },
+    "copySlots": [
+      "brand-name",
+      "brand-trademark",
+      "nav-labels",
+      "navbar-cta-label",
+      "hero-headline",
+      "hero-body",
+      "hero-cta-label",
+      "tagline-heading",
+      "feature-icon",
+      "feature-heading",
+      "feature-body",
+      "feature-tab-labels",
+      "feature-cta-label",
+      "statement-eyebrow",
+      "statement-heading",
+      "statement-body",
+      "statement-stat-values",
+      "statement-stat-labels",
+      "statement-cta-label",
+      "cta-price-eyebrow",
+      "cta-headline",
+      "cta-body",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "footer-heading",
+      "footer-link-labels",
+      "footer-subscribe-prompt",
+      "footer-subscribe-cta-label",
+      "footer-legal-links"
+    ]
+  },
+  "mechanic": "A pure-black six-section single-page scroll (full-viewport video hero with frosted glass navbar + staggered fade-rise headline, a centered tagline, a two-up feature split pairing a stateful tab card with a looping video card, a full-screen HLS-video 'big statement' with a 4-up stats grid, a video-backed CTA, and a footer) whose only motion is looping object-cover background videos plus a fade-rise entrance (opacity 0 / translateY(24px) -> 0 over 0.8s ease-out, staggered 0.2s/0.4s) on the hero headline, body and CTA, all read through reusable .liquid-glass frosted pills (backdrop-blur(4px) + a mask-composite gradient-border ::before).",
+  "techDelivery": "React 18 + TypeScript + Tailwind CSS + shadcn/ui primitives, with hls.js for the Section 4 Mux HLS stream (custom HlsVideo component) and lucide-react / @tanstack/react-query / react-router-dom / tailwindcss-animate as declared deps. Standard shadcn HSL design tokens + the .liquid-glass utility + fade-rise keyframes live in index.css; Instrument Serif loads via an index.html <link> and Inter via the index.css @import; tailwind.config is the standard shadcn setup (darkMode class, HSL var mapping, tailwindcss-animate, accordion keyframes). Single-app component spec (no CDN/Babel inlining).",
+  "reskinNotes": "Token-vs-render conflict: the declared :root token '--background: 201 100% 13%' is a deep teal, but the page is forced pure black everywhere — the prose says 'the entire page background is pure black hsl(0,0%,0%)' and Sections 2 and 6 hardcode bg-[hsl(0,0%,0%)] — so a reskin must reconcile the unused teal --background token against the literal black backgrounds and the from-black/via-black gradient fades baked into the markup (these are not driven by the token). The signature .liquid-glass surface is fully hardcoded CSS, not tokenized: rgba(255,255,255,0.01) fill, background-blend-mode:luminosity, fixed backdrop-blur(4px), an inset white highlight shadow, and a ::before gradient-border built from a white linear-gradient (rgba(255,255,255,0.45->0.15->0)) plus the -webkit-mask + mask-composite:exclude trick — it assumes white-on-dark, so retinting the glass means editing those rgba stops, not flipping a variable. Color is otherwise monochrome and expressed via Tailwind opacity/HSL utilities (text-white, text-white/80, text-muted-foreground, border-border, bg-foreground/text-primary-foreground for the active tab) rather than a single accent token, so 'accent' is effectively white. The feature-split left-card progress bar is a hardcoded width:35% inner div, and the small feature icon is a bordered empty circle (border border-border), not a real glyph. All copy is hardcoded in the JSX and must be edited in markup: brand 'Velorah' + registered-trademark superscript (navbar AND footer, footer uses <sup className='text-[8px]'>), nav labels (Home/Studio/About/Journal/Reach Us), 'Begin Journey' (navbar + hero), the hero headline 'Where dreams rise through the silence.' (with 'dreams' and 'through the silence.' wrapped in <em className='not-italic text-white'>), the hero body, the Section 2 tagline 'So you can feel at home, anywhere.', '100% Electric' + its body, the five feature-tab labels (Living Electric/Charge Faster/Sleep Well/Acoustic Comfort/5+ Seasons with ids electric/charge/sleep/acoustic/seasons, useState('electric')), 'Explore the Velorah Flow', 'Intelligent Companion', 'Adventure inspired. App driven.', its body, the four stat value/label pairs (OTA-Over-the-air updates / 360-System visibility / AI-Adaptive routines / 24/7-Remote monitoring), 'Discover the App', 'Starting at $99,000', 'Join the ride', its body, 'Preorder Now' / 'Schedule a Tour', the footer headings 'Where home meets the road.' and 'Subscribe for the latest Velorah updates.', the footer link list (product/app/company/community/press/preorder, capitalize utility), 'Subscribe', and 'Privacy Policy' / 'Terms & Conditions'. Layout is font-metric dependent on Instrument Serif: the hero and CTA headlines use very tight tracking (tracking-[-2.46px] / tracking-[-2px]) at leading-[0.95] up to text-8xl, and the tagline/statement headings use tracking-[-1.5px] leading-[1.05], so a wider/taller replacement display face or longer copy will break the intended wraps. Spec bug to watch: the index.css Google Fonts @import requests 'Instrumental+Serif' (a non-existent family) rather than 'Instrument+Serif', so the serif only actually loads via the separate, correctly-named index.html <link> — fix the @import or rely on the link when reskinning fonts. Section 5 declares no gradient fade over its background video, so legibility there depends entirely on the supplied footage being dark."
+}

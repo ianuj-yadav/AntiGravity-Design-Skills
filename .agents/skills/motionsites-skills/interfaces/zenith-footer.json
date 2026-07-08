@@ -1,0 +1,74 @@
+{
+  "id": "zenith-footer",
+  "role": "footer",
+  "ownSections": [
+    "AppLayout",
+    "FitnessButton",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "bg",
+      "notes": "Fullscreen looping hero background video for the whole page. Rendered as a <video autoPlay muted loop playsInline> absolutely positioned inset-0 w-full h-full object-cover pointer-events-none behind the z-10 scroll container. Opaque, cover-cropped wide footage that the cream footer card reads against; must loop seamlessly and carry no audio."
+    },
+    {
+      "id": "footer-brand-mark",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand glyph in the footer card's top-left cell. Native art is a lucide-react Dumbbell icon (w-8 h-8, strokeWidth 2.5) tinted text-black; reskin = swap the lucide glyph (or a 1:1 transparent mono SVG) that tints to fg over the cream card."
+    },
+    {
+      "id": "cta-button-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "surface",
+      "notes": "Leading glyph inside the primary FitnessButton ('Join Today'). Native art is a lucide-react Rocket icon (w-5 h-5) tinted white to sit on the near-black #060606 primary button; only the primary variant renders it. Reskin = swap the lucide glyph; it tints to the button's foreground (white)."
+    },
+    {
+      "id": "geist-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface for the whole layout (native: Geist, Google Fonts weights 100..900), wired as the Tailwind --font-geist theme var and @apply font-geist on body. Carries the FitnessButton labels, the 'Move, Heal, Bloom' heading (font-medium tracking-tight), the uppercase tracking-[0.05em] menu headings, the menu links, and the uppercase copyright line."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Geist\", sans-serif",
+      "body": "\"Geist\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#FFFFF0",
+      "fg": "#060606",
+      "fgMuted": "rgba(6,6,6,0.40)",
+      "accent": "#060606",
+      "accent2": "#F5F5F5",
+      "border": "rgba(255,255,255,0.20)"
+    },
+    "copySlots": [
+      "headline",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "nav-col-1-title",
+      "nav-col-1-links",
+      "nav-col-2-title",
+      "nav-col-2-links",
+      "copyright"
+    ]
+  },
+  "mechanic": "A full-screen black layout plays a fullscreen object-cover looping background video behind a z-10 scrollable max-w-5xl column whose mt-auto pushes a cream #FFFFF0/95 backdrop-blur rounded-[32px] footer card to the bottom; the card fades+slides up once on in-view (opacity 0/y 20 -> 1/0 over 0.5s) and lays its dumbbell mark, heading, two FitnessButtons, and two link menus on a responsive auto/1fr/auto/auto grid.",
+  "techDelivery": "React/Vite functional components using Tailwind CSS, motion/react (motion.button whileHover/whileTap, motion.div whileInView entrance), and lucide-react glyphs (Rocket, Dumbbell); Geist loaded from Google Fonts and exposed via a --font-geist Tailwind theme variable.",
+  "reskinNotes": "Every color is baked into markup as Tailwind arbitrary values / utilities rather than CSS variables: the button blacks (#060606), the secondary grey (#F5F5F5), the cream card (#FFFFF0/95), and the white-tint shadows/borders (rgba(255,255,255,0.25/0.35), border-white/20) all live inline and must be remapped at the class level — note the primary button's signature white inset+drop glow shadow only reads against a dark card, so a light-on-light reskin loses it. All copy is hardcoded in JSX: the 'Move, Heal, Bloom' heading, both button labels ('Join Today' / 'View Clubs'), the two menu titles ('Insights' / 'Connect') and their four link labels each, and the '© Zenith Media Group 2025' copyright (rendered twice as two spans). Brand iconography is lucide glyph components (Rocket, Dumbbell), not swappable src URLs. The footer card layout is metric-sensitive — the 4-column auto/1fr/auto/auto grid plus whitespace-nowrap links and the !py-2 !px-5 !gap-2 !text-xs button overrides are tuned to these short labels and will reflow/clip for longer brand copy."
+}

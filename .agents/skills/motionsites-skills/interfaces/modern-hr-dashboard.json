@@ -1,0 +1,125 @@
+{
+  "id": "modern-hr-dashboard",
+  "role": "hero",
+  "ownSections": [
+    "Background",
+    "Navbar",
+    "WelcomeRow",
+    "DashboardGrid",
+    "ProfilePhotoCard",
+    "ProgressCard",
+    "TimeTrackerCard",
+    "OnboardingColumn",
+    "AccordionCard",
+    "CalendarCard"
+  ],
+  "slots": [
+    {
+      "id": "profile-avatar",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Logged-in user's avatar in the navbar: a single w-10 h-10 circular pill button (object-cover). Native placeholder is a Pexels headshot (pexels-photo-1239291, w=80); brand supplies one square headshot cropped to a circle."
+    },
+    {
+      "id": "profile-photo",
+      "type": "image",
+      "card": 1,
+      "aspect": "4:3",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Hero portrait filling Card 1 (Profile Photo Card): w-full h-full object-cover object-top, rounded-3xl, aspect-[4/3] on mobile and fills the parent cell on desktop. Bottom 35% is overlaid by a blur+dark-gradient mask carrying white name/role/salary text, so it must read as a darkenable person/team photo with the subject in the upper two-thirds. Native placeholder is a Pexels portrait (pexels-photo-1130626, w=600)."
+    },
+    {
+      "id": "accordion-thumbnail",
+      "type": "image",
+      "card": 1,
+      "aspect": "4:3",
+      "alpha": false,
+      "notes": "Small product/device thumbnail inside the expanded 'Hardware' accordion row on Card 5: a w-12 h-10 rounded-lg image (object-cover) next to 'ThinkPad Pro / Edition X1' text. Native placeholder is a Pexels device shot (pexels-photo.jpg, w=120)."
+    },
+    {
+      "id": "event-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Overlapping attendee avatar stack on the two Calendar Card events (Card 6): each w-6 h-6 rounded-full object-cover with a 2px white border, overlapping at marginLeft -6px. The dark event shows 3, the white event shows 2 (drawn from the same pool). Native placeholders are three Pexels headshots (415829, 1681010, 774909, w=60); brand supplies a small pool of square headshots cropped to circles."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 18,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "lucide-react monochrome line-icon set drawn at 10-16px and tinted by the surrounding text color (mostly #898989 muted, white inside the dark Pending-Actions panel, #303030 on light controls). Covers nav/utility glyphs (Settings, Bell, Menu, X, ArrowUpRight, MoreVertical, ChevronDown/Up), stat badges (Users, Monitor), timer controls (Play, Pause, RotateCcw), task-row marks (Monitor, Users, MessageSquare, Pencil, Link, Check). Code-rendered, not asset files; reskin tints via currentColor."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Sofia Pro (the 'Sofia Pro Medium' / 'Sofia Pro Regular' faces) loaded from an external onlinewebfonts.com stylesheet in index.html; a single family drives every string — the 3xl-5xl greeting and stat numbers, all card titles and labels, and the Recharts XAxis tick labels (fontFamily 'Sofia Pro Regular', 11px). Tailwind's sans is set to Century Gothic only as a fallback. Pick a clean geometric sans; the large light-weight numerics are font-metric-sensitive."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Sofia Pro Regular",
+      "body": "Sofia Pro Medium"
+    },
+    "colorRoles": {
+      "bg": "#E3E5E6",
+      "surface": "rgba(255, 255, 255, 0.6)",
+      "fg": "#303030",
+      "fgMuted": "#898989",
+      "accent": "#FFD85F",
+      "accent2": "#303030",
+      "border": "rgba(137, 137, 137, 0.3)"
+    },
+    "copySlots": [
+      "brand-wordmark",
+      "nav-labels",
+      "configs-button-label",
+      "greeting",
+      "segment-bar-labels",
+      "stat-1-value",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-label",
+      "stat-3-value",
+      "stat-3-label",
+      "profile-card-name",
+      "profile-card-role",
+      "profile-card-salary",
+      "activity-title",
+      "activity-stat-value",
+      "activity-stat-caption",
+      "activity-tooltip-label",
+      "focus-title",
+      "focus-timer-value",
+      "focus-timer-caption",
+      "induction-title",
+      "induction-percent",
+      "induction-segment-labels",
+      "pending-actions-title",
+      "pending-actions-count",
+      "task-list-titles",
+      "task-list-times",
+      "accordion-item-titles",
+      "hardware-thumb-title",
+      "hardware-thumb-subtitle",
+      "calendar-month-prev",
+      "calendar-month-current",
+      "calendar-month-next",
+      "calendar-day-headers",
+      "calendar-time-labels",
+      "calendar-event-1-title",
+      "calendar-event-1-subtitle",
+      "calendar-event-2-title",
+      "calendar-event-2-subtitle"
+    ]
+  },
+  "mechanic": "A fixed-height non-scrolling responsive glass-card dashboard (4x2 CSS grid on desktop, 2-col tablet, single-column mobile stack) layered z-10 over a fullscreen fixed SVG background whose yellow blob is softened by a heavy Gaussian blur, with a few self-contained accents: a Recharts bar chart highlighting Friday with a yellow pill tooltip, a hand-drawn 60-tick SVG focus-timer ring filled to 70%, and an expand/collapse accordion (Hardware open by default).",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS 3 component spec; recharts 3.8 for the bar chart, lucide-react 0.344 icons, Sofia Pro via an external onlinewebfonts.com stylesheet, optional @supabase/supabase-js wiring.",
+  "reskinNotes": "Color tokens are not centralized: the palette (#FFD85F yellow, #303030 dark, #898989 grey, #E3E5E6 base) is repeated as Tailwind arbitrary-value classes and inline styles throughout markup, and the fixed SVG background hardcodes #E3E5E6 and #FFD85F inside an inline blob <path> + Gaussian-blur filter that must be edited in code to reskin. The focus-timer ring (180x180 SVG, 60 procedurally drawn ticks, 70% yellow arc) and the welcome-row hatched 'Sprint cycle' segment (a repeating-linear-gradient with #e5e5e5/#f5f5f5/#ddd) are generative inline SVG/CSS, not assets. Every string — greeting 'Good morning, Kasven', the 8 nav labels, all stat numbers, task list (5 rows with dates/done-state/icons), accordion titles, calendar month/day/time labels and both event cards — is hardcoded in JSX with no data source. The Recharts dataset (S/M/T/W/T/F/S hour values) and the Friday-only tooltip are baked in. Layout is font-metric-dependent: the 3xl-5xl light-weight greeting and stat numerals, the proportional segment-bar flex ratios (15/15/60/10), and the absolutely-positioned calendar events (percent left/right + pixel top/height) are tuned to Sofia Pro and to the short placeholder copy, so longer reskin strings can overflow or reflow."
+}

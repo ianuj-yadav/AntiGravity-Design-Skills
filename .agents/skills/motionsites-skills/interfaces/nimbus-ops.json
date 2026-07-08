@@ -1,0 +1,48 @@
+{
+  "id": "nimbus-ops",
+  "role": "cta",
+  "ownSections": [
+    "OperationsCubes"
+  ],
+  "slots": [
+    {
+      "id": "font-sans",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Body/UI + display sans socket used for the eyebrow, the very large clamp(34px,4.4vw,72px) h2 headline (rendered at a tight line-height:0.98), and the body paragraph. Native = IBM Plex Sans (weights 400, 500), loaded from Google Fonts and exposed as the --font-sans CSS var with a ui-sans-serif/system-ui fallback stack. Substitute must hold up at very large display sizes with near-solid 0.98 leading."
+    },
+    {
+      "id": "font-mono",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Monospace socket used only for the single filled .operations-cta button label, rendered uppercase at 12px with 0.04rem letter-spacing on the gold fill. Native = IBM Plex Mono (weights 400, 500), loaded from Google Fonts and exposed as the --font-mono CSS var with an SF Mono/ui-monospace fallback. Substitute must be a true monospace to preserve the technical button voice."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "body": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "mono": "\"IBM Plex Mono\", \"SF Mono\", ui-monospace, monospace"
+    },
+    "colorRoles": {
+      "bg": "#17130d",
+      "surface": "rgba(255, 239, 199, 0.16)",
+      "fg": "#fff4d5",
+      "fgMuted": "#dacaa1",
+      "accent": "#ead09a",
+      "accent2": "#ffd879",
+      "border": "rgba(255, 240, 199, 0.28)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A two-column gold-on-olive-black operations CTA: left copy column (eyebrow, large sans headline, body, single filled gold mono CTA) fogged readable by a left-to-right gradient overlay, beside a right visual that is a pure-CSS preserve-3d 6-face cube gently floating on a 6s keyframe loop, wrapped in a full-area button that toggles an .is-exploded class to burst 14 staggered gradient-shard particles outward to per-particle --tx/--ty/--tz/--r/--s targets and shrink the core cube, then implode on second click.",
+  "techDelivery": "Vanilla single-section Vite project (vite ^5.4.2, type:module, dev/build/preview scripts) with plain index.html + styles.css + script.js, no frameworks and no 3D libraries; the cube and all particles are CSS transform-style:preserve-3d with positioned faces and pseudo-element shards, fonts via Google Fonts preconnect+link, and the only JS is a single class toggle on click/Enter/Space.",
+  "reskinNotes": "This template ships zero image/video/icon/svg assets — every visual (cube faces, 14 particle shards, background glows, halo) is hand-authored CSS gradients, so there are no asset sockets to fill, only fonts and color tokens. The cube/particle look is NOT driven by the :root tokens: each .cube-face and .cube-particle::before/::after bakes in raw rgba layers (gold hotspot rgba(255,216,121,...), cyan rgba(151,211,235,...), dark rgba(43,35,19,...)/rgba(26,28,20,...)) plus multiple inset box-shadows, so recoloring the cube means editing those CSS rules, not a variable. The section deliberately uses a dual gold+cyan palette where the cyan (rgba(151,211,235,...)) has no token at all and appears only inline in the radial background glows, the ::before halo, and the face gradients. The section background is #0c0d0a (a separate near-black from the page --bg #17130d) hardcoded in .operations-cubes and again in the ::before fog stops (rgba(12,13,10,...)). The CTA text color #1b160d and several copy alphas (rgba(255,244,213,0.76), rgba(255,247,222,...)) are literal, not tokens. The 14 particles' explosion geometry (--tx/--ty/--tz/--s/--r/--d) is hardcoded inline per-span in the markup and tuned to the cube's rotateX(-16deg) rotateY(34deg) orientation; the responsive --spread (0.72 at 820px, 0.48 at 520px) scales distance but the trajectories are fixed. All copy (eyebrow, headline, body paragraph, CTA label) is hardcoded in the HTML markup. Layout is font-metric dependent: the headline runs at line-height:0.98 with max-width:740px, so a wider/taller substitute font will reflow it."
+}

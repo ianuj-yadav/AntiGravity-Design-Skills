@@ -1,0 +1,90 @@
+{
+  "id": "email-landing-page",
+  "role": "landing",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "MenuBar",
+    "InboxMockup",
+    "FeatureTriage",
+    "LogoCloud",
+    "Testimonials",
+    "Pricing",
+    "FinalCTA"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fixed fullscreen looping background video behind everything (object-cover, muted, autoplay, playsInline); sits at z-0 under the entire page. Placeholder is a CloudFront MP4."
+    },
+    {
+      "id": "brand-logomark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordless logo mark rendered inline in the navbar (and reusable elsewhere). Native is a 4-quadrant curve SVG on a 256x256 viewBox, single-color white fill via currentColor; tints to fg."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#0c0c0c",
+      "surface": "#0e1014",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "accent": "#00d2ff",
+      "accent2": "#A4F4FD",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline-line1",
+      "hero-headline-line2",
+      "hero-body",
+      "hero-cta-label",
+      "hero-cta-subtext",
+      "menubar-app-name",
+      "menubar-menu-labels",
+      "menubar-status",
+      "inbox-compose-label",
+      "inbox-nav-labels",
+      "inbox-label-names",
+      "inbox-messages",
+      "inbox-reader-summary",
+      "inbox-reader-body",
+      "inbox-attachment-name",
+      "triage-eyebrow",
+      "triage-headline",
+      "triage-body",
+      "triage-chips",
+      "triage-card-categories",
+      "logocloud-kicker",
+      "logocloud-names",
+      "testimonials",
+      "pricing-watermark-line1",
+      "pricing-watermark-line2",
+      "pricing-plans",
+      "pricing-toggle-label",
+      "pricing-cta-label",
+      "finalcta-headline",
+      "finalcta-body",
+      "finalcta-primary-label",
+      "finalcta-secondary-label"
+    ]
+  },
+  "mechanic": "Single sticky fullscreen looping video backdrop under a dark glassy page whose hero word is a noise-filtered animated linear-gradient shimmer (animate-shiny), with liquid-glass bordered cards, a realistic macOS inbox mockup, and a yearly/monthly pricing toggle over a giant gradient watermark headline.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS + motion/react (framer-motion v12) + lucide-react; Inter via Google Fonts @import; Pricing section uses bespoke hand-written CSS classes (c3-*) instead of Tailwind.",
+  "reskinNotes": "Gradient hex stops (#091020/#0B2551/#A4F4FD/#00d2ff) are baked inline into the headline gradientStyle, the avatar bubble, the c3-watermark-line-2 CSS, and the inbox label dots, so accent reskins must be threaded through both inline JSX styles and the c3-* stylesheet. The hero shimmer depends on a 200% backgroundSize + SVG feTurbulence filter (id c3-noise duplicated at root and pricing scope) — re-theming must preserve both filter defs. All copy (nav links, hero/triage/CTA strings, the 6 inbox messages, 3 testimonials, 3 pricing plans with literal European-format prices) is hardcoded in markup. Pricing typography (9rem watermark, 580px card min-height, fixed letter-spacing) is metric-tuned for Inter and the c3-grid uses a translateX(20px) nudge. Brand name 'Aura' and plan copy referencing 'Forma' are inconsistent literals in the source."
+}

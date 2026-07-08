@@ -1,0 +1,100 @@
+{
+  "id": "orbit-engineers",
+  "role": "hero",
+  "ownSections": [
+    "NavigationBar",
+    "BackgroundVideos",
+    "HeroLanding",
+    "MissionStatement",
+    "ServiceDetail"
+  ],
+  "slots": [
+    {
+      "id": "section-background-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three fixed fullscreen background clips (one per hero section), layered behind all content at -z-10, each object-cover, autoPlay loop muted playsInline. Only the active section's video is opacity-100 while the others are opacity-0, crossfading via transition-opacity duration-700 as the user buttons between sections. All foreground type is white, so each clip must be dark/low-contrast enough to keep white text and the cyan accent legible; supply 3 seamless cinematic loops (the spec hardcodes 3 CloudFront mp4s)."
+    },
+    {
+      "id": "brand-logo-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small square brand logo mark reused in three places: the nav top-left (8x8, beside the WE ARE / ORBIT / ENGINEERS wordmark stack), the Section 0 bottom bar (small, rendered at 60% opacity), and as the persistent identity glyph. Single-color glyph that reads on a dark video; needs transparency."
+    },
+    {
+      "id": "decorative-vertical-lines",
+      "type": "svg",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Two thin vertical line/rule graphics pinned absolutely to the left (left-10) and right (right-10) edges, spanning nearly the full viewport height (h-[calc(100%-3rem)] in Section 0, h-[calc(100%-1rem)] in Section 2). Architectural framing accents; line-art with transparency that overlays the video."
+    },
+    {
+      "id": "mission-progress-dots",
+      "type": "svg",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Section 1 'Why We Are' column: 4 small (~5w) vertically stacked dot marks, the first filled and the remaining three outline-only, acting as a step/progress indicator beside the label. Tiny single-color glyphs with transparency."
+    },
+    {
+      "id": "ui-glyph-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI glyphs from lucide-react: ChevronDown (used in the bouncing 'Scroll to explore'/'Next' buttons and, rotated, in 'Back to top') and ArrowRight (in the Section 1 'Begin Your Mission' CTA). Library icons rather than bespoke art; a reskin can substitute an equivalent icon set."
+    },
+    {
+      "id": "font-sans",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary typeface for the entire page (display headlines, nav, body, labels) set as font-sans in the Tailwind config. Native value is Google Font 'Inter' (weights 300;400;500;600;700). Headlines lean on the light/normal weights with heavy negative letter-spacing (-3px/-2px), so the substitute should hold up at large sizes with tight tracking."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', ui-sans-serif, system-ui, sans-serif",
+      "body": "'Inter', ui-sans-serif, system-ui, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+    },
+    "colorRoles": {
+      "bg": "#203040",
+      "surface": "#ffffff",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "accent": "#3ebaf4"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-coordinates",
+      "hero-headline",
+      "hero-scroll-label",
+      "mission-heading",
+      "mission-cta-label",
+      "mission-why-label",
+      "mission-tagline",
+      "mission-back-label",
+      "mission-next-label",
+      "service-number",
+      "service-heading",
+      "service-description",
+      "service-cta-label",
+      "service-back-label"
+    ]
+  },
+  "mechanic": "Three fixed fullscreen background videos crossfade (opacity, duration-700) behind a button-driven (not scroll) useState section switcher, while framer-motion AnimatePresence mode='wait' runs cinematic per-section enter/exit transitions (opacity + scale 1.05-1.08 + blur 10-14px, plus y-translation on sections 1 & 2) with custom ease [0.22,1,0.36,1].",
+  "techDelivery": "React + Tailwind CSS (Inter set as font-sans via Tailwind config, HSL color tokens in CSS variables) + framer-motion (AnimatePresence/motion) + lucide-react icons; Inter loaded from Google Fonts.",
+  "reskinNotes": "Colors are authored as raw HSL channel triplets in CSS variables (--background: 210 33% 19%, --foreground: 0 0% 100%, --primary/--accent: 199 89% 60%), so retinting means editing those triplets, not hex tokens. accent and primary are the same cyan and there is no second accent or explicit border color; muted foregrounds are Tailwind opacity utilities (foreground/60, /70, /80) rather than a single token, and surface is just the inverted CTA fill (bg-foreground text-background) since videos cover the viewport. Every string is hardcoded in JSX: the WE ARE / ORBIT / ENGINEERS logo stack, the three nav links, the 51.50732 N / -0.12765 W coordinates, all three section headlines (with manual line breaks), the section number '01', the mission tagline, descriptions, and all CTA/back/next labels. Headlines depend on Inter's metrics with aggressive negative letter-spacing (-3px / -2px) and fixed line breaks plus leading-[0.95]/[1.05] and max-w clamps, so a longer headline or a wider substitute font will rewrap or overflow. The per-section motion variants (scale/blur/y values, 0.8-0.9s durations, ease [0.22,1,0.36,1]) and the section-1/2 staggered delays (0.3-0.55s) are authored inline, not tokenized."
+}

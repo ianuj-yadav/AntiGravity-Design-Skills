@@ -1,0 +1,43 @@
+{
+  "id": "14",
+  "role": "hero",
+  "ownSections": [
+    "HeroVideo"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen muted autoplaying object-cover hero background video filling the section (min-h-[90vh]); no color overlay sits on top, so it reads at full brightness behind the nav and headline."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Barlow"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#ffffff",
+      "fg": "#ffffff",
+      "accent": "#222222"
+    },
+    "copySlots": [
+      "nav-logo",
+      "nav-labels",
+      "primary-cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "subtext",
+      "secondary-cta-label"
+    ]
+  },
+  "mechanic": "Fullscreen muted autoplay-loop object-cover video bleeds behind a centered two-weight headline (Barlow tight-tracked line over an oversized Instrument Serif italic line), a floating rounded white nav, and white/dark pill CTAs layered directly on the footage with no overlay.",
+  "techDelivery": "single-file CDN Tailwind hero markup with Barlow + Instrument Serif web fonts and a native autoplay/muted/loop <video> element",
+  "reskinNotes": "Two-line headline mixes a Barlow weight with an 84px Instrument Serif italic accent line, so the type-pairing and tight tracking-[-4px] are metric-dependent and must be retuned per brand font swap. The brightness/legibility contract assumes a deliberately overlay-free video, so a brand video with light or busy regions will wash out the white nav and headline unless an overlay is introduced. Copy (nav labels, headline split across two lines, both CTA labels) and the dark #222 CTA / 45-degree circular arrow icon are hardcoded in markup as Tailwind utilities/inline glyphs rather than tokens."
+  }

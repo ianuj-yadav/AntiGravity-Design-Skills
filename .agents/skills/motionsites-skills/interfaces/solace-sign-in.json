@@ -1,0 +1,77 @@
+{
+  "id": "solace-sign-in",
+  "role": "form",
+  "ownSections": [
+    "SignInCard"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video behind the centered sign-in card (absolute inset-0 h-full w-full object-cover, autoPlay muted loop playsInline crossOrigin='anonymous'). This is NOT just decoration: it is the live refraction source for the LiquidGlass canvas, which per-frame crops and bilinearly resamples the video's pixels (via videoWidth/videoHeight) directly behind the card to fake liquid glass, so it must be a real opaque CORS-readable video that fills the viewport. A calm, slow-moving, mid-brightness clip reads best through the glass."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Centered brand logo at the top of the card (delay-0 FadeUp), rendered as an inline 48x48 SVG with viewBox '0 0 256 256' and white fill (four interlocking arrow/chevron quadrants). Single-color glyph tinted to the fg ink (white over the video), mb-6. Replace the inline path with the brand mark; keep it a flat single-fill silhouette so it stays legible on the glass."
+    },
+    {
+      "id": "ui-font",
+      "type": "font",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single typeface for the entire card: heading, subtitle, field labels, inputs/placeholders, buttons, divider, and footer link. Native family Inter (weights 400/500/600/700) loaded from Google Fonts in index.html and set as body font-family with antialiasing. The heading scales text-3xl -> sm:text-4xl -> md:text-5xl with font-medium + tracking-tight, so a wider replacement face shifts the 'Step back in!' heading and the subtitle's sm-only <br> wrap."
+    },
+    {
+      "id": "google-g-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "The standard multi-color Google 'G' glyph (20x20, four paths filled #4285F4 / #34A853 / #FBBC05 / #EA4335) inside the 'Continue with Google' OAuth button (delay-800 FadeUp). Brand-locked four-color mark, intentionally NOT tinted by any colorRole; keep its native colors. Only swap if the OAuth provider changes."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.05)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.60)",
+      "accent": "#c084fc",
+      "accent2": "#a855f7",
+      "border": "rgba(255,255,255,0.15)"
+    },
+    "copySlots": [
+      "headline",
+      "subtitle",
+      "label-email",
+      "placeholder-email",
+      "label-password",
+      "placeholder-password",
+      "remember-label",
+      "reset-link",
+      "cta-label",
+      "divider-label",
+      "google-button-label",
+      "footer-prompt",
+      "footer-cta"
+    ]
+  },
+  "mechanic": "A single centered max-w-lg card whose background is a per-pixel <canvas> liquid-glass refraction engine (requestAnimationFrame crops the looping fullscreen video behind the card, applies a radial distort/edge-curl LUT plus bilinear resample, specular highlight and 1px border) rather than any CSS blur, with the form contents revealed by staggered 0->900ms FadeUp opacity/translateY transitions.",
+  "techDelivery": "React 18 + TypeScript + Tailwind CSS + Vite, only extra dependency lucide-react (Eye/EyeOff), authored as exactly four files (src/LiquidGlass.tsx, src/FadeUp.tsx, src/App.tsx, src/index.css) with Inter loaded via Google Fonts in index.html; the glass is a hand-written canvas refraction class, not a library.",
+  "reskinNotes": "The signature look is a verbatim, math-locked LiquidGlass canvas class (LUT distort 0.06 / edgeCurl 0.04 / brightness 0.06 / specular 0.20 / border 0.18, roundedrect rx16) that the spec forbids modifying, and it reads pixels straight off the background video element, so the 'glass' is invisible without a real CORS-readable (crossOrigin='anonymous') opaque video that fills the scene; a transparent or CORS-blocked clip taints the canvas and breaks the effect. The accent purple is not a token: it is hardcoded as Tailwind utilities scattered through the markup (heading gradient from-white to-purple-300, checkbox peer-checked:border-purple-400 / peer-checked:bg-purple-500, and the 'Join Now' hover:text-purple-300), so retinting means editing those classes by hand, and the white-to-purple bg-clip-text heading gradient is baked in CSS. Surfaces/borders/muted text are alpha-white utilities (bg-white/5, border-white/15, text-white/60-70, placeholder-white/30) assuming a dark video underneath, so a light video kills contrast. The logo (inline 48x48 white-fill path) and the four-color Google 'G' are inline SVGs in JSX; the Google mark must stay its brand colors. All copy ('Step back in!', the subtitle with its sm-only <br>, Email/Password labels and placeholders, 'Stay signed in', 'Reset password?', 'Or', 'Continue with Google', 'New to this platform?', 'Join Now') is hardcoded in App.tsx, and the FadeUp 0/100/.../900ms delay order is tied to the markup sequence, so reordering rows reshuffles the reveal cadence."
+}

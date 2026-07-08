@@ -1,0 +1,54 @@
+{
+  "id": "nexora-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "DashboardPreview"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen muted autoplay looping hero background video, absolute inset-0 object-cover z-0 behind the centered hero content."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 100%)",
+      "surface": "hsl(0 0% 96%)",
+      "fg": "hsl(210 14% 17%)",
+      "fgMuted": "hsl(184 5% 55%)",
+      "accent": "hsl(239 84% 67%)",
+      "border": "hsl(0 0% 90%)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-cta-label",
+      "badge",
+      "headline",
+      "headline-emphasis",
+      "subheadline",
+      "primary-cta-label",
+      "dashboard-brand-name",
+      "dashboard-greeting",
+      "dashboard-action-labels",
+      "dashboard-balance-amount",
+      "dashboard-account-rows",
+      "dashboard-transaction-rows"
+    ]
+  },
+  "mechanic": "A 100vh non-scrolling navbar+hero where a fullscreen muted looping background video sits behind centered Instrument-Serif copy and CTAs that fade-rise in on staggered Framer Motion delays, above a fully React-coded frosted-glass SaaS dashboard preview that fade-rises last and is clipped by the viewport's overflow-hidden.",
+  "techDelivery": "React + Tailwind CSS (config extends fontFamily display/body to CSS vars; HSL design tokens in index.css) with tailwindcss-animate, framer-motion for staggered fade-up animations, lucide-react icons, and a shadcn/ui Button component; the dashboard chart is a hand-crafted cubic Bézier SVG path, not a charting library.",
+  "reskinNotes": "The accent indigo (239 84% 67%) is baked into the inline SVG area-chart stroke and its linear-gradient fill stops, so reskinning the accent requires editing the chart SVG, not just a token swap. The frosted-glass dashboard wrapper uses hardcoded inline rgba(255,255,255,0.4) background and rgba(255,255,255,0.5) border plus the --shadow-dashboard rgba shadow, which assume a light/white scene and won't adapt to a dark or colored brand. Layout is tuned to Instrument-Serif metrics (leading-[0.95], tight tracking, lg:text-[5rem]) and to the headline's inline italic emphasis word ('Smarter'), which is a hardcoded per-word span in markup. Light-mode only (no dark theme). Extensive dashboard copy (brand 'Nexora', greeting 'Welcome, Jane', avatar 'JB', account names/amounts, transaction rows, GPT-5 badge text) and all CTA/nav labels are hardcoded in the JSX. The dashboard is deliberately coded markup rather than a fillable image asset, so its visuals can only be reskinned in code."
+}

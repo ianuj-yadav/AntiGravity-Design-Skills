@@ -1,0 +1,80 @@
+{
+  "id": "wanderful-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen fixed (z-0) looping cinematic hero background video; object-cover, wrapper scaled 1.08 with origin-center, playbackRate 1.25, GSAP mouse-parallax drift (+/-20px lerp)."
+    },
+    {
+      "id": "secure-lock-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Small lock/security glyph (lucide Lock, size 13, strokeWidth 1.5) preceding the 'SECURE BY DESIGN' trust row in the bottom block; inherits text-white/70."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Custom decorative display face (Dirtyline) loaded via @font-face woff; declared but not bound to a default element — available as the brand display face."
+    },
+    {
+      "id": "font-heading",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans heading/UI face (Inter) used for hero headlines and root fontFamily; weights 300-700."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Body text face (Barlow); weights 300-600."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif accent face (Instrument Serif, italic available); declared in the Google Fonts import as an optional editorial accent."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Dirtyline",
+      "body": "Barlow",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.55)",
+      "surface": "rgba(255,255,255,0.01)",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "wordmark",
+      "nav-labels",
+      "header-cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "body-lead",
+      "body-trailing",
+      "primary-cta-label",
+      "trust-row-label"
+    ]
+  },
+  "mechanic": "A full-viewport fixed hero where a fixed object-cover background video drifts under GSAP requestAnimationFrame mouse-parallax (lerped +/-20px) behind liquid-glass nav/CTA chrome, with headline and bottom block fading and translating up on mount (staggered via delay-300).",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS, multi-file component with GSAP for animation and lucide-react for icons; fonts loaded via Google Fonts @import plus a CDN @font-face in src/index.css.",
+  "reskinNotes": "fontRoles.mono is unused (no monospace declared). Heading role maps to Inter, which is also the body-fallback and root inline fontFamily, so heading/body are not cleanly separated. All copy is hardcoded inline in JSX (wordmark + TM, nav links, two-line headline, paragraph, CTA labels, trust row) and must be string-extracted to reskin. Liquid-glass effect is a hardcoded white-alpha gradient/border utility in index.css (rgba(255,255,255,...) stops, inset highlight) independent of colorRoles — retinting for light or colored brands requires editing the CSS, not just tokens. Headline second line and muted copy bake rgba(255,255,255,0.55) directly rather than referencing fgMuted. Hero background video URL is a placeholder CloudFront asset to be replaced by the brand video socket."
+  }

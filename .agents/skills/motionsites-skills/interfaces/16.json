@@ -1,0 +1,64 @@
+{
+  "id": "16",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen muted autoplaying object-cover hero background video that is vertically flipped via [transform:scaleY(-1)] and sits behind all content; its top is faded out and its bottom blended into white by an overlay (white gradient from transparent at 26.416% to solid white at 66.943%), so footage should read in the lower portion of the frame and tolerate being inverted top-to-bottom."
+    },
+    {
+      "id": "social-proof-icons",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Row of small star / brand glyphs in the '1,020+ Reviews' social-proof badge sitting below the email input; card:5 is the placeholder star-row count, supply as currentColor/transparent marks on the light background."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans display + body face used for the main 80px heading (medium weight, tracking -0.04em) and the 18px slate description. Native value: Geist."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif accent face used italic at 100px for the single emphasized word 'management' inside the heading. Native value: Instrument Serif."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Geist",
+      "body": "Geist",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#fcfcfc",
+      "fg": "#373a46",
+      "fgMuted": "rgba(55, 58, 70, 0.8)",
+      "accent": "#1d1d1d"
+    },
+    "copySlots": [
+      "headline",
+      "headline-accent-word",
+      "body",
+      "cta-label",
+      "social-proof-label"
+    ]
+  },
+  "mechanic": "A min-h-screen centered editorial hero with 290px top padding stacks a two-weight headline (80px Geist medium with a 100px Instrument Serif italic accent word), a slate description, a rounded white email-input pill and a high-gloss dark gradient CTA, all staggered fade-and-slide-up via Motion, over a vertically-flipped object-cover background video blended into white by a top-to-bottom gradient overlay.",
+  "techDelivery": "React hero component using Tailwind CSS v4 and the Motion library, with Geist + Instrument Serif web fonts and a native autoplay/muted/loop <video> element.",
+  "reskinNotes": "The white-blend contract is baked: the video is forced [transform:scaleY(-1)] and faded into a hardcoded white gradient (from-[rgba(255,255,255,0)] at 26.416% to to-white at 66.943%), so any brand video or non-white page background breaks the seam and a dark theme is not a drop-in swap. The headline mixes an 80px Geist medium line with a 100px Instrument Serif italic accent word at tracking -0.04em, so the type-pairing and sizing are metric-dependent and must be retuned per font swap. The CTA's high-gloss tactile look is a hardcoded multi-layer inner shadow (inset rgba(201,201,201,0.08) + inset rgba(29,29,29,0.24)) plus the input pill's soft shadow 0px 10px 40px 5px rgba(194,194,194,0.25), both tuned for a light surface. All copy ('Simple management for your remote team' with 'management' split out as the accent word, the description, 'Create Free Account', '1,020+ Reviews') and the exact 290px top padding are hardcoded in markup rather than tokenized."
+}

@@ -1,0 +1,60 @@
+{
+  "id": "skyelite-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay (playsInline) hero background video covering the entire 100vh viewport via object-cover, sitting behind the nav and centered hero copy; provides all visual atmosphere for the page. Spec pins a placeholder CloudFront jet clip, but this is a socket to be filled by a brand background video."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally to the body via CSS. Drives the brand wordmark, nav links, the two-line display headline, subtitle, and both CTA labels. Spec declares Inter (Google Fonts, weights 400/500/600/700)."
+    },
+    {
+      "id": "menu-toggle-icon",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Mobile hamburger open/close icon pair (spec uses lucide-react Menu and X), shown only below md. currentColor-driven so it inherits the nav text color; supply as a 2-state (open/close) glyph pair."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#f9fafb",
+      "surface": "rgba(255,255,255,0.95)",
+      "fg": "#111827",
+      "fgMuted": "#4b5563",
+      "accent": "#202A36",
+      "accent2": "#d1d5db"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "eyebrow",
+      "headline-line-1",
+      "headline-line-2",
+      "subtitle",
+      "cta-primary-label",
+      "cta-secondary-label"
+    ]
+  },
+  "mechanic": "A single sticky fullscreen (h-screen) hero: a looping object-cover background video sits behind a max-w-7xl top nav and a vertically centered two-line display headline whose second line overlaps the first via negative margin, with a useState-driven blurred dropdown mobile menu and transition-colors hover states throughout.",
+  "techDelivery": "React + TypeScript + Tailwind CSS (utility classes, mobile-first md/lg breakpoints) with lucide-react for icons; Inter loaded from Google Fonts and applied to body via CSS.",
+  "reskinNotes": "Brand-dark navy is hardcoded as the literal hex #202A36 (and its hover #1a2229) inline on the headline's second line and the Book Now button rather than via a Tailwind token, so reskinning means editing those inline color values, not a theme config. All copy is hardcoded in JSX (brand name 'SkyElite', 5 nav labels Start/Story/Rates/Benefits/FAQ, eyebrow 'PRIVATE JETS', headline split across two separately-styled lines 'Premium.'/'Accessible.', subtitle, and the Discover/Book Now button labels). The headline overlap relies on a fixed negative margin-top (-12px) and tracking-tighter/leading-none tuned to Inter's metrics, plus a large -mt-80 pull-up on the hero block, so substitute fonts or copy lengths will need that offset retuned. Remaining surface/text colors ride Tailwind gray tokens (gray-50/300/500/600/700/800/900) rather than custom properties. The placeholder hero video is a hosted CloudFront URL that should be swapped for a brand asset; the rest of the palette is intentionally near-grayscale so brand color enters almost entirely through the single navy accent and the video."
+}

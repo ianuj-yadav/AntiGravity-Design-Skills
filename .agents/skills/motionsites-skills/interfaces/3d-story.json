@@ -1,0 +1,79 @@
+{
+  "id": "3d-story",
+  "role": "hero",
+  "ownSections": [
+    "ScrollVideoBackground",
+    "Particles",
+    "Nav",
+    "Hero",
+    "FixedCards",
+    "SectionThree"
+  ],
+  "slots": [
+    {
+      "id": "scroll-hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scroll-scrubbed",
+      "notes": "Fullscreen scroll-scrubbed background film behind the whole page (#scroll-video-container is position:fixed inset:0 z-index:-10, top:-20%, with a rgba(0,0,0,0.2) overlay and a hero bottom gradient layered on top). It is NOT autoplayed/looped: on load the JS fetches the file as a CORS blob and extracts 30-120 still frames (Math.min(120,Math.max(30,duration*24))) at scaled width <=1280, then maps scroll progress (from 50vh to scrollHeight-vh) onto frame index and paints the matching frame to a cover-fit <canvas>; if frame extraction fails it falls back to seeking the muted/playsInline <video currentTime>. So the asset must be a CORS-fetchable .mp4 whose motion reads as a continuous forward timeline when scrubbed (a slow establishing/ambient shot), cover-cropped 16:9, no alpha. Native source is a CloudFront higgsfield placeholder mp4 (socket to fill)."
+    },
+    {
+      "id": "social-icons",
+      "type": "svg",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Three brand/social glyphs in the top-right nav (GitHub, Discord, Twitter/X), authored as inline single-<path> SVGs with fill='currentColor', sized 1.25rem. Rendered in the muted nav-link color #d1d5db and brightening to #fff on hover. Themeable via currentColor; swap only if the brand ships its own monochrome social/line-icon set, otherwise these placeholders stand."
+    },
+    {
+      "id": "scroll-cue-icon",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "The single bounce-arrow scroll cue under the hero (inline stroke='currentColor' chevron-down SVG, 1.5rem, color #6b7280, looping CSS bounce animation). Purely decorative wayfinding; themeable via currentColor. Optional socket — the default chevron is usually kept."
+    },
+    {
+      "id": "font-display-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single typeface for the entire page — the hero h1 (font-size clamp(1.5rem,5vw,3.75rem), weight 600), the section-three h2 (clamp(1.875rem,6vw,4.5rem), weight 700), the card h3 headings (weight 700), the nav logo (weight 700, letter-spacing -0.025em), and all body/label/subtitle copy. Native family is Inter (Google Fonts, weights 400/500/600/700) set as body font-family and preconnect+linked in <head>. NOTE the monospace role (code-box prompt + 'npm i @veldara/core' code) is NOT a loaded webfont — it uses the CSS generic 'monospace' keyword, so there is no display/mono asset to ship there. Layout is mildly font-metric dependent: the hero h1 and section-three h2 are clamp()/viewport sized, so a much wider replacement face shifts the line breaks and the absolute underline bar (fixed at width:100% of its inline-block word)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif",
+      "mono": "monospace"
+    },
+    "colorRoles": {
+      "bg": "#010101",
+      "surface": "#1a1a1a",
+      "fg": "#ffffff",
+      "fgMuted": "#9ca3af",
+      "accent": "#2C5C88",
+      "accent2": "#3a7aad",
+      "border": "rgba(55,65,81,0.5)"
+    },
+    "copySlots": [
+      "nav-logo",
+      "nav-labels",
+      "hero-eyebrow",
+      "hero-headline",
+      "hero-headline-underlined-word",
+      "hero-code-snippet",
+      "hero-cta-label",
+      "card-headings",
+      "card-bodies",
+      "section-three-eyebrow",
+      "section-three-headline"
+    ]
+  },
+  "mechanic": "A fixed scroll-scrubbed background video (frame-extracted to canvas with a video-seek fallback) plays across a ~650vh sticky-scroll page while the hero fades out, a fixed 3-card grid wipes in via a scroll-driven linear-gradient mask-image reveal (horizontal on desktop, vertical on mobile), and a final section blur-reveals on IntersectionObserver.",
+  "techDelivery": "Single self-contained static HTML file: no framework or build, Inter preconnected+linked from Google Fonts in <head>, hand-written CSS in a <style> block, and one vanilla-JS IIFE driving the canvas video scrubber, the procedural particle field, the requestAnimationFrame scroll loops, and an IntersectionObserver.",
+  "reskinNotes": "Brand colors are hardcoded as literal hex/rgba inline in the <style> block, not tokens: the #2C5C88 accent is repeated four times (hero underline .line background, code-box .prompt '>' color, .cta-btn background, and conceptually the link), with its hover shade #3a7aad baked into .cta-btn:hover; the page bg #010101, the separate video-container bg #0a0a0a, the code-box surface #1a1a1a, the border rgba(55,65,81,0.5), and the muted greys #9ca3af / #d1d5db / #6b7280 are all literal, plus several rgba(0,0,0,x) gradient/overlay stops that have no colorRole. All copy is hardcoded in the HTML markup: the 'veldara' logo, 'Guides'/'Journal' nav links, hero eyebrow 'Our Purpose:', the split hero headline ('Instantly craft immersive' + the separately-wrapped underlined '3D worlds' span + 'on the web.'), the '> npm i @veldara/core' code snippet, the 'Get Started' CTA, the three card title/paragraph pairs (Explore Veldara / Unlock Three.js / Connect Everything), and the 'Presenting' / 'Veldara 8' section-three text. The hero underline is a separate absolutely-positioned .line bar sized to 100% of its inline-block word, so it only lines up for a same-width word/font. The social and scroll-cue SVGs are inline paths (fill/stroke currentColor) rather than asset files. The particle field is fully procedural (canvas dots colored rgba(255,255,255,opacity), count = width*height/12000) with no swappable asset and a literal white color. The scroll-scrub geometry is logic-coupled in JS, not CSS: the 150vh + 200vh card-trigger + 100vh spacer section heights, the frame-count formula (duration*24, clamped 30-120), the 1280px extraction downscale, and the card mask reveal math (progress*130, +20% feather mobile / +15% desktop, 768px breakpoint) all live in script and CSS rather than being prop-overridable."
+}

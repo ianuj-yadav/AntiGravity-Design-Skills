@@ -1,0 +1,58 @@
+{
+  "id": "arceage-services",
+  "role": "features",
+  "ownSections": [
+    "ServicesSection"
+  ],
+  "slots": [
+    {
+      "id": "section-background-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Full-bleed background photo filling the entire section (Layer 1: absolute inset-0 z-0, object-cover, referrerPolicy no-referrer) behind the white headline, subhead, CTA and the three feature columns. Reference is a wide agriculture-field shot (Acreage-landing-assets/1.jpg). Supply one brand atmosphere/context photo dark enough that white text and the white/20 hairline dividers stay legible on top; there is no scrim/overlay in the spec, so contrast must live in the image itself."
+    },
+    {
+      "id": "feature-column-icons",
+      "type": "lottie",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "loop": true,
+      "colorRole": "fg",
+      "notes": "Three looping, autoplaying Lottie (bodymovin JSON) micro-animations, one per 'How it works' feature column, rendered at 48x48 inside a w-12 h-12 box via @lottiefiles/react-lottie-player <Player>. Reference motifs are crop/curry, tractor, and pest/beetle (Acreage-landing-assets curry.json / tractor.json / beetle.json). They are force-recolored to solid white at runtime by CSS filter brightness(0) invert(1), so authored colors are discarded and only the silhouette/motion matters; supply 3 brand-themed transparent Lottie files that read well as flat white glyphs, or note a swap to looping transparent svg/webm if the brand has no Lottie."
+    },
+    {
+      "id": "ui-fonts",
+      "type": "font",
+      "card": 2,
+      "notes": "Two Google-font typefaces imported via @import in global CSS and wired as Tailwind v4 theme tokens. Barlow (--font-sans, weights 100-900 + italics) is the primary UI face on the black page wrapper carrying the headline (font-medium, fluid clamp(1.5rem,4vw,3.5rem)), subhead (font-light), feature titles (text-2xl font-medium), descriptions (text-sm) and the pill button (font-medium). Instrument Serif (--font-dm-serif, italic) is the poetic accent face used only on the 'Maximum Yield' span inside the headline. Replacements must hold Barlow's medium/light weights at fluid display sizes and provide a true italic for the accent serif."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Barlow\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Barlow\", ui-sans-serif, system-ui, sans-serif",
+      "accent": "\"Instrument Serif\", serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255, 255, 255, 0.8)",
+      "border": "rgba(255, 255, 255, 0.2)"
+    },
+    "copySlots": [
+      "headline",
+      "headline-accent",
+      "subhead",
+      "cta-label",
+      "feature-titles",
+      "feature-descriptions"
+    ]
+  },
+  "mechanic": "A single full-bleed image-backed services band on a black page: a 3-column headline/subhead/CTA row over a 200px-gapped 3-column 'How it works' grid, where the headline (with an Instrument Serif italic 'Maximum Yield' accent) reveals character-by-character via a scroll-triggered staggered Typewriter while each block and white-Lottie-iconed feature column fades and rises in (opacity 0->1, y 20->0, 0.6s easeOut) on a once-only viewport trigger.",
+  "techDelivery": "Single-section React 19 + Tailwind CSS v4 (@tailwindcss/vite) + Motion (motion/react) component spec bundled with Vite v6+, including a reusable scroll-triggered Typewriter (useInView + per-character motion.span stagger) and @lottiefiles/react-lottie-player for the feature-column icons.",
+  "reskinNotes": "Palette is white-on-image with no scrim: text legibility depends entirely on the supplied background photo being dark, and all values (bg #000 on the wrapper, fg #FFF, subhead text-white/80, description text-white/70, divider bg-white/20, plus the inverted white-on-black -> black-on-white pill button hover) are baked as Tailwind arbitrary/opacity utilities in the markup, not tokens. The Lottie icons are hard-recolored to white via the CSS filter brightness(0) invert(1), so any brand color in the source animation is destroyed — retinting means changing that filter, not the asset. All copy is hardcoded in JSX, including the headline split across two Typewriter calls with a tuned delay (the 0.8s delay on 'Maximum Yield' assumes the length of the preceding 'A Highly Efficient, Precision-Driven Harvesting Process Built For ' string), the 'Precision in every pass.' subhead, the 'Schedule Service' button label, and the three feature titles/descriptions; the headline's fluid clamp() and per-character Typewriter timing are tuned to Barlow's metrics, so a wider replacement face or shorter copy will desync the typewriter stagger. Both CTA buttons (desktop + mobile duplicate) hardcode a smooth-scroll to a sibling #contact section that must exist on the page."
+}

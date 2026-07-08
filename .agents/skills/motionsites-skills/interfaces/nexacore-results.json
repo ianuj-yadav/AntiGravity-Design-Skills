@@ -1,0 +1,59 @@
+{
+  "id": "nexacore-results",
+  "role": "features",
+  "ownSections": [
+    "PrecisionSection"
+  ],
+  "slots": [
+    {
+      "id": "section-background",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Full-bleed background image for the entire section, set via inline backgroundImage on the <section> with background-size:cover, background-position:center, background-repeat:no-repeat. No scrim or overlay is declared, and all foreground text is dark (rgb(26,11,84) headings/chips, rgb(169,151,206) subtext), so it must read as a LIGHT/pale backdrop that keeps dark text legible across the full width. No fixed ratio (cover-fills a 100%-wide column whose height is content-driven). Native placeholder is a Higgs.ai-proxied CloudFront PNG (hf_20260418 render)."
+    },
+    {
+      "id": "pillar-logo-icon",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Small brand logo mark rendered as an <img> inside every pillar chip (reused across all 4 desktop pillars AND all 4 mobile pillars from a single LOGO_ICON constant, so supply ONE asset). Sits left of the pillar label on a near-white chip (linear-gradient white -> rgba(255,255,255,0.6)), sized width:1.111vw (desktop) / 16px (mobile) with height:auto, so it must be a square-ish, full-color-or-monochrome mark that reads on a light/white background. Native placeholder is an 'eternacloud' icon-logo PNG. Needs transparency."
+    },
+    {
+      "id": "global-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface 'Mazzard H' registered via two @font-face blocks (weight 400 + 500, woff2/woff/ttf from db.onlinewebfonts.com) and applied GLOBALLY in index.css (html, body, * { font-family:'Mazzard H', sans-serif }). Carries everything: the clamp(28px,4vw,56px) weight-500 <h2>, the clamp(15px,1.2vw,20px) subtext, the badge pill, the pillar chips (18px / 15px weight-500) and all item lists (16px / 14px). The heading uses the 'sm:whitespace-nowrap' span and a gradient-clipped second span, so a wider display metric can rewrap line 1; supply a humanist/geometric sans with 400+500 weights as the one global face (no separate body/accent face)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Mazzard H', sans-serif",
+      "body": "'Mazzard H', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "transparent",
+      "surface": "rgb(249, 249, 249)",
+      "fg": "rgb(26, 11, 84)",
+      "fgMuted": "rgb(169, 151, 206)",
+      "accent": "rgb(200, 111, 255)",
+      "accent2": "rgb(254, 136, 27)",
+      "border": "rgba(255, 255, 255, 0.6)"
+    },
+    "copySlots": [
+      "badge-label",
+      "headline-line1",
+      "headline-line2",
+      "subtext",
+      "pillar-labels",
+      "pillar-items"
+    ]
+  },
+  "mechanic": "A static, no-JS flex-column centered feature section over a full-bleed cover background image, presenting four labeled 'pillars' (chip + vertical gradient line + item list) arranged on desktop as a rising staircase via absolutely-positioned bottom/left vw offsets, and on mobile as a single column whose even-indexed pillars align left and odd-indexed align right, each line+items row mirrored accordingly.",
+  "techDelivery": "Single React 18 + TypeScript component (src/components/PrecisionSection.tsx) styled with Tailwind CSS v3 (used only for breakpoint visibility/whitespace utilities: hidden sm:block, flex flex-col sm:hidden, sm:whitespace-nowrap) plus heavy inline-style layout; the global 'Mazzard H' face is registered via @font-face in index.css. No icon library, no useState, no animation, no hover, no scroll effects.",
+  "reskinNotes": "All copy is hardcoded in JSX: the badge 'Structured Delivery', the two-span heading ('One integrated, end-to-end system.' + gradient 'Compounding operational value.'), the subtext paragraph, and the entire PILLARS array (labels Scopes/Integrates/Certifies/Activates and their item strings) live in a top-of-file const. Desktop layout is geometry-baked and font-metric-sensitive: each pillar is absolutely positioned with hand-tuned leftVw/bottomVw staircase offsets (2.8/7, 22.4/9.08, 41.2/11.16, 61.1/13.24) inside a fixed 82.292vw x 31.94vw stage, the gradient line is a fixed 14.24vw tall 1px div, and the items overlay it at absolute top:0.56vw/left:1.94vw, so changing label/item lengths, count, or font width can collide chips or misalign items over the line. Color is mostly literal, not tokenized: the deep-indigo text rgb(26,11,84) and muted rgb(169,151,206) are repeated inline; the badge icon is an inline SVG with the lilac stroke/fills (#c86fff / rgb(200,111,255)) baked into its paths; the heading's clipped gradient (linear-gradient(90deg, rgb(43,167,255), rgb(202,69,255) 50%, rgb(254,136,27))) and the multi-stop LINE_GRADIENT constant (blue->orange->purple->pink->yellow) are hardcoded; chip background is a literal white->rgba(255,255,255,0.6) gradient; mobile item text is its own literal rgb(100,80,160). Retinting means editing these inline literals and the SVG paths, not swapping tokens. Two parallel desktop/mobile layouts must be kept in sync, and the section has no background fallback color, so legibility depends on a light replacement background image."
+}

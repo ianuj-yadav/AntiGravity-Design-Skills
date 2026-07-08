@@ -1,0 +1,20 @@
+{
+  "id": "3d-collectible-hero",
+  "title": "3D Collectible Hero",
+  "category": "3D Website",
+  "sort_order": 999,
+  "type": "3D Website",
+  "types": [
+    "3d-website",
+    "hero"
+  ],
+  "created_at": "2026-05-27T07:42:00+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": "https://stream.mux.com/2Zin2zj1X02i00e6wveowiKS8muvd9M6y9wGm00WGmGHgI.m3u8",
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

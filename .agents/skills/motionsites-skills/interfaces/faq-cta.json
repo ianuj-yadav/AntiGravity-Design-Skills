@@ -1,0 +1,65 @@
+{
+  "id": "faq-cta",
+  "role": "cta",
+  "ownSections": [
+    "AnimatedGradientCTA",
+    "FAQAccordion",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "footer-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Footer brand wordmark/logo; rendered at h-6 and recolored to solid fg via CSS filter brightness(0), so a single-color (preferably SVG) transparent mark is expected."
+    },
+    {
+      "id": "faq-chevron-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "FAQ accordion expand/collapse glyph pair (ChevronDown collapsed, ChevronUp expanded), size 20, currentColor-tinted. Currently sourced from lucide-react; swappable icon socket."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#fafafa",
+      "fg": "#171717",
+      "fgMuted": "#888888",
+      "accent": "#ff8e53",
+      "accent2": "#ff1493",
+      "border": "#f0f0f0"
+    },
+    "copySlots": [
+      "headline",
+      "subhead",
+      "cta-label",
+      "faq-questions",
+      "faq-answers",
+      "footer-tagline",
+      "nav-heading-navigation",
+      "nav-labels-navigation",
+      "nav-heading-pages",
+      "nav-labels-pages",
+      "newsletter-heading",
+      "newsletter-body",
+      "newsletter-input-placeholder",
+      "newsletter-cta-label",
+      "footer-copyright",
+      "footer-credit"
+    ]
+  },
+  "mechanic": "Static two-column CTA-plus-FAQ grid over a white page, anchored by a left card whose looping multi-blob radial-gradient background drifts and pulses via animated CSS @property custom properties, beside a single-open click-toggle FAQ accordion and a four-column footer.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS, lucide-react icons, animated gradient authored as hand-written CSS @property + @keyframes appended after the Tailwind directives in src/index.css; Inter loaded via Google Fonts link in index.html.",
+  "reskinNotes": "Gradient is six hardcoded hex stops (base #ff8e53 + blobs #fff1aa/#ff4b2b/#8aff8a/#ffd000/#ff1493) baked into the .c5-animated-gradient CSS rule, not driven by the color tokens, so re-skinning the CTA card means editing the raw CSS. Logo depends on a brightness(0) filter that only yields a clean mark if the asset is a solid single-color transparent SVG. All copy (headline, FAQ Q/A pairs, nav links, newsletter, footer legal) and the many surface/border greys (#eaeaea, #f0f0f0, #666, #888, #fafafa) are hardcoded inline in the markup rather than tokenized."
+}

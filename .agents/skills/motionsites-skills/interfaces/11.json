@@ -1,0 +1,45 @@
+{
+  "id": "11",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "long-loop",
+      "notes": "Fullscreen object-cover background video for the hero; autoplay, muted, playsInline, no dark overlay. Crossfades to black ~1.5s before end and fades back in over first 1s on restart via requestAnimationFrame, so it must read as a seamless ambient loop."
+    }
+  ],
+  "skin": {
+    "fontRoles": {},
+    "colorRoles": {
+      "bg": "hsl(240 67% 1%)",
+      "surface": "hsl(240 10% 12%)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsla(0 0% 82% / 0.8)",
+      "accent": "hsl(73 98% 57%)",
+      "accent2": "hsl(0 0% 100%)",
+      "border": "hsla(0 0% 100% / 0.1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-badge",
+      "headline",
+      "body",
+      "primary-cta-label",
+      "secondary-cta-label"
+    ]
+  },
+  "mechanic": "Fixed transparent navbar over a full-viewport-height fullscreen object-cover background video that requestAnimationFrame-crossfades through black for a seamless loop, with bottom-aligned centered hero content (badge, heading, paragraph, dual CTAs).",
+  "techDelivery": "plain React + TypeScript + Tailwind CSS with Lucide icons (ArrowUpRight, Menu/X)",
+  "reskinNotes": "All copy is hardcoded in markup. Colors are declared as space-separated HSL triplets in CSS variables (not hex), so a reskin must supply matching HSL components, and --muted-foreground / --border carry baked-in alpha. The seamless-loop fade timing (1.5s / 0.3s / 1s) is hand-tuned to the specific source video's duration and must be re-tuned per replacement clip. Heading uses fixed px sizes (62/48/36) rather than fluid scale, so longer brand headlines can overflow the 603px content column."
+}

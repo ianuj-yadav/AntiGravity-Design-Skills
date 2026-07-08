@@ -1,0 +1,49 @@
+{
+  "id": "guardnet-benefits",
+  "role": "features",
+  "ownSections": [
+    "BenefitsSection"
+  ],
+  "slots": [
+    {
+      "id": "card-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Center-card hero loop: muted autoplay video filling the top 75% of card 2, object-cover cropped, fading at its bottom edge into the card surface."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Self-hosted webfont 'Futura Md BT Medium' loaded via @import from onlinewebfonts CDN; carries every heading and body run in the section (display + body roles)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Futura Md BT Medium', system-ui, -apple-system, sans-serif",
+      "body": "'Futura Md BT Medium', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#0a0a0a",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#1e3a8a"
+    },
+    "copySlots": [
+      "headline",
+      "card1-heading",
+      "card1-body",
+      "card2-heading",
+      "card3-heading",
+      "card3-body"
+    ]
+  },
+  "mechanic": "A static black three-column rounded-card grid (text / video / text) whose only motion is a muted looping background video in the center card that fades seamlessly into the card surface.",
+  "techDelivery": "single-file React + TypeScript section, utility-class Tailwind CSS, no extra libraries",
+  "reskinNotes": "Blob-blue accent is baked inline as a Tailwind arbitrary value bg-[#1e3a8a] (two occurrences) rather than a token; the video bottom-fade target to-neutral-950 must equal the card surface or a seam appears; surface is the Tailwind token neutral-950 not a raw hex; all copy is hardcoded in markup with <br /> line breaks; the display font is referenced by the exact family name 'Futura Md BT Medium' in both the @import and font-family."
+}

@@ -1,0 +1,79 @@
+{
+  "id": "bloom-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video covering the entire viewport at z-0 (object-cover), with all glass panels and content floating above at z-10. Autoplaying + looping + muted. The whole liquid-glass aesthetic reads THROUGH this footage, so it is the dominant visual. Native source is a CloudFront-hosted MP4. Footage should be mid/dark-toned and texturally calm (floral/botanical in the original) so the white text and white-rgba glass borders stay legible over it."
+    },
+    {
+      "id": "brand-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single square brand logo (/logo.png) reused in two places: the top-left nav lockup at 32x32 (beside the 'bloom' wordmark) and again in the hero center at 80x80 above the h1. Supply ONE transparent square mark; it must read as white/light over the video background since the whole palette is grayscale."
+    },
+    {
+      "id": "feature-thumbnail",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Small content thumbnail (~96x64, roughly 3:2/16:9-ish) in the right-panel bottom 'Advanced Plant Sculpting' card (native @/assets/hero-flowers.png). Sits inside a liquid-glass card next to the title/description and a '+' button. Brand fill = a single representative product/subject still; transparency not required (it is a rectangular thumb)."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 9,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react, NOT brand assets: Sparkles (account button), Download (in the 'Explore Now' CTA's w-7 h-7 rounded-full bg-white/15 circle), Wand2 ('Processing' card), BookOpen ('Growth Archive' card), ArrowRight (social pill), Twitter / Linkedin / Instagram (right-panel social links), and Menu (nav 'Menu' pill). All rendered white/currentColor inside w-8 h-8 rounded-full bg-white/10 containers. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Poppins', sans-serif",
+      "body": "'Poppins', sans-serif",
+      "accent": "'Source Serif 4', serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 0%)",
+      "surface": "rgba(255,255,255,0.01)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "border": "rgba(255,255,255,0.45)"
+    },
+    "copySlots": [
+      "nav-wordmark",
+      "nav-menu-label",
+      "hero-headline",
+      "hero-headline-italic",
+      "hero-cta-label",
+      "hero-pills",
+      "quote-eyebrow",
+      "quote-text",
+      "quote-author",
+      "community-card-title",
+      "community-card-body",
+      "feature-card-titles",
+      "feature-thumb-card-title",
+      "feature-thumb-card-body",
+      "account-button-label"
+    ]
+  },
+  "mechanic": "A single full-screen two-panel split (left 52% / right 48%, right hidden on mobile) of stacked frosted liquid-glass panels — nav, centered logo+headline+CTA+pills+quote on the left, social/community/feature cards on the right — all floating at z-10 over one fullscreen object-cover looping video at z-0, with the only motion being hover:scale-105 / active:scale-95 transitions on interactive elements (no scroll or entrance animation).",
+  "techDelivery": "React component spec built on Tailwind CSS (utility classes + an @layer components block) with lucide-react icons; the two glass tiers (.liquid-glass / .liquid-glass-strong) are authored as Tailwind @layer components utilities using backdrop-filter blur plus a masked ::before gradient-border (-webkit-mask-composite:xor / mask-composite:exclude), design tokens are grayscale HSL CSS vars with --radius:1rem, and Poppins + Source Serif 4 are loaded from Google Fonts.",
+  "reskinNotes": "The palette is intentionally STRICT grayscale: every CSS variable is an `hsl(0 0% X%)` value and text is white at fixed opacities (text-white, /80, /60, /50) — there are no accent/accent2 color roles to brand (a colored reskin must decide whether to break the monochrome constraint, and the hex/hsl values here are the literal grayscale tokens). The two liquid-glass effects are the load-bearing identity and are fully hardcoded in CSS: rgba(255,255,255,0.01) fills, background-blend-mode:luminosity, fixed backdrop-filter blur (4px light / 50px strong), inset white highlight shadows, and a ::before gradient-border built from a white linear-gradient (0.45/0.15 alpha light, 0.5/0.2 strong) masked via -webkit-mask-composite:xor / mask-composite:exclude with a 1.4px padding border — retinting the glass means editing these encoded white rgba gradients, not flipping a token, and the spec explicitly bans border classes (the ::before IS every border). The two fonts are Google Fonts CDN faces (Poppins display/body + Source Serif 4 for italic emphasis), so they live in fontRoles, not as asset sockets; headings are font-weight 500 and the h1 mixes a Poppins span with a font-serif text-white/80 italic span, so the type pairing (sans + the serif emphasis) is structural. /logo.png is one asset reused at two sizes (32px nav, 80px hero) — supply it once. All copy is hardcoded in markup: the 'bloom' wordmark, the nav 'Menu' label, the h1 'Innovating the / spirit of bloom AI' (with the italic serif emphasis span), the 'Explore Now' CTA, the three pills (Artistic Gallery / AI Generation / 3D Structures), the 'VISIONARY DESIGN' eyebrow, the quote 'We imagined a realm with no ending.' (mixed display/serif-italic spans) and its 'MARCUS AURELIO' attribution, the right-panel 'Enter our ecosystem' community card, the two feature-card titles 'Processing' and 'Growth Archive', and the 'Advanced Plant Sculpting' thumbnail-card title + description. The right panel is desktop-only (lg:flex, hidden on mobile), so its cards/sockets do not render on small screens. Layout depends on Poppins metrics (tracking-[-0.05em] on a text-6xl/7xl headline, tracking-tighter wordmark), so a wider display face or longer copy will reflow the tight headings."
+}

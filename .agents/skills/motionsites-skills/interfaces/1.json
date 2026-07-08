@@ -1,0 +1,55 @@
+{
+  "id": "1",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen absolute-positioned looping hero background video, autoPlay + loop + muted + playsInline, object-cover so it fills the min-h-screen container without distortion behind all foreground content. The dark blue #21346e container color is only a pre-load fallback, so footage carries the entire backdrop."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display sans-serif for the H1 headline and the CTA button label. Native value is the Google Font 'Rubik' (bold weight), rendered bold + uppercase; needs a sans-serif fallback. The headline relies on very tight leading (0.98) and negative letter-spacing (-2px to -4px), so a substitute must tolerate that condensed metric."
+    },
+    {
+      "id": "cta-button-shape",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "surface",
+      "notes": "Inline SVG used as the CTA button background instead of a CSS fill: a single custom <path> filling the 184x65px button container (absolute inset-0), filled solid white, with the 'GET STARTED' label centered on top in dark (#161a20) text. Supply as a transparent-background single-color shape sized to the fixed 184x65 button box; the whole button scales on hover (scale-105) and press (scale-95)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Rubik, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#21346e",
+      "surface": "#ffffff",
+      "fg": "#ffffff",
+      "accent": "#ffffff",
+      "accent2": "#161a20"
+    },
+    "copySlots": [
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A top-aligned full-screen hero stacks a three-line bold uppercase Rubik headline and a fixed-size custom-SVG-backed 'GET STARTED' button over a fullscreen object-cover autoplay/loop/muted background video, with the only motion being the button's hover scale-up (scale-105) and active press (scale-95).",
+  "techDelivery": "React + Tailwind CSS component spec (utility classes only, no extra libraries); native <video> element with autoPlay/loop/muted/playsInline for the background, and a hand-authored inline <svg><path> for the CTA button shape.",
+  "reskinNotes": "The CTA button background is a hand-authored inline SVG <path> with white baked in as the fill attribute and dark #161a20 hardcoded on the label, so retinting the button means editing the SVG markup rather than a token, and the path is drawn for the fixed 184x65px box (any size or aspect change distorts the shape). The headline is split into three hardcoded lines ('NEW ERA' / 'OF DESIGN' / 'STARTS NOW') in markup, and its tight leading (0.98) plus negative letter-spacing (-2px to -4px) and the responsive text-6xl -> text-8xl -> text-[100px] ramp are tuned to Rubik bold and to three short lines, so longer copy or a substitute display font can rewrap or break the layout. The #21346e bg is only a fallback behind the video, not a themeable surface."
+}

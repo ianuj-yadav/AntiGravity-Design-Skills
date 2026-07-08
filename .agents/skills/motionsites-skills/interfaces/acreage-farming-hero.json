@@ -1,0 +1,76 @@
+{
+  "id": "acreage-farming-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroVideo",
+    "StatsGrid",
+    "LogoMarquee",
+    "ServiceCards"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping precision-farming hero background video sitting behind the dark hero headline/nav (cover-cropped, muted autoplay). The captured corpus only retained its poster + animated-gif preview (hero-acreage-farming-poster.png / hero-acreage-farming-preview.gif), not the source mp4, so the actual clip must be supplied; reskin with a brand drone/field/aerial farmland loop and keep a matching poster frame as the loading fallback."
+    },
+    {
+      "id": "section-photos",
+      "type": "image",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Photographic content imagery for the light sections / service cards (reference repo files 0098888.jpg, 1.jpg, 02604201313.png). Real-world farmland/crop/equipment photos used as cover-cropped card or band backgrounds rather than transparent cut-outs. Supply 3 brand photos; one (02604201313.png) is reused in multiple places in the reference, so a single hero/feature shot can repeat if the brand pool is thin."
+    },
+    {
+      "id": "lottie-illustrations",
+      "type": "lottie",
+      "card": 3,
+      "alpha": true,
+      "notes": "Three Lottie (bodymovin JSON) micro-animations used as animated illustrations across the stats grid / service cards (reference assets tractor.json, beetle.json, curry.json -> farming machinery, pest/crop, and produce motifs). Loaded as lottie animation data, transparent over their tiles. Replace with brand-themed Lottie files; if the brand has none, substitute looping transparent webm/svg-animation per tile and note the player swap."
+    },
+    {
+      "id": "feature-state-icons",
+      "type": "svg",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Positive/negative state glyphs for the service / comparison rows: a tick-circle (included / yes) and a close-circle (excluded / no), supplied as standalone transparent SVG files (reference tick-circle.svg, close-circle.svg) rather than inline lucide glyphs. Their stroke/fill color is baked into the SVG file, so retinting to the brand accent/error pair means editing the asset (or re-authoring them as currentColor-driven icons)."
+    },
+    {
+      "id": "marquee-partner-logos",
+      "type": "svg",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Five horizontally-scrolling partner/customer logos in the logo marquee, supplied as ~150px-wide transparent SVG wordmarks (reference assets voiceflow / zendesk / pendo / glide / canva -logo-svg-150px.svg). Each is a flat single-color vector typically desaturated/dimmed to a muted foreground tint on the marquee strip. Replace with the brand's real partner/client logos; preserve the marquee loop and keep them transparent so they sit on either the dark or light band."
+    }
+  ],
+  "skin": {
+    "fontRoles": {},
+    "colorRoles": {},
+    "copySlots": [
+      "headline",
+      "eyebrow",
+      "subhead",
+      "brand-name",
+      "nav-labels",
+      "cta-label",
+      "stats-values",
+      "stats-labels",
+      "service-card-titles",
+      "service-card-body",
+      "marquee-heading",
+      "footer-text"
+    ]
+  },
+  "mechanic": "Scrolling precision-farming landing hero that transitions from a dark video-backed headline section into light content bands, layering a numeric stats grid, an infinitely looping partner-logo marquee, and Lottie-animated service cards with tick/close state icons.",
+  "techDelivery": "Authored as a bolt.new / GitHub React landing-page project (boltUrl bolt.new/~/github-pzt1ayyk) whose assets are pulled from the external GitHub repo dsMagnatov/Acreage-landing-assets (raw.githubusercontent jpg/png photos, *.svg logos + state icons, *.json Lottie); exact bundler/CSS/font stack is not in the exported corpus and must be read from that source repo.",
+  "reskinNotes": "CRITICAL: the exported MotionSites prompt for this template captured ONLY the one-line summary ('Precision farming landing page with dark/light sections, hero video background, stats grid, logo marquee, and service cards'), not the inline font-family, hex/CSS, or motion-value declarations the other interfaces have. fontRoles and colorRoles are therefore left empty rather than fabricated; the native typeface(s) and the dark/light palette (bg/surface/fg/fgMuted/accent/accent2/border) MUST be recovered from the bolt.new GitHub source (github-pzt1ayyk) before this template is safe to reskin, since the palette/type math depends on accurate native values. The sections list is reconstructed from the summary's named regions, and the slot inventory is recovered from prompt-embedded-urls (the dsMagnatov/Acreage-landing-assets repo), per the spec's 'recoverable from prompt text + prompt-embedded-urls' rule. The tick/close state icons and the five partner-logo SVGs carry their colors baked into the SVG files (not CSS vars), so retinting requires asset edits; the hero source video itself was not retained (only poster + gif), so a brand clip must be sourced anew."
+}

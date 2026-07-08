@@ -1,0 +1,102 @@
+{
+  "id": "pulse-3d",
+  "role": "hero",
+  "ownSections": [
+    "VideoScrubber",
+    "ScrollExitSplitText",
+    "SoapTiles",
+    "Header",
+    "SecondVideoScrubber",
+    "CylindricalTextDrum",
+    "Marquee"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "short-loop",
+      "notes": "Fullscreen first-screen hero background video, NOT autoplaying — it is scroll-scrubbed: each rAF tick seeks video.currentTime to clamp(scrollProgress * duration, 0, duration) lerped at 0.15, so scrollProgress 0->1 plays the clip forward frame-by-frame. Rendered playsInline muted preload=auto object-cover full-bleed pointer-events-none inside a scale:1.05 wrapper over a #FF005E magenta backplate, with a 1.2s GSAP power2.out mouse-parallax (translate +/-40px). Reference clip (res.cloudinary.com/daklr2whx/.../202606021731-ezremove_einsc0.mp4) has a ~4.2s fallback duration. Replace with a brand short-loop clip that reads while being scrubbed both directions; supply over the magenta bg. Needs no alpha (cover-cropped)."
+    },
+    {
+      "id": "second-screen-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "short-loop",
+      "notes": "Background video for the rising second screen (SecondVideoScrubber), same scrubbed-on-scroll behavior as the hero clip but mapped to a later range: drumProgress = clamp01((scrollProgress - 1.45) / (3.50 - 1.45)), target = drumProgress * duration, lerp 0.15, seek guarded by !video.seeking && diff > 0.01. Sits behind the #11010a wine panel + the cylindrical text drum, same 1.2s GSAP power2.out +/-40px mouse parallax. Reference clip (res.cloudinary.com/daklr2whx/.../20260602182_x923bh.mp4). Replace with a second brand short-loop clip; cover-cropped, no alpha needed."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display face for the giant hero title 'INNER CIRCLE' (text-[10.4vw], uppercase, letterSpacing -0.07em, whitespace-nowrap, white) and the SoapTiles labels (text-[11px]->[23px], medium, letterSpacing -0.03em); also the mobile nav-overlay items (text-[16px] uppercase tracking-widest). Native family: Michroma (single weight, wide geometric techno face), exposed as --font-michroma / Tailwind font-michroma, imported from Google Fonts in src/index.css. Layout is font-metric dependent: the hero title is sized in viewport units with a tight negative letter-spacing on a single nowrap line, so a wider replacement face overflows; the GSAP split-text falls each character by yPercent 300 / y 25vh so per-glyph box metrics matter."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Body/UI face: the header subtitle three-liner, the desktop + mobile nav labels, the loader labels ('LOADING SCROLL STREAM...' / 'LOADING DRUM STREAM...'), and every line of the CylindricalTextDrum paragraph copy (text-[18px]->[32px], font-semibold, leading-0.90, letterSpacing -0.035em). Native family: Manrope (weights 300-800), exposed as --font-manrope / Tailwind font-manrope and set as the global font-family, imported from Google Fonts in src/index.css. The drum geometry positions lines on a 32px lineHeight cylinder (R=380), so the body line-height/metrics are coupled to the 3D math."
+    },
+    {
+      "id": "brand-mark-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The 48x48 header brand mark (top-left, click navigates to scrollRatio 0): a single-path stylized 'M' glyph authored as an INLINE <svg viewBox='0 0 80 80'> with one <path> (the long M40 80C... d-string in the spec), rendered in the fg color (white). Not an external file — the path lives in src/components/Logo.tsx, so reskinning means swapping the inline path/fill rather than dropping in an asset URL. Supply a brand logomark (ideally a 1:1 single-color vector) and inline it; recolor via fill / currentColor."
+    },
+    {
+      "id": "menu-toggle-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The two mobile burger-menu glyphs (open / close) from lucide-react: Menu and X, shown inside the w-10/h-10 rounded-full border-white/10 bg-white/5 burger button and toggling the full-screen #11010a/98 nav overlay. Rendered in the fg color (white), themeable via stroke / currentColor. Stock lucide icons — swap for brand icons only if the brand ships its own menu glyph set."
+    },
+    {
+      "id": "marquee-partner-logos",
+      "type": "svg",
+      "card": 7,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Seven horizontally-scrolling partner/customer logos in the bottom logo Marquee (gap 80px, 25s linear-infinite marquee-scroll 0->-50%, fade-masked at 15%/85%). Two are INLINE <svg> wordmarks authored in src/components/Logos.tsx (GoogleWordmark viewBox 0 0 115 30, GithubWordmark viewBox 0 0 110 30, size 100) and five are external transparent ~150px SVG files from the dsMagnatov/Acreage-landing-assets repo (voiceflow / zendesk / pendo / glide / canva -logo-svg-150px.svg), each styled h-6 w-auto object-contain brightness-0 invert opacity-80 (forced to a flat dimmed-white = muted foreground over the dark panel). Replace with the brand's real client/partner logos; keep them transparent and single-color so the brightness-0 invert flattening reads, and note that the first two are inline SVG (edit the component) while the rest are URL-swappable."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Michroma\", sans-serif",
+      "body": "\"Manrope\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#FF005E",
+      "surface": "#11010a",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.60)",
+      "accent": "#ea1f63",
+      "accent2": "#ff5c93",
+      "border": "rgba(255,255,255,0.08)"
+    },
+    "copySlots": [
+      "hero-headline",
+      "brand-mark-subtitle",
+      "nav-labels",
+      "tile-labels",
+      "loader-labels",
+      "drum-body",
+      "marquee-logo-alt"
+    ]
+  },
+  "mechanic": "A custom wheel/touch gesture drives a single 0->3.5 scrollProgress (no native scroll) that simultaneously scrubs a hero video and falls the split-text title (0->1), then lifts a rounded-top wine panel via an ease-out-cubic translateY while blurring the first screen up to 64px (>1.15), revealing a second scrubbed video and a perspective:1000px cylindrical text drum that rotates 32 lines past a fixed center (1.45->3.5).",
+  "techDelivery": "Vite + React 19 + TypeScript multi-file project; Tailwind CSS v4 via @tailwindcss/vite with @theme font tokens in index.css; GSAP 3.15 for char-level split-text + mouse parallax; lucide-react for menu icons; all scrub/rise/drum motion is hand-rolled rAF + lerp math off one scrollProgress state (motion / @google/genai / express / dotenv are installed but unused by the page).",
+  "reskinNotes": "Motion is tied to magic scrollProgress thresholds (0.75 tiles, 1.15 panel trigger, 1.45-3.50 drum/second-video range, 1.65 fully-risen) and to absolute geometry constants (drum R=380, lineHeight 32, hero text-[10.4vw] @ -0.07em) — retheming type/size without re-tuning these breaks the choreography (a wider display face overflows the nowrap hero line; a different body line-height desyncs the cylinder). The 32-line drum copy, the three SoapTiles labels, the header subtitle, the loader strings and the hero word 'INNER CIRCLE' are all hardcoded in markup/data, with [bracketed] words flagged highlight:true inline (white/bold vs white/60). The brand 'M' logomark and the Google/Github wordmarks are inline SVG paths in component files (not asset URLs), so recoloring/replacing them is a code edit; the five remaining marquee logos are flattened with brightness-0 invert, discarding their own colors. Palette hexes (#FF005E, #11010a, #ea1f63, #ff5c93) are baked as Tailwind arbitrary values (bg-[#FF005E], rounded-t panel #11010a, loader rings) and bespoke rgba tints (bg-[#FF005Ef4], bg-[#11010af4], white/60, white/[0.08]) inline throughout rather than centralized CSS variables, so a true reskin must find-and-replace those literals; spec also hard-rules out any purple/indigo. Both videos are scrubbed (not autoplayed), so brand clips must read while seeking in both directions."
+}

@@ -1,0 +1,162 @@
+BRANDMINT WHOLE-WEBSITE PROMPT TEMPLATE
+
+Use this format when generating a full website prompt from brand strategy, copy, and asset planning.
+
+1. BUILD BRIEF
+
+Build a premium {website_type} for a {brand_archetype} brand called "{brand_name}" using {stack}. The experience should feel {mood_1}, {mood_2}, and {mood_3}. The site must be fully responsive and production-ready.
+
+Primary audience:
+- {audience_1}
+- {audience_2}
+
+Offer:
+- {core_offer}
+
+Primary promise:
+- {value_proposition}
+
+2. BRAND SYSTEM
+
+Voice:
+- {voice_traits}
+
+Copy direction:
+- Badge: {badge_copy}
+- Hero headline: {hero_headline}
+- Hero subtext: {hero_subtext}
+- Primary CTA: {primary_cta}
+- Secondary CTA: {secondary_cta}
+- Trust proof: {trust_proof}
+
+Visual direction:
+- Color palette: {palette}
+- Font roles: {display_font_role}, {body_font_role}
+- Surface treatment: {glass | minimal | editorial | gradient | dashboard}
+- Motion language: {subtle | cinematic | premium-ui | data-driven}
+
+3. TECH CONTRACT
+
+- Framework: {framework}
+- Language: {language}
+- Styling: {styling_system}
+- Bundler: {bundler}
+- Icons: {icon_library}
+- Motion: {motion_library}
+- Additional dependencies: {deps}
+
+If config files must be edited, specify:
+- index.html fonts:
+- tailwind config:
+- global CSS variables:
+- helper components:
+
+4. ASSET PLAN
+
+Hero assets:
+- Hero video or image: {asset}
+- Poster/fallback: {asset}
+- Logo: {asset}
+
+Section assets:
+- Features: {ui shots | gifs | illustrations | photography}
+- Testimonials: {avatars | logos}
+- Pricing: {icons | comparison visuals}
+- Footer/CTA: {background media}
+
+Asset rules:
+- Download remote assets at build time when required.
+- Serve localized assets from {public_path or src/assets}.
+- Do not rely on runtime fetching for core visuals.
+
+5. SHARED COMPONENTS / MOTION PRIMITIVES
+
+Reusable primitives:
+- {FadeUp}
+- {BlurText}
+- {Typewriter}
+- {SpotlightBorder}
+- {Accordion}
+- {MobileMenu}
+
+For each primitive, define:
+- Trigger
+- Initial state
+- Visible state
+- Timing
+- Easing
+
+6. SITE MAP AND SECTION ORDER
+
+Use this order unless the brand requires a different narrative:
+1. Navbar
+2. Hero
+3. Trust / partner proof
+4. Features or capabilities
+5. Process / how it works
+6. Stats / outcomes
+7. Testimonials / case studies
+8. Pricing or CTA
+9. FAQ
+10. Footer
+
+7. SECTION-BY-SECTION SPEC
+
+For each section, use this exact structure:
+
+SECTION: {section_name}
+- Purpose: {why this section exists}
+- Layout: {wrappers, grid/flex, spacing, alignment, utility classes}
+- Copy slots:
+  - Eyebrow:
+  - Heading:
+  - Body:
+  - CTA:
+- Assets required:
+  - {asset list}
+- Components:
+  - {cards | accordions | buttons | stats | forms}
+- Interactions:
+  - {hover | reveal | scroll | validation | carousel}
+- Responsive behavior:
+  - {mobile}
+  - {tablet}
+  - {desktop}
+
+8. COPY RULES
+
+- Write all copy in the brand voice.
+- Keep headline and CTA explicit.
+- Use outcome-led proof, not vague marketing filler.
+- Generate section copy as named slots so it can be swapped without rewriting layout.
+
+9. ASSET GENERATION RULES
+
+When a section does not already have assets, generate them from the brand system:
+- Luxury/editorial: cinematic photography, serif typography, restrained UI, filmic color grading.
+- SaaS/AI: dashboard screens, product diagrams, structured iconography, benchmark visuals.
+- Real estate/lifestyle: immersive environment imagery, trust metrics, concierge tone.
+- Portfolio/creative: bold hero media, project thumbnails, signature typography.
+- Service business: human credibility, process visuals, accessible CTA and form clarity.
+
+10. ACCEPTANCE CHECKLIST
+
+- The implementation matches the section order and hierarchy.
+- Core copy slots are filled.
+- All required assets are present or clearly stubbed.
+- Responsive behavior is defined for mobile and desktop.
+- Motion is consistent with the brand.
+- No section depends on unstated assets or unstated helper components.
+
+11. EMBEDDING METADATA
+
+Attach these fields for retrieval:
+- scope
+- category
+- brand_archetype
+- visual_treatment
+- motion_style
+- dependencies
+- asset_types
+- section_types
+- copy_slots

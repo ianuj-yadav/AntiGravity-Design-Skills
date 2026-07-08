@@ -1,0 +1,91 @@
+{
+  "id": "luxury-editorial-ecommerce-design",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "BestSellers",
+    "Categories"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Full-bleed absolute background image behind the Hero left half (w-full lg:w-1/2, min-h-[60vh] lg:min-h-0), object-cover. White headline, white/80 body, and a white pill button sit on top with no dark overlay, so the footage should read mid-to-dark on the left/upper area for legibility. Fills a tall half-screen pane, so frame for an object-cover portrait-ish crop rather than a fixed ratio."
+    },
+    {
+      "id": "hero-video-slideshow",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three-slide auto-advancing video slideshow filling the Hero right half (w-full lg:w-1/2, min-h-[40vh] lg:min-h-0). Each video is autoPlay loop muted playsInline, object-cover, absolute inset-0; slides crossfade via transition-opacity duration-700 and auto-advance every 5000ms (with dot indicators + a pause/play toggle). Supply seamless short loops sized for an object-cover half-screen pane."
+    },
+    {
+      "id": "product-images",
+      "type": "image",
+      "card": 7,
+      "aspect": "3:4",
+      "alpha": false,
+      "notes": "Product shots for the 7 Best Sellers carousel cards, each rendered object-cover inside mx-4 aspect-[3/4] rounded-lg overflow-hidden on a #F9F4F0 (cream) well, scaling to 105% on card hover. Seven sockets (the native prompt reuses only 3 unique source URLs across the 7 cards, but each card is an independent fillable slot). Each pairs with category/subcategory/name/price copy slots."
+    },
+    {
+      "id": "category-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "One full-bleed background video per Categories card (3-column grid, each min-h up to md:min-h-[750px]), absolute object-cover, scaling to 105% on hover under a bg-black/10 -> bg-black/20 overlay. Large rotated vertical white category text and a white pill CTA sit on top, so footage should stay mid-to-dark. Tall portrait-leaning columns; frame for an object-cover vertical crop. Supply seamless short loops, autoplay/muted/playsInline."
+    },
+    {
+      "id": "hero-underline-svg",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "Decorative flourish of 3 wavy lines drawn under the 'impact.' word in the hero headline, absolutely positioned -bottom-1 left-0 w-full h-4. Inline SVG with three strokes (strokeWidth 2 / 1.5 / 1) hardcoded to stroke=\"#C8A45C\" (the gold accent2). Reskin socket for the headline underline accent; retint by editing the baked stroke hex (no currentColor)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "system-ui font stack (Tailwind default font-sans; no custom fonts loaded)"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#F9F4F0",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.8)",
+      "accent": "#1a1a1a",
+      "accent2": "#C8A45C",
+      "border": "#e5e7eb"
+    },
+    "copySlots": [
+      "announcement-bar-text",
+      "logo-wordmark",
+      "nav-labels",
+      "locale-label",
+      "hero-headline-line-1",
+      "hero-headline-line-2",
+      "hero-body",
+      "hero-cta-label",
+      "tab-labels",
+      "product-category-labels",
+      "product-subcategory-labels",
+      "product-names",
+      "product-prices",
+      "product-old-prices",
+      "category-names",
+      "category-cta-labels"
+    ]
+  },
+  "mechanic": "A split-screen hero (full-bleed image left, 3-slide 5s auto-advancing crossfaded video slideshow right) opens a single-page scroll where every section fades-and-slides up on IntersectionObserver entry, feeding a wheel-hijacked horizontal Best Sellers product carousel (staggered card reveals + a translateX scroll-progress bar) and a gapless 3-column Categories grid of full-bleed hover-zoom videos with rotated vertical-lr titles.",
+  "techDelivery": "Vite + React 18 + TypeScript + Tailwind CSS 3.4 with lucide-react icons (ChevronLeft/Right/Down, User, Search, ShoppingBag, Pause, Play, Menu, X); no animation library — a custom useInView IntersectionObserver hook plus CSS keyframes (scale-in) and a .btn-primary hover/sweep utility in index.css.",
+  "reskinNotes": "No custom fonts are loaded (the page rides the system-ui sans stack at font-light/medium weights), so there is no native display face to map — a brand display typeface is a net-new addition rather than a swap, and headline sizing (clamp(3.5rem,5vw,6rem) leading-[1.05]) plus the rotated vertical category type and the fixed product-card widths are metric-dependent. Brand colors are baked into Tailwind arbitrary-value classes and inline styles, not CSS variables: #F9F4F0 (announcement bar + Best Sellers bg + product image wells), #1a1a1a (active-tab text/dot + progress thumb), gray-200/300/400 (#e5e7eb borders, #d1d5db track, #9ca3af muted + strikethrough), and white/80 + white/30 alphas — reskinning means editing many literal occurrences. The hero headline underline is an inline SVG with stroke=\"#C8A45C\" hardcoded on three paths (no currentColor). The 'free shipping' announcement, 'STRETCH' logo, 4 nav labels, 'eur €' locale, 2-line hero headline, hero body + 'about us' CTA, the 'best sellers'/'sets' tab labels, all 7 products' category/subcategory/name/price/old-price strings, and the 3 category names + 'shop [name]' CTAs are hardcoded in JSX. The right-side French-flag locale indicator is built from three fixed colored divs (bg-blue-700 / white / bg-red-600) tied to the EUR currency, not a swappable asset. Product imagery reuses only 3 unique source URLs across the 7 cards in the native prompt, and the carousel scroll-progress thumb math (width 30%, translateX scrollProgress * 100/0.3) and per-card -ml-[1px] border-collapse are tuned to the declared card widths and count."
+}

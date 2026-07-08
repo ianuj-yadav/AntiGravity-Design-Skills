@@ -1,0 +1,103 @@
+{
+  "id": "orbis-nft-landing",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "AboutIntro",
+    "CollectionGrid",
+    "CtaFinal"
+  ],
+  "slots": [
+    {
+      "id": "fullscreen-section-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two full-bleed looping background films, one per full-viewport section: behind the Hero ('Beyond earth and its familiar boundaries') and behind the AboutIntro ('Hello! I'm orbis'). Each is a <video autoPlay loop muted playsInline> covering its section edge-to-edge with object-cover, z-0, inside a max-w-[1831px] frame; the Hero section additionally clips its video with rounded-b-[32px] bottom corners. All foreground copy (headings, cursive accents, nav, social icons) overlays the footage. Native sources are CloudFront-hosted MP4s. Keep footage dark/spacey so the cream (#EFF4FF) text and neon accents stay legible."
+    },
+    {
+      "id": "cta-native-aspect-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Dedicated looping film for the final CtaFinal section, kept SEPARATE because it is NOT object-cover: it renders w-full h-auto block at its own native aspect ratio (the section height is driven by the video, not the reverse). autoPlay loop muted playsInline. The right-aligned 'JOIN US. / REVEAL WHAT'S HIDDEN...' heading, the 'Go beyond' cursive accent, and the bottom-left vertical social stack are all absolute-positioned over it. Native source is a CloudFront MP4. Because text sits directly on the footage with no scrim, supply footage that is dark/low-contrast in the regions where text lands."
+    },
+    {
+      "id": "nft-card-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three square looping NFT preview clips, one per card in the 3-up CollectionGrid. Each is mounted in a pb-[100%] square aspect-ratio box with rounded-[24px] overflow-hidden inside a liquid-glass card, so corners are clipped. autoPlay loop muted playsInline. A liquid-glass 'RARITY SCORE' bar overlays the bottom of each. Native sources are CloudFront MP4s (carrying placeholder rarity scores 8.7 / 9 / 8.2). Brand fill = three short square motion reels of the collection items; transparency not required since the rounded frame clips them."
+    },
+    {
+      "id": "texture-overlay",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Single full-viewport grain/noise texture sheet (native /texture.png) sitting in a position:fixed, inset-0, z-50, pointer-events-none layer ABOVE all content, tiled/stretched with background-size:cover and composited via mix-blend-mode:lighten at opacity:0.6. Purely atmospheric film-grain; it lightens whatever is beneath it, so supply a dark-field texture with light speckle/dust. Optional socket — only swap if the brand wants a different grain character."
+    },
+    {
+      "id": "social-and-ui-glyphs",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a key dependency), not brand assets: Mail, Twitter, Github (20x20) rendered inside 56x56 liquid-glass square buttons in the Hero (vertical top-right on desktop, centered below the headline on mobile) and again in the CtaFinal bottom-left vertical glass stack. All currentColor / cream-tinted, hover:bg-white/10. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    },
+    {
+      "id": "card-arrow-chevron",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "A single right-pointing chevron/arrow SVG (cream stroke) sitting inside the 48x48 circular CTA button on each NFT card's rarity bar. The button itself is a bg-gradient-to-br from-[#b724ff] to-[#7c3aed] purple disc with shadow-lg shadow-purple-500/50 and hover:scale-110. The glyph is the same across all three cards (reused), so card:1. Inline SVG path — swap only if the brand uses a different 'open / view' affordance icon."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Anton', sans-serif",
+      "mono": "ui-monospace, monospace",
+      "accent": "'Condiment', cursive"
+    },
+    "colorRoles": {
+      "bg": "#010828",
+      "surface": "rgba(255,255,255,0.01)",
+      "fg": "#EFF4FF",
+      "fgMuted": "rgba(239,244,255,0.7)",
+      "accent": "#6FFF00",
+      "accent2": "#b724ff",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "brand-logo-text",
+      "nav-labels",
+      "hero-headline",
+      "hero-cursive-accent",
+      "about-headline",
+      "about-cursive-accent",
+      "about-body",
+      "collection-headline",
+      "collection-cursive-accent",
+      "collection-see-all-label",
+      "card-rarity-label",
+      "card-rarity-scores",
+      "cta-cursive-accent",
+      "cta-headline-lines"
+    ]
+  },
+  "mechanic": "A dark space-themed single-page scroll of four full-bleed CloudFront-video sections (a rounded-bottom Hero with glass nav, an About video band, a solid-navy 3-up NFT card grid, and a native-aspect video CTA) whose signature look is the .liquid-glass treatment — near-zero white fill + luminosity blend + 4px backdrop-blur + an inset highlight and a masked white gradient-border pseudo-element — layered with Condiment cursive accents in mix-blend-exclusion neon green and a fixed full-screen lighten-blend grain overlay; the motion is ambient (every section is a looping muted autoplaying video) rather than scroll-driven.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS, single page, no extra packages beyond lucide-react for icons (Mail / Twitter / Github). Fonts (Anton + Condiment) loaded via a Google Fonts <link> in index.html and aliased in tailwind.config as font-grotesk (Anton) and font-condiment (Condiment), with font-mono = system monospace; the cream/neon/bg palette is declared in the Tailwind theme. The .liquid-glass utility (fill + luminosity blend + backdrop-blur + inset highlight + masked gradient-border ::before) and the fixed texture overlay are authored in plain CSS. All videos use autoPlay loop muted playsInline; layout is mobile-first with sm:/md:/lg: breakpoints and a 1831px max content width.",
+  "reskinNotes": "Two color values are baked into inline markup and won't move with the theme tokens: the per-card CTA disc is a hardcoded bg-gradient-to-br from-[#b724ff] to-[#7c3aed] purple with shadow-purple-500/50 (the only purple in the design — neither is in the cream/neon/navy token set, so accent2 must be applied by editing these arbitrary Tailwind values, not a variable). The .liquid-glass identity is fully hardcoded in CSS — rgba(255,255,255,0.01) fill, background-blend-mode:luminosity, fixed backdrop-filter:blur(4px), inset 0 1px 1px rgba(255,255,255,0.1) highlight, and a ::before gradient-border built from a white linear-gradient plus the -webkit-mask-composite:xor / mask-composite:exclude trick; retinting the glass means editing those encoded white rgba stops, not flipping a token. The neon cursive accents rely on mix-blend-mode:exclusion against the video, so their on-screen color shifts with the footage and a non-neon accent may read unpredictably. All copy is hardcoded in JSX: the 'Orbis.Nft' logo + five nav items (Homepage / Gallery / Buy NFT / FAQ / Contact); the Hero 'Beyond earth and ( its ) familiar boundaries' headline + 'Nft collection' accent; the About 'Hello! I'm orbis' + 'Orbis' accent + the monospace 'A digital object fixed beyond time and place...' paragraph (which is ALSO repeated four times at opacity-10 as decoration, and on mobile recolored to text-[#010828] to hide it — a layout trick, not real copy); the Collection 'Collection of Space objects' headline + 'SEE ALL CREATORS' button + 'RARITY SCORE:' labels with placeholder scores 8.7/9/8.2; and the CTA 'Go beyond' accent + the four-line 'JOIN US. / REVEAL WHAT'S HIDDEN. / DEFINE WHAT'S NEXT. / FOLLOW THE SIGNAL.' heading. Layout is font-metric dependent on Anton (a tall, narrow, all-caps display face): headings run uppercase at up to 90px with leading-[1]/leading-[1.05] and tight wraps, the CtaFinal social buttons use hand-tuned viewport+rem widths (e.g. w-[14vw] sm:w-[14.375rem] md:w-[10.78125rem] lg:w-[16.77rem]), and the cursive accents are absolutely positioned with fixed -rotate-1 offsets relative to the headings — so a wider or shorter replacement display/script face will break both the wraps and the accent alignment. Placeholder media (four CloudFront MP4s for the section backgrounds, three CloudFront MP4s for the cards, and a /texture.png grain sheet) are the asset sockets to fill. The CtaFinal video is intentionally NOT object-cover (w-full h-auto), so its native aspect ratio drives that section's height."
+}

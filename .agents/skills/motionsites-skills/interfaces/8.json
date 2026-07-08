@@ -1,0 +1,86 @@
+{
+  "id": "8",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping, muted, autoplaying hero background video covering the entire section with object-cover, sitting behind the large 'NEW ERA' display text, the navbar and the bottom CTA copy. Native source is a CloudFront MP4 (plain <video> tag, not HLS). Top and bottom 260px black/30->transparent gradient overlays are layered over it for text readability, so footage can be any color but should stay legible under those scrims; #010101 is the fallback background before the video loads."
+    },
+    {
+      "id": "logo-mark",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small 28x28 abstract pinwheel/spinner brand logo icon at the far left of the navbar, next to the 'Logoipsum' wordmark. Rendered white; supply as a transparent currentColor/white mark."
+    },
+    {
+      "id": "cart-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "18x18 shopping-cart glyph inside the white rounded 'Cart' button on the right of the navbar. Tinted dark (#272835) to read on the white button; supply as a transparent currentColor mark."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "18x18 arrow-right glyph inside the white rounded 'Shop Now' button in the bottom-left CTA area. Tinted dark (#272835) to read on the white button; supply as a transparent currentColor mark."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/decorative face for the giant gradient-filled 'NEW ERA' wordmark (very large, bold, all-caps) and the 64px bottom-right tagline. Native value is Google Font 'Bebas Neue'."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "UI/body sans used for the navbar wordmark + nav links, the 'Sign In' link, both button labels ('Cart', 'Shop Now') and the ~20px bottom-left paragraph. Native value is Google Font 'Inter' (weights 400, 500, 600)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Bebas Neue\", sans-serif",
+      "body": "\"Inter\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#010101",
+      "surface": "#FBFBFD",
+      "fg": "#FBFBFD",
+      "fgMuted": "#EEEFF2",
+      "accent": "#FBFBFD",
+      "accent2": "#272835",
+      "border": "#EEEFF2"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "signin-label",
+      "cart-label",
+      "display-headline",
+      "body",
+      "cta-primary-label",
+      "tagline"
+    ]
+  },
+  "mechanic": "A full-viewport-height automotive hero layers a fullscreen object-cover looping MP4 (with top/bottom 260px black scrims) under a giant white vertical-gradient-clipped 'NEW ERA' Bebas Neue display word, a top-pinned navbar (pinwheel logo + wordmark, center nav links, Sign In + white Cart button) and a bottom-pinned CTA row pairing a 414px Inter paragraph + white 'Shop Now' button with a 64px Bebas Neue tagline, all collapsing from row to stacked on small screens.",
+  "techDelivery": "React + Tailwind CSS, single static hero component; plain autoplay/muted/loop <video> tag (MP4 source, no HLS) with object-cover and gradient-overlay divs for the background. Google Fonts Inter (400/500/600) and Bebas Neue loaded externally.",
+  "reskinNotes": "All copy is hardcoded in JSX: logo wordmark 'Logoipsum'; nav 'Home / Shop / Blog / About Us / Contact Us'; 'Sign In'; 'Cart'; the giant decorative 'NEW ERA'; the bottom paragraph ('Choose from thousands of certified cars...'); 'Shop Now'; and the tagline 'Find the perfect car that fits our journey'. The 'NEW ERA' word is filled with a baked background-clip:text vertical gradient (white at 83% opacity -> white at 12%) tuned for dark footage, and its size is set as a percentage of viewport width (~75%, max 1073px) so it is font-metric-dependent and will reflow with a different display face. The two pill buttons are hardcoded white with dark #272835 text/icons and a #EEEFF2 border rather than tokenized, so retinting means editing the className strings. Section height is clamped 600px-965px and the layout depends on Inter/Bebas Neue metrics; swapping faces shifts the giant headline and 64px tagline wrapping. The background MP4 is a placeholder CloudFront URL and the logo/cart/arrow icons are placeholders, so brand assets must be supplied to replace them."
+}

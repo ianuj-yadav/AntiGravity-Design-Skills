@@ -1,0 +1,102 @@
+{
+  "id": "growth-marketing-saas",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "DashboardMock",
+    "ChatPanel",
+    "LivePreviewHero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Native autoPlay/muted/loop/playsInline, absolute inset-0 object-cover at z-0 with NO dark overlay, so the copy/CTA, dashboard mock and grass all sit directly on top of it. Should read cleanly full-bleed behind centered light text; the whole frame is visible (not cropped), so compose for a 16:9 fill of the viewport."
+    },
+    {
+      "id": "dashboard-preview-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Live-preview video inside the right column of the DashboardMock (LivePreviewHero), playing behind a glass mini-website (mini-nav + 'Built for the curious' headline + email capture + Manifesto + socials). Absolute object-cover, shifted DOWN 17% (translate-y-[17%]) so the top is cropped. Loop is driven by a custom requestAnimationFrame opacity fade (fade-in to 1 over 500ms on loadeddata, fade-out to 0 when duration-currentTime < 0.55s, hard currentTime=0 reset on ended) rather than the native loop attribute, so the source must tolerate a hard restart and read cleanly at both full and zero opacity."
+    },
+    {
+      "id": "foreground-grass",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Foreground depth layer ('grass') pinned full-width across the bottom of the hero (left-0 right-0, bottom -40px/-100px/-220px responsive), z-30 in FRONT of the dashboard mock, drifting DOWN +20% on scroll for parallax depth. Needs transparency (PNG with alpha) so the cut-out foliage silhouette overlaps the dashboard and background video; pointer-events-none, object-cover, decorative (alt empty / aria-hidden). Authored as a wide bottom-edge band, not a full rectangle."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Global UI / body sans font. Native value is Google Font 'Inter' (weights 400/500/600/700/800) bound to Tailwind font-inter and applied on the root .landing-root wrapper; carries all nav, copy, button, chat and mini-site text. Loaded via <link> in index.html; needs sans-serif fallback chain (ui-sans-serif, system-ui, sans-serif)."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display serif for the embedded mini-site headline 'Built for the curious' only (inside LivePreviewHero), applied via inline fontFamily. Native value is Google Font 'Instrument Serif' (regular + italic). Loaded via <link>; needs a serif fallback. Headline is whitespace-nowrap and tracking-tight, so it is font-metric dependent."
+    },
+    {
+      "id": "icon-set",
+      "type": "icon",
+      "card": 8,
+      "colorRole": "fg",
+      "notes": "Two icon systems the template fills. (1) Google Material Symbols Outlined via the MIcon glyph component, loaded as a variable icon font in index.html with FILL/wght/GRAD/opsz axes: rocket_launch (navbar logo), menu (mobile), auto_awesome (chat avatar), arrow_upward (chat send). (2) lucide-react components inside LivePreviewHero: Globe, ArrowRight, Instagram, Twitter. All render monochrome currentColor (white / white-opacity), sized 14-24px. A brand swap replaces glyph names / lucide components and/or the icon font."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#08020e",
+      "surface": "rgba(255, 255, 255, 0.10)",
+      "fg": "#fafafa",
+      "fgMuted": "rgba(255, 255, 255, 0.60)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.10)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-login-label",
+      "nav-cta-label",
+      "eyebrow",
+      "headline",
+      "body",
+      "cta-label",
+      "chat-panel-title",
+      "chat-panel-subtitle",
+      "chat-seed-messages",
+      "chat-input-placeholder",
+      "preview-logo",
+      "preview-nav-labels",
+      "preview-signup-label",
+      "preview-login-label",
+      "preview-headline",
+      "preview-email-placeholder",
+      "preview-newsletter-body",
+      "preview-manifesto-label",
+      "preview-social-aria-labels"
+    ]
+  },
+  "mechanic": "A fixed transparent navbar over a single full-screen hero where scroll-linked framer-motion parallax fans three depth planes off one sticky section: centered copy/CTA translate up to -60% and fade out by 60% progress, a liquid-glass DashboardMock (chat panel + a mini-site LivePreviewHero whose own video loops via a custom requestAnimationFrame opacity fade) drifts up -25%, and an alpha foreground grass image drifts down +20%, all layered z-0 video -> z-10 dashboard -> z-20 copy -> z-30 grass -> z-50 nav over a no-overlay fullscreen background video.",
+  "techDelivery": "React 18 + Vite + TypeScript single landing page, Tailwind CSS 3 with an extended config (font-inter family + a 'landing' color scale of white-opacity surface/border/text tokens), framer-motion for scroll parallax / FadeUp / AnimatedText (honoring useReducedMotion), lucide-react + Google Material Symbols (MIcon) for icons, shadcn Sheet for the mobile menu; Inter + Instrument Serif via Google Fonts <link>, liquid-glass effect as a hand-authored .liquid-glass CSS class, dashboard preview video loop driven by useRef + useEffect + requestAnimationFrame.",
+  "reskinNotes": "Monochrome white-on-dark is baked structurally: nearly all foreground color is expressed as Tailwind white-opacity utilities (text-white/80, bg-white/15, border-white/10, placeholder:text-white/40) and inline rgba(8,8,10,0.6) panel fills rather than tokens, so retinting means editing utilities/inline styles, not a palette swap. The signature .liquid-glass class hardcodes white rgba in its surface (rgba(255,255,255,0.01) + luminosity blend), inset highlight (inset 0 1px 1px rgba(255,255,255,0.1)) and especially the ::before rim gradient (linear-gradient rgba(255,255,255,0.45/0.15/0) + -webkit-mask-composite:xor border-only mask), so every glass element assumes a light rim over dark media and a brand recolor requires editing that CSS. body bg #08020e and the .landing-root --background hsl(0 0% 0%) / --foreground hsl(0 0% 98%) are two separate dark bases that must be kept in sync. Layout depends on framing magic numbers tuned to the specific assets and viewport: hero copy contentY -60% / contentOpacity to 0 by 0.6, dashboard -25%, grass +20% and its responsive negative bottom offsets, the preview video's translate-y-[17%] crop, and the inner hero -translate-y-[8%]/-[15%]. The mini-site headline 'Built for the curious' is whitespace-nowrap + font-metric dependent on Instrument Serif, so longer copy or a substitute display font can overflow or rewrap. All copy is hardcoded in JSX/TSX, including the three seeded chat messages and the canned assistant reply logic, the navbar items array (About/Features/What you get/Pricing -> #anchors used for smooth scroll), the badge, headline, sub and 'Get course' CTA, and the embedded mini-site strings (Asme logo, Features/Pricing/About, Sign Up/Login, email placeholder, newsletter paragraph, Manifesto) plus the chosen Material Symbols glyph names and lucide icon set with their aria-labels."
+}

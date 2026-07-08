@@ -1,0 +1,45 @@
+{
+  "id": "futuristic-tech",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping, muted, autoplaying (playsInline) hero background video pinned absolute inset-0 object-cover at z-0 behind the dark cinematic content; everything else (navbar z-50, hero copy z-20, mobile menu z-30/40) layers above it."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "'Courier New', Courier, monospace"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.6)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.08)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "subtext",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "A non-scrolling full-viewport (h-screen) black hero with a fullscreen object-cover looping video behind a bottom-left z-20 copy stack (clamp-scaled headline, monospace subtext, white pill CTA), under an absolute glassmorphic nav whose pill uses a masked gradient-border liquid-glass effect, with a cubic-bezier(0.23,1,0.32,1) Menu/X hamburger driving a max-height slide-down mobile panel of staggered fade-in links.",
+  "techDelivery": "React 18 + TypeScript + Tailwind CSS 3 + Vite, with lucide-react icons (ArrowRight, Menu, X), the Inter family imported via a Google Fonts @import, and the navbar pill's .liquid-glass glassmorphism (backdrop-blur + masked gradient-border ::before) hand-authored in CSS.",
+  "reskinNotes": "Palette is expressed almost entirely as Tailwind utility classes and inline rgba hardcoded in markup (bg-black, text-white, white/80, white/70, white/60, white/10, white/5, white/08) rather than design tokens, so reskinning is a class/value find-replace, not a token edit. The .liquid-glass nav pill bakes a multi-stop white-alpha gradient border and inset white highlight into CSS assuming a dark scene, and the mobile menu hardcodes its own surfaces (panel rgba(8,8,8,0.97), open-state #1a1a1a, backdrop rgba(0,0,0,0.6)) plus border rgba(255,255,255,0.07) separately from the nav border. The 'axentra' logo is a plain text wordmark (no asset), and all copy — wordmark, the five nav labels, both 'Join the wait' CTAs, the two-line headline (with a sm-only <br>), the monospace subtext (with its own <br>), and the 'See it in motion' button label — is hardcoded inline; the headline's clamp(1.75rem,5vw,2.6rem) sizing and leading-[1.12]/tracking-tight are tuned to Inter's metrics, and the subtext is locked to the system 'Courier New' monospace stack. Hamburger/menu motion (cubic-bezier easing, per-item i*50+80ms stagger, icon rotate/scale swap) is structural. Dark-scene only; no light theme."
+}

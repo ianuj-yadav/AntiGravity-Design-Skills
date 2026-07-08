@@ -1,0 +1,74 @@
+{
+  "id": "finlytic-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background film sitting behind ALL content at the lowest z-index. Rendered <video autoplay loop muted playsInline>, scaled to 120% width and height of the container, horizontally centered with its focal point anchored to the bottom (object-position bottom). The section background is pure #000000 and overflow is hidden, so the 120% scale bleeds and crops the edges. A black 801x384 fully-rounded pill at top:~215px with 77.5px blur (z-index 1) sits between this video and the content as a darkening scrim, and all text/UI rides above at z-index 2 — so legibility assumes calm/dark footage in the center band. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark in the navbar's left cluster. Native is the 'LOGOIPSUM' placeholder SVG mark sized 134x25 with a solid white fill, sitting 80px to the left of the nav links. Single-color, alpha so it overlays the dark video/scrim. Replace with the brand logo lockup; keep it a horizontal mark that reads white on the black hero and fits a ~25px cap height."
+    },
+    {
+      "id": "nav-chevron-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "A 24x24 white chevron-down glyph placed immediately to the right of the 'Services' nav link with a 3px gap, signalling a dropdown. Monochrome white to match the nav-link color, alpha to overlay the video. Replace with the brand's caret/disclosure icon at the same 24px box."
+    },
+    {
+      "id": "dashboard-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Product/dashboard screenshot framed below the hero content. Sits inside a glassmorphic outer container (1163px wide, max 90vw, 24px radius, backdrop-blur 10px, background rgba(255,255,255,0.05), 1.5px transparent border, 22.5px inner padding); the image itself is full width, auto height, 8px radius, object-fit cover. This is the brand's hero product shot / app UI; supply a wide landscape capture (roughly 16:9) since it is cropped to the frame. No transparency needed (the glass frame provides the edge treatment)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Manrope",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.05)",
+      "fg": "#ffffff",
+      "fgMuted": "#f6f7f9",
+      "accent": "#7b39fc",
+      "accent2": "#2b2344",
+      "border": "#d4d4d4"
+    },
+    "copySlots": [
+      "nav-labels",
+      "signin-cta-label",
+      "get-started-nav-cta-label",
+      "hero-headline-line1",
+      "hero-headline-line2-italic",
+      "hero-subtitle",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label"
+    ]
+  },
+  "mechanic": "A single static (non-scroll-driven) black hero: a 120% bottom-anchored looping background video, a blurred black pill scrim, and a centered z-stacked column of a two-line Inter/Instrument-Serif italic headline, Manrope subtitle, and two pill CTAs, capped by a glassmorphic backdrop-blur frame holding the product dashboard image.",
+  "techDelivery": "React component spec authored with inline/utility styling and exact pixel geometry (fonts Inter, Instrument Serif, Manrope, Cabin assumed loaded via the host; no animation library or scroll engine declared — the hero is statically composed).",
+  "reskinNotes": "Five distinct typefaces are mixed for effect and all four are load-bearing: Inter (headline line 1, medium 76px), Instrument Serif (headline line 2, italic 76px — the serif/sans contrast is the signature, so the accent face must be a true italic display serif), Manrope (nav links + subtitle + the nav Sign In/Get Started buttons), and Cabin (only the two hero CTA labels) — Cabin has no colorRole or token and is referenced solely by the CTA buttons, so it is easy to miss. Headline layout is font-metric dependent: 76px at letter-spacing -2px and line-height 1.15 across two lines at max-width 871px, so a wider display/serif face or longer translated copy will rewrap or overflow. The two purples (#7b39fc primary accent, #2b2344 dark-purple secondary CTA) plus the near-duplicate off-whites (#fafafa nav button text vs #f6f7f9 subtitle/secondary-CTA text at 90% opacity) and the #d4d4d4 1px Sign In border are scattered as literal hex values rather than tokens, so retinting means find-replacing each literal. All copy is hardcoded: 'LOGOIPSUM', nav items ['Home','Services','Reviews','Contact us'], 'Sign In'/'Get Started', the headline 'Automate repetitive.' / 'Focus on growth.', the AI-agent subtitle, and 'Get Started Free' / 'Watch 2min Demo'. Geometry is fixed in pixels (120% video scale, 801x384 + 77.5px-blur pill at top:215px, 1440px navbar, 1163px dashboard frame), so the layout is tuned for desktop and the blurred-pill scrim assumes the headline sits over it."
+}

@@ -1,0 +1,70 @@
+{
+  "id": "luxury-real-estate",
+  "role": "hero",
+  "ownSections": [
+    "Preloader",
+    "Nav",
+    "Hero",
+    "ScrollHouse",
+    "DarkStatementStats",
+    "ExpandGallery"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Fullscreen cover-cropped hero background image (background-size: cover, centered) sitting behind the giant LIVE IN / IRREPLACEABLE headline; landscape architectural/estate establishing shot. Native placeholder is a CloudFront render proxied through images.higgs.ai at 1920w, so source a wide brand hero photo and keep it readable under large black display type."
+    },
+    {
+      "id": "rising-house-cutout",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "The centerpiece building PNG (native HOUSE_IMG building_bzziky.png) that rises from below the fold on load, stays bottom-centered behind the hero text, then scroll-drives upward and scales to 1.45x over the dark statement section. MUST be a transparent cut-out (drifts over both the light hero bg and the #1a1a1a dark band), front-on, bottom-weighted composition, min rendered width 1400px so it survives the scale-up without softening."
+    },
+    {
+      "id": "gallery-tile-videos",
+      "type": "video",
+      "card": 5,
+      "aspect": "4:5",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Five autoplay/muted/playsInline/looping videos, one per accordion gallery tile (object-fit: cover). Desktop tiles are tall flex slivers that expand to flex:4 on hover; mobile renders a 2-column 4:5 grid, so frame subjects centered and tolerant of both a narrow vertical crop and a 4/5 cell. Count is fixed at 5 by the layout; supply brand estate/interior/lifestyle loops, ideally seamless since they loop muted behind a giant Velar. wordmark ticker."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Syne",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#f5f0ea",
+      "surface": "#1a1a1a",
+      "fg": "#213138",
+      "fgMuted": "#e8e4df",
+      "accent": "#213138",
+      "accent2": "#ffffff",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "hero-eyebrow",
+      "hero-headline",
+      "hero-subtitle-desktop",
+      "hero-subtitle-mobile",
+      "statement-body",
+      "stats-values",
+      "stats-labels",
+      "ticker-wordmark"
+    ]
+  },
+  "mechanic": "A fixed transparent house PNG rises from translateY(102vh) on preloader lift, then a double-smoothstepped scroll handler drifts it bottom-centered upward and scales it to 1.45x across a 200vh sticky #1a1a1a statement+count-up-stats section, over which the hover-accordion video gallery slides up via negative margin-top:-100vh and higher z-index.",
+  "techDelivery": "Single-file React + TypeScript + Tailwind CSS + Vite landing page (all markup, state and animation in src/App.tsx using useState/useEffect/useRef/useCallback + IntersectionObserver and scroll/resize rAF math); lucide-react is the only icon source; Syne + Inter loaded via Google Fonts @import inside an inline <style> block; no animation/data libraries (Supabase only if persistence is later added).",
+  "reskinNotes": "Near-monochrome palette: fg and accent are the same deep teal #213138 (there is no second accent hue; accent2 here is the inverted on-dark white the nav logo cross-fades to). The brand color #213138 is baked into JS constants (GRASS_GREEN, used for the preloader fill and default logo color) and the wordmark 'Velar.' is hardcoded throughout markup (nav, preloader typewriter, and the repeating background ticker string), so reskinning the name means editing several literals plus the per-character weight split (letters 700, the '.' 900). Hero type is font-metric/word-length dependent: the desktop headline uses white-space: nowrap with vw-based sizes hand-tuned to 'LIVE IN' / 'IRREPLACEABLE', and the dark statement uses white-space: nowrap with hard line breaks, so longer brand copy or translations overflow and must be re-tuned. The scroll-house end geometry carries magic numbers (finalScale 1.45, +500 px offset, mobileOffset -250/4) calibrated to the reference house aspect and the 200vh section height, so a differently-proportioned building cut-out will need those re-derived. Gallery tile count is fixed at 5 by the accordion/grid layout."
+}

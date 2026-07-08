@@ -1,0 +1,127 @@
+{
+  "id": "saas-value",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Navbar",
+    "Logo",
+    "DashboardMockup"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Fullscreen hero backdrop set via inline style={{ backgroundImage: url(...) }} on the section, rendered bg-cover bg-center over a min-h-[100svh] container, so it crops to any viewport. Native asset is an atmospheric sky/landscape photo whose lower edge meets the grass overlay; the dark-text navbar, headline (text-gray-900) and muted body (text-gray-600) all sit directly on it, so the upper third must stay light enough for near-black UI to read. Delivered as a remote raster (higgs.ai webp proxy placeholder); this is the socket for a brand's hero photograph/render."
+    },
+    {
+      "id": "grass-foreground-overlay",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Decorative foreground strip pinned to the bottom of the section (absolute bottom-0 left-0 z-10 w-full, pointer-events-none select-none), full width, sitting in front of the dashboard mockup which is pulled up under it via negative margin. Native asset is a horizontal grass PNG; must be a transparent (alpha) cutout that bleeds off both side edges and reads as a grounding band. Cloudinary placeholder URL; the socket for a brand's foreground/horizon element (skyline, waves, fog, etc.)."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Custom logo glyph reused twice: in the navbar (text-gray-900, w-5 h-5 sm:w-6 sm:h-6) and inside the dashboard mockup sidebar (w-4 h-4 text-white/70). Authored as an inline SVG component, viewBox 0 0 256 256, fill=currentColor so it inherits text color (dark on the hero, white in the dark mockup). Native art is a hardcoded angular monogram path; swapping the mark means replacing the path data, not a URL."
+    },
+    {
+      "id": "navbar-toolkit-chevron-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Small disclosure caret next to the 'Toolkit' desktop nav item (native: lucide-react ChevronDown, w-3.5 h-3.5, text-gray-700 inheriting). Hidden below md with the rest of the desktop nav."
+    },
+    {
+      "id": "mobile-menu-toggle-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Open/close glyph pair for the md:hidden hamburger button (w-9 h-9 rounded-full, text-gray-900), toggling between the two states (native: lucide-react Menu and X, w-5 h-5)."
+    },
+    {
+      "id": "search-submit-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Glyph inside the dark circular submit button of the hero search pill (w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-900, hover:scale-105 active:scale-95). Native: lucide-react ArrowUp, w-4 h-4 sm:w-[18px] sm:h-[18px], white on gray-900."
+    },
+    {
+      "id": "description-inline-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Inline accent glyph embedded mid-sentence in the hero description, immediately before the 'ChatGPT' word (native: lucide-react Sparkles, inline w-4 h-4 -mt-1, inheriting the text-gray-600 description color)."
+    },
+    {
+      "id": "dashboard-chrome-icons",
+      "type": "icon",
+      "card": 11,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Browser-chrome icon set inside the dark dashboard mockup title bar and URL bar (all small, white/40 or white/25). Native lucide-react glyphs: PanelLeft, ChevronLeft, ChevronRight, Monitor (in the 'questly.ai' URL pill), plus the right cluster RotateCw, Share, Plus, Copy; carried into the content area as Sparkles (Generate button) and the sidebar nav Compass, Layers, ListTodo, Grid. Decorative dashboard dressing; themeable via currentColor."
+    },
+    {
+      "id": "dashboard-workspace-avatar",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "colorRole": "accent",
+      "notes": "Square workspace/brand tile shown twice in the dashboard mockup (sidebar w-4 h-4 rounded badge and main-header w-9 h-9 rounded-lg), native rendered as a solid #e8553f swatch bearing a 'C' initial for the fictional 'CareNest' workspace. Socket for a brand avatar/monogram tile; if left as a tinted initial it samples the accent role."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Nimbus Sans TW01', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "body": "'Nimbus Sans TW01', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#1a1a1c",
+      "surface": "rgba(255, 255, 255, 0.03)",
+      "fg": "#111827",
+      "fgMuted": "#4b5563",
+      "accent": "#e8553f",
+      "accent2": "#28c840",
+      "border": "rgba(255, 255, 255, 0.05)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "search-input-placeholder",
+      "description-body",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "dashboard-url",
+      "dashboard-workspace-name",
+      "dashboard-workspace-subtitle",
+      "dashboard-stat-labels",
+      "dashboard-stat-values",
+      "dashboard-subject-cards",
+      "dashboard-inbox-rows"
+    ]
+  },
+  "mechanic": "A single static min-h-[100svh] flex column (fade-down navbar / center-stacked headline + search pill + description + CTAs / a ScaledDashboard browser-mockup) over a fixed background photo with a bottom grass overlay, where every block enters once on load via staggered blur-up fade-up keyframes and the dashboard rises and overlaps the grass with a negative bottom margin.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS 3 with lucide-react icons; the 'Nimbus Sans TW01' webfont is linked via an onlinewebfonts stylesheet in index.html and registered in tailwind.config.js + index.css; keyframes (fade-up / fade-down / hero-rise) live in index.css and motion is pure CSS animation (no animation library); the dashboard uses a ResizeObserver-based ScaledDashboard wrapper that renders at a fixed 896px design width and CSS transform:scale()s down to fit.",
+  "reskinNotes": "Color is not centralized: the light hero palette is expressed as hardcoded Tailwind gray utilities (text-gray-900 / text-gray-700 / text-gray-600, bg-gray-900 CTAs, ring-gray-200/300) while the dashboard mockup is an entirely separate dark theme built from inline hex literals (bg-[#1a1a1c], bg-[#242427], bg-[#1e1e21], #e8553f workspace, traffic-light #ff5f57/#febc2e/#28c840, status #28c840/#febc2e) and white/N alpha values rather than CSS variables, so the colorRoles block samples both worlds (fg/fgMuted from the gray hero text, bg/surface/border from the dark mockup, accent #e8553f and accent2 #28c840 from the mockup) and a true retint means editing utility class strings and inline hex in both the hero and DashboardMockup. The logo is a hardcoded inline SVG path (no asset URL). All copy is hardcoded in JSX, including a literal double-newline line break inside the headline ('Get cited.' / 'Effortlessly.') and a mid-sentence break in the description, plus the entire fictional 'questly.ai' / 'CareNest' dashboard dataset (stat numbers, subject cards, drafting-inbox question rows). Headline sizing is a long responsive arbitrary-value ramp (text-[40px] -> [80px]) tuned to the native condensed face, so a wider replacement display font reflows the two lines. The ScaledDashboard relies on a fixed 896px design width measured by ResizeObserver; the mockup's internal layout is not fluid and only scales as a whole. Staggered entrance timing is encoded as inline [animation-delay:Xms] arbitrary values on each element."
+}

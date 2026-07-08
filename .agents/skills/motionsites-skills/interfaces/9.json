@@ -1,0 +1,77 @@
+{
+  "id": "9",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping background video for the whole hero section (muted, autoplay, playsInline), sitting behind all content under a 50% black overlay (bg-black/50) for legibility. The single signature media asset; native placeholder is a CloudFront .mp4 URL."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied throughout the section (navbar, badge, heading, subtitle, both CTA labels). font-medium and font-normal weights are used. Native family 'General Sans', loaded from Fontshare."
+    },
+    {
+      "id": "logo-wordmark",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Navbar brand wordmark on the left, rendered in white at 187px wide x 25px tall. Native placeholder is a 'LOGOIPSUM'-style mark; supply as a transparent/currentColor white lockup so it reads on the dark video."
+    },
+    {
+      "id": "nav-chevron",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small 14px white chevron-down arrow repeated to the right of each nav link (14px gap label-to-arrow). Single glyph reused across the four nav items; supply as a currentColor white icon."
+    },
+    {
+      "id": "badge-dot",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Tiny 4px solid white dot inside the 'Early access available from' badge pill, preceding the text. A trivial round mark; native value is a CSS dot, only fill if a brand wants a custom bullet glyph."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'General Sans', sans-serif",
+      "body": "'General Sans', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.10)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.70)",
+      "accent": "#ffffff",
+      "accent2": "#000000",
+      "border": "rgba(255, 255, 255, 0.20)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "eyebrow-date",
+      "headline",
+      "body",
+      "cta-label",
+      "nav-cta-label",
+      "nav-labels"
+    ]
+  },
+  "mechanic": "A static fullscreen hero stacks a spread navbar and a vertically-centered, 40px-gapped content column (badge pill, gradient-clip heading, subtitle, white pill CTA) over a looping muted background video dimmed by a 50% black overlay.",
+  "techDelivery": "single-file CDN Tailwind + Babel + esm.sh React 18 (utility classes drive layout; General Sans loaded from Fontshare).",
+  "reskinNotes": "The headline is a background-clip:text gradient (linear-gradient ~144.5deg, white ~28% to transparent black ~115%) baked inline, so a brand recolor means editing that gradient, not a token. Both CTA buttons are a layered pill construction (0.6px white outer border + inner black/white pill + a blurred white-to-transparent glow streak along the top edge) hardcoded around white-on-dark; the nav button is black-fill and the hero button is white-fill, so they don't share one token. All copy is hardcoded in markup (eyebrow 'Early access available from' + ' May 1, 2026', headline 'Web3 at the Speed of Experience', the EOS subtitle sentence, both 'Join Waitlist' labels, and the four nav labels). Layout magic numbers (56px heading at line-height 1.28 with max-width 613px, 680px subtitle width, 280px/200px top padding, 120px nav padding) are tuned to General Sans's metrics and the specific copy lengths."
+}

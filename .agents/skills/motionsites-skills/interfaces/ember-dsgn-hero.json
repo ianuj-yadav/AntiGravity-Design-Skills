@@ -1,0 +1,64 @@
+{
+  "id": "ember-dsgn-hero",
+  "role": "hero",
+  "ownSections": [
+    "BackgroundVideo",
+    "SplitPanels",
+    "Navbar",
+    "MobileMenu"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video at z-0 behind both split panels (absolute inset-0 w-full h-full object-cover). Played muted/looped/playsInline/autoPlay, horizontally mirrored (scale-x-[-1]) and slowed to 0.7x playbackRate set on MANIFEST_PARSED. It is the only true brand asset to fill: the EMBER letters are a clear-glass cutout in a 20px backdrop-blur layer so this footage shows THROUGH the wordmark, meaning the video must read well under both blurred and unblurred regions with enough mid-tone contrast that white text and the orange logo stay legible. Reference asset is a Mux HLS (.m3u8) stream consumed via hls.js (with a Safari src= + loadedmetadata fallback); supply a brand HLS rendition, not a short mp4, and keep the mirror + 0.7x slow-mo."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three lucide-react glyphs used inline as UI/nav chrome: ArrowUpRight (the 'Explore Our Work' link in the EMBER panel footer and the contacts/links affordances), Menu (mobile burger button, lg:hidden, opens the overlay) and X (mobile-menu close button). All are currentColor-tinted via text-white/* opacity utilities and inherit hover transitions, so supply them as currentColor-driven icons so the white tint and color transitions still apply."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(131, 131, 131, 0.3)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "accent": "#FF5C35",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "language-toggle",
+      "contacts-label",
+      "about-eyebrow",
+      "about-heading",
+      "about-subheading",
+      "explore-caption",
+      "explore-link-label",
+      "social-labels",
+      "address",
+      "ember-wordmark",
+      "studio-wordmark",
+      "mobile-menu-labels",
+      "mobile-footer-label"
+    ]
+  },
+  "mechanic": "A fixed full-screen split-panel hero (lg:flex-row) over a mirrored 0.7x looping background video, where the left panel renders the giant 'EMBER' as a clear-glass cutout punched through a 20px backdrop-blur layer via an SVG text mask (textLength=100% lengthAdjust=spacingAndGlyphs, Inter 900) and the right panel sets 'STUDIO' as a solid full-width SVG wordmark behind two concentric decorative circles, while a spring-driven (damping 25 / stiffness 200) mobile menu slides in from x:100% with per-link y-fade stagger (delay 0.1 + i*0.05).",
+  "techDelivery": "React 19 + TypeScript + Vite 6 single-component App with Tailwind CSS v4 via @tailwindcss/vite; motion (framer-motion v12 successor, import from motion/react) drives the AnimatePresence mobile-menu spring + staggered links; hls.js plays the Mux HLS hero stream (with Safari native-src fallback) inside a useEffect; lucide-react supplies the icons; Inter is loaded as a Google Fonts @import and exposed as --font-sans in an @theme block in src/index.css (no router, isMenuOpen useState only).",
+  "reskinNotes": "The signature EMBER cutout is an inline SVG <mask> whose <text>EMBER</text> content is hardcoded in markup and sized with textLength=\"100%\" lengthAdjust=\"spacingAndGlyphs\" at fontSize 130px / font-weight 900 / tracking-tighter, so it is tightly coupled to Inter's 900 metrics and to a fixed vertical baseline (x=0 y=115) plus the matching h-[20vh] lg:h-[25vh] spacer; swapping the display font, changing the word length, or retuning weights will break the cutout alignment, and the same textLength technique stretches the 'STUDIO' wordmark. The brand orange #FF5C35 is baked as inline Tailwind arbitrary values (the 2x2 logo squares bg-[#FF5C35] and the mobile-link hover:text-[#FF5C35]) rather than a CSS custom property, and the blur-panel fill rgba(131,131,131,0.3) + backdropFilter blur(20px) (with -webkit- prefix) is an inline style, so a reskin means editing utility classes / inline styles, not flipping :root vars. All copy is hardcoded in JSX: the brand wordmark 'EMBER.dsgn', both giant SVG wordmarks 'EMBER' and 'STUDIO', the 4 desktop nav labels (WORKS/SERVICES/ABOUT/TEAM) and 5 mobile labels (adds CONTACTS), the EN | RU language pills, the CONTACTS pill, the ABOUT eyebrow, the two-sentence about copy ('We shape striking digital identities...' / 'Our design process transforms the primal into the powerful.'), the 'Double Click and' + 'Explore Our Work' caption, the Instagram/Telegram social labels, the '23 Industrial Lane, Unit 5 / London, UK, E2 8AA' address, and the 'UKRAINE / LONDON' mobile footer label. The whole layer stack also depends on the cutout/blur path: maskImage url(#emberMask) requires SVG-mask + backdrop-filter support, the body is locked overflow-hidden, and the video itself is intentionally mirrored (scale-x-[-1]) and slowed to 0.7x."
+}

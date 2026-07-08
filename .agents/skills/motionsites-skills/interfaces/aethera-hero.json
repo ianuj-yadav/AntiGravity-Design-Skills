@@ -1,0 +1,44 @@
+{
+  "id": "aethera-hero",
+  "role": "hero",
+  "ownSections": [
+    "NavBar",
+    "VideoBackground",
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, offset top:300px / inset auto 0 0 0, with custom 0.5s fade-in/fade-out manual loop and a top+bottom background-colored gradient overlay over it"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "fg": "#000000",
+      "fgMuted": "#6F6F6F"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "headline-emphasis",
+      "description",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "Fullscreen sticky hero where a manually fade-looped background video sits behind a centered Instrument Serif headline and CTA that fade-rise in on staggered delays.",
+  "techDelivery": "React + Vite + Tailwind CSS + TypeScript; fonts in src/styles/fonts.css, keyframes in src/styles/theme.css; video loop driven by useRef + useEffect + requestAnimationFrame.",
+  "reskinNotes": "Headline mixes #000000 body with #6F6F6F italic emphasis words inline, so per-word color spans are hardcoded in markup; logo carries a hardcoded ® superscript; layout depends on Instrument Serif metrics (line-height 0.95, letter-spacing -2.46px) plus pixel-baked video offset top:300px and paddingTop calc(8rem - 75px); all copy and the dual gradient overlay colors are hardcoded in the JSX/Tailwind classes."
+}

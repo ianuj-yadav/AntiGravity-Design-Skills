@@ -1,0 +1,57 @@
+{
+  "id": "sentinel-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-spline-scene",
+      "type": "other",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "ambient-loop",
+      "colorRole": "accent",
+      "notes": "Fullscreen interactive 3D background scene that fills the whole hero (absolute inset-0, w-full h-full, cover behavior) and sits behind all foreground copy. Authored as a Spline scene loaded from a hosted .splinecode runtime file via React.lazy(() => import('@splinetool/react-spline')) inside <Suspense> with a solid bg-hero-bg fallback div; @splinetool/react-spline + @splinetool/runtime render it. Not a video/image/svg asset -- it is a Spline runtime export URL (placeholder scene.splinecode). The hero is built pointer-events-none over the scene so the live 3D stays mouse-interactive, then re-enabled only on the CTA buttons. A bg-black/30 overlay darkens it for text legibility. The scene's signature vivid-green glow IS the accent hue and is baked into the 3D scene file, not CSS -- supply a brand scene that reads calm/dark under white-on-dark copy anchored bottom-left."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global UI typeface applied as the body font via Tailwind fontFamily.sora ([\"Sora\",\"sans-serif\"]) with font-sora antialiased on body. Spec loads Google font 'Sora' (weights 300/400/500/600/700) in index.html head with preconnect. Drives everything: the clamp(3rem,8vw,6rem) bold uppercase 'SENTINEL AI' headline (leading-1.05, tracking -0.05em), the clamp() subheading and description, the SENTINEL wordmark logo, the uppercase tracking-widest nav links and 'Get Quote' CTA, the two hero buttons, and the trust line. Swap with the brand display/UI sans; the fluid clamp() type scale is tuned to Sora's metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Sora', sans-serif",
+      "body": "'Sora', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#141414",
+      "surface": "#2e2e2e",
+      "fg": "#f5f5f5",
+      "fgMuted": "#999999",
+      "accent": "#05e901",
+      "accent2": "#ffffff",
+      "border": "#333333"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "headline-line-1",
+      "headline-accent-word",
+      "subheading",
+      "description",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "trust-line"
+    ]
+  },
+  "mechanic": "A single full-viewport (min-h-screen, flex items-end) dark hero that embeds a lazy-loaded interactive Spline 3D scene as a full-bleed pointer-events-interactive background under a bg-black/30 overlay, with bottom-left content (wordmark navbar + uppercase clamp() 'SENTINEL AI' headline, subheading, description, two CTA buttons, trust line) on a pointer-events-none layer that re-enables clicks only on the buttons; the only motion is a staggered fade-up entrance (opacity 0 -> 1, translateY 20px -> 0, blur 4px -> 0 over 0.7s) cascaded by per-element animationDelay 0.2/0.4/0.55/0.7/0.85s, plus CSS hover/active transitions on nav links and buttons.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS + shadcn/ui, with an embedded Spline 3D scene via @splinetool/react-spline + @splinetool/runtime (lazy + Suspense). Colors are HSL CSS custom properties (dark-only, no light mode) mapped through hsl(var(--token)) in tailwind.config with custom nav-button and hero-bg tokens; fade-up/fade-in are Tailwind keyframes via the tailwindcss-animate plugin; the nav CTA is a shadcn Button (class-variance-authority) with custom navCta/hero/heroOutline variants, while the two hero CTAs are plain styled <button> elements; 'Sora' loaded from Google Fonts in index.html.",
+  "reskinNotes": "The accent green (hsl(119 99% 46%) / #05e901) lives in two places at once -- the CSS token surface (--primary/--accent/--ring) AND, more importantly, baked into the hosted Spline 3D scene file itself; recoloring the brand means re-authoring or re-exporting the Spline scene, not just editing CSS, so the 3D socket and the accent token must be kept in sync. The headline is split in markup as white 'SENTINEL' + a <span className=\"text-primary\"> ' AI' part, so the accent word is hardcoded JSX, and all copy (brand 'SENTINEL', the five nav labels Services/About Us/Projects/Team/Contacts, 'Get Quote', the headline, subheading 'We implement security correctly.', the description paragraph, 'Book a Call'/'Our Work' buttons, and the 'Trusted security partner. Columbus, OH. 12 systems deployed.' trust line) is hardcoded in the components, not data-driven. Two distinct near-light values exist: fg #f5f5f5 (foreground text) and a literal bg-white on the secondary 'Our Work' button (text-background) -- accent2 captures that pure white. Layout is font-metric dependent: the headline/subheading/description use clamp() fluid sizing with tight tracking (-0.05em) tuned to Sora, and the whole composition is anchored bottom-left (items-end + pb), so a wider replacement face or longer copy shifts the balance. The nav links and CTA simply hide below md (no hamburger), so on mobile the brand loses navigation entirely. The pointer-events-none-on-content / pointer-events-auto-on-buttons trick is essential to keep the Spline scene interactive -- any new clickable foreground element must re-enable pointer-events-auto itself."
+}

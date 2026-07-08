@@ -1,0 +1,46 @@
+{
+  "id": "nickel-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-product-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Right-side hero product/lifestyle video. Absolutely positioned absolute top-0 right-0 w-[55%] h-full, hidden below lg. Renders as w-full h-full object-cover rounded-bl-2xl, autoPlay + loop + muted + playsInline, so it must read as a silent seamless ambient loop that survives a hard object-cover crop to a tall ~55vw x 100vh column with only the bottom-left corner rounded. No alpha; sits at z-0 behind the z-10 text column. The spec ships a placeholder CloudFront .mp4 URL that this socket replaces with the brand asset."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "Inter, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f1f0f5",
+      "surface": "#ffffff",
+      "fg": "#17171c",
+      "fgMuted": "#6f6f7b",
+      "accent": "#f47825",
+      "border": "#dddde3"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "login-label",
+      "nav-cta-label",
+      "headline",
+      "body",
+      "primary-cta-label",
+      "secondary-cta-label"
+    ]
+  },
+  "mechanic": "A floating white rounded-xl nav pill (max-w-7xl, shadow-sm) hovers over a split full-viewport hero whose left max-w-xl text column sits at z-10 while an autoplay/loop/muted object-cover video fills the right 55% to full height, clipped with a single rounded-bl-2xl corner.",
+  "techDelivery": "React + Tailwind CSS + shadcn/ui component spec: a Navbar and a HeroSection composed under a min-h-screen page, with custom Button variants (hero gradient, hero-outline) and an xl size declared in button.tsx, an HSL design-token set in index.css, and lucide-react ChevronDown icons; Inter via system font stack.",
+  "reskinNotes": "Colors are authored as raw HSL channel triples in index.css design tokens (e.g. 24 90% 55%), so reskinning means rewriting the token channels, and the hero button gradient hardcodes its own out-of-token HSL stops inline (from-[hsl(24,100%,72%)] to-[hsl(18,98%,53%)]) — the orange brand color lives in two places that must be kept in sync. The 'nickel' logo mark is not an asset but a Tailwind-composed glyph (w-7 h-7 bg-foreground rounded-full circle wrapping a w-3 h-3 bg-white rounded-sm square); a brand mark would need to replace that markup. All copy is hardcoded inline in the markup: the 'nickel' wordmark, nav labels ['Products','Company','Pricing','For Accountants'], 'Log in', 'Get started' (nav + hero), 'Talk to a human', the H1 'Unlock growth with every payment', and the subhead 'Run payments, extend net terms and automate collections compliance.' The H1 leans on tight tracking and leading-[1.05] tuned to Inter's metrics. Hero height is computed as calc(100vh-4rem), assuming a 4rem nav band."
+}

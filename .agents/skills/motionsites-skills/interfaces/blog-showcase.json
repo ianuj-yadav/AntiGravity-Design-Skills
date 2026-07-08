@@ -1,0 +1,61 @@
+{
+  "id": "blog-showcase",
+  "role": "Blog",
+  "ownSections": [
+    "Header",
+    "FeaturedPost",
+    "BlogGrid"
+  ],
+  "slots": [
+    {
+      "id": "featured-post-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Left-half media of the full-width featured post card; autoPlay loop muted playsInline, object-fit cover filling the entire left column of a 1fr/1fr grid (min-height 520px), so it crops to whatever portion of the card height the right-side copy dictates rather than a fixed aspect. Carries the shared hover treatment (scale to 1.08, dark rgba(0,0,0,0.25) overlay, centered + circle, white L-corner brackets)."
+    },
+    {
+      "id": "blog-card-video",
+      "type": "video",
+      "card": 3,
+      "aspect": "16:10",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The three standard blog-grid card media tiles, one per card; autoPlay loop muted playsInline, object-fit cover at a fixed 16/10 aspect-ratio with 20px border-radius. Each carries the same hover treatment (scale to 1.08 over 0.5s cubic-bezier(0.33,1,0.68,1), dark overlay fade, centered + in a 70px circle, white L-corner brackets). Driven dynamically from the Supabase blog_posts table ordered by display_order, so the count grows if more standard posts are added."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Outfit",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#fcfcfc",
+      "fg": "#000000",
+      "fgMuted": "#666666",
+      "accent": "#000000",
+      "border": "#f0f0f0"
+    },
+    "copySlots": [
+      "eyebrow-badge",
+      "headline",
+      "subtitle",
+      "view-all-cta-label",
+      "featured-badge-label",
+      "featured-title",
+      "featured-description",
+      "featured-author",
+      "featured-category-label",
+      "card-title",
+      "card-category-label"
+    ]
+  },
+  "mechanic": "A centered max-1200px white editorial page stacking a heading/subtitle header, a two-column featured-post card (looping video left, copy right), and a three-up grid of 16:10 video cards, where every video tile shares a hover state that scales the clip to 1.08, fades in a dark overlay, pops a centered +-in-circle, and draws white L-shaped corner brackets.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS (base resets only; blog styling in custom CSS), with the Supabase JS client fetching blog_posts (RLS public read) and rendering them dynamically ordered by display_order; Inter and Outfit pulled from Google Fonts via <link>.",
+  "reskinNotes": "Category color is per-post data, not a global token: each post carries its own category_color hex (seeded #7d1a4a Gear, #2c4c34 Lighting, #a63e2d Editing, #1a2b8c Business) used as the inline background of its pill badge, so a brand reskin must retint these per row in the blog_posts table rather than swap one accent variable. The hover overlay rgba(0,0,0,0.25), the +-circle rgba(255,255,255,0.2), and the 1.5px white L-corner brackets are hardcoded in the custom CSS and assume light media over a white page. All seed copy (heading 'Behind the lens', subtitle, 'Must Read'/'View all posts' labels, post titles, '(c)' author suffix) lives in the blog_posts rows / markup. Type sizing (64px heading, 48px featured title, letter-spacing -2.5px/-1.5px) is tuned to Outfit weight-500 metrics, and the featured card's 1fr/1fr min-height 520px layout drives the left video's crop, so a wider display face or taller copy will reflow it."
+}

@@ -1,0 +1,59 @@
+{
+  "id": "synthesis",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "scrub-hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "short-loop",
+      "notes": "The single core asset: a fullscreen scroll-scrubbed background video for the sticky h-screen hero viewport. On mount it is fetched as a blob and pre-extracted into an ImageBitmap[] frame sequence (frame count = clamp(round(duration*24),30,110), max width 1280) which is then drawn frame-by-frame onto an object-cover <canvas> as the user scrolls through phase 1 (progress 0-0.55); a muted playsInline <video> scrubbed via currentTime is the fallback until frames are ready. NOT autoplayed and NOT looped in playback (scroll position drives the frame), so duration should be short (a few seconds) to keep extraction cheap and frame deltas readable; landscape footage that survives object-cover center-crop reads best. A bg-black/35 overlay sits on top, so mid-to-bright footage holds up."
+    },
+    {
+      "id": "body-display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary sans family used for body text, the hero headline (natural weight, no font-weight class), nav links, and most press-logo labels. Native family 'Roobert TRIAL' (Tailwind font-sans), loaded via onlinewebfonts <link> in index.html with fallback system-ui, sans-serif. Weights referenced via Tailwind utilities: light/medium/semibold/bold. Drives the metric-tuned hero headline line break."
+    },
+    {
+      "id": "accent-serif-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Accent serif used italic for emphasis fragments: the 'Norden' in the logo, 'true wellness.' in the headline, and the 'Praxis' / 'Vetted / TJ' press labels. Native family 'Instrument Serif' (Tailwind font-instrument), regular + italic loaded from Google Fonts in index.html with fallback Georgia, serif. Applied with no font-weight (relies on the serif's natural italic metrics)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Roobert TRIAL\", system-ui, sans-serif",
+      "body": "\"Roobert TRIAL\", system-ui, sans-serif",
+      "accent": "\"Instrument Serif\", Georgia, serif"
+    },
+    "colorRoles": {
+      "bg": "#020b1f",
+      "surface": "#041536",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.8)",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "headline",
+      "press-eyebrow",
+      "press-logo-labels",
+      "reveal-paragraph-1",
+      "reveal-paragraph-2",
+      "reveal-paragraph-3",
+      "page-title"
+    ]
+  },
+  "mechanic": "A 700vh sticky-top hero scrubs a pre-extracted video frame sequence onto an object-cover canvas across scroll progress 0-0.55, then cross-fades the hero out and a near-black #000308 layer in (0.55-0.65) before revealing three paragraphs one-per-scroll-third (0.65-1.0), all driven by a single lerp-smoothed requestAnimationFrame loop writing opacities/transforms directly via refs.",
+  "techDelivery": "Vite + React + TypeScript + Tailwind CSS multi-component spec (App + Navbar + Hero); the scrub/extract/reveal engine is hand-rolled with useRef + a single requestAnimationFrame loop (blob fetch, createImageBitmap frame extraction, canvas object-cover draw, lerp smoothing) and no external animation library; lucide-react is listed for icons but nothing in this hero renders one; both fonts loaded via <link> in index.html, with custom navy colors and font families declared in tailwind.config.",
+  "reskinNotes": "Colors are Tailwind theme/arbitrary values, not a :root token block: navy-950 #020b1f and navy-900 #041536 live in tailwind.config while the reveal layer #000308, white/black overlays (bg-black/35, bg-black/0.2 selection) and all white/NN opacities are inline utility classes, so retinting means editing config + class names. All copy is hardcoded in JSX and tuned to font metrics: the 'Elias Norden' wordmark (with 'Norden' in italic serif), the headline 'Merging science, defi and lifespans into true wellness.' with a manual <br className=\"hidden sm:block\"> and 'true wellness.' in italic serif, the three nav labels, the three reveal paragraphs, and the page title. The press-logo strip is especially brittle: six wordmarks (Praxis, VENTURE BULLETIN, Blockdispatch, Healthspan.Quarterly, Vetted / TJ, biofuture.io) each carry a distinct hand-picked font-family + weight + tracking + style combination baked into markup to fake six logos from text, so reskinning them is bespoke per item rather than a single asset swap. The font-instrument italic fragments assume a serif with usable italics, and the headline/paragraph reveal layout depends on the sans family's metrics. The scrub engine has fixed magic constants (24fps sampling, frame clamp 30-110, 1280px max width, SCRUB_END 0.55, FADE_END 0.65, lerp factor 0.1, dpr cap 2, h-[700vh] scroll length) that set the feel and must move together if the video length changes."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "saas-value",
+  "title": "SaaS Value",
+  "category": "SaaS",
+  "sort_order": 999,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-06-14T08:37:00+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": "https://res.cloudinary.com/dsdhxhhqh/image/upload/v1781539562/CleanShot_2026-06-15_at_15.31.34_2x_ckhjmj.png",
+  "video_preview_url": null,
+  "sections": [],
+  "section_names": []
+}

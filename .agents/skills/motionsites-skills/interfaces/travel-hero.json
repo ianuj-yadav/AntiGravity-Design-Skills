@@ -1,0 +1,72 @@
+{
+  "id": "travel-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "GemCard"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video that fills the right 50vw stage (.right-bg / .bg-image-wrapper) and, below 850px, the whole viewport. Rendered absolute inset-0 w-full h-full object-cover object-LEFT (focal point is the left edge of the frame), wrapped in a Framer Motion div that eases scale 1.06 -> 1 over 2.2s (goldEase). The clip-path split headline sits on top: white text reads over this footage on the right half and a mobile-only bg-black/20 darkening layer (md:bg-transparent) aids legibility under 850px, so footage should stay mid-to-dark on its left/center for white-text contrast. A defensive useEffect forces muted=true and re-calls play() on loadeddata. Supply as a seamless short loop; autoplay/loop/muted/playsInline/preload=auto."
+    },
+    {
+      "id": "gem-card-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Looping thumbnail video inside the floating 'Hidden Gems' card (.gem-image-box: a fixed 200x200px rounded-20px box, hidden below 1000px). Rendered absolute inset-0 w-full h-full object-cover, so it is cover-cropped to a near-square — supply roughly square or center-safe footage. autoplay/loop/muted/playsInline/preload=auto. The card itself enters with a Framer Motion y:60->0 / opacity 0->1, 1.1s, delay 0.5s."
+    },
+    {
+      "id": "ui-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single Google Fonts family 'Inter' (weights 300/400/500, plus semibold used on the gem-card title) loaded via <link rel=preconnect> + stylesheet in layout.tsx <head>, and set on <body> via inline style fontFamily:'Inter', sans-serif plus the globals.css html,body rule. Serves BOTH display and body roles: the split-screen headline ('Discover the beauty' / 'of the world around' at text-[clamp(42px,6vw,80px)], font-light, tracking-[-0.04em], leading-[1.05]), the hero body paragraph (clamp 14-16px, font-light, leading-1.7, opacity-80), the navbar links (text-[13px] tracking-widest font-medium and the text-5xl/7xl mobile overlay links), and the gem-card 'Hidden Gems' title (font-semibold) + body. The tight tracking-[-0.04em] headline is tuned to Inter's metrics."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 4,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four lucide-react component icons tinted via currentColor (no inline path data). [0] Star (size 30, fill=currentColor, strokeWidth 0) = the fixed top-left logo mark, with breakpoint-conditional color (home: max-[850px]:text-white / min-[851px]:text-black; tour-detail: white; menu-open: black). [1] Menu (size 32) = the fixed top-right hamburger (white on home/tour-detail else black, hover:scale-110). [2] X (size 32) = the mobile-overlay close button (hover:rotate-90). [3] ArrowRight (size 14) = trailing glyph on the gem-card 'Explore more' button. Swap to brand-equivalent lucide glyphs; the currentColor tint means retinting is a class change, not an asset edit."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f3ebe4",
+      "surface": "#ffffff",
+      "fg": "#1c1c1c",
+      "fgMuted": "rgba(107,114,128,1)",
+      "accent": "#000000"
+    },
+    "copySlots": [
+      "metadata-title",
+      "metadata-description",
+      "nav-labels",
+      "headline-line-1",
+      "headline-line-2",
+      "hero-body",
+      "gem-card-title",
+      "gem-card-body",
+      "explore-cta-label"
+    ]
+  },
+  "mechanic": "Split-screen 50/50-viewport hero where one identical HeroContent headline is rendered twice and revealed through hardcoded clip-path inset masks (inset(0 50% 0 0) black on the left half, inset(0 0 0 50%) white on the right) layered over a full-bleed object-left looping background video, with Framer Motion mask-line y:110%->0 headline reveals, a scale 1.06->1 video entrance, and a floating 'Hidden Gems' video card sliding up; below 850px the black side is hidden and the white side fills the viewport.",
+  "techDelivery": "Multi-file Next.js 16.2.6 App Router project built with webpack (next dev/build --webpack, not Turbopack): React 19.2.4 + react-dom, framer-motion ^12.38.0, lucide-react ^1.14.0, gsap ^3.15.0 (installed but unused), Tailwind v4 (tailwindcss + @tailwindcss/postcss) with a hand-written app/globals.css, TypeScript 5.9.3; client components ('use client') for Navbar/HeroSection, Google Fonts Inter loaded via <link> in layout.tsx, empty default next.config.ts (no images.remotePatterns).",
+  "reskinNotes": "The signature split-screen is structurally fragile: the two text layers MUST stay byte-identical because legibility depends on the left (.text-black-side, clip-path inset(0 50% 0 0)) and right (.text-white-side, clip-path inset(0 0 0 50%)) halves aligning pixel-for-pixel over a hardcoded 50vw/50vw .left-bg/.right-bg layout in globals.css — any copy or font-metric change that shifts wrapping breaks the seam, and the headline's tracking-[-0.04em] is tuned to Inter. The split collapses at the baked 850px breakpoint (left-bg + text-black-side become display:none, text-white-side goes clip-path:none full width) and the gem card hides its image at 1000px and re-docks fixed to the bottom at 850px, so the responsive rules are coupled to those exact pixel thresholds. Palette is baked into raw CSS/inline values and arbitrary Tailwind classes (#f3ebe4 background in globals.css + bg-[#f3ebe4] + the layout body, #1c1c1c headline/title, gem-card white + shadow with no border token, text-gray-500/black/40/opacity-80 muted greys, bg-black buttons) rather than CSS custom properties, so a brand palette swap is a find-and-replace across globals.css and multiple files. All copy is hardcoded in JSX/markup (metadata title 'Travel — Discover the World' + description, the 'Discover the beauty' / 'of the world around' headline lines, the hero paragraph, the 'Hidden Gems' title + body, the 'Explore more' label, and the 5 navbar link labels). The Star logo has breakpoint-conditional color logic (max-[850px]:text-white min-[851px]:text-black on home) that must be re-reasoned if the bg tone flips. The gem card uses fixed px dimensions (200x200 image box, 200px card height) rather than fluid sizing. goldEase = cubic-bezier(0.76,0,0.24,1) is the shared easing family across every entrance and should be preserved as the motion signature."
+}

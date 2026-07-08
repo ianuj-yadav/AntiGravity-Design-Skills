@@ -1,0 +1,67 @@
+{
+  "id": "solar-energy-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "theme-photo-pair",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Fullscreen cover-cropped background photos forming the morning/night toggle pair. The active photo renders on bg-front; the same photo is duplicated onto bg-back as a blurred scale(1.2) backing layer during the swap. background-size:cover, background-position:center 40%, transform:scale(1.1). Order: [0]=light/morning, [1]=dark/night (default mount uses the dark/night image). A radial+linear darkening ::after overlay sits on top, so mid-tone photos with a centered subject read best."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally via the universal reset (font-family:'Outfit',sans-serif). Drives the 56px display headline, nav links, toggle labels, and the 300-weight body sentence. Weights used: 300/400/500/600/700. Native family 'Outfit', loaded from Google Fonts in index.html."
+    },
+    {
+      "id": "logo-glyph",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single mark in the navbar lockup beside the brand name (spec uses lucide-react Zap, size 32, strokeWidth 2). Tinted by CSS, not by the asset: #ffffff in dark theme, #000000 in light-theme (color transitions 0.5s ease). Replace with the brand's energy/logo glyph; supply as a currentColor-driven icon so theme tinting still works."
+    },
+    {
+      "id": "site-favicon",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "notes": "Browser tab / site icon, declared as <link rel=icon type=image/svg+xml href=/vite.svg>. Currently the generic Vite default placeholder; fill with the brand favicon."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Outfit', sans-serif",
+      "body": "'Outfit', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(210,198,171,0.15)",
+      "fg": "#E5DEC9",
+      "fgMuted": "#3E3424",
+      "accent": "#f5f8ea",
+      "accent2": "#10100F"
+    },
+    "copySlots": [
+      "headline",
+      "headline-accent",
+      "headline-suffix",
+      "brand-name",
+      "nav-labels",
+      "cta-label",
+      "toggle-label-morning",
+      "toggle-label-night",
+      "toggle-subtext",
+      "body"
+    ]
+  },
+  "mechanic": "Fullscreen dual-layer theme toggle: clicking Morning/Night pulls the front background down (translateY(20vh) scale, cubic-bezier(0.32,0,0.67,0)) over a blurred backing copy, swaps the photo source at 300ms, then snaps back with overshoot easing while a frosted-glass pill slides between the two labels.",
+  "techDelivery": "React 18 + TypeScript + Vite 5 single component (useState/useEffect/useRef, no router or state lib); near-entirely vanilla CSS in index.css with Tailwind 3 installed but only minimally used; lucide-react for the one icon; Google Fonts 'Outfit' loaded via index.html.",
+  "reskinNotes": "Copy is hardcoded in JSX (headline split across plain text + span.title-accent + trailing text, brand name 'reposit', 6 nav labels, CTA label, the Morning/Night toggle labels and '$0 for Electricity' subtext, body sentence) and must be edited in markup. The morning/night day-cycle narrative is baked into the toggle semantics, so a non-solar reskin needs a different toggle concept. Core neutrals #ffffff/#000000 are hardcoded inline on .logo/.brand-name/.cta-button (and their light-theme variants are separate selectors) rather than referencing the :root vars, so reskinning means editing rules beyond the custom-property block. There is no border colorRole: toggles and buttons use border:none. Background photos are referenced as local /public/images/*.webp but originate from Cloudinary source URLs that must be downloaded at build time, not fetched at runtime. Layout (56px headline, line-height 1.0, letter-spacing -1px) is tuned to Outfit's metrics. The .pull-down transform and .toggle-btn.active color use !important, so any override CSS must match or exceed that specificity."
+}

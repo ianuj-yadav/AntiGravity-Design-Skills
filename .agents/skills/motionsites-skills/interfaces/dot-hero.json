@@ -1,0 +1,46 @@
+{
+  "id": "dot-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplay/muted/playsInline looping hero background video, object-cover; depicts a phone whose screen the typing-message overlay must register against. Overlaid with a bg-white/5 tint div."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", serif",
+      "body": "\"Inter\", sans-serif",
+      "mono": "\"Nokia Cellphone FC Small\", monospace"
+    },
+    "colorRoles": {
+      "bg": "#F3F4ED",
+      "fg": "#1a1a1a",
+      "fgMuted": "rgba(26,26,26,0.7)",
+      "accent": "#0871E7",
+      "accent2": "#DEF0FC",
+      "border": "rgba(0,0,0,0.1)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "cta-label",
+      "headline",
+      "subheadline",
+      "typing-messages"
+    ]
+  },
+  "mechanic": "A fixed glass-pill navbar over a full-bleed looping phone video, where the serif headline fades-and-scales in, the sub-headline rises, and a Nokia-font typewriter loop with a blinking cursor types/deletes messages pinned onto the phone screen.",
+  "techDelivery": "React 19 + Tailwind CSS v4 (theme vars + @utility in index.css) + motion/react; single App.tsx holding TypingMessages, Navbar, Hero, App.",
+  "reskinNotes": "Hero video source URL is hardcoded EXACTLY in markup and the typing-overlay position (left ~48.5%, bottom 32%) is hand-tuned to that specific video's phone-screen placement, so any swapped video must match that framing or the overlay coordinates must be retuned. The Nokia mono font loads from a third-party onlinewebfonts CDN. All hex values and copy (logo 'dot.', nav 'Philosophy/Trust/Access/Tribe', CTA 'Link up', headline, sub-headline, the three typing messages) are baked inline in the component markup. The CTA button glint uses a hardcoded #DEF0FC→transparent gradient rectangle."
+}

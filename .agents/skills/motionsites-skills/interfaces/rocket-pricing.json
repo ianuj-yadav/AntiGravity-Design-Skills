@@ -1,0 +1,52 @@
+{
+  "id": "rocket-pricing",
+  "role": "pricing",
+  "ownSections": [
+    "PricingSection"
+  ],
+  "slots": [
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Sole typeface for the whole section (font-inter): the eyebrow pill 'Pricing', the clamp-free 3xl/4xl heading 'Clear pricing plans / that scale with you.' at tracking-[-0.02em] leading-[1.05] font-normal, the right paragraph, the uppercase tracking-[0.2em] text-[11px] plan eyebrows, the very large $price at text-[2.75rem] leading-none, the line-through original price, descriptions, both pill buttons (AnimatedText hover), and the feature-row labels. Native declaration is Inter via Tailwind font-inter. Substitute a geometric/neo-grotesque sans that holds tight tracking at the 2.75rem price and -0.02em on the heading."
+    },
+    {
+      "id": "icon-font",
+      "type": "icon",
+      "card": 2,
+      "colorRole": "fg",
+      "notes": "Material Symbols Outlined icon font (loaded globally), rendered via the MIcon span with fontVariationSettings 'FILL'/'wght'/'GRAD'/'opsz'. Exactly two glyphs are used at size 12 inside the 20px feature bullets: 'check' (included rows, text-foreground) and 'close' (excluded rows, text-foreground/50). card:2 = the two named glyphs. No raster/SVG icons ship; reskin by swapping the variable-icon-font family or remapping the two glyph names, keeping a check/cross pair that reads at 12px."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter, ui-sans-serif, system-ui, sans-serif",
+      "body": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.10)",
+      "fg": "hsl(var(--foreground))",
+      "fgMuted": "rgba(255,255,255,0.60)",
+      "accent": "rgba(255,255,255,0.80)",
+      "border": "rgba(255,255,255,0.10)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "plan-names",
+      "plan-prices",
+      "plan-original-prices",
+      "plan-descriptions",
+      "plan-badge",
+      "plan-features",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A single dark pricing section (max-w-1080) with a pill+heading+paragraph header above a 1-to-2-column grid of two plan cards, where every card is wrapped in a SpotlightBorder whose 1px ring follows the cursor via radial-gradient + mask-composite:exclude, and all header/card content rises in on a staggered framer-motion whileInView FadeUp (opacity+24px y, ease [0.22,1,0.36,1]).",
+  "techDelivery": "Component spec for React 18 + Vite + TypeScript with TailwindCSS (semantic HSL tokens + extended theme.colors.landing surface/border rgba), framer-motion for FadeUp/AnimatedText, and clsx + tailwind-merge exposed as cn() from @/lib/utils; Inter + globally-loaded Material Symbols Outlined.",
+  "reskinNotes": "Not a single self-contained file: it assumes a host Tailwind config (the landing.surface/surface-hover/border tokens and --background/--foreground HSL vars must be defined globally) and the cn() helper, MIcon, FadeUp, SpotlightBorder, PrimaryButton/SecondaryButton, and AnimatedText helpers — none of which are emitted here, so a reskin must supply or stub them. All plan data is hardcoded in a typed `plans` array in markup (names, prices 159/239, original prices 497/697, descriptions, 5 features each with included flags, featured flag, 'Best Value' badge) with no data source, and the two card backgrounds #161616 and #252525 are inline style hex that the spec explicitly exempts from the 'no hardcoded hex' rule alongside page #000000 — recoloring cards means editing those inline values, not a token. Both CTAs hardlink to /auth?mode=signup. SpotlightBorder bakes literal rgba(255,255,255,var(--intensity)) ring paint and white/10..white/20 alphas; the SpotlightBorder size differs between the spec body (460) and its prop default (520). Layout is font-metric-dependent: the $2.75rem price at leading-none, the -0.02em / leading-[1.05] heading, and the forced <br className='hidden sm:block'> line break ('Clear pricing plans' / 'that scale with you.') will reflow under a wider substitute font, and the badge is absolutely centered at -top-3 so longer badge copy can overhang the card edge."
+}

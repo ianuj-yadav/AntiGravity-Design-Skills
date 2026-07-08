@@ -1,0 +1,51 @@
+{
+  "id": "community-cta",
+  "role": "cta",
+  "ownSections": [
+    "CtaSection"
+  ],
+  "slots": [
+    {
+      "id": "cta-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video filling the rounded CTA card behind the content (object-fit: cover, full opacity, no overlay)."
+    },
+    {
+      "id": "member-avatars",
+      "type": "image",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Overlapping circular member-proof avatars (.av1-.av4), 32x32px, background-image cover, crop-friendly (background-position center top)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "DM Sans",
+      "body": "DM Sans"
+    },
+    "colorRoles": {
+      "bg": "#f0f2f7",
+      "surface": "#d8e5f2",
+      "fg": "#08063C",
+      "fgMuted": "#b2bbd4",
+      "accent": "#f8f9fc",
+      "border": "rgba(13, 36, 72, 0.15)"
+    },
+    "copySlots": [
+      "headline",
+      "body",
+      "email-placeholder",
+      "cta-label",
+      "social-proof"
+    ]
+  },
+  "mechanic": "Rounded overflow-hidden card with a fullscreen autoplay/muted/looping cover video behind left-aligned content (heading, body, pill email+button form, overlapping avatar social-proof), with CSS-only focus/hover micro-transitions and no overlay.",
+  "techDelivery": "single-file HTML + Google Fonts DM Sans + inline CSS (no JS)",
+  "reskinNotes": "All copy is hardcoded in markup; body background, card surface, and every text/UI color are baked as literal hex/rgba in inline CSS (no CSS variables); the page/body itself is also styled by the template (background #f0f2f7, centered flex) so embedding in a host page may require scoping; avatar images are CSS background-image with fixed 32x32 sizing and negative-margin overlap, so source crops must be square."
+}

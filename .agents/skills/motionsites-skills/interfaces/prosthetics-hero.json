@@ -1,0 +1,53 @@
+{
+  "id": "prosthetics-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplaying muted looping background video, absolutely positioned inset-0 object-cover behind all foreground content."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Monochrome inline SVG brand mark (18x18, viewBox 0 0 256 256) sitting in the circular nav pill; single path filled with a solid mid-gray that should follow the fg color role."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "ui-sans-serif, system-ui, sans-serif",
+      "body": "ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f0f0ee",
+      "surface": "#EDEDED",
+      "fg": "rgb(84, 84, 84)",
+      "fgMuted": "#9ca3af",
+      "accent": "#3b82f6",
+      "accent2": "#60a5fa",
+      "border": "#60a5fa"
+    },
+    "copySlots": [
+      "nav-labels",
+      "badge-label",
+      "headline",
+      "subtext",
+      "cta-label"
+    ]
+  },
+  "mechanic": "Static bottom-left hero copy stack layered over a fullscreen looping background video, with hover micro-interactions that fill the CTA blue and nudge inline arrows right.",
+  "techDelivery": "Vite single-page React + TypeScript + Tailwind CSS (all markup in src/App.tsx; deps limited to react, react-dom, lucide-react).",
+  "reskinNotes": "Logo is a hand-built inline SVG path with the mid-gray fill (rgb(84,84,84)) hardcoded in markup; pill backgrounds (#EDEDED) and page bg (#f0f0ee) are set via inline style and a Tailwind arbitrary value rather than tokens; accent blues and grays are Tailwind utility classes (blue-400/500/600, gray-400/700/900) baked into className strings; all copy (nav labels, badge, headline, subtext, CTA) is hardcoded in JSX; type scale is fixed pixel/rem arbitrary values, so a swapped display font may need metric re-tuning."
+}

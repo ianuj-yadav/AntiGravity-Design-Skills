@@ -1,0 +1,89 @@
+{
+  "id": "xportfolio-hero",
+  "role": "hero",
+  "ownSections": [
+    "BackgroundVideo",
+    "Header",
+    "HeroContent",
+    "BrandLogoBar"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video — the single full-bleed brand asset for the whole screen. Rendered as <video autoPlay loop muted playsInline> positioned fixed top-0 left-0 w-full h-full object-cover pointer-events-none at zIndex 0, cover-cropped to fill any viewport on a no-scroll h-screen page. CRITICAL contrast note: unlike most video heroes this layout is DARK-on-LIGHT — all foreground text is black/#080808 over a warm cream (#F5F3EE) page with NO scrim/overlay, so the footage must stay bright/light/low-contrast enough that black headings, nav, body copy and the black pill buttons all stay legible across the entire frame. Reference is a CloudFront placeholder mp4 (video/mp4); supply a calm, light-toned brand loop."
+    },
+    {
+      "id": "brand-logo-icons",
+      "type": "icon",
+      "card": 6,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Bottom-row brand logo bar: a grid-cols-6 row of six white rounded-lg cards (Frame Blox, Supa Blox, Hype Blox, Hype Blox, Ultra Blox, Ship Blox), each holding one unique abstract logo glyph. Supply six single-color, currentColor-driven mark glyphs (or per-brand client logos) sized to the small card footprint; they read as dark marks on the white card surface. These are the partner/client logos in a social-proof strip."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three social network glyphs from lucide-react (Facebook — filled variant, Instagram, Youtube) sitting beside the designer bio paragraph in the middle row. Rendered at body/icon size as black (#080808) marks. Swap for the brand's social-platform set; keep them single-color, currentColor-tinted icons so the dark fill is preserved."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "bg",
+      "notes": "Directional arrow (ArrowRight) from lucide-react seated inside a white circle at the right end of the black 'Start today' pill CTA (pl-8 pr-1.5 py-1.5 bg-black text-white rounded-full). Because it sits on the white circle chip it reads as a DARK arrow (bg/cream-on-white), inverse of the white pill label. Swap for the brand arrow/chevron; keep it a single-color glyph that inherits currentColor."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Display face for ALL large uppercase headings. Spec specifies Anton (regular 400). Drives the giant multi-line h1 ('BUILDING / BRANDS THAT / RESONATE' at text-5xl→text-7xl, font-normal, leading-[0.80], tracking-tight) and the stat headings ('50+ BRANDS LAUNCHED', '5+ YEARS IN THE INDUSTRY'). The tight 0.80 line-height and tracking are tuned to Anton's heavy condensed metrics; swap with the brand's condensed display face and expect to re-tune leading/tracking."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Base/UI typeface for everything that is not a big heading. Spec specifies Inter (weights 300, 400, 500, 600, 700), set globally via inline fontFamily 'Inter, sans-serif'. Covers the 'Brandly' wordmark (font-bold), the nav links, both pill buttons, the subheading, the designer bio, and the stat description paragraphs. Swap with the brand body sans."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Anton', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F5F3EE",
+      "surface": "#FFFFFF",
+      "fg": "#080808",
+      "accent": "#000000",
+      "accent2": "#FFFFFF"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "signup-label",
+      "login-label",
+      "headline",
+      "subheading",
+      "cta-label",
+      "stat-1-heading",
+      "stat-1-body",
+      "designer-bio",
+      "stat-2-heading",
+      "stat-2-body",
+      "brand-card-labels"
+    ]
+  },
+  "mechanic": "A single no-scroll h-screen flex-column hero layering a fixed object-cover looping background video (z-0) beneath a relative z-10 stack — a flex justify-between navbar (wordmark + center nav links + Sign Up / black Log In buttons) above a flex-1 justify-between main area of three two-column grid rows (headline + 50+ stat, designer bio + 5+ stat, and a grid-cols-6 white-card brand logo bar) — with NO animation; the signature is the static dark-on-cream editorial composition over live light-toned footage.",
+  "techDelivery": "React + Tailwind CSS (default config, utility classes only, mobile-first sm/md/lg/xl breakpoints) authored against an index.html that loads Inter + Anton via Google Fonts; lucide-react supplies the icons (ArrowRight CTA, Facebook/Instagram/Youtube social); a single autoPlay/loop/muted/playsInline <video> is the only media element; colors are applied via Tailwind utilities plus inline hex (#F5F3EE bg, #080808 text), with no animation libraries.",
+  "reskinNotes": "Explicitly motion-free ('No animations') — there is no signature transition to retheme, but it also means a brand that expects MotionSites-style movement gets a static layout. This is a rare DARK-on-LIGHT video hero: the entire scheme is black/#080808 text and black pill buttons on a cream #F5F3EE page with NO video scrim, so a darker brand video or a darker palette will destroy legibility unless an overlay is added. Colors are baked as inline hex / Tailwind utilities (cream #F5F3EE page bg, #080808 text, bg-black / hover:bg-gray-800 buttons, white card backgrounds) rather than CSS custom properties, so reskinning means editing utilities/inline styles, not flipping :root tokens. The two-face pairing is load-bearing: Anton drives every uppercase heading at leading-[0.80] tracking-tight while Inter carries all body/UI, so swapping either face requires re-tuning the tight headline metrics. All copy is hardcoded in JSX: the 'Brandly' wordmark, the five nav labels (About, Features, Pricing, FAQ, Help), 'Sign Up' / 'Log In', the three-line headline 'BUILDING / BRANDS THAT / RESONATE' (line breaks are literal), the 'Thoughtful design that captivates, empowers, and creates lasting impact.' subheading, the 'Start today' CTA, both stat headings ('50+ BRANDS LAUNCHED', '5+ YEARS IN THE INDUSTRY') and their descriptions, the designer bio, and the six brand-card labels (Frame Blox, Supa Blox, Hype Blox, Hype Blox, Ultra Blox, Ship Blox — note the duplicate 'Hype Blox'). The headline is viewport-scaled (text-5xl→text-7xl) and tuned to this three-line copy, so longer copy will reflow the justify-between column layout."
+}

@@ -1,0 +1,94 @@
+{
+  "id": "stellar-launch",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Submissions",
+    "AboutFounders",
+    "PersistentOverlay"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling SECTION 1 (min-height calc(100vh - 40px)) with object-cover, behind the centered headline. Plays autoPlay loop muted playsInline and carries a top-to-bottom dark overlay gradient (from-black/10 via-transparent to-black/20). The #154359 dark heading/eyebrow/subtext sit directly on top, so supply a clip that stays calm/low-contrast in its center and does not fight dark navy text. Native source is a CloudFront mp4 placeholder (socket to fill)."
+    },
+    {
+      "id": "submissions-center-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "One square showcase video anchoring the center column of SECTION 2 (the [submissions] header sits above it). Rendered as a responsive square (220px / 380px / 460px) with object-cover, autoPlay loop muted playsInline. Flanked by two columns of three chamfered NominationCard links on lg. Native source is a CloudFront mp4 placeholder (socket to fill)."
+    },
+    {
+      "id": "founder-stat-card-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "accent",
+      "notes": "Three background images for the AboutFounders stats grid (cards '7+ years', '15000+', '120+'). Each fills a fixed-height card (280px / 340px) as a bg-cover bg-center background-image inside a 1.5px white-rgba border frame, all clipped by per-card angular polygon() clip-paths (different chamfer geometry per card) and rendered with mixBlendMode 'plus-darker' over an rgba(255,255,255,0.8) plate — so the image is tonally crushed/darkened and must read well after that blend. A gradient stat value (294deg #185B7B->#4BBDF0) and #154359 caption overlay the lower-left, so keep the bottom-left region uncluttered. Card 2 is offset down (lg:mt-24). Native sources are higgs.ai/CloudFront webp placeholders (sockets to fill)."
+    },
+    {
+      "id": "page-typefaces",
+      "type": "font",
+      "card": 2,
+      "notes": "Two linked typefaces: DISPLAY = 'TT Firs Neue' (loaded from a specific onlinewebfonts.com hash URL, applied via the .font-firs class to all headings — 'launchex prizes' hero at 48/76/100/120px, the 'submissions' and 'About the founders' headings, and the gradient stat values; rendered font-normal/font-semibold, uppercase, tight/negative tracking, leading 0.9-0.95). BODY = 'Inter' (Google Fonts weights 300-700, set on html/body as the default family for eyebrows, subtext, nav, nomination cards and paragraphs). Headline sizes are large with negative tracking and tight leading, so a wider display substitute will overflow the two-line hero. Both are sockets to swap for the brand's display+body pairing."
+    },
+    {
+      "id": "ui-chrome-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI glyphs from lucide-react (the only icon dependency), not brand assets: Sparkles (the 'launchex/awards' logo lockup mark in the hero top bar) and ArrowUpRight (in the 'Send in your entry form' CTA and the 'Launchex.Hub website' link, animating translate on hover). Single-color line icons inheriting currentColor (white in the hero bar, #154359 in the about link). Optional socket — only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'TT Firs Neue', 'Inter', system-ui, sans-serif",
+      "body": "'Inter', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#F0F0F0",
+      "fg": "#154359",
+      "accent": "#066377",
+      "accent2": "#4BBDF0",
+      "border": "rgba(6, 99, 119, 0.25)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "logo-subtext",
+      "hero-cta-label",
+      "hero-cta-label-mobile",
+      "hero-eyebrow",
+      "hero-headline",
+      "hero-subtext",
+      "submissions-eyebrow",
+      "submissions-heading",
+      "nomination-card-titles",
+      "nomination-card-subtitles",
+      "founders-heading",
+      "founders-body-paragraphs",
+      "founders-link-label",
+      "stat-card-values",
+      "stat-card-descriptions",
+      "overlay-nav-labels",
+      "page-indicator",
+      "scroll-indicator-label"
+    ]
+  },
+  "mechanic": "A white inset card (20px padding, 28/36px rounded corners) whose content scroll-x-hidden/scroll-y-auto with hidden scrollbars inside the clipped container, stacking three full-bleed sections (fullscreen hero video, 3-column submissions, founder stats grid) behind a persistent absolute overlay (centered top nav with radial-gradient inverted corner notches, plus mix-blend-difference scroll/page indicators) and unified by angular polygon() clip-path chamfers on the CTA, nomination cards and stat images.",
+  "techDelivery": "React + Vite + Tailwind CSS + TypeScript + lucide-react (Sparkles, ArrowUpRight); fonts loaded via <link> in index.html (Inter from Google Fonts, 'TT Firs Neue' from an onlinewebfonts.com hash URL) with a small global CSS block defining the .font-firs and .no-scrollbar utilities; videos are native <video> autoPlay loop muted playsInline.",
+  "reskinNotes": "Every brand color is baked as a raw hex/rgba literal in Tailwind arbitrary values and inline styles rather than tokens: #154359 (all dark text), #066377 (teal CTA), the section backgrounds #F0F0F0 (submissions) and #F0F5F7 (about, also hardcoded into the two bottom-fade linear-gradients at three stops), the nomination stroke rgba(6,99,119,0.25), and the gradient-text stat values linear-gradient(294deg,#185B7B 20%,#4BBDF0) with -webkit-background-clip:text (so #185B7B/#4BBDF0 are a separate two-stop pair only partly captured by accent/accent2). All the angular corner geometry is drawn inline, not as assets: the CTA, the about-link box and the overlay-nav notches use pixel-based clipPath polygon()/radial-gradient masks, and every NominationCard border is an inline <svg> chamfered-rectangle polygon (points 14,0 100,0 100,86 86,100 0,100 0,14) with the stroke color hardcoded — so re-cornering or retinting means editing CSS/SVG, not swapping files. The three stat cards each carry a distinct hand-tuned clip-path polygon plus mixBlendMode:'plus-darker' over an rgba(255,255,255,0.8) plate, which tonally darkens whatever brand image is dropped in (light/airy brand imagery will be crushed). There is no distinct muted-foreground value — 'muted' text is just #154359 at reduced opacity (opacity-80/90), so fgMuted is intentionally omitted. Layout is font-metric dependent: the two-line .font-firs hero ('launchex prizes') is sized 48->120px with tracking-[-0.04em] and leading-[0.9], and 'TT Firs Neue' loads from a single fragile onlinewebfonts.com hash URL, so a wider or differently-weighted display substitute (or a longer brand headline) overflows. All copy is hardcoded in JSX: the 'launchex'/'awards' logo lockup, the 'Send in your entry form'/'Enter' CTA, hero eyebrow/heading/subtext, the six nomination title+subtitle pairs (left and right columns), both founder paragraphs, the three stat value/description pairs, the five overlay nav labels ('About','Submissions','Venue','Judges','Connect'), the bottom-left 'Scroll to discover', and the bottom-right page indicator which is hardcoded '01'..'05' (claims 5 pages though only 3 content sections exist). External hrefs (https://base.launchex.vc/) and the placeholder CloudFront/higgs.ai asset URLs are inlined in the markup as the video/image sockets."
+}

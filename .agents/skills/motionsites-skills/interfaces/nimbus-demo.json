@@ -1,0 +1,56 @@
+{
+  "id": "nimbus-demo",
+  "role": "dashboard",
+  "ownSections": [
+    "ConsoleHeading",
+    "ConsoleFigureLabel",
+    "DashboardShell"
+  ],
+  "slots": [
+    {
+      "id": "sans-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI sans (--font-sans), loaded as 'IBM Plex Sans' weights 400/500 from Google Fonts with preconnect; drives body copy, the cyan section h2/h3, sidebar nav, and table data cells. Substitute a clean humanist sans that holds at body sizes and the clamp(25px,4vw,52px) h2."
+    },
+    {
+      "id": "mono-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Technical monospace (--font-mono), loaded as 'IBM Plex Mono' weights 400/500 from Google Fonts; used for the uppercase 'Fig. 2' figure label, the 'New pool' button, the table header row, and the cyan status strongs (Healthy/Syncing/Queued). Letter-spacing-tuned uppercase mono, so pick a mono with even caps."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "mono": "\"IBM Plex Mono\", \"SF Mono\", ui-monospace, monospace"
+    },
+    "colorRoles": {
+      "bg": "#070a0b",
+      "surface": "rgba(5, 8, 10, 0.9)",
+      "fg": "#dff5ff",
+      "fgMuted": "rgba(223, 245, 255, 0.64)",
+      "accent": "#97d3eb",
+      "accent2": "#dff5ff",
+      "border": "rgba(151, 211, 235, 0.18)"
+    },
+    "copySlots": [
+      "eyebrow-figure-tag",
+      "eyebrow-figure-caption",
+      "headline",
+      "body",
+      "sidebar-workspace-label",
+      "nav-labels",
+      "panel-title",
+      "cta-label",
+      "table-header-labels",
+      "table-row-data",
+      "table-status-labels",
+      "toast-title",
+      "toast-body"
+    ]
+  },
+  "mechanic": "A single tall (112svh) cyan-on-near-black console section pairing a two-column heading and a mono figure label above a full faux web-app dashboard shell (skeleton topbar, sidebar nav, 5-column status table, floating toast) that on hover tilts in 3D (perspective rotateX 1deg / rotateY -1.2deg, lift -8px) while a diagonal specular light-sweep slides left-to-right across it.",
+  "techDelivery": "Static multi-file Vite app (index.html + styles.css + empty script.js + package.json vite ^5.4.2 type:module + default vite.config.js); plain semantic HTML with all styling and the hover motion in pure CSS, no JavaScript and no frameworks.",
+  "reskinNotes": "This section deliberately overrides the page's warm-gold :root tokens (--bg #17130d, --ink #fff4d5, --accent #ead09a) with a self-contained cool cyan/blue palette to differentiate the product UI; that cyan is NOT tokenized — every value (#070a0b base, #97d3eb cyan, #dff5ff text, and a dozen rgba(151,211,235,...) / rgba(223,245,255,...) borders, fills, and shadows) is baked literally into the styles, so a reskin must edit each occurrence in place. The dashboard contains no image/video/icon/SVG assets at all: the topbar dots and address bar, the decorative top-right 'ghost document' ruled-lines (::after repeating-linear-gradient), and the diagonal hover shine (::before linear-gradient at 115deg) are all generative CSS, not brand sockets. Every string is hardcoded in markup with no data source: the headline, the 'A single control plane...' paragraph, 'Fig. 2 / Nimbus Grid web console', sidebar 'Client Vault' + 6 nav items (Storage Pools active), 'Storage Pools' panel title, 'New pool' button, the full 5-column status table (4 rows of finance-vault/design-assets/legal-archive/migration-lane with regions/TiB sizes/policies/statuses), and the 'Pool created / finance-vault ready' toast. Layout is font-metric-dependent and tuned to the placeholder copy: the 240px sidebar, the 1.3fr/1fr/0.8fr/1fr/0.8fr table grid, and the letter-spacing-tuned uppercase mono labels assume short strings, and the 820px breakpoint hides table columns 4-5 (Policy/State) and reflows the sidebar to a 2-up nav, so longer reskin strings can overflow or change which columns survive."
+}

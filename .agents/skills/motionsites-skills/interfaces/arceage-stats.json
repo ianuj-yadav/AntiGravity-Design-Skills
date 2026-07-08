@@ -1,0 +1,77 @@
+{
+  "id": "arceage-stats",
+  "role": "stats",
+  "ownSections": [
+    "LeftColumn",
+    "StatsGrid",
+    "LogoMaskedVideo"
+  ],
+  "slots": [
+    {
+      "id": "feature-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Right-column feature video clipped through the brand logo silhouette; autoPlay/loop/muted/playsInline, object-cover inside a square (aspect-square) mask, scales 0.9 -> 1.2 on scroll-in. Square framing required because the logo mask is centered in a square (viewBox 0 0 100 100) and the wrapper is aspect-square."
+    },
+    {
+      "id": "logo-mask",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Brand logo silhouette used as a CSS mask-image (single filled path, viewBox 0 0 100 100) that cuts the right-column video into the logo shape. Fill color is irrelevant (mask uses alpha); shape must read as a solid silhouette. Delivered as an inline SVG data URI in -webkit-mask-image / mask-image with maskSize:contain, maskRepeat:no-repeat, maskPosition:center. Native placeholder is a triangular/mountain mark."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI typeface for every sans string in the section: the heading (clamp(1.5rem,4vw,3.5rem) font-medium tracking-tight leading-1.1), the subtitle (font-light text-white/40), and the stat labels (10-12px font-semibold uppercase tracking-wider). Native declaration is Barlow (Google Fonts, weights 100-900 + italics) exposed as the Tailwind v4 --font-sans token (font-sans). Page wrapper is font-sans, so substitute a clean grotesque sans with tight tracking tolerance."
+    },
+    {
+      "id": "accent-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Accent/poetic serif declared as the Tailwind v4 --font-dm-serif token = Instrument Serif (Google Fonts, roman + italic). Used in TWO load-bearing places: the italic heading phrase 'Maximize Your Yield' (font-dm-serif italic font-normal) and the face of all five stat numbers (text-4xl -> lg:text-[56px] font-dm-serif tracking-tight). Swapping it shifts the numeric metrics, so pick a display serif with similar digit widths."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "\"Barlow\", ui-sans-serif, system-ui, sans-serif",
+      "accent": "\"Instrument Serif\", serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.4)",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "headline-line1",
+      "headline-line2-prefix",
+      "headline-line2-accent",
+      "body",
+      "stat-1-value",
+      "stat-1-suffix",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-suffix",
+      "stat-2-label",
+      "stat-3-value",
+      "stat-3-suffix",
+      "stat-3-label",
+      "stat-4-value",
+      "stat-4-suffix",
+      "stat-4-label",
+      "stat-5-value",
+      "stat-5-suffix",
+      "stat-5-label"
+    ]
+  },
+  "mechanic": "A two-column stats band where left-column copy reveals character-by-character (scroll-triggered Typewriter) and five numeric stats count up 0->value on scroll-in (AnimatedCounter), while the right column scales a brand-logo-masked looping video up from 0.9 to 1.2.",
+  "techDelivery": "React 19 + Tailwind CSS v4 (@tailwindcss/vite) + motion (motion/react: motion, useInView, animate), bundled with Vite v6+; fonts @import-ed in global CSS and registered as Tailwind v4 theme tokens.",
+  "reskinNotes": "Brand logo is baked into JSX as an inline SVG path data URI duplicated across -webkit-mask-image and mask-image, so reskinning the silhouette means editing both copies of the path in markup. Stat values/suffixes/decimals and all copy are hardcoded as component props/JSX (no data source). The heading is width-pinned (w-[590px] max-w-full) so longer reskin copy wraps differently, and the heading splits into a sans first line + a serif italic accent phrase that must be re-segmented by hand. The accent serif (Instrument Serif italic) doubles as the stat-number face, so swapping it shifts numeric metrics and column widths. Section padding, the lg:px-[120px] gutter, the lg:gap-[160px] column gap, and fgMuted/border (white/40, white/10) are baked into Tailwind arbitrary-value class strings rather than tokens. Theme fonts are wired via Tailwind v4 tokens (--font-sans, --font-dm-serif) plus a Google Fonts @import in global CSS."
+}

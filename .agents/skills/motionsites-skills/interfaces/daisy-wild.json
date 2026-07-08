@@ -1,0 +1,52 @@
+{
+  "id": "daisy-wild",
+  "role": "features",
+  "ownSections": [
+    "WildScentSection",
+    "ProductPanel"
+  ],
+  "slots": [
+    {
+      "id": "scent-hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Single looping fragrance film that fills one half of the split section. One asset, referenced by the SAME verbatim URL in two render paths: the desktop panel (hidden md:block, left half on >=768px, absolute inset-0 w-full h-full object-cover over a #111 plate, min-height 100%) and the mobile strip (md:hidden, full-width height:75vw over #111). Rendered <video autoPlay muted loop playsInline object-cover> in both, so it crops to whatever box it lands in — no fixed aspect; supply a center-safe vertical-tolerant reel. Native source is a placeholder CloudFront MP4; this is one socket to fill with brand footage. Keep the register bright/playful to sit beside the lime (#BDE84F) product panel."
+    },
+    {
+      "id": "product-bottle-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Hero product (fragrance bottle) still shown centered in the ProductPanel image well. Rendered object-cover, display:block, filling a clamp(140px,40%,220px)-wide container with a FIXED aspectRatio of 220/340 (~0.647, tall portrait), 2px border-radius, overflow-hidden, on a #D9D9D9 placeholder plate that shows through until the image loads. Native source is a placeholder higgs.ai/CloudFront PNG (delivered via an images.higgs.ai webp proxy). One socket to fill with the brand's bottle shot; frame for the 220x340 portrait crop. Pairs with the product name + size caption and the three scent-note copy lines."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "Tailwind default system sans-serif stack (font-sans; no custom or Google font face declared)"
+    },
+    "colorRoles": {
+      "bg": "#BDE84F",
+      "surface": "#D9D9D9",
+      "fg": "#000000",
+      "accent": "#111111",
+      "border": "#000000"
+    },
+    "copySlots": [
+      "panel-eyebrow-left",
+      "panel-eyebrow-right",
+      "product-name",
+      "product-size",
+      "note-labels",
+      "note-ingredients",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A split features section — looping fragrance video on one half, lime product panel on the other (flex-col-reverse stack on mobile so the panel sits on top, md:grid 1fr/1fr min-h-screen side-by-side on desktop) — whose IntersectionObserver one-shot at 15% visibility fires a downward translateY+opacity stagger (cubic-bezier(0.22,1,0.36,1)) cascading top-labels -> product image -> caption -> notes -> SHOP NOW button, the button carrying a left-origin white scale-x fill on hover.",
+  "techDelivery": "Standalone React 18 + TypeScript + Tailwind CSS 3 (default config / default sm:640 md:768 breakpoints) section component built for Vite, no extra packages and no icon libraries; motion is hand-rolled via an anim() helper returning inline opacity/transform/transition styles plus a useRef + IntersectionObserver + useState visibility gate, with all theme colors as inline-style hex constants (TEXT_COLOR/BG_LIME) and Tailwind utility classes rather than CSS variables.",
+  "reskinNotes": "No custom font is loaded (Tailwind default system sans), so there is no native display face to map — a brand display/heading typeface is a net-new addition, not a swap. All colors are baked as literal hex in TS constants and inline styles (not CSS variables / not Tailwind tokens): #BDE84F panel bg, #000000 all text + button border, #D9D9D9 image placeholder plate, #111 video loading plate, #ffffff button hover fill — retinting means editing these literals in place. Layout is font-metric dependent: the image well is a fixed 220/340 aspectRatio at clamp(140px,40%,220px), and type sizes are fixed Tailwind steps (text-xs/text-sm) with tracking-widest uppercase note/button lines, so a wider replacement face can crowd the bottom notes+button flex-wrap row. ProductPanel is a SHARED component driven by a noteStyle prop: noteStyle='bold' (this section) overrides the top eyebrow copy to 'Daisy wild' / 'Playful' and sets note-label fontWeight to 700 (vs 'Daisy love' / 'Sweet' and 400 in the default); ingredient lines are always font-bold. All copy is hardcoded in JSX/data: the eyebrows, product name 'Eau So Extra', size '100 ml / 3.3 oz', the three note label/ingredient pairs (Top/BANANA BLOSSOM ACCORD, Heart/CHOCOLATE DAISY ACCORD, Base/VETIVER OIL), and the 'SHOP NOW' label. The single video asset is referenced by TWO separate <source> tags (desktop + mobile DOM nodes) via the same verbatim CloudFront URL, so a reskin must update both occurrences. The flex-col-reverse-vs-md:grid trick (DOM order video-desktop, video-mobile, panel) is load-bearing for the mobile panel-on-top ordering and the desktop left-video/right-panel split."
+}

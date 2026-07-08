@@ -1,0 +1,63 @@
+{
+  "id": "feedback-slider",
+  "role": "carousel",
+  "ownSections": [
+    "TestimonialCarousel"
+  ],
+  "slots": [
+    {
+      "id": "author-avatar",
+      "type": "image",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Circular author headshot at the bottom-left of each testimonial card (w-12 h-12 rounded-full object-cover, ~48px square at 1:1). One socket per testimonial across the 5-card auto-advancing track (the track triples the array to 15 rendered nodes, but only 5 unique fillable avatars exist). Placeholder sources are Pexels stock photos requested at w=200 h=200 dpr=2 (so supply ~400x400 square crops). Each avatar pairs with its own quote / author-name / role / company copy slots."
+    },
+    {
+      "id": "quote-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Decorative opening-quotation-mark glyph at the top of every testimonial card (mb-6, w-8 h-8 ~32px square). Inline single-path SVG (viewBox 0 0 24 24, fill=currentColor) so it tints to the fg text color via Tailwind text-[#0D212C]; transparent background. Same mark reused on all cards — a brand reskin can swap the path for a brand quote/emblem."
+    },
+    {
+      "id": "rating-star",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Filled rating star in the header rating cluster, repeated 5 times in a row above the 'Clutch 5/5' label (lucide-react Star, w-5 h-5, fill-black text-black ~ #000000). One reskin socket representing the repeated 5-star mark; tints to brand fg/accent. A brand swap could replace it with a logo or alternative rating glyph."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'PP Mondwest' (self-hosted woff2 in public/PPMondwest-Regular.woff2; used only as the inline-styled accent word 'builders' inside the heading, serif fallback)",
+      "body": "'PP Neue Montreal' (Book 400 + Medium 500, self-hosted .otf via @font-face; body + all UI text, falls back to -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#ffffff",
+      "fg": "#0D212C",
+      "fgMuted": "#273C46",
+      "accent": "#000000",
+      "border": "rgba(13,33,44,0.2)"
+    },
+    "copySlots": [
+      "headline",
+      "headline-accent-word",
+      "rating-source-label",
+      "rating-score",
+      "testimonial-quotes",
+      "author-names",
+      "author-roles",
+      "author-companies",
+      "nav-aria-labels"
+    ]
+  },
+  "mechanic": "An IntersectionObserver-revealed (staggered fade-in-up) white section driving a tripled-array auto-advancing testimonial track that translateX-steps one card-with-gap every 3s (cubic-bezier 0.8s, paused on hover, prev/next stepped) with a per-card edge exit that fades and scales each card down as it passes the left boundary.",
+  "techDelivery": "React + TypeScript + Tailwind CSS + Vite, lucide-react icons (Star/ChevronLeft/ChevronRight), a custom useInViewAnimation IntersectionObserver hook (threshold 0.1, stays true), and global src/index.css @font-face + fadeInUp keyframe before the @tailwind directives.",
+  "reskinNotes": "Brand colors are baked into Tailwind arbitrary-value classes / inline styles rather than CSS variables: #0D212C (heading, quote text, author name, quote glyph, nav icons, and the #0D212C/20 + #0D212C/5 button border/hover) and #273C46 (role/company + '5/5' muted text) recur literally across the component and must each be edited by hand; the rating stars are fill-black/text-black (#000000) and the card shadow is a fixed rgba(0,0,0,0.08). The quote mark is an inline SVG path (not a swappable file), and the heading is hardcoded as the literal 'What ' + inline-styled <span> 'builders' (PP Mondwest) + ' say', so the accent word and its display face are coupled in markup. Layout is font-metric- and viewport-dependent: a fixed desktop card width of 427.5px (mobile = window.innerWidth - 48), gap 24, the 768px isMobile breakpoint, fluid heading sizes (32 -> 40 -> 44px), and asymmetric card padding (md:pl-10 md:pr-24) are all tuned to the declared copy length and card count. PP Mondwest is self-hosted and must ship as public/PPMondwest-Regular.woff2. The per-card exit math (distanceFromEdge = offset % (cardWithGap * count), opacity/scale from relativePosition vs cardWidth) and the 3000ms interval are tuned to the 5-testimonial count and fixed widths."
+}

@@ -1,0 +1,66 @@
+{
+  "id": "liquid-glass-features",
+  "role": "features",
+  "ownSections": [
+    "FeaturesChess"
+  ],
+  "slots": [
+    {
+      "id": "heading-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading typeface (natively 'Instrument Serif', used in its italic 0;1 cut) carrying every h2/h3 in the section: the centered section heading at text-4xl->6xl and each row heading at text-3xl->4xl, all rendered italic with tracking-tight and a tight leading-[0.9]. Loaded via the Google Fonts <link> and wired as Tailwind font-heading (theme.extend.fontFamily.heading) plus an h1,h2,h3 base rule in index.css. A replacement must be an expressive serif with a genuine italic that holds the near-solid leading-[0.9] line packing without colliding."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/UI typeface (natively 'Barlow', weights 300/400/500/600) used for the 'Capabilities' badge (font-medium), all paragraph copy (font-light text-white/70, max-w-lg) and the CTA button labels (font-medium). Loaded via the Google Fonts <link>, set as the document body font-family in index.css and exposed as Tailwind font-body (theme.extend.fontFamily.body). Replacement should be a humanist/grotesque sans that is legible at small text-sm/text-base sizes and ships a light (300) weight for the relaxed-leading body paragraphs."
+    },
+    {
+      "id": "feature-preview-gif",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two animated product/website-preview GIFs, one per alternating chess row, each dropped into a 'liquid-glass rounded-2xl overflow-hidden' card and rendered w-full h-auto (so the GIF's own intrinsic aspect drives the box). Row 1 (right side) is an AI-designed website preview with a growth/analytics theme; Row 2 (left side) is a glassmorphism-agency website preview. Used directly as external src strings (not imported). No transparency needed — they sit opaque inside the glass card on the solid black background; supply short seamless loops."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Trailing diagonal arrow glyph rendered at h-4 w-4 inside both 'liquid-glass-strong' CTA pills ('Learn more' and 'See how it works'); a single icon type reused in both rows, inheriting the white (text-white / fg) button label color. Native icon is lucide-react ArrowUpRight; supply one single-color/currentColor mark."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Barlow"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "border": "rgba(255, 255, 255, 0.45)"
+    },
+    "copySlots": [
+      "section-badge",
+      "section-heading",
+      "row-1-heading",
+      "row-1-body",
+      "row-1-cta-label",
+      "row-2-heading",
+      "row-2-body",
+      "row-2-cta-label"
+    ]
+  },
+  "mechanic": "A solid-black features section stacks a centered glass pill badge and italic-serif heading above two alternating 50/50 'chess' rows (text-left/image-right, then row-reverse to image-left/text-right) that collapse to a single content-above-image column on mobile, with liquid-glassmorphism (backdrop-blur + masked gradient-border ::before) on the badge, the strong-blur CTA pills and the rounded-2xl GIF preview cards; the only motion is a white-overlay hover transition on the buttons.",
+  "techDelivery": "Single-section React + Vite + Tailwind CSS (tailwind.config.ts fontFamily extend + index.css @layer components for .liquid-glass / .liquid-glass-strong) component spec, with lucide-react for the ArrowUpRight icon and Instrument Serif + Barlow pulled from a Google Fonts <link>; no animation library — the two preview GIFs are external src strings.",
+  "reskinNotes": "The whole liquid-glass effect is metric- and palette-locked to a solid #000 page with white ink: the .liquid-glass/.liquid-glass-strong classes hardcode rgba(255,255,255,*) fills, an inset white highlight box-shadow, and a 1.4px masked white gradient-border (the ::before linear-gradient 0.45->0.15->0->0.15->0.45) that only reads against black — the prompt explicitly states the black background is essential for the glass to render, so a reskin must keep a near-black bg or retune every rgba stop and the -webkit-mask-composite border. backdrop-filter blur(4px) vs blur(50px) distinguishes the two variants and depends on real content behind them. All copy (badge, headings, both body paragraphs, both CTA labels) is hardcoded in the JSX, and the body string in Row 1 uses a real em dash U+2014 ('top sites—then'), not two hyphens. Color is expressed as Tailwind arbitrary white/opacity utilities (text-white/70, hover:bg-white/10) rather than brand tokens, so a non-monochrome brand palette is a non-trivial swap. The two GIF URLs point at motionsites.ai placeholder assets and must be replaced with brand previews."
+}

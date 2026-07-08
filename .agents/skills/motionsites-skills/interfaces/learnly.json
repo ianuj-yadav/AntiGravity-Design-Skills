@@ -1,0 +1,60 @@
+{
+  "id": "learnly",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroMain",
+    "CourseAccordion",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "course-card-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "fg",
+      "notes": "Row of full-bleed course-category photos filling the right-side accordion of .c6-card panels (native placeholders: Editing Module, Editing Module, Commerce Journey). Each image is absolutely positioned, height:100% width:auto and horizontally centered (top:0; left:50%; translateX(-50%)), so it is cropped on the sides as its panel expands/collapses between flex 0.8 and flex 2.5 on hover. A dark bottom gradient (::after rgba(0,0,0,0.6)->transparent) plus a side gradient overlay sit on top for white text legibility, so supply tall portrait-friendly photos with the subject roughly centered and tolerant of heavy side-cropping and a darkened lower third. card:3 is the placeholder count; the accordion lays out however many cards are provided. No transparency needed (full photographic fill)."
+    },
+    {
+      "id": "ui-sans-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single typeface used for the entire hero (logo wordmark, nav links, giant 'Study. Train. Rise.' H1, search field + button, card titles/topic counts, vertical category labels, and footer line). Native family 'Outfit' (Google Fonts, weights 300/400/500/600/700) loaded via an index.html <link>, set as body font-family with sans-serif fallback. The 5.5rem -2px-tracking headline and the 2.2rem card titles are tuned to Outfit's geometric proportions, and the .c6-card-title uses white-space:nowrap so a wider replacement face can overflow."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Outfit",
+      "body": "Outfit"
+    },
+    "colorRoles": {
+      "bg": "#f4f4f2",
+      "surface": "#ffffff",
+      "fg": "#1a1e2d",
+      "fgMuted": "#666666",
+      "accent": "#fdb181",
+      "accent2": "#fa9d63",
+      "border": "#eeeeee"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-login-label",
+      "nav-cta-label",
+      "headline",
+      "search-placeholder",
+      "search-button-label",
+      "card-titles",
+      "card-category-labels",
+      "card-topic-counts",
+      "card-topic-unit-label",
+      "footer-line"
+    ]
+  },
+  "mechanic": "A single full-viewport split hero pairs a left 'Study. Train. Rise.' headline plus pill search box with a right-hand horizontal accordion of three photo cards that expand/collapse via flex (0.8<->2.5) on hover, cross-fading a vertical category label into a bottom title/topic-count overlay, all driven by pure CSS transitions and collapsing to a 300px scroll-snap carousel on mobile.",
+  "techDelivery": "Vite + React 18 + TypeScript single App.tsx component with a hand-authored src/index.css (Tailwind base/components/utilities directives are included but the hero uses bespoke .c6-* CSS classes, not Tailwind utilities); all motion is CSS transitions/transforms (no Framer Motion, no @keyframes, no SVG, no icon library); Outfit font via index.html <link>; lucide-react and @supabase/supabase-js are declared as deps but unused by this hero.",
+  "reskinNotes": "Several colors are baked as literal hex in CSS outside the :root token block, so retinting needs CSS edits not token swaps: the search button's split gradient hardcodes green #8BBF77 over the --accent peach, and the .c6-vertical-text label background hardcodes near-black #1C1D2D. All copy is hardcoded in App.tsx: the 'Learnly.' wordmark (the '.' is a styled <span> accent, not text data), the four nav labels (Chase dreams/Collection/Trades/Students), 'Enter', 'Try It Now', the 'Study.<br/>Train.<br/>Rise.' headline (literal <br/> line breaks), the 'Chase your dreams' search placeholder, the 'Up' button label, the three cards' titleTop/titleBottom/label/num values in the inline cards array, the 'Topics' unit label, and the footer 'Boundless passes to 100+ mentorships.' line. Layout is font-metric-dependent: the 5.5rem/-2px headline and 2.2rem white-space:nowrap card titles assume Outfit's geometry, so longer copy or a wider face can overflow the nowrap titles or break the headline line count. Card images are not transparency- or aspect-locked but are center-cropped and bottom-darkened, so off-center or light-on-bottom subjects lose legibility behind the white overlay text."
+}

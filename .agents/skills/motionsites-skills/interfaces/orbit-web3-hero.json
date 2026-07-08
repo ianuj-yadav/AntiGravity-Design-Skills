@@ -1,0 +1,62 @@
+{
+  "id": "orbit-web3-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroHeading",
+    "GlowButton",
+    "LogoMarquee"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, absolutely positioned at z-0 behind all content, object-cover filling the entire viewport; muted/autoPlay/loop/playsInline."
+    },
+    {
+      "id": "navbar-w-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Top-left navbar brand mark: stroke-based zigzag 'W' (path M8 10L14 30L20 16L26 30L32 10, strokeWidth 3, rounded caps/joins, 40x40). Single-color stroke shape tinting to fg."
+    },
+    {
+      "id": "marquee-builder-logos",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Five 'Trusted by top builders' marquee logo glyphs (currently Lucide Sun, Box, Star, Feather, Sparkles), w-6 h-6 tinting to fg/60, each paired with a brand name in an infinite horizontal scroll loop."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(150 20% 5%)",
+      "fg": "hsl(45 30% 90%)",
+      "accent": "hsl(45 70% 75%)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "hero-headline",
+      "hero-headline-glow-word",
+      "cta-label",
+      "marquee-eyebrow",
+      "marquee-builder-names"
+    ]
+  },
+  "mechanic": "A full-bleed looping background video sits behind a vertically-centered serif hero headline whose final word carries a baked dual-span gradient-mask neon glow, above an amber glow-shadowed CTA and a bottom-pinned CSS-keyframe (translateX 0 to -50%) infinite logo marquee.",
+  "techDelivery": "Single-page React + Tailwind component spec with CSS-variable HSL design tokens (hsl(var(--x))), Lucide icons for the marquee, and a raw CSS @keyframes marquee animation; no scroll or JS animation library.",
+  "reskinNotes": "The neon glow on 'assets.' is hardcoded literal white hsl(0 0% 100%) duplicate spans with baked directional linear-gradient masks (white 20%/25% to transparent 50%/55%) and blur tiers, not derived from a token, so re-coloring the glow means editing inline styles. The CTA amber glow is hardcoded as hsl(45 70% 50% / 0.6) in the box-shadow and the internal blob as hsl(45 60% 95%) — both literal hex/hsl values distinct from the --accent token (45 70% 75%), so reskinning the gold must touch these separately. Headline copy ('Own the future of your assets.'), nav labels, CTA text, and the five builder names are all hardcoded in markup. Large viewport-scaled type (text-6xl..text-[7rem], leading-[0.95]) plus the overflow-visible glow bleed are tuned to Instrument Serif metrics, so swapping the display font can reflow the two-line headline or clip the glow."
+}

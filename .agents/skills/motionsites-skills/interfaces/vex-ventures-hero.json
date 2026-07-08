@@ -1,0 +1,53 @@
+{
+  "id": "vex-ventures-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay playsInline hero background video, absolutely positioned and object-cover to fill the whole viewport behind every foreground element. Spec mandates NO dark/gradient/semi-transparent overlay, so the raw footage shows at full brightness and is the page's entire backdrop; the liquid-glass nav and cards rely on a light rim against it, so dark-to-mid footage with a calm bottom-left region (where the headline sits) reads best."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally: body font-family 'Inter', sans-serif plus an extended Tailwind config (fontFamily.sans = ['Inter','sans-serif']) so all font-sans usage inherits it. Drives the VEX logo, nav links, the character-staggered display headline, the subheading, the button labels, and the glass tag. Weights used: 300/400/500/600. Native family 'Inter', loaded from Google Fonts via <link> in index.html with -webkit-font-smoothing:antialiased / -moz-osx-font-smoothing:grayscale on body."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0, 0, 0, 0.4)",
+      "fg": "#ffffff",
+      "fgMuted": "#d1d5db",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.2)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "body",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "glass-tag-label"
+    ]
+  },
+  "mechanic": "A single fullscreen raw looping background video sits behind a liquid-glass nav and a bottom-anchored hero, where the two-line display headline reveals character-by-character via a staggered per-glyph opacity + translateX(-18px -> 0) sweep and the subheading, button row, and bottom-right glass tag each cascade in on sequenced opacity FadeIns.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS (no extra UI libraries; lucide-react available but unused in the hero). Inter loaded via <link> in index.html and wired into tailwind.config fontFamily.sans; liquid-glass, the FadeIn wrapper (setTimeout + state -> transition-opacity), and the AnimatedHeading per-character split are hand-authored.",
+  "reskinNotes": "Almost all theming is expressed as Tailwind utility classes rather than a token block: neutrals are bg-white/text-black/text-gray-300 and borders are border-white/20, so reskinning means editing class names, not CSS variables. The liquid-glass effect bakes white rgba gradient stops and an inset highlight into a ::before mask tuned for a light rim on dark video, so it assumes a dark theme and will wash out on light footage. All copy is hardcoded in JSX: the 'VEX' logo, the four nav labels (Story/Investing/Building/Advisory), the two-line headline 'Shaping tomorrow\\nwith vision and action.' (the \\n is a literal, load-bearing line break and the per-character animation indexes off each line's length), the subheading, the 'Start a Chat'/'Explore Now' buttons, and the 'Investing. Building. Advisory.' glass tag. The headline uses an inline letterSpacing:'-0.04em' tuned to Inter's metrics and spaces are emitted as \\u00A0 non-breaking spaces inside the per-glyph spans, so a substitute display font may need retuning. Animation timings are fixed constants (charDelay 30ms, 200ms initial + 500ms per-char; FadeIns at 800/1200/1400ms delay, 1000ms duration)."
+}

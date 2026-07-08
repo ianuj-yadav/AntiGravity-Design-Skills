@@ -1,0 +1,61 @@
+{
+  "id": "waitlist-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroCard"
+  ],
+  "slots": [
+    {
+      "id": "boomerang-hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The single source-of-truth hero clip that fills the three-panel video section. ONE hidden <video> (muted, playsInline, preload=auto, parked offscreen at 1x1/opacity:0) is played forward once on mount; every unique frame is captured into offscreen <canvas> frames (downscaled to max-width 960) and then ping-ponged forward/backward at 30 FPS to fake a boomerang (currentTime seeking is explicitly forbidden as it lags). Each animation frame the captured frame is cover-fitted across the N visible cards treated as ONE continuous surface (combined width = cardW * n) and sliced into n vertical strips drawn onto each card's covering <canvas>, so the clip reads as one image spanning up to three panels. Must ship LOCALLY as /public/boomerang.mp4 (referenced /boomerang.mp4) — streaming from CloudFront causes lag. No alpha; cards 2 and 3 are hidden below sm so it must read well as a single full panel too. A bottom fade + heavy overlaid copy sit on top, so keep the lower third low-contrast/legible under white text."
+    },
+    {
+      "id": "middle-pill-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "0.58:1",
+      "alpha": false,
+      "notes": "One portrait still centered inside card 2 as a tall pill-shaped frame (width 130px, height 225px, border-radius 999px, overflow hidden, box-shadow 0 0 0 1.5px rgba(255,255,255,0.10) ring). Rendered as an <img> filling the frame with objectFit:cover, objectPosition:center, so the subject must survive an extreme rounded-pill crop with center-weighted composition. Sits over the moving boomerang panels and under the orb glows."
+    },
+    {
+      "id": "inter-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The single typeface for the whole hero — wordmark, nav buttons, body paragraph, CTA labels, the clamp(52px,10vw,110px) 'Organized.' headline (weight 600, line-height 1.0, letter-spacing -0.03em) and the italic subtitle. Native family: Inter. Headline is font-metric dependent: it is viewport-clamped with tight negative tracking and the right column right-aligns on md+, so a wider replacement face shifts the balance. Inter must supply a real italic for the subtitle."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#0E1114",
+      "surface": "#030404",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.70)",
+      "accent": "#ffffff",
+      "accent2": "rgba(200,215,255,0.55)",
+      "border": "rgba(255,255,255,0.10)"
+    },
+    "copySlots": [
+      "wordmark",
+      "nav-login-label",
+      "nav-cta-label",
+      "hero-body",
+      "hero-cta-label",
+      "headline",
+      "subtitle"
+    ]
+  },
+  "mechanic": "A single hidden video is frame-captured on mount then ping-ponged forward/backward at 30 FPS, and each boomerang frame is cover-fitted across the visible cards as one surface and sliced into per-card <canvas> strips, producing a seamless reversing clip spanning a three-panel hero card with a pill-framed still, decorative blurred orbs, and bottom-anchored headline/CTA over a fade gradient.",
+  "techDelivery": "React 18 + TypeScript + Tailwind CSS + Vite, single src/App.tsx, no external UI libs (lucide-react available but unused), all transitions 200ms; the hero video is downloaded at build time and served locally from /public/boomerang.mp4.",
+  "reskinNotes": "Monochrome by mandate: the spec forbids purple/indigo and uses no chromatic accent — the 'accent' role is just inverted white (white CTA fill on #030404), and the only non-white hues are the three decorative Orb tints. Those orbs are NOT swappable assets but a procedural <Orb> component (radial-gradient(circle,{color} 0%,transparent 70%), blur(20px), mix-blend-mode:screen) whose colors — rgba(255,255,255,0.70), rgba(200,215,255,0.55), rgba(185,210,235,0.55) — plus their per-card top/left/right/size positions are hardcoded inline in JSX (only one cool tint is sampled into accent2; the third is unrepresented in the skin). Every color, radius and pixel value (page #0E1114 dotted radial-gradient at 24px, card #030404 rounded-[32px], pill ring + dimensions, 260px bottom fade rgba(3,4,4,...) stops) is baked inline rather than as CSS variables, and the spec demands they match exactly. All copy ('micro' wordmark, 'Login', 'Join the Waitlist' x2, the body paragraph, 'Organized.', 'So you don't have to be.') is hardcoded in markup. The two asset URLs are hardcoded: the CloudFront .mp4 (which must be mirrored to /public/boomerang.mp4) and a higgs.ai image-proxy URL for the pill still. Cards 2 and 3 are hidden below sm, and the boomerang/canvas-slice pipeline is JS-coupled (frame count = visible cards), so responsive panel geometry is logic-driven, not purely CSS-overridable. The clamp headline is font-metric dependent."
+}

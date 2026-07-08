@@ -1,0 +1,95 @@
+{
+  "id": "evergreen-finance",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Testimonial",
+    "Features"
+  ],
+  "slots": [
+    {
+      "id": "hero-boomerang-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video for the full-viewport (min-h-screen overflow-hidden) Hero, handled by a custom <BoomerangVideoBg> wrapped in absolute inset-0 w-full h-full scale-[1.08] origin-center. It is NOT a plain looping <video>: the clip is played through once (muted/playsInline/crossOrigin='anonymous') while every frame is captured into offscreen canvases (max width 960px) via requestVideoFrameCallback (rAF fallback); after the source ends the captured frames are replayed forward/reverse boomerang on a visible <canvas> at 30fps, and the <video> is swapped out for the <canvas>. All hero foreground (Kova navbar, #08150C headline/subtext, two CTA pills, and the three dashboard cards) sits over it with NO scrim, so choose a light/bright, low-contrast clip that keeps dark #08150C text and the white/glass cards legible across the whole frame. crossOrigin='anonymous' is mandatory because frames are drawn to canvas (tainted-canvas/CORS): the host must send Access-Control-Allow-Origin or capture silently fails and only the raw <video> shows. Native source is a CloudFront-hosted MP4 placeholder to be replaced by a brand-owned loop."
+    },
+    {
+      "id": "testimonial-loop-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Square portrait loop video for the right column of the Testimonial section, a bare <video> at w-full rounded-2xl object-cover aspect-square (autoplay/muted/loop/playsInline) inside a max-w-xs sm:max-w-sm wrapper, distinct from the hero clip. No overlay or scrim; it reads as a standalone framed product/lifestyle loop beside the quote column. Favor footage that crops cleanly to 1:1. Native source is a CloudFront-hosted MP4 placeholder."
+    },
+    {
+      "id": "feature-card-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "3:4",
+      "alpha": false,
+      "colorRole": "fg",
+      "notes": "Three portrait background images, one each for Features cards 1 (Smart Budgeting), 2 (Bank-Grade Security) and 4 (Wealth Building) — card 3 (Spend Insights) has NO image (solid #EBE4DC + SVG donut). Each fills an aspect-[3/4] rounded-2xl overflow-hidden card as an absolute object-cover <img>, with a fixed bg-gradient-to-t from-[#08150C]/80 via-[#08150C]/20 to-transparent scrim baked over it so the dark-green wash reads up from the bottom. A white top label (lucide icon + title) sits top-left and white/80 body copy bottom-left over the image, so supply images that stay readable under the green gradient and keep white text legible at top-left. colorRole fg flags that the overlay is keyed to the #08150C foreground green and must be swept with the palette. Native sources are images.higgs.ai webp-proxy URLs wrapping CloudFront PNG placeholders."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 2,
+      "notes": "Display serif Cooper BT W01 in two weights, loaded in index.html via two <link> tags from db.onlinewebfonts.com (a third-party CDN proxy, NOT Google Fonts or self-hosted): Cooper BT W01 Light and Cooper BT W01 Medium. Exposed as utility classes .font-cooper (Cooper BT W01 Light -> Georgia -> serif) and .font-cooper-medium (Cooper BT W01 Medium -> Cooper BT W01 Light -> Georgia, weight 500). Drives the 'Kova' wordmark, the hero headline (up to text-7xl, tracking-tight), and all section headings + the testimonial quote. Body/UI text is unstyled Tailwind default sans (stone-* / system stack), so this socket covers only the Cooper display layer. Two faces (Light + Medium) => card 2."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional lucide-react UI/feature glyphs, a dependency rather than brand art, rendered as currentColor line icons: Menu/X (size 22) for the mobile hamburger toggle; Play (size 14 fill-stone-800 hero 'Watch 30s Demo'; size 13 fill-white Features 'Watch Demo'); Download (size 14, 'Get the App'); and the four white Features card-label marks Sparkles / ShieldCheck / PieChart / TrendingUp (size 16). Tinted via currentColor to either #08150C/stone-800 (dark-on-light) or white (on image cards). Optional socket: only swap if the brand ships its own icon set; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Cooper BT W01 Light', 'Georgia', serif",
+      "body": "system-ui, sans-serif",
+      "accent": "'Cooper BT W01 Medium', 'Cooper BT W01 Light', 'Georgia', serif"
+    },
+    "colorRoles": {
+      "bg": "#FDF5EB",
+      "surface": "#EBE4DC",
+      "fg": "#08150C",
+      "fgMuted": "#57534e",
+      "accent": "#C46B2D",
+      "accent2": "#7A8C3E",
+      "border": "#e7e5e4"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-subtext",
+      "hero-cta-labels",
+      "dashboard-card-labels",
+      "dashboard-card-stats",
+      "testimonial-heading",
+      "testimonial-company-name",
+      "testimonial-quote",
+      "testimonial-attribution",
+      "testimonial-cta-label",
+      "features-heading",
+      "features-cta-label",
+      "feature-card-titles",
+      "feature-card-bodies",
+      "spend-insights-title",
+      "spend-insights-daterange",
+      "spend-insights-donut-center"
+    ]
+  },
+  "mechanic": "A vertically stacked #FDF5EB fintech landing whose signature is the Hero's BoomerangVideoBg — a source clip captured frame-by-frame to offscreen canvas via requestVideoFrameCallback, then replayed forward/reverse on a scale-[1.08] <canvas> at 30fps — layered under a centered flex-col hero (navbar + Cooper headline + CTAs pushed apart by flex-1 justify-between so three white/glass dashboard cards pin to the bottom), with all reveals driven by a reusable Framer-Motion <FadeUp> (hidden opacity0/y24/blur8 -> visible, ease [0.25,0.1,0.25,1]) that fires immediately on mount for Hero elements and whileInView (once, margin -60px) for the staggered Testimonial and Features blocks.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS 3 (PostCSS/Autoprefixer; index.css with @tailwind base/components/utilities, an @layer base reset, and the two .font-cooper / .font-cooper-medium utility classes) multi-component spec (App composing Hero + Testimonial + Features plus reusable <FadeUp> and <BoomerangVideoBg>); framer-motion (^12) for the FadeUp variant reveals and AnimatePresence mobile menu; lucide-react (^0.344) for all icons; Cooper BT W01 (Light+Medium) loaded via two db.onlinewebfonts.com <link> tags in index.html; the boomerang background is hand-rolled with requestVideoFrameCallback + offscreen canvas frame capture and a visible <canvas> playback loop (no video/scroll library); the testimonial uses a native <video autoplay muted loop playsInline>; and the Savings line chart, Others/BillPay bar charts and Spend-Insights donut are all hand-authored inline SVG/markup, not asset images.",
+  "reskinNotes": "Three hand-coded data-viz widgets bake brand hex directly into inline SVG/markup with no token indirection and must be retinted by hand when the palette changes: the SavingsCard line chart (green polyline + gradient fill), the OthersCard 12-bar chart (5th bar #f97316 orange, rest #d1d5db gray), the BillPayCard 12-bar chart (7th bar #08150C dark, rest #e5e7eb gray, plus a red -8% badge), and especially the Spend-Insights donut: an SVG viewBox 0 0 36 36 with four r=14 strokeWidth=5 circles whose colors AND geometry are literals — #C46B2D (dash 26.4/61.56), #7A8C3E (22/65.96, offset -26.4), #A8B87A (17.6/70.36, offset -48.4), #B8AFA4 (22/65.96, offset -66) — so changing palette or proportions means recomputing strokeDasharray/strokeDashoffset by hand. The whole palette lives as Tailwind arbitrary literals, not a :root token block: #08150C (logo/headings/buttons/active-nav/dark bar/donut text), its #1a2e1f hover variant, the page bg #FDF5EB, card beiges #EBE4DC and #F4F1EC, the four donut hexes, and Tailwind named families (stone-500/600/700/800 text, emerald-400/500 accents) are scattered across className strings. Fonts are font-metric-dependent and fragile: Cooper BT W01 Light/Medium are pulled from a third-party onlinewebfonts CDN with no font-display fallback control, and the headline tracking-tight + leading-tight at text-7xl is tuned to Cooper's serif metrics, so a swapped face or a CDN miss silently falls back to Georgia and shifts the display look; only Light and Medium weights exist. All copy is hardcoded inline in JSX with no content layer: the 'Kova' wordmark, the four nav labels (Explore / Pricing[active] / Perks / Reach) + 'Get Started', the hero headline 'Own your money and build the wealth you deserve' + subtext + the two CTA labels ('Watch 30s Demo' / 'Get the App'), the three dashboard cards' labels/badges/stats (Savings +25%/+12% with Jan-Apr; Others 78% Groceries / 43% Entertain. / 23% Transport with 'Monthly'; Bill Pay -8% 'Monthly'), the Testimonial heading + 'Arcvex' company + the full quote + 'Maya Reeves' / 'Director, Arcvex' + 'All Stories', and the Features heading + 'Watch Demo' + the four card titles (Smart Budgeting / Bank-Grade Security / Spend Insights / Wealth Building) and their truncated body blurbs + the Spend-Insights 'Monthly Spend' / '1 Apr - 30 May 2026' / '50% of budget'. The from-[#08150C]/80 via-[#08150C]/20 to-transparent gradient is repeated as inline Tailwind arbitrary classes on every image card and must be swept with fg. The dashboard cards' single-letter 'A' Arcvex badge and the active-Pricing underline span are also pure-markup literals. The boomerang capture additionally requires the replacement hero MP4 to be served with permissive CORS (crossOrigin='anonymous' + canvas readback), an infra constraint beyond a simple URL swap."
+}

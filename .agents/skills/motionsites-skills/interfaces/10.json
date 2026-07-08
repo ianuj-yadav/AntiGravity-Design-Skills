@@ -1,0 +1,62 @@
+{
+  "id": "10",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplaying, looping, muted hero background video, positioned absolutely behind content at z-0, object-cover full height, scaled 1.2x with origin-left and shifted 200px to the right (margin-left:200px) so it bleeds off-frame behind the left-aligned copy. A bottom fade gradient (h-40, from background color to transparent, z-10) feathers it into the page. Native source is a Mux HLS stream (.m3u8)."
+    },
+    {
+      "id": "badge-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small sparkle/decorative glyph inside the top pill badge, rendered at w-3 h-3 in text-white/80 next to the 'New AI Automation Ally' label. Native icon is lucide-react Sparkles; supply a single-color/currentColor mark that inherits the muted-white text fill."
+    },
+    {
+      "id": "primary-cta-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "bg",
+      "notes": "Trailing arrow glyph inside the solid primary 'Book A Free Call' button; sits on the white (bg-foreground) button so it renders in the dark background color (text-background). Native icon is lucide-react ArrowRight; supply a single-color/currentColor mark."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "ui-sans-serif, system-ui, sans-serif",
+      "accent": "ui-serif, Georgia, serif"
+    },
+    "colorRoles": {
+      "bg": "#070612",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.8)",
+      "accent": "#ffffff",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "badge-label",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "subtitle",
+      "primary-cta-label",
+      "secondary-cta-label"
+    ]
+  },
+  "mechanic": "A left-aligned, vertically-centered h-screen hero stacks a blur-in pill badge, a three-line word-staggered split-text headline (last word in serif italic), a blur-in subtitle and two blur-in pill CTAs over a fullscreen object-cover Mux HLS background video that is scaled 1.2x and shoved 200px right behind a bottom fade gradient.",
+  "techDelivery": "React + Tailwind CSS component spec with framer-motion for the BlurIn and word-splitting SplitText entrance animations and lucide-react icons (Sparkles, ArrowRight); the looping HLS (.m3u8) background video implies an hls.js (or native HLS) player.",
+  "reskinNotes": "The spec leans on Tailwind's semantic tokens rather than named brand fonts/colors: the dark base is a hardcoded literal #070612 while everything else is theme tokens (text-foreground / bg-foreground / text-background) plus white/opacity utilities (text-white/80, border-white/20, bg-white/20), so a brand reskin means redefining the Tailwind foreground/background tokens AND swapping the literal hex, not a single palette drop-in. No brand font families are declared — the display face is the default sans and 'Business.' simply uses the generic serif italic, so the intended typeface must be supplied separately. The badge label, all three headline lines (with line 3 specifically rendered serif-italic), the subtitle and both CTA labels are hardcoded in markup, and the SplitText word-stagger plus the manual three-line break tie the entrance motion and layout to that exact copy/line structure (longer copy reflows the stagger). The video's 200px right-shift, 1.2x origin-left scale and h-40 bottom gradient are fixed magic values tuned to the left-aligned frame, and the primary CTA hardlinks to /book-call."
+}

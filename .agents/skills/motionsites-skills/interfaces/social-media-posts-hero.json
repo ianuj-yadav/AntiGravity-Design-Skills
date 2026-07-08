@@ -1,0 +1,126 @@
+{
+  "id": "social-media-posts-hero",
+  "role": "social-media",
+  "ownSections": [
+    "PostCardGrid"
+  ],
+  "slots": [
+    {
+      "id": "page-background",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Full-page background image behind the 3x2 card grid; background-size cover, center, no-repeat on the min-h-screen outer container."
+    },
+    {
+      "id": "card-1-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Card 1 (top-left, dark 'Simplify Your Work With AI') accent video, anchored absolute top-0 right-0 at 75% height, object-cover, mirrored via scaleX(-1) under a from-black gradient; autoplay loop muted playsInline."
+    },
+    {
+      "id": "card-2-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Card 2 (top-center, dark 'Your Insights. One Clear Overview.') fullscreen background video, absolute inset-0 object-cover z-0 under a from-black gradient; autoplay loop muted playsInline."
+    },
+    {
+      "id": "card-3-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Card 3 (top-right, light 'Work Smarter. Move Faster.') background video pushed down via pt-[140px] under a white top-fade overlay, absolute inset-0 object-cover; autoplay loop muted playsInline."
+    },
+    {
+      "id": "card-4-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Card 4 (bottom-left, dark 'Focus in a Distracted World') fullscreen background video, absolute inset-0 object-cover z-0 under a bottom-anchored from-black/70 gradient; autoplay loop muted playsInline."
+    },
+    {
+      "id": "card-5-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": false,
+      "duration": "one-shot-fade",
+      "notes": "Card 5 (bottom-center, light 'Beyond silence, we build the eternal.') video in a top:140px container; NOT looped — custom rAF opacity fade (0.5s in/out) with a manual replay on ended; starts opacity 0, autoplay muted playsInline, no loop."
+    },
+    {
+      "id": "card-6-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Card 6 (bottom-right, dark 'Innovating the spirit of bloom') fullscreen background video, absolute inset-0 object-cover z-0 under a from-black/80 gradient; autoplay loop muted playsInline."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Anton",
+      "body": "Inter",
+      "mono": "ui-monospace, monospace",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#ffffff",
+      "fg": "#ffffff",
+      "fgMuted": "#6F6F6F",
+      "accent": "#fbbf24",
+      "accent2": "#d4d8e8",
+      "border": "rgba(255,255,255,0.20)"
+    },
+    "copySlots": [
+      "card1-eyebrow",
+      "card1-headline",
+      "card1-body",
+      "card1-badge-label",
+      "card1-cta-label",
+      "card2-badge-pill",
+      "card2-badge-text",
+      "card2-headline",
+      "card2-body",
+      "card2-brand",
+      "card2-section-label",
+      "card3-brand",
+      "card3-headline",
+      "card3-body",
+      "card3-pill",
+      "card3-brand-row",
+      "card4-headline",
+      "card4-body",
+      "card4-brand",
+      "card5-headline",
+      "card5-body",
+      "card5-brand",
+      "card6-eyebrow",
+      "card6-headline",
+      "card6-body",
+      "card6-pill-labels"
+    ]
+  },
+  "mechanic": "A static min-h-screen flex-centered 3x2 grid (repeat(3,384px), 16px gap) of six 384px rounded post cards over a cover background image, each card layering an autoplaying object-cover video under a fade gradient with staggered fade-rise text — card 5 swaps the loop for a requestAnimationFrame opacity fade-in/out with manual replay.",
+  "techDelivery": "Vite React + TypeScript (App.tsx + per-card CardOne..CardSix components), CDN Tailwind with extended fontFamily config, Google Fonts loaded via a single index.html link, lucide-react icons, and custom keyframes in index.css.",
+  "reskinNotes": "Per-card copy, brand names (Corewave, Neuralyn, Stellar.ai, Velorah, Aethera, plus aerospace/brand-name rows), and trademark glyphs are hardcoded in each card's JSX; muted greys are inline hex (#6F6F6F, #d4d8e8) and card-3 brand row uses an inline Georgia serif rather than a token; the .liquid-glass / .liquid-glass-strong glassmorphism (rgba whites, mask-composite ::before gradient borders) and seven declared Google fonts are baked into index.css/Tailwind config, so a reskin must edit CSS and markup, not just swap tokens; card backgrounds alternate hardcoded black/white per card."
+}

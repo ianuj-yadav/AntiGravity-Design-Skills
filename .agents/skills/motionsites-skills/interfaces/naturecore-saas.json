@@ -1,0 +1,70 @@
+{
+  "id": "naturecore-saas",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "boomerang-hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover background video for the hero, rendered by the <BoomerangVideoBg> component. Plays through ONCE (not natively looped), capturing every frame to offscreen canvases via requestVideoFrameCallback (60fps setInterval fallback), each frame scaled to max-width 960px; on 'ended' it hides the <video>, reveals a <canvas>, and replays the captured frames at 30fps in an infinite forward-then-reverse boomerang. Wrapper is absolute inset-0 w-full h-full and the host container is fixed inset-0 z-0 pushed 200px down (style top:200) so the clip sits behind the lower hero. Supply a seamless-looking clip whose start/end read well boomeranged; crossOrigin='anonymous' so the source must be CORS-enabled for the canvas capture to work."
+    },
+    {
+      "id": "brand-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Navbar wordmark/logo on the left of the <nav> lockup (<img src=/image.png alt=LGPSM class=h-6 md:h-7>). Height-constrained to 24-28px, width auto; sits over the light #F7F7F7 page so a dark or full-color transparent PNG/SVG reads best. Currently the local /image.png placeholder ('user's own logo PNG')."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally (font-family:'Inter',sans-serif on body). Drives the StaggeredFade headline (up to lg:text-6xl, font-normal #31463B), nav links, badge pill, subheading body, and CTA labels. Weights 300-900 are imported (300;400;500;600;700;800;900). Native family 'Inter', loaded from Google Fonts in index.css."
+    },
+    {
+      "id": "ui-icon-set",
+      "type": "icon",
+      "card": 4,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four inline UI glyphs from lucide-react, tinted by CSS (currentColor / fill classes), not baked into the asset: Globe (w-4 h-4, language selector), Leaf (w-4 h-4, inside primary CTA), Play (w-3/4, fill-white text-white in primary CTA's gradient circle), ArrowRight (w-3/4, fill-black text-black in secondary CTA's gradient circle). Replace with brand glyphs supplied as currentColor-driven icons so the white/black fill tinting still applies."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F7F7F7",
+      "fg": "#31463B",
+      "fgMuted": "#4B5563",
+      "accent": "#3C684D",
+      "accent2": "#4A7144",
+      "border": "rgba(0,0,0,0.20)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "nav-labels",
+      "nav-signin-label",
+      "nav-cta-label",
+      "lang-label",
+      "logo-alt"
+    ]
+  },
+  "mechanic": "Light-canvas SaaS hero over a fullscreen frame-captured boomerang background video (plays once, then ping-pongs its frames forward/reverse at 30fps on a canvas) while the headline reveals one character at a time via a useInView staggered opacity fade and the subheading and CTAs fade-down on scroll-in.",
+  "techDelivery": "React 18 + TypeScript + Vite component spec using Tailwind CSS, Framer Motion (motion + useInView), and lucide-react; a clsx + tailwind-merge cn() helper; custom utilities (.liquid-glass, .tracking-tight-custom, @keyframes scroll) plus the Inter @import declared in index.css; canvas/requestVideoFrameCallback drive the boomerang background.",
+  "reskinNotes": "All copy is hardcoded in JSX (headline 'Renewable Power For Tomorrow, Infinite Clean Solutions', subheading sentence, badge 'Delivering power innovate' with mobile-shortened 'Power innovate', 5 nav links, 'Sign In', 'Clean Energy', 'Explore Options', 'Start Network', 'En', logo alt 'LGPSM') and must be edited in markup. The renewable-energy / emoji badge narrative (sun, globe, plant emojis) is baked into the markup and reads as solar-specific, so a non-energy reskin needs different glyphs and badge wording. Several greens and gradients are hardcoded inline rather than via CSS vars: heading #31463B (inline style), primary CTA gradient #3C684D->#4A7144 (Tailwind arbitrary values), primary CTA icon-circle linear-gradient(59deg,#567A5E,#78A873) and secondary icon-circle linear-gradient(59deg,#EEEEEE,#CBCBCB) (inline style), so reskinning means editing JSX/Tailwind classes, not just a token block. Body/nav use Tailwind gray-600/gray-700 utilities (no literal hex) and borders use black/20, so muted/border colors live in utility classes. The 200px downward offset on the video container and Inter's metrics (tracking-tighter, leading-tight, letter-spacing -0.06em) are layout-tuned. The boomerang background requires a CORS-enabled (crossOrigin anonymous) video source or the canvas frame-capture silently fails."
+}

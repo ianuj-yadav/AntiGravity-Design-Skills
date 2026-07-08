@@ -1,0 +1,62 @@
+{
+  "id": "arceage-testimonial",
+  "role": "testimonials",
+  "ownSections": [
+    "FeedbackCarousel"
+  ],
+  "slots": [
+    {
+      "id": "author-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Circular author/testimonial portraits, one per feedback entry. Rendered w-14 h-14 rounded-full object-cover with referrerPolicy=\"no-referrer\", swapped on slide change. Native prompt fills these with picsum.photos placeholder portraits; reskin supplies real headshots of the quoted people (or brand-appropriate stand-ins). Card count tracks the feedbacks array length (3 here)."
+    },
+    {
+      "id": "nav-arrow-glyphs",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional carousel chrome (not brand assets): previous/next arrows inside the two circular #D9D9D9 buttons (w-6 h-6 text-black, strokeWidth 1.5). Native source is lucide-react ArrowLeft / ArrowRight. Only swap if the brand has its own icon system; transparent so the grey button shows through."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI typeface for every visible string in this section: the section title, the large guillemet quote (font-light, tracking-tight, sizes up to 44px), author name (font-medium text-lg) and author title (text-gray-500). Native declaration is Barlow (Google Fonts, weights 100-900 + italics) exposed as Tailwind --font-sans. Large quote runs at lg:text-[44px] leading-tight text-right, so a clean grotesque sans with tight tracking tolerance is the safe substitution."
+    },
+    {
+      "id": "accent-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Accent serif declared globally as Tailwind --font-dm-serif = Instrument Serif (Google Fonts, roman + italic). NOT used anywhere in this testimonials section, but part of the template's declared font system; carried so a reskin can map the brand's accent serif. Safe to omit if the brand has no serif role."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "\"Barlow\", ui-sans-serif, system-ui, sans-serif",
+      "accent": "\"Instrument Serif\", serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#D9D9D9",
+      "fg": "#000000",
+      "fgMuted": "#6b7280",
+      "border": "#D9D9D9"
+    },
+    "copySlots": [
+      "section-title",
+      "feedback-quotes",
+      "author-names",
+      "author-titles",
+      "prev-button-aria-label",
+      "next-button-aria-label"
+    ]
+  },
+  "mechanic": "A static light-on-white centered section (typewriter title, scaleX divider, right-aligned quote, divider, author row + arrow buttons) whose quote/author swap through a direction-aware spring-slide AnimatePresence carousel, with every text string revealing character-by-character via a scroll-triggered Typewriter.",
+  "techDelivery": "Vite + React 19 + Tailwind CSS v4 (@tailwindcss/vite) + motion/react (motion, AnimatePresence, useInView) + lucide-react, with fonts @import-ed in global CSS and two fonts registered as Tailwind v4 theme tokens.",
+  "reskinNotes": "Surface/border grey #D9D9D9 (and its hover #c9c9c9), the divider grey, and the lg:px-[120px] gutter are baked into Tailwind arbitrary-value class strings, not tokens, so retinting/respacing means editing class strings. fgMuted is Tailwind's text-gray-500 utility (no hex declared; #6b7280 is its resolved value). All copy is hardcoded in a static feedbacks array and JSX (the three quotes, authors, titles, the \"Customer Feedback\" title, and aria-labels), and quotes embed literal guillemet characters. The page-level theme is bg-black/text-white and this section hard-overrides to bg-white/text-black, so the testimonials block is intentionally inverted from the host palette. Card count for avatars and the carousel is driven by the feedbacks array length, and the Typewriter splits on characters so very long quotes lengthen the reveal and can affect the min-h-[300px]/md:min-h-[250px] fit. The accent serif (Instrument Serif) is declared globally but unused in this section."
+}

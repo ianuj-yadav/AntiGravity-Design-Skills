@@ -1,0 +1,66 @@
+{
+  "id": "orbis-cards",
+  "role": "features",
+  "ownSections": [
+    "CollectionGrid"
+  ],
+  "slots": [
+    {
+      "id": "collection-card-video",
+      "type": "video",
+      "card": 3,
+      "aspect": "4:3",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Looping preview clip filling each of the three collection cards' media wells in the responsive 1->2->3 column grid. Each sits inside a 'liquid-glass rounded-[32px] p-[18px]' outer card and a 'relative rounded-[24px] overflow-hidden pb-[75%]' inner box (the 75% padding-bottom locks a 4:3 ratio), rendered as <video autoPlay loop muted playsInline className='absolute inset-0 w-full h-full object-cover'> with a <source type='video/mp4'>. Three sockets in order, each paired with its own 'RARITY SCORE' value string in the glass info bar below. Muted autoplaying loops on a dark #010828 page, so supply short seamless silent loops with no audio dependency."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading typeface (natively 'Anton', mapped to Tailwind font-grotesk) carrying every uppercase heading: the 'Collection of ... objects' h2 (text-[32px]->[60px], font-normal uppercase, leading-[1.05]->1), the 'SEE / ALL / CREATORS' button stack (text-[32px]->[60px] and text-[20px]->[36px]), and both info-bar lines ('RARITY SCORE:' label at text-[14px] uppercase and the score value at text-[20px]). Loaded via Google Fonts in index.html and wired as font-grotesk in tailwind.config.js. Anton is a single-weight (400) condensed-geometric grotesque always set uppercase; a replacement must be a heavy display sans that holds the tight leading-[1]/leading-[0.9] line packing in all-caps without colliding."
+    },
+    {
+      "id": "accent-script-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Accent/script typeface (natively 'Condiment', mapped to Tailwind font-condiment) used for exactly one style-break word: 'Space' in the heading, rendered font-condiment text-neon (#6FFF00) at text-[36px]->[68px], font-normal normal-case — a cursive/handwritten flourish that deliberately interrupts the all-caps Anton run and is the only non-uppercase, only neon-colored word in the section. Loaded via Google Fonts in index.html. Replacement must be a casual cursive/script face that reads at large display sizes and contrasts hard against the condensed display sans; it inherits the neon accent color, so keep it legible as a single hero word."
+    },
+    {
+      "id": "card-chevron-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Right-pointing chevron glyph rendered at w-[18px] h-[18px] inside each card's circular 48px 'liquid-glass rounded-full' action button (one icon type reused across all three cards), inheriting white (text-white, fg) via stroke='currentColor'. Native mark is an inline <svg> with a single rounded-cap rounded-join path d='M9 5l7 7-7 7' at strokeWidth 2.5 on a 0 0 24 24 viewBox, fill='none'; supply one single-color/currentColor stroked chevron."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Anton",
+      "accent": "Condiment"
+    },
+    "colorRoles": {
+      "bg": "#010828",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#EFF4FF",
+      "fgMuted": "rgba(239, 244, 255, 0.7)",
+      "accent": "#6FFF00",
+      "border": "rgba(255, 255, 255, 0.45)"
+    },
+    "copySlots": [
+      "headline-line-1",
+      "headline-accent-word",
+      "headline-line-2-suffix",
+      "see-all-cta-label",
+      "card-score-label",
+      "card-score-values"
+    ]
+  },
+  "mechanic": "A dark space-navy (#010828) features section lays a flex header row (left: a two-line uppercase Anton heading whose middle word 'Space' breaks to neon-green cursive Condiment; right: a 'SEE ALL CREATORS' button with a neon underline bar) above a responsive 1->2->3 column grid of glassmorphism cards, each a 'liquid-glass' rounded-[32px] container holding a 4:3 autoplay-loop-muted video over a glass info bar (RARITY SCORE value + circular chevron button); the only motion is the looping videos plus hover scale/white-overlay transitions on the cards and buttons.",
+  "techDelivery": "React + Vite + Tailwind CSS component spec (Tailwind custom colors cream/neon and font families font-grotesk/font-condiment in tailwind.config.js, a .liquid-glass component class in index.css, global bg #010828), with Anton + Condiment pulled from a Google Fonts <link> in index.html; no animation library and no external icon library — the chevron is an inline SVG and the cards/info bars are static markup mapped over a 3-item data array.",
+  "reskinNotes": "The liquid-glass effect is metric- and palette-locked to the dark #010828 page: the .liquid-glass class hardcodes an rgba(255,255,255,0.01) luminosity-blended fill, a 4px backdrop-blur, an inset white highlight box-shadow and a 1.4px masked white gradient-border (the ::before linear-gradient 0.45->0.15->0->0.15->0.45 with -webkit-mask-composite xor) that only reads against a near-black background, so a reskin must keep a very dark bg or retune every rgba stop and the mask border. The palette is exposed only partially as tokens — 'cream' (#EFF4FF) and 'neon' (#6FFF00) are Tailwind custom colors and #010828 is a global, but cream/70 is written as a Tailwind opacity utility and the glass whites are raw rgba(255,255,255,*), so a non-monochrome-on-navy brand palette is a non-trivial swap. The heading is structurally special: 'Space' is a hardcoded style-break word (font-condiment + text-neon + normal-case) wrapped in an indented <span className='ml-12 sm:ml-24 md:ml-32'> whose left margin is hand-tuned to Anton metrics, so a brand with a different accent word or font width must re-tune the indent and may break the Anton/Condiment size pairing. All copy is hardcoded in JSX (the 'Collection of' / 'Space' / ' objects' heading fragments, 'SEE ALL CREATORS', the 'RARITY SCORE:' label and the three score strings '8.7/10' / '9/10' / '8.2/10'), and the three card video URLs point at d8j0ntlcm91z4.cloudfront.net placeholder assets that must be replaced with brand clips. Note the template id 'orbis-cards' implies an orbit/image-ring, but the actual spec is a static 3-card video grid with no orbital or scroll motion."
+}

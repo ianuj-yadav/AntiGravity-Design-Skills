@@ -1,0 +1,17 @@
+{
+  "id": "aurora-onboard",
+  "title": "Aurora Onboard",
+  "category": "Signup",
+  "sort_order": 999,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-05-07T08:49:11.61493+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": "https://res.cloudinary.com/dsdhxhhqh/image/upload/v1778143525/CleanShot_2026-05-07_at_15.40.21_2x_kfgapx.png",
+  "video_preview_url": null,
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

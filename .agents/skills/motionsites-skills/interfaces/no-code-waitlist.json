@@ -1,0 +1,70 @@
+{
+  "id": "no-code-waitlist",
+  "role": "hero",
+  "ownSections": [
+    "BackgroundVideo",
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay hero background video filling the 100vh black <main> (absolute inset-0, w-full h-full object-cover, opacity-100, pointer-events-none) behind the navbar and hero. It is the sole visual element and carries the entire cinematic dark mood of the page. The native source is an HLS .m3u8 stream (Mux) wired through hls.js with a native-Safari canPlayType fallback, so a brand replacement is ideally an HLS manifest (or an MP4 the loader path is adapted for)."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display serif used only for the H1 hero heading, applied via inline fontFamily: \"'Instrument Serif', serif\". Native value is the Google Font 'Instrument Serif' (regular + italic), loaded via CSS @import; needs a serif fallback."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Base UI sans-serif for navbar, tagline, CTA, form input, and all body copy, wired as Tailwind v4 --font-sans in @theme. Native value is the Google Font 'Inter' (weights 300/400/500/600) loaded via CSS @import; needs a sans-serif/system fallback."
+    },
+    {
+      "id": "logo-mark",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single brand logo mark sitting left of the wordmark in the navbar. Native value is the lucide-react 'Globe' icon (w-6 h-6, text-white). Monochrome, inherits currentColor (white), so a brand swap should be a single-color transparent mark. (The form-control icons ArrowRight and Check are functional UI affordances, not brand-swappable sockets.)"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.04)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.8)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.45)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-signup-label",
+      "nav-login-label",
+      "eyebrow",
+      "headline",
+      "cta-label",
+      "email-placeholder-prompt",
+      "email-placeholder-confirm",
+      "video-demo-label"
+    ]
+  },
+  "mechanic": "A single non-scrolling 100vh flex-column hero (liquid-glass pill navbar, centered Instrument Serif gradient-clipped headline, and a glass CTA that AnimatePresence-toggles a 'Get early access' button into an email-capture form with a character-by-character typewriter placeholder before auto-resetting) layered over a fullscreen object-cover HLS background video.",
+  "techDelivery": "React + Vite + Tailwind CSS v4 (@tailwindcss/vite, @theme tokens) + Motion (framer-motion) for entrance/AnimatePresence transitions + lucide-react icons + hls.js for the Mux HLS background video; Inter and Instrument Serif via CSS @import, glass surfaces as hand-authored .liquid-glass / .glass-pill classes.",
+  "reskinNotes": "The signature .liquid-glass class bakes white rgba values into the surface (rgba(255,255,255,0.01) + luminosity blend), the inset highlight (inset 0 1px 1px rgba(255,255,255,0.1)), and especially the ::before rim gradient (linear-gradient rgba(255,255,255,0.45/0.15/0) stops with a -webkit-mask-composite:xor border-only mask), so every glass element assumes a light rim over a dark video and retinting requires editing that CSS rather than a token; .glass-pill similarly hardcodes rgba(255,255,255,0.04) + a box-shadow:none !important override. fgMuted and borders are mostly expressed as per-element Tailwind opacity utilities (text-white/80, border-white/10..40, placeholder-white/45) rather than single tokens, so muting varies element to element. The headline uses bg-gradient-to-b from-white via-white/95 to-white/70 + bg-clip-text text-transparent (a baked white-on-dark gradient) and is font-metric-dependent on Instrument Serif with a responsive '<br className=\"hidden md:block\" />' line break, so a longer headline or substitute display font can rewrap or overflow. The CTA's typewriter strings ('Enter Your Email Here For Early Access' / 'You Will Receive Notifications By Email'), the 60ms type interval, and the 4s auto-reset are hardcoded behavior. All copy (logo 'Asme'; nav 'Features'/'Pricing'/'About'; 'Sign Up'/'Login'; tagline 'BUILD A NO-CODE AI APP IN MINUTES'; headline 'A new way to think and create with computers'; 'Get early access'; 'Play Video Demo') and the Globe/ArrowRight/Check icon choices are hardcoded in JSX. The background video is a Mux HLS .m3u8 requiring the hls.js + native-canPlayType loader path, not a plain <video src>, so swapping in a brand asset must preserve that loader (or adapt it for MP4)."
+}

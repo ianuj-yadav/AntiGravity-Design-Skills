@@ -1,0 +1,47 @@
+{
+  "id": "21",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video covering the entire viewport via object-cover, rendered as a native <video autoPlay loop muted playsInline> pinned absolute behind all content with NO color overlays, scrims, or filters (raw footage shows through). aspect is 'auto' because object-cover crops the footage to fill whatever viewport ratio it lands in rather than honoring a fixed ratio. Native placeholder is a CloudFront-hosted MP4. White headline, badge, nav, and corner accents overlay it directly, so supply reasonably dark/mid-tone footage so the white UI stays legible (the spec mandates no darkening overlay)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.1)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255,255,255,0.75)",
+      "accent": "#f8f8f8",
+      "accent2": "#171717",
+      "border": "#FFFFFF"
+    },
+    "copySlots": [
+      "nav-labels",
+      "brand-wordmark",
+      "featured-badge-label",
+      "headline-line-1",
+      "headline-line-2",
+      "sub-headline",
+      "primary-cta-label",
+      "secondary-cta-label"
+    ]
+  },
+  "mechanic": "A single full-screen object-cover looping background video sits under a centered glass hero container (transparent floating navbar, a liquid-glass 'Featured in Fortune' badge, a two-line headline that swaps Barlow font-light for Instrument Serif italic mid-phrase, a 75%-white sub-headline, and sharp 2px-radius CTA buttons) framed by four 7px solid-white corner-accent squares, with motion limited to hover transition-colors (buttons #f8f8f8 -> pure white, nav links gaining a white/10 highlight).",
+  "techDelivery": "React hero component authored with Tailwind CSS v4 utility classes and custom typography (Barlow + Instrument Serif), using a native <video> element for the fullscreen background; no animation library, only CSS transition-colors on hover.",
+  "reskinNotes": "No page background color is declared in the spec (the fullscreen video is the de-facto backdrop); bg '#000000' here is an implied fallback behind the video, not a stated token. The whole palette is expressed as Tailwind utilities baked inline (text-white, white/75, white/90, white/10, bg-[#f8f8f8], text-[#171717]) rather than CSS variables, so retinting means editing className strings. The 'border' role maps to the four 7px solid-WHITE corner-accent squares (absolutely positioned at the container corners) — the navbar explicitly has no border/fill, so there is no true stroke color. The 'liquid glass' Featured-in-Fortune badge is a hardcoded two-layer effect (outer ring white/10 + backdrop-blur-sm, inner pill white/90 + backdrop-blur-md) that is load-bearing visual identity. Layout is font-metric dependent: headline lines are fixed at 64px and the content block carries a literal 250px bottom padding, so a wider/taller display face or longer copy will shift the above-the-fold composition. All copy is hardcoded in JSX: headline 'Agency that makes your' / 'videos & reels viral', the value-prop sub-headline, the 'Featured in Fortune' badge, nav links, brand wordmark (white text, no logo image asset), and the two CTA button labels. The only fillable media socket is the single background video; the badge, corner accents, and buttons are pure CSS, not assets."
+}

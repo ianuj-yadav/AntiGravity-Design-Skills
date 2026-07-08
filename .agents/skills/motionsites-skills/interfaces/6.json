@@ -1,0 +1,96 @@
+{
+  "id": "6",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "BrandStrip"
+  ],
+  "slots": [
+    {
+      "id": "hero-portrait",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single centered portrait photo of the brand's person, absolutely positioned over the H1 and overlapping it for depth (z-20 above the z-10 headline). Rendered pointer-events-none so it never blocks text selection. The rectangular source is clipped to a rough paint-brush-stroke cutout by the brush-mask socket (CSS mask-image), so a clean head-and-shoulders subject that survives an irregular hand-painted crop reads best. Supply a high-res photo on any background (the mask defines the silhouette, not the alpha channel of the file)."
+    },
+    {
+      "id": "brush-stroke-mask",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "The paint-brush-stroke shape applied as a CSS mask-image to hero-portrait so the photo reads as a rough hand-painted cutout rather than a rectangle. A single black-on-transparent (or white luminance) brush blob whose painted area = the visible region of the portrait. Native prompt only describes it as a 'paint brush stroke shape'; supply as a transparent PNG/SVG mask. This is the load-bearing shape that gives the hero its signature ragged silhouette."
+    },
+    {
+      "id": "brand-strip-logos",
+      "type": "svg",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Row of client/partner brand wordmark logos in the bottom BrandStrip (native placeholders Gucci, Zara, Vogue, Sony, Zalora). Rendered flat white at opacity-90, spread evenly across the width on desktop and center-wrapped on mobile. Supply flat single-color (currentColor/white) marks on transparency so they sit on the orange gradient; card:5 is the placeholder count, the strip lays out however many are provided."
+    },
+    {
+      "id": "nav-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Diagonal (up-right) arrow glyph inside the circular white-bordered 'HIRE ME' CTA button in the navbar. Default state is a white-stroke arrow on transparent inside a white-ring circle; on hover the circle fills white and the arrow flips to orange (#fd2601), so supply as a currentColor/transparent line glyph that can invert with its container."
+    },
+    {
+      "id": "logo-mark-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small decorative sparkle/asterisk mark prefixing the text wordmark logo ('✱ VIKTORODDY') at the top-left of the navbar. White, currentColor-tinted. Native source is the literal '✱' glyph; swap only if the brand ships an equivalent monochrome mark."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Heavy condensed display face for the massive uppercase H1 ('NEW DESIGN ERA') sized ~12vw up to 180px, rendered white with wide tracking. Native family 'Anton' (or a similar heavy condensed sans). The headline composition and the portrait/headline overlap are tuned to Anton's tall narrow uppercase metrics."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Clean sans UI/body face for the nav links, 'HIRE ME' label, the bottom-left intro paragraph, and the right-middle tagline. Native family 'Inter' (or similar clean sans). Used minimalist, uppercase, legible, in white."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Anton",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#fd2601",
+      "surface": "#f37e1c",
+      "fg": "#ffffff",
+      "accent": "#f37e1c",
+      "accent2": "#F4791B",
+      "border": "rgba(255,255,255,0.5)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "intro-body",
+      "tagline",
+      "ambient-bg-name",
+      "brand-strip-labels"
+    ]
+  },
+  "mechanic": "A single full-viewport gradient hero centers a massive ~12vw Anton headline with a brush-stroke-masked portrait absolutely overlapping it (z-20 over z-10) above a faint blurred ambient name and two mix-blend-screen glowing orange blobs, flanked by floating intro/tagline copy, with the whole composition collapsing from absolute positioning to a stacked block layout on mobile.",
+  "techDelivery": "React + Tailwind CSS single-component hero; the red-orange :root gradient, the white-bg/orange-text ::selection rule, the SVG brush-stroke mask-image on the portrait, and the blurred mix-blend-screen blobs are all hand-authored in CSS/inline styles.",
+  "reskinNotes": "The signature ragged portrait depends on a CSS mask-image brush-stroke shape that the prompt never supplies concretely (only 'a paint brush stroke shape'), so reskinning requires authoring/swapping that mask asset, not editing config. The orange palette is baked as literal hex inline (gradient #fd2601 -> #f37e1c, blobs #F4791B with blur-80px + mix-blend-screen + opacity-60, the ::selection white-bg/#fd2601-text rule), so retinting means editing CSS rather than flipping tokens, and the blobs/blend assume a warm background. All copy is hardcoded in markup: the '✱ VIKTORODDY' wordmark, the four nav labels (PROJECTS/BLOG/ABOUT/RESUME), 'HIRE ME', the 'NEW DESIGN ERA' headline (which also has a separate mobile NEW/DESIGN/ERA stack), the '// I'm Olivia — a freelance UI/UX designer...' intro, the right-aligned '// DESIGN THAT SPEAKS YOUR BRAND' tagline, the faint background 'OLIVIA' ambient name, and the five brand-strip wordmarks. The headline is sized in viewport units (~12vw capped 180px) tuned to Anton's condensed uppercase metrics, so a wider replacement display font or longer copy can break the one-line-desktop / three-line-mobile composition and the portrait overlap offset."
+}

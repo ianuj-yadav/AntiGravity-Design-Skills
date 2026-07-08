@@ -1,0 +1,60 @@
+{
+  "id": "cosmic",
+  "role": "hero",
+  "ownSections": [
+    "CosmicHero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "short-play-once",
+      "notes": "Fullscreen play-once cinematic background video (z-1), absolute inset-0 object-cover under the headline, circles and rock overlay. Attributes muted autoPlay playsInline and explicitly does NOT loop; on loadedMetadata its playbackRate is bumped to 1.56x, and its 'ended' event is the master trigger that fires the letter-by-letter headline reveal and the rock fade-in. Supply a short brand reveal clip with a clean settling end frame (the rock PNG and headline land on top of the final frame); dark/low-contrast footage keeps the white display type and thin white circles legible."
+    },
+    {
+      "id": "rock-overlay-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Foreground depth-overlay image (z-8) that sits ON TOP of the headline text (z-5) so it partially occludes the bottom of 'WHAT'S BEYOND' for a parallax/depth effect. Rendered as an <img> filling the viewport (w-full h-full object-cover block) inside an inset-0 pointer-events-none layer, fading opacity 0->1 over 0.6s ease-out once the video ends. MUST be a transparency-cut PNG (foreground subject only, no background) so the video, stars and circles show through; native asset is a 'rock' cutout. Provide a brand foreground cutout with a transparent upper region that frames the headline."
+    },
+    {
+      "id": "display-headline-webfont",
+      "type": "font",
+      "card": 1,
+      "alpha": false,
+      "notes": "Custom display webfont for the giant headline 'WHAT'S BEYOND'. Native font is 'Black Mustang' loaded from an OnlineWebFonts CDN <link> (https://db.onlinewebfonts.com/...?family=Black+Mustang), used at clamp(2.8rem,17vw,23rem) with letter-spacing -0.04em and line-height 0.85. This is the only typeface not on Google Fonts, so the brand must supply/host an equivalent heavy display face; its metrics drive the hero layout (see reskinNotes)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Black Mustang', Anton, sans-serif",
+      "body": "'Inter', sans-serif",
+      "accent": "'Anton', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0a",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "border": "rgba(255,255,255,1)",
+      "surface": "rgba(255,255,255,0.03)"
+    },
+    "copySlots": [
+      "page-title",
+      "logo-wordmark",
+      "headline",
+      "nav-labels",
+      "share-label",
+      "mobile-menu-labels",
+      "tagline"
+    ]
+  },
+  "mechanic": "A forced-dark single-viewport (100dvh) cinematic hero where a play-once 1.56x background video is the clock: 40 deterministic twinkling star divs and two concentric white circles shrink/pulse in over the first ~3.8s, and on the video's 'ended' event the giant 'WHAT'S BEYOND' headline reveals letter-by-letter from translateY(120%) while a transparent rock PNG fades in above the text for depth, with a full-screen circle-wipe mobile menu over the top.",
+  "techDelivery": "Vite + React 18 + TypeScript single hero component, Tailwind CSS v3 utility classes for layout and lucide-react (Share2/Menu/X/ArrowUpRight) for icons; three webfonts via index.html <link> (Anton + Inter from Google Fonts, Black Mustang from OnlineWebFonts); all motion is hand-authored CSS @keyframes in index.css (circleShrink/circleShrinkOuter, circlePulse/circlePulseOuter, starTwinkle, fadeIn, rockFadeIn) plus React state flags (videoEnded, circle-delay timers, menuOpen/menuAnimating) driving inline transitions and per-letter stagger delays — no animation library or GSAP.",
+  "reskinNotes": "The signature reveal is event-coupled to the video: nothing animates the headline or rock until the <video> fires 'ended', so a brand clip must actually end (not loop) and have a clean settled final frame, and the playbackRate=1.56 set on loadedMetadata changes how long the intro runs. The headline face 'Black Mustang' is the single hardest dependency: it is loaded from a third-party OnlineWebFonts CDN URL (not Google Fonts, not self-hosted) and is sized by viewport (clamp ... 17vw ..., line-height 0.85, letter-spacing -0.04em, white-space nowrap) with the rock PNG hand-tuned to overlap its lower third, so swapping in a display face with different metrics will shift the overlap and can overflow the nowrap line. The rock asset MUST be a transparency-cut PNG; a flat/opaque image breaks the depth illusion since it sits above the text. All copy is hardcoded in JSX/markup: the page <title> 'COSMIQ - What's Beyond', the 'COSMIQ.' wordmark (rendered twice — nav + mobile menu, uppercase Anton with 0.15em tracking), the headline 'WHAT'S BEYOND' (split into individual <span> letters with spaces forced as \\u00A0 at width 0.25em — re-splitting is required to re-letter it), the three nav/menu labels ['Discover','Story','Connect'], the 'Share' button label, and the 'Explore the unknown' tagline. The star field is 40 procedurally generated divs with deterministic left/top from (i*37+13)%100 / (i*53+7)%100 and per-index twinkle timing — it is code, not an asset, so density/seed changes mean editing the loop. The palette is effectively one ink color: a single #0a0a0a background (repeated in the global reset and the menu backdrop) with white plus white/opacity tints (white/70 nav, white/30 and white/20 menu details, white/[0.03] and white/[0.08] surfaces/borders) baked as Tailwind opacity utilities rather than tokens, so there is no real accent color and re-tinting means editing those literal utilities throughout the markup."
+  }

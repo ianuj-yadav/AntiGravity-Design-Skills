@@ -1,0 +1,69 @@
+{
+  "id": "nex-max-upgrade",
+  "role": "pricing",
+  "ownSections": [
+    "PricingGlassOverlay"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fixed fullscreen background video covering the viewport (object-fit:cover, transform:scale(1.35)); played as a boomerang via throttled manual currentTime seeking rather than native playback, so it must be a short seamless clip."
+    },
+    {
+      "id": "cta-brand-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small 14x14 monochrome brand/platform glyph (inline SVG path, 24x24 viewBox) rendered inside the Max CTA button before the 'Download' label; inherits the dark button text color."
+    },
+    {
+      "id": "primary-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Display + body typeface for the whole section; loaded via Google Fonts @import inside the style block. Native value is Inter (weights 300/400/500/600)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#050505",
+      "surface": "rgba(255,255,255,0.05)",
+      "fg": "#ffffff",
+      "fgMuted": "#a3a3a3",
+      "accent": "#ffffff",
+      "accent2": "#d4d4d4",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "headline",
+      "subtitle",
+      "tier-base-label",
+      "tier-base-price",
+      "tier-base-list-title",
+      "tier-base-features",
+      "tier-max-badge",
+      "tier-max-trial",
+      "tier-max-price",
+      "tier-max-price-period",
+      "tier-max-list-title",
+      "tier-max-features",
+      "cta-label",
+      "footer-note",
+      "footer-link-label"
+    ]
+  },
+  "mechanic": "A fixed fullscreen background video boomerangs via a requestAnimationFrame loop that manually steps currentTime by 0.05s every 33ms and flips direction at both ends (guarded by video.seeking, no native play), behind a centered glassmorphic two-tier pricing card overlay.",
+  "techDelivery": "Vite + React 18 + TypeScript single full-viewport section, styles authored in an inline <style> block (Tailwind available but unused), Google Fonts @import for Inter.",
+  "reskinNotes": "Title gradient hex (#737373 -> #ffffff) and dark body background (#050505) are baked into CSS, not driven by the color tokens. Brand glyph is a hardcoded inline SVG path (Apple logo) and the list bullet is a CSS ::before content '\\2713' (Unicode check), so neither swaps with brand assets without editing markup/CSS. All copy is hardcoded in JSX. Layout is tuned for Inter's metrics. Class names are prefixed c4-."
+}

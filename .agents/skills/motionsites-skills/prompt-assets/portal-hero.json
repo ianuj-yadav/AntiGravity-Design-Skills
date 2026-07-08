@@ -1,0 +1,17 @@
+{
+  "id": "portal-hero",
+  "title": "Portal",
+  "category": "Hero Section",
+  "sort_order": 240,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-04-06T10:13:42.676154+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": null,
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

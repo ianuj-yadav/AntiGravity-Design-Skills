@@ -1,0 +1,60 @@
+{
+  "id": "stellar-ai-v2-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroContent",
+    "PartnerBar"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping/muted/autoplay/inline background video filling the entire viewport (absolute inset-0 w-full h-full object-cover) behind all hero content. Pushed down by pt-[120px] mobile / md:pt-[200px] desktop so its content reads in the lower half, then dissolved into the white page at top by three white-to-transparent gradient masks (z-10, pointer-events-none). Intended to read clean against white-on-top, monochrome aesthetic; pick a brand clip whose upper portion fades gracefully into white."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global UI typeface applied to the whole page via body { font-family: 'Inter', sans-serif }. Spec imports Google font 'Inter' (weights 400/500/600/700). Drives the 'Stellar.ai' wordmark (font-semibold), nav links, the large display heading (text-[38px] up to lg:text-[80px], font-normal, leading-1.1, tracking-tight), the subheading, both CTA buttons, the rating badge, and the glass partner pill. Swap with the brand display/UI sans; the heading type scale and tracking-tight are tuned to Inter metrics. Note the partner logo names use a SEPARATE hardcoded italic Georgia serif and are not driven by this role."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif",
+      "accent": "Georgia, serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "rgba(255,255,255,0.15)",
+      "fg": "#000000",
+      "fgMuted": "#4b5563",
+      "accent": "#6b7280",
+      "accent2": "#9ca3af",
+      "border": "#d1d5db"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "login-label",
+      "nav-cta-label",
+      "rating-badge",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-accent-line",
+      "subheading",
+      "hero-cta-label",
+      "partner-pill",
+      "partner-logo-names"
+    ]
+  },
+  "mechanic": "A single non-scrolling full-viewport (h-screen, overflow-hidden) white hero stacking navbar / centered hero copy / bottom partner bar over a fullscreen object-cover looping background video that is push-padded downward and dissolved into white at the top by three stacked white-to-transparent gradient masks; the only motion is a staggered fade-in-up entrance (opacity 0 -> 1, translateY 30px -> 0 over 0.6s ease-out) cascaded across elements via per-element animationDelay 0.1s through 0.6s, plus a backdrop-blur frosted-glass partner pill and CSS hover transitions on nav links and buttons.",
+  "techDelivery": "React + TypeScript + Tailwind CSS + lucide-react icons (Inter from Google Fonts; only react/react-dom/lucide-react deps). fadeInUp / fadeInOverlay are hand-written @keyframes in index.css exposed as .animate-fade-in-up / .animate-fade-in-overlay utility classes; the frosted glass is Tailwind backdrop-blur-md + bg-white/15.",
+  "reskinNotes": "Palette is strictly monochrome and expressed entirely as Tailwind utility classes (text-gray-600/700, border-gray-300, bg-black, white/15, white/95), not CSS variables, so there is no token surface to retheme -- reskinning to a colored brand means find-replacing those utilities across markup; the colorRoles hexes here are the resolved Tailwind values, not declared variables. The headline accent line 'AI Powers You Up.' is a hardcoded bg-gradient-to-r from-black via-gray-500 to-gray-400 bg-clip-text text-transparent gradient baked into JSX (the three stops live in markup). All copy is hardcoded in components: brand 'Stellar.ai', nav labels (Solutions/For Teams/About Us/Learn Hub), Login, 'Get started free', the '4.9 rating from 18.3K+ users' badge, the headline (with DIFFERENT mobile 3-line vs desktop 2-line splits both present in markup via sm:hidden / hidden sm:inline), the subheading, 'Begin Free Trial' CTA, the 'Collaborating with top aerospace pioneers globally' glass pill, and the five partner names (Aeon/Vela/Apex/Orbit/Zeno). Those partner names are TEXT logos with an inline hardcoded fontFamily:'Georgia, serif' italic style -- not image assets and not Inter, so rebranding the logo row is a copy + inline-style edit. Layout is font-metric dependent: the heading uses fixed px sizes (38px to 80px), leading-[1.1] and tracking-tight tuned to Inter, and the video fade relies on fixed-pixel mask offsets (top 120/200px, height 200/300px), so a wider face or different video framing shifts the white-dissolve balance. The animationDelay/opacity:0 entrance is set via inline style on each element."
+}

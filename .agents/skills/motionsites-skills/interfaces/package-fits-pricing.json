@@ -1,0 +1,88 @@
+{
+  "id": "package-fits-pricing",
+  "role": "hero",
+  "ownSections": [
+    "PricingPackages"
+  ],
+  "slots": [
+    {
+      "id": "card-tree-images",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Decorative per-card 'tree' artwork anchored bottom-right inside each of the two pricing cards (.c2-tree: position absolute, bottom 0, right 20px, width 120px, z-index 1, pointer-events none). Each card gets its own distinct piece keyed to that card's hue: card 1 (Product Design) uses a gold tree, card 2 (Web Design) a purple tree. Must be a transparent (alpha) cutout PNG/WEBP because it overlaps the white card and sits beneath the CTA button (button z-index 2); the subject should stand on the card floor. On .c2-card:hover the image animates translateY(-3px) rotate(-1.5deg) over 0.5s, so leave bottom headroom. Scales to width 96px (opacity 0.85) under 768px. Native assets are R2-hosted .webp placeholders to be replaced by brand assets."
+    },
+    {
+      "id": "bottom-card-landscape-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Wide decorative 'landscape' artwork filling the bottom-right of the full-width 'Unique Request' card (.c2-landscape: position absolute, bottom 0, right 0, width 360px, z-index 1, pointer-events none, sits behind the CTA which is z-index 2). Transparent (alpha) cutout that bleeds off the card's right/bottom edges against the #E8E7E5 panel; horizontally wider than the per-card trees. Responsive: width 240px under 768px, 180px under 480px (both opacity 0.85). Native asset is an R2-hosted .webp placeholder to be replaced by a brand asset."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display serif for the centered section title <h2 class=\"c2-title\">What package fits <em>you?</em></h2> (2.8rem desktop, 400 weight, letter-spacing -0.01em; the <em> is italic in #5a5a5a). Native family: Playfair Display (imported ital + 400/500). Loaded via Google Fonts @import in the single <style> block. Title size is font-metric sensitive (drops to 2.1rem at 768px, 1.8rem at 480px)."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fgMuted",
+      "notes": "Sans/body face for the document default and for the eyebrow ('PRICING', uppercase, letter-spacing 0.18em), card titles, feature lists, descriptions, CTA button labels, the price-unit spans (e.g. 'Hourly' / 'One-time'), and the page-count toggle + Framer switch labels. Native family: Inter (imported weights 300/400/500/600). Loaded via Google Fonts @import in the single <style> block."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Signature accent serif used ONLY for the large price amounts (.c2-price: 3.2rem desktop, 400 weight, letter-spacing -0.02em, baseline-aligned with the small Inter unit span; scales to 2.6rem at 480px). Native family: Cormorant Garamond (imported 400/500/600). The price digits drive the JS flip animation (data-price), so the face must read cleanly at large size and animate opacity/translateY without metric jump. Loaded via Google Fonts @import in the single <style> block."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Playfair Display', serif",
+      "body": "'Inter', sans-serif",
+      "accent": "'Cormorant Garamond', serif"
+    },
+    "colorRoles": {
+      "bg": "#F0EFED",
+      "surface": "#ffffff",
+      "fg": "#2a2a2a",
+      "fgMuted": "#666666",
+      "accent": "#2a2a2a",
+      "accent2": "#c0c0c0",
+      "border": "#e5e5e5"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "headline-emphasis",
+      "card-1-title",
+      "card-1-price-amount",
+      "card-1-price-unit",
+      "card-1-features",
+      "card-1-description",
+      "card-1-cta-label",
+      "card-2-title",
+      "card-2-price-amount",
+      "card-2-price-unit",
+      "card-2-toggle-labels",
+      "card-2-framer-label",
+      "card-2-features",
+      "card-2-cta-label",
+      "bottom-card-title",
+      "bottom-card-description",
+      "bottom-card-cta-label"
+    ]
+  },
+  "mechanic": "A centered fadeUp-staggered pricing block of two white feature cards plus a wide custom-request card, where the Web Design card's Cormorant price live-recomputes (single/multi page tablist x a Framer add-on switch) and flip-animates the digits, with decorative alpha tree/landscape artwork that lifts and rotates on card hover.",
+  "techDelivery": "Single standalone HTML file: one <style> block (Google Fonts @import, all c2- prefixed classes, CSS @keyframes + media queries) and one inline <script> IIFE; no frameworks, no build step.",
+  "reskinNotes": "Every color is a literal hex baked inline in the <style> block, not a CSS variable, so a retint is a find/replace across the stylesheet. The single surface role here only captures the white card; two more declared surface greys (#E8E7E5 panel/grid-wrapper/bottom-card, #f0f0f0 toggle track) and the muted-text ramp (#888 eyebrow, #999 price unit, #555/#666 list+desc, #5a5a5a title em) collapse into fgMuted and have no dedicated role. The accent black appears as several near-identical inks (button bg #000, button hover #1a1a1a, switch-on/focus/active #2a2a2a) that must be retinted together; accent2 stands in for the soft decorative greys (❖ bullet #c0c0c0, corner dots #d0d0d0). Space Grotesk is loaded in the @import (weights 400/500/600) but assigned to no element, so it is a declared-but-unused face. List bullets are a hardcoded '❖' glyph via li::before content (not a swappable icon asset); card corner dots are pure CSS (::before/::after + two inline divs), not assets. All copy is hardcoded in markup, including the Web Design pricing logic constants in JS (BASE single 1500 / multi 2500, FRAMER_ADDON 800) and the data-package strings ('Product Design' / 'Web Design' / 'Custom') the contact handler logs, so price tiers and package names live in script, not just text nodes. Card title weight differs (.c2-card-title is 500 but the bottom card's h3 is explicitly weight 500 too) and the title em color is a separate literal. Layout is font-metric dependent (price baseline flex, viewport-relative title sizing with negative letter-spacing)."
+}

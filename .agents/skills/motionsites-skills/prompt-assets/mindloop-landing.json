@@ -1,0 +1,17 @@
+{
+  "id": "mindloop-landing",
+  "title": "Mindloop Landing",
+  "category": "Landing Page",
+  "sort_order": 280,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-03-25T14:12:19.089159+00:00",
+  "page_type": "landing",
+  "row_span": 2,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": null,
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

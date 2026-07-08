@@ -1,0 +1,106 @@
+{
+  "id": "zenith-realty-landing",
+  "role": "hero",
+  "ownSections": [
+    "HeroNavbar",
+    "Properties",
+    "HowItWorks",
+    "InvestmentAnalytics"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video behind the navbar + headline (absolute top-0 left-0 w-full h-full object-cover z-0, so it crops to any viewport) inside the h-screen overflow-hidden hero section; native asset is a luxury-real-estate establishing clip. autoPlay muted loop playsInline. A semi-transparent bg-white/10 content overlay sits over it at z-10, so the footage should read cleanly under near-black text and a dark CTA button."
+    },
+    {
+      "id": "property-card-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "The three property listing photos in the Properties grid (Aether Heights / Azure Sanctuary / Summit Pavilion). Each renders inside an image wrapper that is aspect-[4/3] on mobile and aspect-square on md+, overflow-hidden, with group-hover:scale-105 duration-700 (so the subject must survive a 5% zoom-in crop and a non-square-to-square aspect shift). Order is data-paired with title/price/location/stats in the inline property array. Native assets are exterior architectural renders served through the images.higgs.ai webp proxy."
+    },
+    {
+      "id": "howitworks-feature-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "The large showcase image filling the right 8 columns of the How-it-Works 12-column grid (aspect-video on mobile, aspect-square on md+). Pairs with the 'Exclusive collection' content block on the left 4 columns. Native asset is an interior/lifestyle real-estate render served through the images.higgs.ai webp proxy."
+    },
+    {
+      "id": "brand-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single global typeface for the entire page — headline, navbar, body, subtext, prices, stat labels, chart titles and chart values. Native family: Lato (Google Font, weights 300/400/500/700/900), wired via Tailwind v4 @theme { --font-lato } and applied as font-lato globally. The logo wordmark ('ZENITH' over 'REALTY') uses font-black (900) leading-[0.85] tracking-tighter, and the hero headline uses font-medium (500) tracking-tight leading-[1.05], so the replacement must carry both a heavy 900 and a clean 500 weight and hold tight negative tracking."
+    },
+    {
+      "id": "nav-icons",
+      "type": "icon",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Navbar glyphs from lucide-react: ChevronDown twice (on the 'Properties' and 'Careers' links), Home (leading the 'Post a property' action button), and the Menu/X pair driving the mobile slide-in toggle. Rendered near-black (#141414) at small sizes; themeable via stroke/currentColor."
+    },
+    {
+      "id": "property-stat-icons",
+      "type": "icon",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "The four property-stat glyphs from lucide-react reused across all three cards, laid out inline in a flex-wrap row: Square (area m2), Layers (floors), Bed (beds), Bath (baths). Rendered in the muted grey (#A5A5A5) at size={13} strokeWidth={2.5} beside #141414 11px stat labels."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Lato\", sans-serif",
+      "body": "\"Lato\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F8F8F8",
+      "surface": "#FFFFFF",
+      "fg": "#141414",
+      "fgMuted": "#A5A5A5",
+      "accent": "#141414",
+      "border": "rgba(0,0,0,0.1)"
+    },
+    "copySlots": [
+      "logo-line-1",
+      "logo-line-2",
+      "nav-labels",
+      "nav-new-badge-label",
+      "post-property-cta-label",
+      "hero-headline",
+      "hero-cta-label",
+      "hero-subtext",
+      "properties-heading",
+      "properties-subtext",
+      "property-titles",
+      "property-prices",
+      "property-locations",
+      "property-stats",
+      "howitworks-heading",
+      "howitworks-subtext",
+      "howitworks-block-title",
+      "howitworks-block-desc",
+      "howitworks-consult-cta-label",
+      "howitworks-nav-list-labels",
+      "investment-heading",
+      "investment-subtext",
+      "chart-titles",
+      "chart-values"
+    ]
+  },
+  "mechanic": "A scroll of four stacked full-width sections (h-screen hero with a fullscreen looping background video + 12-col grid navbar/headline, then 3-card property grid, then a 4/8 split how-it-works showcase, then a 3-card analytics row) where the hero headline fades up (y:30, 0.9s) with delayed-fade CTA/subtext, the property and content cards stagger fade-and-slide-up on first scroll into view (viewport once), images zoom group-hover:scale-105, the mobile menu slides in from the right via AnimatePresence, and each analytics card paints a recharts BarChart whose bars are a custom two-rect shape (5%-opacity black body + 2px solid black top cap).",
+  "techDelivery": "React with Tailwind v4 (@theme { --font-lato } in index.css, font-lato applied globally), motion/react for animation (motion.div + AnimatePresence), lucide-react for icons, and recharts (ResponsiveContainer + BarChart with a custom Bar shape) for the analytics sparkline charts; Google Font Lato loaded as the single typeface.",
+  "reskinNotes": "Every color is a hardcoded Tailwind arbitrary value inline (bg-[#F8F8F8], text-[#141414], text-[#A5A5A5], bg-white, border-black/10, the New badge bg-black, the chart fill=\"#141414\" + fillOpacity 0.05 / 0.4-tint) rather than CSS variables, so retinting means editing class strings and the recharts shape function across all four sections; there is no distinct accent hue — near-black #141414 doubles as both fg and the only accent (CTA fills, top-cap line). All copy is hardcoded in JSX, including the three properties' titles/prices/locations/stats and the three chart titles/values. The analytics bars are NOT image/SVG asset sockets: each chart is driven by an inline numeric data array ([35,60,45,...] etc.) and rendered by a custom two-rectangle Bar shape, so theming the charts is a code edit, not an asset swap. The hero 'background' is the video itself (bg-[#F8F8F8] is only the page fallback). Layout is font-metric dependent — the stacked logo uses leading-[0.85] tracking-tighter and the headline uses tight negative tracking with fixed leading, so a wider replacement face shifts the navbar/headline geometry. The Tailwind v4 @theme font token (--font-lato) must be re-declared for any substitute family. The 'New' badge uses rounded-xs and buttons use rounded-none (sharp corners), a deliberate radius language to preserve. Placeholder asset hosts: video on d8j0ntlcm91z4.cloudfront.net, images via the images.higgs.ai webp proxy."
+}

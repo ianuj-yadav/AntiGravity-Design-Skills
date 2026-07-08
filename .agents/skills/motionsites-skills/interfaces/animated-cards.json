@@ -1,0 +1,67 @@
+{
+  "id": "animated-cards",
+  "role": "carousel",
+  "ownSections": [
+    "CardCarousel"
+  ],
+  "slots": [
+    {
+      "id": "card-face-video",
+      "type": "video",
+      "card": 5,
+      "aspect": "1.5925:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Autoplaying muted looping background video filling each card's front face (object-cover, rounded 16px); the same source is reused blurred 16px + scaled 1.15 on the card's back face. One per card across the 5-card 3D cylinder carousel. Source array (CARD_VIDEOS) declares 7 entries but only cardCount=5 cards render via i % length, so entries 6-7 are never shown."
+    },
+    {
+      "id": "chip-svg",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Silver/metallic EMV contact-chip mark, mid-left and vertically centered on each card front (~24-29px square). Inline SVG (viewBox 0 0 60 60) with a per-card userSpaceOnUse linearGradient white -> #999999 (id suffixed by card index) plus a #B7B7B7 detail path; transparent background, tints via that baked gradient."
+    },
+    {
+      "id": "brand-wordmark-svg",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark / logotype at card front top-right (placeholder is a 341x49 'JWT'-style script wordmark). Inline multi-path SVG, every path filled solid white (fill=\"white\"); transparent background. ~84-120px wide, height auto; themeable via fill."
+    },
+    {
+      "id": "brand-corner-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Secondary brand emblem in card front bottom-right (placeholder is two intersecting translucent circles built from CSS divs with backdrop-blur, NOT an image). Reskin socket for a payment-network / brand emblem; transparent, semi-opaque white fills (white/20 + white/35)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "ui-sans-serif (Tailwind font-sans stack)",
+      "mono": "\"JetBrains Mono\", monospace"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#0f0f0f",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#808080",
+      "accent2": "#B7B7B7",
+      "border": "rgba(255,255,255,0.15)"
+    },
+    "copySlots": [
+      "card-number",
+      "card-holder-name",
+      "card-cvv"
+    ]
+  },
+  "mechanic": "A continuous rAF-driven 3D cylinder carousel of double-sided volumetric cards (5 stacked div layers for real thickness) on a 1350px perspective stage, smoothstepped around the loop with a non-linear magnetic dwell at front-center and mouse-inertia parallax tilt.",
+  "techDelivery": "plain React (useState/useEffect/useRef) + Tailwind CSS v4 + raw requestAnimationFrame, no animation libraries (src/App.tsx + src/index.css)",
+  "reskinNotes": "No editable text layers over the background; brand identity lives almost entirely in inline SVG with baked-in hex (chip gradient white->#999999 + #B7B7B7 detail, wordmark fill=\"white\") and in CSS-div brand marks rather than swappable image files. Card-face color comes from the videos plus a fixed #0f0f0f base / #808080 middle-slice stack, so the declared 9-hex Apple CARD_COLORS palette is decorative and unused in render. Layout is font-metric- and viewport-dependent (JS-computed responsive card metrics + JetBrains Mono detail sizing in a useEffect resize handler, fixed 1.5925 card aspect, 640px isMobile branch driving typography), and per-card copy (number/name/CVV in CARD_DETAILS) plus the per-card SVG gradient ids are hardcoded in the component markup."
+}

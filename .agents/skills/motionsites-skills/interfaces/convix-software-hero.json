@@ -1,0 +1,84 @@
+{
+  "id": "convix-software-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroContent",
+    "DashboardPreview"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, absolutely positioned inset-0 object-cover behind the entire hero, autoPlay+loop+muted+playsInline with pointer-events-none and a white/10 overlay on top. Supply a brand muted ambient loop; cover-cropped so it bleeds under the rounded hero container."
+    },
+    {
+      "id": "hero-video-poster",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Poster / loading fallback frame shown before the hero background video plays (native <video> poster attribute). Pair it with the hero-background-video as a matching still; supply a brand cover-cropped frame."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Logo mark in the left of the floating navbar pill, rendered w-7 h-7 / sm:w-8 h-8. Native is an inline 8-petal flower SVG (8 circles r=3.5 at radius 10 around center 16,16 plus a center circle, viewBox 32x32) filled with the accent orange #ef4d23 baked into the markup. Replace with the brand glyph; if reusing the petal mark, retint by editing the inline fill (not a CSS var)."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 7,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "lucide-react UI glyphs used throughout nav, CTAs and dashboard cards: ChevronDown, ChevronRight, ShoppingCart, Menu, TrendingDown, TrendingUp, X. Stroke-only, currentColor-driven (inherit ink/accent from context). Swap the icon set per brand or keep lucide; not photographic."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#ededed",
+      "surface": "#d9d9d9",
+      "fg": "#0b0f1a",
+      "fgMuted": "#404040",
+      "accent": "#ef4d23",
+      "accent2": "#9ca3af",
+      "border": "#e5e5e5"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "badge-label",
+      "headline",
+      "headline-emphasis",
+      "subtitle",
+      "hero-cta-label",
+      "dashboard-card-titles",
+      "dashboard-card-periods",
+      "dashboard-metric-values",
+      "dashboard-trend-labels",
+      "dashboard-captions",
+      "gauge-end-labels",
+      "form-field-labels",
+      "form-field-values",
+      "toggle-labels",
+      "form-button-labels"
+    ]
+  },
+  "mechanic": "Static full-viewport hero clipped by a single rounded container where a muted looping cover-video sits behind a floating pill navbar, a centered Instrument-Serif-accented headline + dark CTA, and a light dashboard tray of three metric cards (each with a reusable 40-tick 180-degree SVG gauge) that bleeds off the clipped bottom edge.",
+  "techDelivery": "React + Vite + Tailwind CSS (TypeScript), components split into src/app/App.tsx + components/{Navbar,DashboardPreview,Gauge}.tsx, Inter + Instrument Serif imported from Google Fonts in src/styles/fonts.css, icons via lucide-react; no animation lib (only the native looping muted background video).",
+  "reskinNotes": "The accent orange #ef4d23 is baked into the inline logo-flower SVG fill (not a CSS var), so retinting the mark means editing markup. The dashboard surfaces are split across three distinct tones (hero #d9d9d9, tray #f5f2ee, white cards) plus Tailwind state colors (red-50/red-600 trend-down pill, neutral-100 toggle track, neutral-500 gauge labels) hardcoded as utility classes rather than tokens, so a full repalette must touch those classes. The reusable Gauge hardcodes geometry (200x120 viewBox, 40 ticks, r=80, inactive #d4d4d8) and renders %-values + min/max as inline SVG <text>, so card metrics, gauge percentages and end labels are copy hardcoded in markup. Headline emphasis word is an inline italic Instrument Serif <span>, and the whole layout (clamp() headline/CTA sizing, clipped overflow that intentionally bleeds the cards) depends on Inter/Instrument-Serif metrics."
+}

@@ -1,0 +1,162 @@
+{
+  "id": "vortex-studio-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Marquee",
+    "TestimonialQuote",
+    "PricingSection",
+    "TestimonialCarousel",
+    "ProjectsSection",
+    "PartnerSection",
+    "Footer",
+    "CopyrightBar",
+    "BottomNav"
+  ],
+  "slots": [
+    {
+      "id": "marquee-reels",
+      "type": "video",
+      "card": 8,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The 8 looping preview reels filling the full-width infinite marquee strip directly under the hero (h-[280px] md:h-[500px], object-cover, mx-3, rounded-2xl, shadow-lg). The strip is duplicated to 16 nodes and translated translateX(0)->translateX(-50%) by the animate-marquee keyframe (30s linear infinite desktop / 10s mobile) for a seamless loop. The SAME 8 reels are reused by the PartnerSection as cursor-trail thumbnails, so this one socket feeds both surfaces. Native source hardcodes 8 motionsites.ai .gif URLs (sockets to fill, not values to keep); supply self-playing seamless loops, ideally short MP4/WebM or optimized GIFs at a roughly portrait/4:5-ish crop since they survive object-cover at the fixed heights."
+    },
+    {
+      "id": "project-showcase-reels",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The 3 full-width project showcase clips stacked in ProjectsSection (rounded-2xl, shadow-lg, object-cover), one per project item (evr / Automation Machines / xPortfolio). Each item fades in independently via IntersectionObserver. Native source hardcodes 3 motionsites.ai .gif URLs (sockets to fill). Supply silent seamless-looping reels of the brand's own case-study work; framing should survive object-cover at full container width."
+    },
+    {
+      "id": "parallax-feature-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "The single feature image below the company logos in TestimonialQuote (w-full max-w-xs, rounded-2xl, shadow-lg, alt 'Chris Halaska'). It parallax-scrolls with the viewport (max offset 200px) via IntersectionObserver + scroll listener driven by requestAnimationFrame. Native source is a higgs.ai-proxied CloudFront .png/webp (a socket to fill, not a value to keep). Supply one portrait-leaning brand/founder photo; the parallax shifts it vertically so leave a little headroom/footroom for the 200px travel."
+    },
+    {
+      "id": "testimonial-author-avatars",
+      "type": "image",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "The 5 circular author avatars in the TestimonialCarousel cards (w-12 h-12 rounded-full), one per testimonial (Marcus Anderson, alexwu, James Mitchell, Rachel Foster, David Zhang). The card array is tripled for infinite scroll, so each avatar is rendered 3x. Native source is Pexels portrait photos (sockets to fill). Supply 5 square headshots that read well cropped to a 48px circle."
+    },
+    {
+      "id": "viktor-cta-avatar",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "The single circular founder avatar inside the PartnerSection CTA pill ('Start chat with Viktor', w-10 h-10 rounded-full). Native source is Pexels photo 415829 (a socket to fill). Supply one square headshot of the brand's lead/founder that reads at ~40px circular."
+    },
+    {
+      "id": "carousel-quote-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The decorative quotation-mark glyph at the top of each TestimonialCarousel card, authored as a custom inline SVG path (distinct from the lucide Quote icon used in the TestimonialQuote section). Tinted via the dark fg color. Replace with the brand's quote/typographic mark; supply transparent. Note the path geometry is hardcoded inline in JSX, so retinting/replacing is a markup edit."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI/decoration glyphs, all lucide-react and currentColor-tinted so text-* utilities apply: Quote (TestimonialQuote header, w-6 h-6 text-slate-900), Star (the carousel header rating row, w-5 h-5 fill-black, rendered 5x for 'Clutch 5/5'), ChevronLeft + ChevronRight (carousel prev/next circular buttons, w-12 h-12 rounded-full, border-[#0D212C]/20), and ArrowUpRight (Footer link cluster). Supply as currentColor-driven line/fill icons so the slate/black tints survive; only swap if the brand ships an equivalent icon set."
+    },
+    {
+      "id": "display-serif-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Serif accent/display face for the 'Viktor Oddy' wordmark, the highlighted spans inside otherwise-sans headings ('next wave'/'bold way.'/'Apple'/'builders'), every project name, the big 'Partner with us' heading (up to text-[80px]), and the single 'V'/'V'-letter marks in BottomNav. Native family 'PP Mondwest', loaded from a local /PPMondwest-Regular.woff2 via @font-face (weight 400, font-display swap). Rendered in the dark fg colors at large tracking-tight sizes."
+    },
+    {
+      "id": "body-sans-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Primary UI/body face and the page default, used for all paragraph copy, descriptions, buttons, nav/footer links, pricing text, testimonial quotes and author lines. Native family 'PP Neue Montreal' (weights 400 Book + 500 Medium) loaded via @font-face from the Webflow assets.website-files.com CDN (font-display swap), with system fallbacks. Used at leading-relaxed for body and tracking-tight for the sans portions of the large headings."
+    },
+    {
+      "id": "mono-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Monospace face for the single hero tagline line ('The creative studio of Viktor Oddy', font-mono, text-xs md:text-sm). Native declaration is just Tailwind's font-mono utility (the default ui-monospace/system mono stack) — no custom mono webfont is loaded. Swap only if the brand specifies a mono face for the eyebrow."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'PP Mondwest', serif",
+      "body": "'PP Neue Montreal', system-ui, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "surface": "#051A24",
+      "fg": "#0D212C",
+      "fgMuted": "#273C46",
+      "accent": "#051A24",
+      "accent2": "#F6FCFF",
+      "border": "rgba(13,33,44,0.2)"
+    },
+    "copySlots": [
+      "brand-wordmark",
+      "hero-eyebrow",
+      "hero-headline-line-1",
+      "hero-headline-line-2",
+      "hero-headline-accent-spans",
+      "hero-body-paragraph-1",
+      "hero-body-paragraph-2",
+      "hero-body-paragraph-3",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "quote-headline",
+      "quote-author",
+      "quote-logo-names",
+      "pricing-card-1-title",
+      "pricing-card-1-description",
+      "pricing-card-1-price",
+      "pricing-card-1-price-caption",
+      "pricing-card-1-primary-cta-label",
+      "pricing-card-1-secondary-cta-label",
+      "pricing-card-2-title",
+      "pricing-card-2-description",
+      "pricing-card-2-price",
+      "pricing-card-2-price-caption",
+      "pricing-card-2-cta-label",
+      "carousel-heading",
+      "carousel-rating-label",
+      "testimonial-quotes",
+      "testimonial-author-names",
+      "testimonial-author-roles",
+      "project-names",
+      "project-descriptions",
+      "partner-heading",
+      "partner-cta-label",
+      "footer-cta-label",
+      "footer-nav-labels",
+      "footer-social-labels",
+      "copyright-entity",
+      "copyright-location",
+      "bottomnav-brand-letter",
+      "bottomnav-cta-label"
+    ]
+  },
+  "mechanic": "A long white single-column scroll of stacked studio sections whose signature motion is a full-width 30s-linear infinite image marquee (translateX 0->-50% over duplicated reels), with every section element rising in on a shared IntersectionObserver fade-in-up keyframe (translateY(30px)->0, opacity 0->1, 0.8s ease-out) staggered in 0.1s increments, plus a scroll-parallax feature image (200px travel via rAF), a 3s auto-advancing testimonial carousel (tripled cards, cubic-bezier 0.8s), and a PartnerSection that spawns rotated GIF thumbnails at the cursor.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS, multi-file: App.tsx composes the hero/marquee and a set of section components (Button, TestimonialSection, PricingSection, TestimonialCarousel, ProjectsSection, PartnerSection, Footer, CopyrightBar, BottomNav) plus a shared useInViewAnimation IntersectionObserver hook; lucide-react for icons; @font-face (PP Neue Montreal via Webflow CDN + local PP Mondwest woff2), the marquee keyframe and the fade-in-up keyframe defined in src/index.css.",
+  "reskinNotes": "All copy is hardcoded in JSX/markup, not data — wordmark 'Viktor Oddy', the monospace tagline, the two heading lines with their PP-Mondwest accent spans ('next wave'/'bold way.'), all three hero paragraphs (including the '$5,000 per month' price and the 'seven years at Apple' biography), every button label, the 'I left Apple to build…' pull-quote, the Apple/IDEO/Polygon logo NAMES (rendered as text, not logos, at fixed widths 80/83/110px sized to those words), both pricing cards' titles/descriptions/prices, all 5 testimonial quotes + author/role pairs, the 3 project names/descriptions, 'Partner with us', 'Vortex Studio Limited', 'Austin, USA', and the bottom-nav 'V' — so reskinning is a markup edit throughout. The full palette is expressed as inline Tailwind arbitrary hex utilities (bg-[#051A24], text-[#0D212C], #F6FCFF/#E0EBF0, #273C46, border-[#0D212C]/20), not :root tokens, so a recolor means editing utility classes across components rather than flipping CSS variables. The signature multi-layered primary button box-shadow (5 stacked rgba(5,26,36,*) drop shadows + an inset white highlight) is a literal long shadow string repeated on multiple CTAs and is essential to the design feel — retinting it is a per-instance edit. PP Mondwest is a local /PPMondwest-Regular.woff2 that must ship with the build, and PP Neue Montreal loads from a third-party Webflow CDN whose availability/licensing should be verified; the large headings use fixed text-[32/40/44px] (and the partner heading up to text-[80px]) with whitespace-nowrap, leading-[1.1] and tracking-tight tuned to these specific fonts, so swapping the display/body face or using longer copy can break the intended line composition. The TestimonialCarousel card width is a fixed 427.5px on desktop, and the company-logo text widths are hardcoded, so longer brand strings can overflow."
+}

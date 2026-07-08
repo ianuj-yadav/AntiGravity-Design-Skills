@@ -1,0 +1,75 @@
+{
+  "id": "taskly-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-orb-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "accent",
+      "notes": "Hero-right glassy orb. Composited with mix-blend-screen to drop its black background and scale-125 to bleed off-center; brand-tinted to the primary CTA blue via a CSS color-grade filter."
+    },
+    {
+      "id": "rating-stars",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "Five filled stars in the 'Rated 4.9/5 by 2700+ customers' social-proof badge; tinted orange."
+    },
+    {
+      "id": "cta-arrow-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Arrow glyphs for the glassy navbar SignUp button and the white circular-arrow icon on the 'Get Started Now' primary CTA."
+    },
+    {
+      "id": "trusted-by-logos",
+      "type": "svg",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Five partner/company logos in the 'Trusted by Top-tier product companies' footer strip, rendered grayscale and spaced at gap-[100px]."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Fustat",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "surface": "rgba(255,255,255,0.3)",
+      "fg": "#000000",
+      "accent": "#0084FF",
+      "accent2": "#FF801E",
+      "border": "rgba(0,0,0,0.1)"
+    },
+    "copySlots": [
+      "headline",
+      "subheadline",
+      "logo-wordmark",
+      "nav-labels",
+      "signup-label",
+      "rating-badge",
+      "cta-label",
+      "trusted-by-label"
+    ]
+  },
+  "mechanic": "A static dual-column liquid-glass hero (sticky backdrop-blur glass navbar over a white layered-gradient-glow stage) whose signature motion is an autoplay-looping orb video color-graded and screen-blended into electric brand blue, plus a 1.02 hover scale on the primary CTA.",
+  "techDelivery": "single-file React + Tailwind utility classes with arbitrary values (e.g. backdrop-blur-[50px], rounded-[16px], top-[30px]) and a React-attribute video tag (autoPlay loop muted playsInline)",
+  "reskinNotes": "The orb's brand-blue look is a CSS filter (hue-rotate(-55deg) saturate(250%) brightness(1.2) contrast(1.1)) calibrated to the original PURPLE source asset AND depends on mix-blend-screen over a black-background video — swapping in a brand video with a different base hue or non-black background breaks the color grade and the compositing. Glow ellipse hexes (#60B1FF, #319AFF), star orange (#FF801E), and CTA/border rgba values are baked inline; CTA accent carries an 0.8 alpha plus backdrop-blur. Copy (headline, nav labels, rating text) is hardcoded in markup and layout assumes Fustat/Inter font metrics (75px / 1.05 line-height / -2px tracking)."
+}

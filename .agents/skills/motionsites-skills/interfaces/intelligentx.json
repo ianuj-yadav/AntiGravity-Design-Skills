@@ -1,0 +1,97 @@
+{
+  "id": "intelligentx",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "bg",
+      "notes": "Fullscreen looping hero background video. Sits in an absolute wrapper offset down the page (top-15vh/20vh, h-95vh/120vh), rendered <video autoPlay loop muted playsInline> at opacity-100 object-cover so the footage fills the hero without distortion; a top-edge gradient mask (from the #EDEEF5 base to transparent) feathers the video into the page background, and the spec requires NO extra margin/padding below it so the loop occupies exactly 100% of the hero viewport. Currently a CloudFront placeholder mp4 (d8j0ntlcm91z4.cloudfront.net/...036591b8... .mp4) — replace with a brand-owned loop. The light #EDEEF5 base shows through the feather, so pick footage that blends into a pale ground and stays light enough for the dark headline to read."
+    },
+    {
+      "id": "brand-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Geometric flower/clover brand mark in the top-left of the navbar, sitting beside the 'mėntality' wordmark. Declared as an inline SVG filled #1a1a1a. Supply as a single-color, transparent-background, roughly square glyph; to stay tintable deliver it as a currentColor / fill-inheriting shape rather than a baked #1a1a1a hex."
+    },
+    {
+      "id": "headline-eye-pill",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline pill-shaped UI glyph set between the words 'your' and 'mental' inside the H1. Built from markup as a capsule with a 2px #1a1a1a border (rounded-full) wrapping a tiny solid black dot (w-2 h-2); responsive width w-[16px] / md:w-[42px] / lg:w-[62px]. Acts as an eye/witness motif inline with the text — supply as a transparent outline+dot shape, or replace with a brand glyph of equivalent inline capsule proportions."
+    },
+    {
+      "id": "search-action-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "surface",
+      "notes": "Chevron/arrow glyph inside the search pill's trailing action button (a #1a1a1a 36x36 rounded-full button, icon rendered in white). Single-color stroke/fill icon that reads against the dark circle; swap for the brand's own submit/arrow glyph."
+    },
+    {
+      "id": "nav-hamburger-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Animated hamburger toggle in the top-right of the navbar (mobile only) that opens the AnimatePresence slide-down nav drawer. A small two/three-line glyph in #1a1a1a that animates between open/closed states; supply as transparent single-color lines or rely on a CSS/motion-animated bar set."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display typeface mapped to --font-display and the Tailwind display utility: the Google Font 'Outfit'. Carries the 'mėntality' wordmark and any display-weight headline treatment. Note the wordmark contains the diacritic 'ė', so a substitute display face must cover Latin Extended; swap with the brand display sans."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/sans typeface mapped to --font-sans and applied to <body> globally: the Google Font 'Inter'. Carries the multi-line H1 (mixed #1a1a1a / #8e8e8e weight-400 text), nav links, the 'Ask me anything...' search input, the get-started button label, and all small corner labels. Swap with the brand body sans."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Outfit', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#EDEEF5",
+      "surface": "#ffffff",
+      "fg": "#1a1a1a",
+      "fgMuted": "#8e8e8e",
+      "accent": "#9fff00",
+      "border": "rgba(0,0,0,0.05)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-find-help-label",
+      "nav-cta-label",
+      "headline",
+      "search-placeholder",
+      "lang-toggle-label",
+      "year-label",
+      "corner-tagline"
+    ]
+  },
+  "mechanic": "A top-aligned, taller-than-viewport (min-h-110vh/140vh) hero that feathers a fullscreen object-cover autoplay/loop/muted background video into a flat #EDEEF5 ground via a top gradient mask, layering a slide-up-fade two-tone Inter H1 (with an inline eye-pill glyph mid-sentence) over a delayed slide-up white search capsule, anchored by absolute edge furniture (glass language pill on the right, '2024' bottom-left, 'mental health tools' bottom-right) beneath a fixed glassmorphic backdrop-blur navbar whose mobile menu opens via an AnimatePresence slide-down drawer.",
+  "techDelivery": "Vite + React + Tailwind CSS, with motion/react (Framer Motion) for the headline/search slide-up-fade entrances and the AnimatePresence mobile-nav drawer; native <video> element (autoPlay/loop/muted/playsInline) for the background; Google Fonts (Inter + Outfit) wired through CSS custom properties (--font-sans, --font-display) and Tailwind theme tokens (bg-bg-base, brand-green); brand mark and inline UI glyphs are hand-authored SVG/markup.",
+  "reskinNotes": "Headline color is not a single token: the H1 is split into hardcoded spans alternating #1a1a1a (lead) and #8e8e8e (muted continuation) with manual line breaks tuned to the exact copy 'Remix: Mentality offers information / and resources to help you manage / your [eye] mental wellbeing.', so retinting or longer copy means editing the markup span-by-span and can reflow the lines. The inline eye-pill is a markup capsule with #1a1a1a baked into its border and a fixed responsive width ramp (16/42/62px) calibrated to the Inter headline cap-height, so it only sits correctly inline at those font metrics. The brand mark, search chevron, and hamburger are inline SVG/markup with #1a1a1a hardcoded (no fill token). The brand name 'mėntality' (with its 'ė' diacritic), nav links (service / patient resources / about us / education center), 'find help', 'get started →', the search placeholder, the 'pl — en' language toggle, '2024', and 'mental health tools' are all hardcoded strings in the components. brand-green #9fff00 only appears as the selection highlight (selection:bg-brand-green), not as a structural accent, and #EDEEF5 is a true flat page ground (not just a video fallback) that the gradient mask depends on, so changing it requires updating the mask gradient stop too."
+}

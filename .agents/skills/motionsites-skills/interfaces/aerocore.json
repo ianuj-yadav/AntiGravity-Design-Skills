@@ -1,0 +1,123 @@
+{
+  "id": "aerocore",
+  "role": "hero",
+  "ownSections": [
+    "EngineHero",
+    "Mission",
+    "Showcase",
+    "Capabilities",
+    "Stats",
+    "VideoStories",
+    "SiteFooter"
+  ],
+  "slots": [
+    {
+      "id": "hero-engine-cutout",
+      "type": "image",
+      "card": 1,
+      "aspect": "2:3",
+      "alpha": true,
+      "notes": "The single centered hero subject — a tall cutout product render (the spec ships a propulsion-engine PNG) pinned in .engine-visual, sized height:140% with aspect-ratio 2/3, object-fit:contain, object-position center bottom, and a drop-shadow filter. Parallaxes upward (translateY up to -250px) and fades out on scroll. MUST be a transparent-background cutout so the gradient sky shows through; it is also reused as the poster frame for the showcase film video, so its silhouette should read against a dark fill too."
+    },
+    {
+      "id": "showcase-film-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "One fullscreen-capable hero film clip (autoPlay muted loop playsInline). It starts life occupying the empty .mission__media 16:9 frame, then on scroll the .showcase-film element lerps top/left/width/height from that card rect out to the full viewport (cover) while a black overlay ramps to 0.22 opacity and the white panel/tab UI fades in over a 600vh sticky scroll. Poster is the hero engine cutout PNG. Supply a seamless cinematic loop that stays legible under a darkening overlay with white overlaid copy."
+    },
+    {
+      "id": "capability-card-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three independent background clips filling the capabilities bento cards (cap-card__video: object-cover, scale 1.02, autoPlay muted loop playsInline): the tall 'Program Background' card, the 'Highly Qualified Engineers' metric card, and the 'Core Systems' tools-marquee card. Each sits under a dark gradient shade with white labels/metrics/marquee chips on top, so all three must be dark/low-contrast enough to keep white text legible. Crop-tolerant (no fixed aspect; cards vary in proportion)."
+    },
+    {
+      "id": "video-stories-clips",
+      "type": "video",
+      "card": 5,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Five 16:9 preview clips for the horizontal scroll-snap story rail (story-card__media: object-cover, rounded 12px, autoPlay muted loop playsInline). The spec reuses 3 unique source files across the 5 cards, so 3-5 distinct loops are acceptable. Inactive cards render at 0.54 opacity and lift to full on hover; captions sit in a separate light panel below the video (not overlaid), so these clips do not need to reserve space for text."
+    },
+    {
+      "id": "phosphor-ui-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI/marquee glyphs from the Phosphor Icons web font (regular weight, loaded via unpkg CDN): arrow-elbow-down-right, arrow-up-right (CTAs), plus the Core Systems marquee set (gear-six, fire, gauge, atom, wrench, cpu, wave-sine, shield-check, rocket-launch, chart-line-up). Single-color font glyphs that inherit currentColor; a reskin can swap the icon set wholesale."
+    },
+    {
+      "id": "sans-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The one typeface used across the entire page (display headlines, nav, body, labels, footer wordmark) via --font-sans. Native stack is 'Geist' with an 'Inter' fallback then system sans. Headlines lean on ultra-light weights (font-weight 200-300, some as low as 220-260) at very large clamp() sizes with near-zero or negative tracking (e.g. footer wordmark letter-spacing -0.055em), so the substitute must hold up thin and large; the giant footer wordmark renders at up to 214px on a single nowrap line."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Geist\", \"Inter\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "body": "\"Geist\", \"Inter\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#f7f8f8",
+      "fg": "#0a0a0a",
+      "fgMuted": "#666666",
+      "accent": "#7191d0",
+      "accent2": "#aab8d5",
+      "border": "rgb(18 35 35 / 0.09)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-caption",
+      "mission-eyebrow",
+      "mission-statement",
+      "mission-button-label",
+      "mission-support",
+      "showcase-tab-labels",
+      "showcase-panel-titles",
+      "showcase-panel-descriptions",
+      "capabilities-heading",
+      "capabilities-intro",
+      "capabilities-cta-label",
+      "capability-card-labels",
+      "capability-timeline-items",
+      "capability-quote",
+      "capability-quote-attribution",
+      "capability-metric-value",
+      "capability-metric-caption",
+      "tool-marquee-items",
+      "contact-email",
+      "contact-phone",
+      "stats-heading",
+      "stats-summary",
+      "stats-tab-labels",
+      "stats-dataset-bars",
+      "video-stories-heading",
+      "video-stories-intro",
+      "story-card-captions",
+      "footer-heading",
+      "footer-nav-labels",
+      "footer-wordmark",
+      "footer-legal"
+    ]
+  },
+  "mechanic": "Three stacked sticky-scroll acts over one parallax gradient sky: a 180vh hero where an ultra-light split headline, a cutout engine render and a caption parallax at different rates while the sky lerps from blue to dawn and fades out, then a 600vh sticky showcase where a video clip rect-morphs (lerped top/left/width/height) from the mission's 16:9 card to a fullscreen cover as a darkening overlay and tab-driven panel UI cross-fade, all driven by requestAnimationFrame on getBoundingClientRect.",
+  "techDelivery": "Single self-contained HTML file: vanilla JS Web Components (customElements 'engine-hero') + plain class controllers (ShowcaseSection, StatsSection) animating via requestAnimationFrame and inline CSS custom properties; no framework, no bundler, no Tailwind — only the Phosphor Icons web font via unpkg CDN and a Google-Fonts preconnect. All styling is one inline <style> block of hand-written CSS.",
+  "reskinNotes": "The brand logo mark is not an asset — it is a CSS clip-path polygon (a striped chevron) drawn in .brand__mark::before and .site-footer__mark::before with the fill color hardcoded (--hero-blue in the nav, #000000 in the footer), so rebranding the mark means editing those polygon/fill rules, not swapping a file. Colors are split between CSS variables (--geist-background/foreground/muted, --hero-blue/-soft/-cloud) and many one-off literals baked directly into rules: the dark stats section (#111414->#171a1a gradient + blue radial glows), the black footer (#000000) and its dot-field, every card border/shade as inline rgb() with alpha, the hero scroll color-lerp endpoints (blue 113,145,208 -> dawn 240,232,220 as raw RGB arrays in JS), and the stats bar gradients/spark colors — none of these are tokenized. fgMuted is not one value; muted text uses assorted greys (#5f5f5f, #666666, #677070, #697272, #758080, rgba whites in dark sections). All copy is hardcoded: nav labels live in a JS navItems array, the four showcase panels (titles carry literal <br> line breaks) in a TABS array, and the four stats datasets (titles, summaries, and per-bar label/value/target/range/trace numbers) in a DATASETS object inside <script>; everything else (mission, capabilities, quote+attribution, contact email/phone, video-story captions, footer wordmark/legal) is literal in the HTML. Layout is font-metric-dependent: the giant footer wordmark and hero title lines are white-space:nowrap with negative letter-spacing and will overflow with a wider substitute font or longer brand name, and the hero title's three lines are absolutely positioned with hand-tuned offsets. The showcase film's start position is computed from the live bounding rect of .mission__media, so that empty 16:9 div must remain present and sized for the rect-morph to originate correctly."
+}

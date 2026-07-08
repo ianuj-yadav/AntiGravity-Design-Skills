@@ -1,0 +1,63 @@
+{
+  "id": "transform-data-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video sized at 115% width/height, centered horizontally and anchored to top (object-top focal point), sitting behind the entire nav + hero stack. It is the only true brand-fill asset: a custom requestAnimationFrame fade system (NOT CSS transitions) does a 250ms fade-in on load/loop-start and a 250ms fade-out when 0.55s remain before the end, then resets currentTime to 0 and replays, so the footage must read as a clean short seamless loop. Native source is a CloudFront-hosted MP4. Footage should be calm/mid-toned so the black headline (#000), gray subtitle (#505050) and white-on-dark glass search box stay legible over it."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 7,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome, NOT brand marks: chevron-down (Features nav dropdown), up-arrow (black circular 36px search submit button), star (dark 'New' badge), AI sparkle ('Powered by GPT-4o' label), paperclip ('Attach' action button), microphone ('Voice' action button), and search (both the 'Prompts' action button and a magnifier). The spec declares these as 'SVG paths from imported file', so they are a single line-icon set rendered as inline SVG. Optional socket: only swap if the brand ships an equivalent icon set; otherwise the imported defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Fustat', sans-serif",
+      "body": "'Inter', sans-serif",
+      "accent": "'Schibsted Grotesk', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#f8f8f8",
+      "fg": "#000000",
+      "fgMuted": "#505050",
+      "accent": "rgba(90,225,76,0.89)",
+      "accent2": "#0e1311",
+      "border": "rgba(0,0,0,0.24)"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-menu-labels",
+      "nav-signup-label",
+      "nav-login-label",
+      "hero-badge-tag",
+      "hero-badge-text",
+      "hero-headline",
+      "hero-subtitle",
+      "search-credits-label",
+      "search-upgrade-label",
+      "search-model-label",
+      "search-input-placeholder",
+      "search-action-labels",
+      "search-char-counter"
+    ]
+  },
+  "mechanic": "A single static full-viewport hero: a fixed-spacing nav and a centered, max-width-constrained content column (badge + headline + subtitle + frosted dark-transparent search box) stacked over one fullscreen 115%-scaled looping background video, whose only motion is a custom requestAnimationFrame opacity fade-in/fade-out driving each seamless loop (no CSS transitions, no scroll animation).",
+  "techDelivery": "React component spec on Tailwind CSS utility classes (VideoBackground + Navigation + Hero content + nested badge/header/search components), with the video fade handled by imperative requestAnimationFrame logic (refs + cancelAnimationFrame, NOT CSS transitions) and four Google Fonts (Schibsted Grotesk, Inter, Noto Sans, Fustat at weights 400/500/600/700); UI icons are inline SVG paths imported from a separate icons file.",
+  "reskinNotes": "Type pairing is structural and tightly tuned: Fustat drives the display headline ('Transform Data Quickly', 80px / -4.8px tracking / line-height none) and the subtitle (Fustat Medium 20px / -0.4px), Schibsted Grotesk drives the logo (SemiBold 24px / -1.44px tracking) + nav menu + the search box's 12px white labels, and Inter Regular 14px is the badge text — Noto Sans is loaded but unused in the spec, so a font swap with different metrics will reflow the negative-tracked headline and the fixed-width nav buttons ('Sign Up' 82px, 'Log In' 101px) and the fixed 728x200px / 18px-radius search box. The motion is hand-coded, not declarative: the 250ms RAF fade-in/fade-out, the 0.55s-before-end trigger, the fadingOutRef re-trigger guard, the on-ended 100ms-delay-then-replay reset, and the cancel-frames-on-each-new-fade rule must be ported verbatim or the loop will snap/flicker. The green 'Upgrade' button rgba(90,225,76,0.89) and the dark badge #0e1311 are one-off accents not derived from a token system; the search box background is a literal rgba(0,0,0,0.24) backdrop-blur panel tuned to read over the video. All copy is hardcoded in markup (logo 'Logoipsum'; nav items Platform/Features/Projects/Community/Contact; 'Sign Up' + 'Log In'; badge 'New' + 'Discover what's possible'; headline + subtitle; search labels '60/450 credits', 'Upgrade', 'Powered by GPT-4o', placeholder 'Type question...', action labels Attach/Voice/Prompts, and the '0/3,000' counter). The video URL and icon SVG paths are baked inline (CloudFront MP4 + imported icon file), so reskinning means replacing those sources, not editing a config."
+}

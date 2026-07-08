@@ -1,0 +1,85 @@
+{
+  "id": "deck-investor",
+  "role": "hero",
+  "ownSections": [
+    "TitleSlide",
+    "ProblemSlide",
+    "MarketSlide",
+    "DistributionSlide",
+    "GlobalExpansionSlide",
+    "NavigationDots"
+  ],
+  "slots": [
+    {
+      "id": "slide-background-videos",
+      "type": "video",
+      "card": 5,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The five fullscreen looping Mux HLS background films, one persistently-mounted <video autoPlay muted loop playsInline> per slide, each played through hls.js (autoStartLoad, play on MANIFEST_PARSED) with a direct video.src Safari fallback. All five are mounted absolute behind the relative z-10 keyed content wrapper and preload simultaneously because every slide stays mounted. Per-slide treatments are baked into markup, NOT the asset: slides 1/2 are absolute inset-0 object-cover at full opacity over black; slide 3 is forced transform:scale(-1,-1) (flipped both axes) at opacity:0.5 over black; slide 4 is absolute top/bottom/right object-cover with a left:400px offset (anchored right, large left gutter for the headline); slide 5 is blown up to width:200%/height:200% anchored bottom:0 left:0 over a #131318 base. Native sources are Mux .m3u8 streams. Supply five dark/atmospheric silent seamless loops; white headings and #80838e body copy overlay every one, so keep them legible — especially slides 1/2/4 which get NO dimming overlay (only slide 3 self-dims to 0.5)."
+    },
+    {
+      "id": "chart-area-fill-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "The purple-to-pink gradient AREA FILL under the growth curve on MarketSlide (slide 3), an imported PNG sitting inside ChartArea (absolute bottom-0 right-0 w-[55%] h-[70%]) beneath the SVG stroke paths. Needs transparency so the black/video ground shows through above the curve; tints to the chart accent ramp (#8238DC -> #F75CB7). Only the soft gradient wash is the raster asset — the curve line itself, axis, tick marks, and marker dots are all inline SVG/markup, so the PNG must visually align with that hardcoded #8238DC->#F75CB7 stroke geometry."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The brand wordmark logo rendered top-left of every one of the five slides (116px wide x 36px tall) from imported inline SVG path data, filled white. Needs transparency; tints to the foreground/white color. Swapping the brand means replacing the SVG path data (and ideally preserving the ~3.22:1 116x36 footprint the top-bar layout assumes)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Aeonik', sans-serif",
+      "body": "'Aeonik', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#131318",
+      "fg": "#ffffff",
+      "fgMuted": "#80838e",
+      "accent": "#8238DC",
+      "accent2": "#F75CB7",
+      "border": "rgba(255, 255, 255, 0.15)"
+    },
+    "copySlots": [
+      "deck-meta-type-value",
+      "deck-meta-investor-value",
+      "deck-meta-date-value",
+      "deck-meta-industry-value",
+      "slide-number-labels",
+      "title-headline-line-1",
+      "title-headline-line-2",
+      "problem-eyebrow",
+      "problem-headline",
+      "problem-stat-values",
+      "problem-stat-labels",
+      "market-eyebrow",
+      "market-headline",
+      "market-body",
+      "market-chart-top-value",
+      "market-chart-sector-value",
+      "market-chart-year-labels",
+      "distribution-eyebrow",
+      "distribution-headline",
+      "distribution-body",
+      "global-eyebrow",
+      "global-headline",
+      "global-body"
+    ]
+  },
+  "mechanic": "A 5-slide fullscreen deck where every slide stays permanently mounted (so HLS videos preload) and navigation is a pure opacity crossfade through black (active opacity 1 / z-10, inactive opacity 0 / z-0 pointer-events-none, 0.35s easeInOut) driven by keyboard + a bottom row of clickable dots, while each slide's content remounts on activation (key=activationCount) to replay its signature entrance: SlideUpLine clip-reveal headings (y 100%->0% inside overflow-hidden), WordByWordReveal staggered word rise, and BlurReveal (blur 8px->0 + opacity) for eyebrows/meta/body — over a persistent Mux HLS background film.",
+  "techDelivery": "React 18 + Tailwind CSS v4 + Motion (motion/react) + hls.js. Font is Aeonik (sans-serif) wired as the app-level font-['Aeonik',sans-serif]; videos are Mux HLS (.m3u8) streams attached via hls.js with a Safari direct-src fallback. Multi-component structure: App container + five slide components + shared Logo (imported SVG), reusable AnimatedText primitives (SlideUpLine / WordByWordReveal / BlurReveal), per-slide HLS <video> setup, and a bottom NavigationDots control.",
+  "reskinNotes": "Palette is expressed almost entirely as hardcoded Tailwind utility classes and inline hex in markup, not design tokens, so reskinning is a find-replace across components: bg-black on slides 1-4 vs bg-[#131318] on slide 5, primary text text-white, muted text-[#80838e] (eyebrows, meta labels, slide numbers, body, year labels), dividers bg-white/15. The chart on slide 3 is the load-bearing identity and its colors are baked into inline SVG: the main growth line is a linear gradient #8238DC -> #F75CB7 (strokeWidth 4) with an #80838e -> transparent opacity halo (strokeWidth 24), the marker dots are a #7FBAFF -> #536EFB gradient with white stroke, and the x-axis line/ticks are #1a2035 — all hand-coded, plus a separately-imported PNG area fill that must align to that curve. The Logo is imported inline SVG path data (116x36 white) — rebranding swaps the path, not an asset URL. Typography is tuned to Aeonik metrics with very aggressive clamp() sizing and tight leading: the title h1 is clamp(48px,10vw,140px) leading-[0.9], slide headings range clamp(20px,4vw,80px) leading-[1.04], stat values clamp(32px,6vw,96px) leading-[0.96], so a wider/taller replacement face will break the intended single-screen composition. WordByWordReveal splits headings on spaces into per-word overflow-hidden spans (mr-[0.27em]) and SlideUpLine wraps lines in clip spans, so the word/line structure is part of the layout, not just styling. ALL copy is hardcoded inline across the five slides: the four title-bar meta pairs (Type 'Investor Deck', Investor 'BlackRock', Date 'February 2026', Industry 'Artificial Intelligence'), the '02'-'05' slide numbers, the 'Innovation' / 'and Growth' title lines, the Problem eyebrow + long heading + three stat value/label pairs (80%/63%/47%), the Market eyebrow/heading/body + chart values '127%' and '32%' + the 2017-2024 year labels, the Distribution eyebrow/heading/body, and the Global Expansion eyebrow/heading/body — all must be edited in markup. Mux HLS .m3u8 URLs and the chart-area PNG are placeholder asset sockets to fill, not values to store. Brand-name 'Viktory' appears inside the slide-3 heading copy."
+}

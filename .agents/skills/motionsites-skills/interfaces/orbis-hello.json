@@ -1,0 +1,54 @@
+{
+  "id": "orbis-hello",
+  "role": "about",
+  "ownSections": [
+    "HelloHero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video that fills the entire section (absolute inset-0 w-full h-full object-cover, so it crops to any viewport and has no fixed aspect). autoPlay loop muted playsInline, single MP4 source. It is the sole visual backdrop (the section has no background color) and the only thing on the page that moves; all foreground text sits on top of it via z-10, and the neon Condiment 'Orbis' word reacts to it through mix-blend-exclusion, so the video's brightness/contrast affects how the accent reads."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Tall ultra-condensed display face for the uppercase headline 'HELLO! / I'M ORBIS' (font-grotesk; sizes 32/48/60px responsive, weight normal, uppercase, leading ~1.0, color cream). Native family: Anton (single weight). Loaded from Google Fonts in index.html head and wired into Tailwind as fontFamily.grotesk. Layout is font-metric dependent: heading sizes are fixed px with very tight leading, and the absolutely-positioned accent word is offset against this face's metrics, so a wider/taller replacement shifts the composition."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Flowing cursive/script face for the single overlaid word 'Orbis' (font-condiment; sizes 36/52/68px responsive, normal-case so it keeps mixed case, color neon #6FFF00, mix-blend-exclusion, leading 0.79, tracking 0.03em, -rotate-1, opacity-90, absolutely positioned hanging below-right of the headline). Native family: Condiment (single weight, cursive). Loaded from Google Fonts in index.html head and wired into Tailwind as fontFamily.condiment. Used for exactly one decorative word; its hardcoded negative offset position (right-[-8px], bottom-[-20/-30/-40px]) is tuned to overlap the headline."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Anton', sans-serif",
+      "accent": "'Condiment', cursive",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+    },
+    "colorRoles": {
+      "bg": "#010828",
+      "fg": "#EFF4FF",
+      "accent": "#6FFF00"
+    },
+    "copySlots": [
+      "headline",
+      "accent-word",
+      "intro-body",
+      "ghost-body"
+    ]
+  },
+  "mechanic": "A static two-row min-h-screen layout (Row 1: condensed uppercase 'HELLO! / I'M ORBIS' heading with a neon Condiment script 'Orbis' hanging over it via mix-blend-exclusion, plus a mono intro paragraph; Row 2: faint opacity-10 ghost-text columns as texture) composited over a single fullscreen looping background video, whose autoplay is the only motion.",
+  "techDelivery": "React component authored as a Tailwind CSS build spec: Google Fonts (Anton + Condiment) linked in index.html head, Tailwind theme extended with custom fontFamily (grotesk/condiment) and colors (cream #EFF4FF / neon #6FFF00); no CSS keyframes, transitions, animation library, or JS interactions.",
+  "reskinNotes": "Brand palette is split between Tailwind theme tokens (cream, neon) and arbitrary class values baked into the markup (text-[#010828], lg:text-cream), so retinting means editing both the Tailwind config and inline class strings. The neon accent word uses mix-blend-exclusion, so its perceived color is the video-relative blend of #6FFF00 rather than the literal hex. All copy is hardcoded in JSX: the heading ('Hello!' / 'I'm orbis'), the decorative script word ('Orbis'), and the intro/ghost paragraph text (the same sentence appears once as the visible intro and four times as faint texture). Layout is font-metric dependent: the Condiment 'Orbis' is absolutely positioned with hardcoded negative offsets (right-[-8px], bottom-[-20/-30/-40px], -rotate-1) tuned to Anton's condensed metrics, so swapping either face breaks the overlap. The Row-2 ghost paragraphs depend on text-[#010828] matching a dark-navy background plus opacity-10 (with an lg:text-cream swap) to read as near-invisible texture, so a non-dark brand bg destroys that effect. font-mono is intentionally the system default monospace, with no branded family declared."
+}

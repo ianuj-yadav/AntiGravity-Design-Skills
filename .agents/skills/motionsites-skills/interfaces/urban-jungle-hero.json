@@ -1,0 +1,63 @@
+{
+  "id": "urban-jungle-hero",
+  "role": "hero",
+  "ownSections": [
+    "ScrollVideo",
+    "ScrollFloat",
+    "GlassPanel",
+    "PillNav"
+  ],
+  "slots": [
+    {
+      "id": "hero-scrub-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "long-scrub",
+      "notes": "Fullscreen fixed background video (ScrollVideo, Layer 1) at z-0 whose playback head is scrubbed by scroll progress (scroll top = frame 0, scroll bottom = last frame) via GSAP ScrollTrigger over the 500vh root. Rendered as a bare <video> (no canvas) with classes w-full h-full object-cover scale-[1.35], attributes muted/playsInline/crossOrigin=anonymous, inside a fixed inset-0 z-0 scale-[1.05] wrapper that also gets mousemove parallax. NOT an autoplaying loop: it is a seek target, so it must be an HLS (.m3u8) stream encoded for frequent seeking (highest level forced on MANIFEST_PARSED, maxBufferLength 120 / maxMaxBufferLength 600), long enough to read as continuous footage across the whole scroll. Reference asset is a Mux HLS stream; supply a brand HLS rendition, not a short mp4 loop."
+    },
+    {
+      "id": "display-headline-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Self-hosted display/headline face used only by ScrollFloat (Layer 2) for the giant 'Unleash The / Full Power' headline at font-size clamp(4rem,15vw,317px), line-height 0.85, white. Reference asset is Dirtyline-36daysoftype-2022.woff2 fetched at build time from dirtylinestudio.com and dropped in public/, then registered via @font-face as family 'Dirtyline36Daysoftype2022' and exposed as the --font-dirtyline / font-dirtyline token. Supply the brand display woff2 here; the body (Manrope) and serif-accent (Instrument Serif) faces are CDN Google Fonts and live in skin.fontRoles, not as asset sockets."
+    },
+    {
+      "id": "nav-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark inside the PillNav (Layer 4) circular logo button: a 48x48 black (#000) round button containing a 24x24 inline SVG, viewBox 0 0 100 100, of a 4-petal pinwheel made of four <path> elements filled white (fill currentColor effectively #fff so it reads on the black button). On hover the whole glyph container spins 360deg via GSAP (0.2s). Replace with the brand logo glyph supplied transparent; note the four path d-strings and the white fill are hardcoded in markup (not CSS vars), so reshaping or retinting means editing the SVG."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Dirtyline36Daysoftype2022\", sans-serif",
+      "body": "\"Manrope\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "accent": "\"Instrument Serif\", ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0, 0, 0, 0.16)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "accent": "#f0f0f0",
+      "accent2": "#e0e0e0",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "headline",
+      "about-eyebrow",
+      "about-heading",
+      "nav-labels",
+      "marquee-labels",
+      "loading-label"
+    ]
+  },
+  "mechanic": "A 500vh sticky scroll drives an hls.js video that scrubs its playback frame-by-frame to scroll progress (seek-throttled on the 'seeked' event) under a fixed full-bleed mouse-parallax layer, while the giant headline floats away (opacity 1->0, yPercent 250) and a backdrop-blur(160px) glass About panel slides up from below at the bottom.",
+  "techDelivery": "React 19 + Vite + Tailwind CSS v4 (@tailwindcss/vite) multi-component spec (ScrollVideo / ScrollFloat / GlassPanel / PillNav assembled in App, BrowserRouter from react-router-dom); GSAP with ScrollTrigger + ScrollToPlugin for scroll-scrub, float, slide-up and mouse parallax; hls.js for the Mux HLS (.m3u8) hero stream; lucide-react and motion listed as deps; theme + @font-face in index.css, Manrope + Instrument Serif via Google Fonts @import, Dirtyline display woff2 self-hosted in public/.",
+  "reskinNotes": "The hero asset is a scroll-scrubbed HLS (.m3u8) stream, not an autoplay loop, so a reskin must supply a long, high-bitrate HLS-encoded clip and keep the seek-throttling (seekPending on the 'seeked' event, forced max quality level) intact; the spec even leaves a stray Ukrainian-language authoring comment about frame timing. The 4-petal logo SVG (four hardcoded path d-strings, white fill) lives in markup, not as a CSS var. All copy is hardcoded in JSX: the headline 'Unleash The\\nFull Power' (literal \\n that ScrollFloat splits into lines/words/chars), the serif 'About Us' eyebrow, the long About paragraph whose words 'urban', 'nature', 'bloom' are individually wrapped in <span className=\"italic\">, the four nav labels (HOME/ABOUT/SERVICES/CONTACT), the five text-only marquee 'logos' (VOICEFLOW/ZENDESK/PENDO/GLIDE/CANVA, rendered as type not images and duplicated 4x for the loop), and the 'Loading... {progress}%' overlay. PillNav neutrals (#000 logo/items, #f0f0f0 pill, #e0e0e0 active pill, var(--pill-text)/var(--pill-bg) on mobile) are baked into PillNav.css rather than the shared token set, and the liquid-fill hover-circle radius is computed from each pill's measured width/height (font-metric dependent). Headline sizing uses clamp(4rem,15vw,317px)/line-height 0.85 tuned to the display face, and the 500vh root height, video scale-[1.35]/wrapper scale-[1.05], and glass blur(160px) are fixed constants."
+}

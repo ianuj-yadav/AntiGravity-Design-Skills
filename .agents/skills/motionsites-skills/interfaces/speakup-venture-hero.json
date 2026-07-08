@@ -1,0 +1,74 @@
+{
+  "id": "speakup-venture-hero",
+  "role": "hero",
+  "ownSections": [
+    "NavBar",
+    "VideoBackground",
+    "HeroContent"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, positioned absolute inset-0 w-full h-full object-cover behind all content. autoPlay muted loop playsInline, NO overlay/tint applied, so it must read cleanly under dark-green and dark-grey text in the upper-left quadrant."
+    },
+    {
+      "id": "brand-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Square monogram mark in the navbar lockup beside the SPEAK/UP wordmark (w-8 h-8 md:w-9 md:h-9). Authored as an inline 256x256 viewBox SVG path in Logo.tsx that takes a `color` prop applied as fill; default #2D2D2F. Supply as a single-path/currentColor-style mark so the fill prop keeps tinting it."
+    },
+    {
+      "id": "ui-menu-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Mobile chrome icons from lucide-react: [0] Menu (hamburger trigger), [1] X (close button inside the full-screen overlay). Tinted #2D2D2F via currentColor. Generic UI affordance, not brand art, but swappable with the brand icon set."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display face used ONLY for the H1 ('Crafting the / improbable'), rendered via the .font-recoleta utility / Tailwind `recoleta` family at text-[56px]->lg:text-[128px], leading-[1.05], tracking-tight. Native family '\"Recoleta Regular\", serif', loaded from db.onlinewebfonts.com stylesheet link in index.html."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans UI/body face applied globally to html/body and to nav links, wordmark, buttons, and the paragraph. Native family 'Inter, sans-serif', weights 400/500/600/700, loaded from Google Fonts in index.html."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Recoleta Regular\", serif",
+      "body": "Inter, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "surface": "#FFFFFF",
+      "fg": "#2D2D2F",
+      "accent": "#0E7824"
+    },
+    "copySlots": [
+      "logo-wordmark-primary",
+      "logo-wordmark-suffix",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "headline-line-2",
+      "body",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "Static fullscreen (100vh, min-h 600px) hero: an autoplay object-cover background video sits untreated behind a top navbar and an upper-left Recoleta H1 + Inter paragraph + pill CTA, with a useState-toggled full-screen white mobile menu overlay and transition-colors green hovers as the only motion.",
+  "techDelivery": "React + TypeScript + Tailwind CSS (tailwind.config.js extends fontFamily recoleta/inter and colors brand.green/brand.dark; src/index.css has @tailwind directives + body Inter + .font-recoleta); lucide-react for Menu/X icons; fonts loaded via <link> in index.html. Components: Logo.tsx, Hero.tsx, App.tsx.",
+  "reskinNotes": "Heavy hardcoding in markup: the green heading (#0E7824) and dark text/buttons (#2D2D2F / #FFFFFF) appear both as Tailwind theme tokens (brand.green, brand.dark) AND as inline arbitrary values (text-[#2D2D2F], bg-[#2D2D2F], hover:bg-black) so a reskin must touch both the config and the JSX. The wordmark is split into two weight spans ('SPEAK' bold + 'UP' black) and all copy (5 nav labels, two CTA labels 'Begin a venture', the two H1 lines, the two paragraph sentences) is literal in the JSX. The logo is an inline single-path SVG with the brand hex passed via a `color` prop (no asset file). Hero text occupies a fixed upper-left zone over an un-overlaid video, so legibility depends on the video keeping that quadrant calm. H1 sizing/spacing (text-[128px], leading-[1.05], tracking-tight) is tuned to Recoleta's metrics; the responsive <br> line breaks in the headline and paragraph are baked into the markup."
+}

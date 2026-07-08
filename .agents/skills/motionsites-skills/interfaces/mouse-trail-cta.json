@@ -1,0 +1,59 @@
+{
+  "id": "mouse-trail-cta",
+  "role": "cta",
+  "ownSections": [
+    "PartnerSection"
+  ],
+  "slots": [
+    {
+      "id": "trail-images",
+      "type": "image",
+      "card": 8,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "The pool of rectangular thumbnails the mouse-trail spawns: on each throttled onMouseMove (~every 80ms inside the card) a random src is picked from the images[] prop, dropped at the cursor as a 96px-wide (w-24) rounded-xl shadow-lg thumbnail rotated (Math.random()-0.5)*20 degrees, then fades opacity 1->0 and scales 1->0.85 over 1s before removal. Spec calls for 8+ rectangular assets (it reuses the page's GIF/animation URLs), so supply a set of crop-tolerant looping GIF/clip thumbnails; aspect is free (no fixed ratio, object-cover within w-24/rounded-xl) and no transparency needed since each sits on its own rounded card with a soft shadow."
+    },
+    {
+      "id": "cta-avatar-portrait",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "The single square portrait avatar shown inside the dark pill CTA button, rendered w-10 h-10 rounded-full object-cover (alt 'Viktor Oddy'), placed in public/ as e.g. viktor.jpg. A face/headshot that reads clearly when masked to a 40px circle against the near-black #051A24 button; circular crop means corners are discarded so center the subject. No transparency required (object-cover fills the circle)."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The decorative serif/pixel display face used only for the giant heading 'Partner with us' (text 48->64->80px, leading 1.1, tracking-tight). Declared via @font-face as 'PP Mondwest' (PPMondwest-Regular.woff2, weight 400) and applied with inline fontFamily \"'PP Mondwest', serif\". Self-hosted from public/; a reskin swaps this single woff2 to change the headline character."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The sans body/UI face used for everything else including the CTA button label 'Start chat with Viktor'. Declared via @font-face as 'PP Neue Montreal' in two weights (Book 400 + Medium 500, .otf loaded from the website-files.com CDN) and set on body with stack 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'PP Mondwest', serif",
+      "body": "'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#ffffff",
+      "fg": "#0D212C",
+      "accent": "#051A24",
+      "accent2": "#0D212C",
+      "border": "rgba(0,0,0,0.05)"
+    },
+    "copySlots": [
+      "headline",
+      "cta-label",
+      "cta-avatar-alt"
+    ]
+  },
+  "mechanic": "An IntersectionObserver-triggered fade-in-up reveal of a giant serif headline and dark pill CTA on a large rounded white card, whose surface spawns randomized, slightly-rotated thumbnails at the cursor (throttled ~80ms) that fade and shrink out over 1s as a mouse-trail.",
+  "techDelivery": "React + TypeScript + Tailwind CSS + Vite multi-file component (src/components/PartnerSection.tsx + src/hooks/useInViewAnimation.ts), with @font-face declarations and fadeInUp keyframes in src/index.css before the @tailwind directives; no animation library (react/react-dom only).",
+  "reskinNotes": "Every color is a hardcoded Tailwind arbitrary-value literal in the JSX class strings, not a token: button bg bg-[#051A24], heading + hover text-[#0D212C]/hover:bg-[#0D212C], plus the card's two-layer shadow and the CTA's six-stop layered+inset button shadow are baked as inline shadow-[...] rgba literals, so rebranding means editing class strings. The heading text 'Partner with us', the button label 'Start chat with Viktor' and the avatar alt 'Viktor Oddy' are hardcoded in markup. The display font is referenced by inline fontFamily \"'PP Mondwest', serif\" (not a Tailwind class), so swapping it requires editing both the @font-face and that inline style; the PP Neue Montreal faces load from an external website-files.com CDN URL that may rot. Trail motion constants (80ms spawn throttle, 1000ms lifetime, +/-20deg rotation, 50px cursor offset, w-24 size, scale-to-0.85) are magic numbers in the component, and the trail relies on the inner card's live getBoundingClientRect so that rounded card wrapper must stay the positioned/overflow-hidden trail surface."
+}

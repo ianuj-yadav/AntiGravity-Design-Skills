@@ -1,0 +1,82 @@
+{
+  "id": "haul-footer",
+  "role": "footer",
+  "ownSections": [
+    "TopSpacer",
+    "ParallaxContainer",
+    "FooterCard",
+    "TruckParallaxLayer"
+  ],
+  "slots": [
+    {
+      "id": "parallax-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Fullscreen still background of the h-screen parallax container (bg-cover bg-center, overflow-hidden), sitting behind the footer card and beneath the foreground truck layer; opaque landscape scene that the truck reads against. Cover-cropped so a wide ~16:9 source fits any viewport."
+    },
+    {
+      "id": "foreground-truck-cutout",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Foreground hero subject in the parallax layer (motion.div absolute inset-x-0 bottom-0 h-full, z-20, pointer-events-none): a transparent-PNG cutout rendered object-contain object-bottom origin-bottom and scaled up responsively (scale-[1.5] mobile -> scale-110 sm -> scale-[2.0] md -> scale-105 lg). Its y is driven by useTransform([0,1]->[-50,150]) so it parallaxes against the background. Must be a bottom-anchored alpha cutout; the scale ladder is tuned to a wide vehicle silhouette."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Brand glyph reversed white inside a 40x40 (mobile) / 48x48 (desktop) bg-orange-500 rounded-lg shadow-inner p-2 square in the footer card's logo area, sitting next to the 'HAUL!' wordmark. Native art is an inline <svg viewBox=\"0 0 256 256\"> with a single white <path> (an interlocking-corners motif); reskin = swap the path data, not a URL. The colorRole tints the square the icon sits in."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Four w-5 h-5 lucide-react glyphs (Facebook, Twitter, Instagram, Linkedin, in that order) in the bottom bar's right side, each wrapped in a 40x40 circle with border-gray-100; default gray, on hover the circle fills bg-orange-500 with white icon + orange-500 border (transition all duration-300)."
+    },
+    {
+      "id": "display-body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface for the whole footer (native: Inter, Google Fonts weights 400/500/600/700), set as the default sans; carries the 'HAUL!' wordmark (bold, tracking-tighter), the 'View Below' eyebrow (bold uppercase tracking-[0.5em]), the uppercase tracking-widest column headers, the gray link items, and the copyright line."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#f8f9fa",
+      "surface": "#FDFDFD",
+      "fg": "#111827",
+      "fgMuted": "#6b7280",
+      "accent": "#f97316",
+      "accent2": "#ea580c",
+      "border": "#f3f4f6"
+    },
+    "copySlots": [
+      "eyebrow",
+      "brand-name",
+      "nav-col-1-title",
+      "nav-col-1-links",
+      "nav-col-2-title",
+      "nav-col-2-links",
+      "nav-col-3-title",
+      "nav-col-3-links",
+      "copyright"
+    ]
+  },
+  "mechanic": "A 'View Below' spacer sits above an h-screen background-image section in which a top-aligned bg-white/95 backdrop-blur footer card slides+fades down on mount while a bottom-anchored foreground truck PNG parallaxes via useScroll/useTransform(scrollYProgress [0,1] -> y [-50,150]) against the static background.",
+  "techDelivery": "React functional component using Tailwind CSS, motion/react (useScroll/useTransform/motion + initial/animate) for the parallax and entrance animations, and lucide-react for the social icons; Inter loaded from Google Fonts.",
+  "reskinNotes": "The brand mark is a hardcoded inline <svg viewBox=\"0 0 256 256\"> with a fixed white <path d=...> inside an orange square, so reswapping the logo means editing path data, not a src. Colors are Tailwind utility classes baked into markup (bg-orange-500, text-orange-600, text-gray-900/500/300, border-gray-100, bg-[#FDFDFD]) rather than CSS variables, so every accent/neutral must be remapped at the class level. All copy is hardcoded in JSX: the 'View Below' eyebrow, the 'HAUL!' wordmark (appears twice -- logo + copyright), the three nav column titles + their link labels, and the '(c) 2026 HAUL! All Rights Reserved' line. The parallax useTransform range and the truck's four-breakpoint scale ladder (1.5/1.1/2.0/1.05) are tuned to a wide, bottom-anchored vehicle silhouette; a differently-proportioned brand cutout will need the scale classes re-tuned to avoid clipping."
+}

@@ -1,0 +1,68 @@
+{
+  "id": "kova-testimonial",
+  "role": "testimonials",
+  "ownSections": [
+    "TestimonialSection"
+  ],
+  "slots": [
+    {
+      "id": "testimonial-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Right-column portrait companion video, hard-cropped to a perfect square with rounded-2xl (16px) corners; autoplays muted, loops infinitely, plays inline. Animates in at delay=0.15 for cross-column stagger."
+    },
+    {
+      "id": "cta-arrow",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "bg",
+      "notes": "Inline hand-drawn 14x14 arrow icon inside the 'All Stories' CTA button (horizontal line x2->x12 plus chevron 8,3 -> 12,7 -> 8,11). Stroke uses currentColor so it inherits the button's white-on-dark-green text color. NOT a Lucide icon."
+    },
+    {
+      "id": "company-badge-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Small 28x28 (w-7 h-7) rounded-md square mark sitting beside the company name in the testimonial badge; native spec fills it with accent dark green (#08150C) and renders the monogram letter 'A' in white. Replaceable by a brand logomark."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading + quote serif. Native spec loads two weights ('Cooper BT W01 Light' for body/quote, 'Cooper BT W01 Medium' for the heading) via db.onlinewebfonts.com <link> tags in index.html, with Georgia/serif fallback."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Cooper BT W01 Medium', 'Cooper BT W01 Light', 'Georgia', serif",
+      "body": "'Cooper BT W01 Light', 'Georgia', serif"
+    },
+    "colorRoles": {
+      "bg": "#FDF5EB",
+      "fg": "#08150C",
+      "fgMuted": "#78716c",
+      "accent": "#08150C",
+      "accent2": "#1a2e1f"
+    },
+    "copySlots": [
+      "headline",
+      "company-name",
+      "company-monogram",
+      "quote",
+      "attribution-name",
+      "attribution-title",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A two-column md:grid-cols-[3fr_2fr] cream-on-dark-green testimonial band where a stacked text column (heading, company badge, quote, attribution, CTA) and a square looping video reveal via staggered scroll-triggered FadeUp blur-rise variants with cross-column delay offsets.",
+  "techDelivery": "React + TypeScript + Tailwind CSS 3 + Framer Motion component spec (CDN web fonts via index.html <link>).",
+  "reskinNotes": "All brand hex is baked inline as Tailwind arbitrary values (bg-[#FDF5EB], text-[#08150C], hover:bg-[#1a2e1f]) rather than theme tokens, and the muted text uses Tailwind's stone-500/700/800 scale instead of declared hex, so a reskin must find/replace arbitrary-value classes plus override the stone-* utilities. Copy (heading, quote, 'Arcvex', 'Maya Reeves', 'Director, Arcvex', 'A' monogram, 'All Stories') is hardcoded in markup. The CTA arrow is an inline SVG path (relies on currentColor). Fonts are loaded by hash-named onlinewebfonts URLs, so swapping fonts means editing both the index.html links and the .font-cooper / .font-cooper-medium CSS classes."
+}

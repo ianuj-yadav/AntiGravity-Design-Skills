@@ -1,0 +1,52 @@
+{
+  "id": "rocket-faq",
+  "role": "faq",
+  "ownSections": [
+    "FaqSection"
+  ],
+  "slots": [
+    {
+      "id": "body-display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Inter, loaded globally and declared as the app font; the single typeface for the whole section - the 'FAQ' pill, the 'Answers to the questions / that come up most.' heading, the right intro paragraph, the category pill buttons, the 'Got Questions?' card, and every accordion question/answer. Acts as both display and body since no second face is declared."
+    },
+    {
+      "id": "chevron-icon-glyph",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Material Symbols Outlined icon font (variable axes FILL/wght/GRAD/opsz) loaded globally via a Google Fonts <link>; supplies the single 'expand_more' glyph rendered at size 16 inside the 28px (h-7 w-7) circular accordion toggle button, which rotates 180 degrees on open. Tinted via currentColor (text-foreground/70), not a swappable image asset."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.10)",
+      "surface2": "rgba(255, 255, 255, 0.16)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "rgba(255, 255, 255, 0.6)",
+      "border": "rgba(255, 255, 255, 0.10)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "category-labels",
+      "faq-questions",
+      "faq-answers",
+      "support-card-heading",
+      "support-card-body",
+      "support-cta-label"
+    ]
+  },
+  "mechanic": "A static two-column FAQ section (a left lg:sticky pill-button category switcher plus a 'Got Questions?' email card, beside a single-open Radix accordion of the active category's rows) where every SpotlightBorder wrapper and every accordion card carries an independent cursor-tracked 1px white radial-gradient ring (mask-composite), rows expand via Radix accordion-down/up height keyframes with a 180-degree chevron rotation, switching category re-keys the items to collapse them, and the pill, heading, paragraph, and each FAQ row fade up on scroll with a 0.15s-per-row stagger.",
+  "techDelivery": "React 18 + Vite + TypeScript + TailwindCSS (semantic foreground/background tokens plus landing.* extend colors) + framer-motion + Radix UI Accordion (@radix-ui/react-accordion), with a clsx/tailwind-merge cn() helper; authored as a multi-file drop-in component spec (FaqSection plus MIcon/FadeUp/SpotlightBorder and a shadcn-style Accordion wrapper), not a single-file CDN bundle. Inter and Material Symbols Outlined are loaded via Google Fonts in index.html.",
+  "reskinNotes": "The design is monochrome - no accent color is declared - and almost every color is a raw white opacity rather than a token: white/10 and white/15 borders, white/[0.04] fills, and text-foreground at /60 /70 /80 baked across the markup, so a palette swap must edit those utilities, not just the bg/foreground tokens. The spotlight ring is a hardcoded white rgba inside the radial-gradient string of SpotlightBorder / spotlightMaskStyle, so any tint or accent requires a code edit. All copy is hardcoded in the component: the 'FAQ' pill, the 'Answers to the questions / that come up most.' heading (split by a <br> that only shows on sm+), the right paragraph, the three category labels (General / AI & Capabilities / Integrations & Security) and their CategoryKey union type, the fifteen question/answer pairs in the faqs record, the 'Got Questions?' card heading and body, and the mailto:hello@uirocket.com 'Email us' CTA (the email address is also baked into the href). The chevron is the Material Symbols glyph name 'expand_more' rather than a swappable asset, and the per-card spotlight relies on a useEffect mousemove listener writing CSS vars onto element bounding rects."
+}

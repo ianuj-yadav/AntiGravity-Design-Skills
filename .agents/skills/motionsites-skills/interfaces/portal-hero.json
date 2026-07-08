@@ -1,0 +1,52 @@
+{
+  "id": "portal-hero",
+  "role": "hero",
+  "ownSections": [
+    "NavigationBar",
+    "MobileMenu",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplaying hero background video, fixed inset-0 object-cover at z-index 0 behind everything; the only media in the page and the sole source of all visual depth/color behind the black base and glass UI."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "#9ca3af",
+      "accent": "#ffffff",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "search-cta-label",
+      "rating-badge",
+      "duration-badge",
+      "date-badge",
+      "headline",
+      "body",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "prev-cta-label",
+      "next-cta-label"
+    ]
+  },
+  "mechanic": "A single non-scrolling full-viewport hero where a fixed looping background video sits under a bottom-only backdrop-blur mask, a liquid-glass navbar, and a bottom-anchored cinematic content block whose every element staggers in via a blur-fade-up (blur + opacity + translateY) reveal cascading from 0ms to 900ms.",
+  "techDelivery": "React + Tailwind CSS with Lucide React icons; Inter from Google Fonts; liquid-glass, the bottom blur mask, and the blurFadeUp keyframe are hand-authored CSS with stagger delays applied as inline animationDelay styles.",
+  "reskinNotes": "Liquid-glass bakes white rgba gradient stops, an inset white highlight, and a border-only ::before mask (-webkit-mask-composite: xor / mask-composite: exclude) tuned for a light rim on a dark video, so it only reads correctly on dark themes. The bottom blur overlay relies on a mask-image: linear-gradient(to top, black 0%, transparent 45%) with -webkit- prefix and applies blur without any dark gradient, so legibility depends on the video being light at the bottom. Title uses a font-metric-dependent letter-spacing (-0.04em) tuned to Inter that will need retuning for a substitute display font. All copy, the five nav labels, and the three IMDB/duration/date metadata badges are hardcoded in markup, and the staggered animationDelay values are inline per element rather than tokenized, so re-ordering or adding elements means hand-editing delays."
+}

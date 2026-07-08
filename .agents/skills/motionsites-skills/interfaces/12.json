@@ -1,0 +1,66 @@
+{
+  "id": "12",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "bg",
+      "notes": "Fullscreen looping hero background video, autoplay + muted + playsInline, cover-cropped behind all foreground content. Spec is emphatic: render at 100% opacity with NO dark overlay/scrim, so the footage itself carries the section's tone. Pick logistics/transport footage (the brand is 'targo') that is dark enough on its own for white headline + nav text to stay legible without a gradient. Currently a CloudFront placeholder mp4 (d8j0ntlcm91z4.cloudfront.net/...c4b2f2ea... .mp4) — replace with a brand-owned loop."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo lockup in the top-left of the navbar: an abstract symbol plus the 'targo' wordmark, delivered as a white SVG. Sits on the unscrimmed video so it must read at small navbar height against arbitrary footage. Supply as a single-color, transparent-background SVG; to stay tintable in the white-on-dark scheme deliver it as a currentColor / fill-inheriting glyph rather than a baked white hex."
+    },
+    {
+      "id": "consultation-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Single Phone icon (lucide-react <Phone>) placed inside the bottom-left 'Book a Free Consultation' glass card's call button. Stroke icon that inherits currentColor; sized to the button label. Swap for the brand's own phone/contact glyph if not using lucide-react."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global typeface: the Rubik family. Headlines are bold, UPPERCASE, with tight letter-spacing (approx -4% / -0.04em) at ~64px desktop and ~42px mobile; the same family carries nav links, both CTAs ('Get Started', 'Book a Call'/'Contact Us'), and the consultation card copy. Swap with the brand display sans; the uppercase + -4% tracking headline metrics are tuned to Rubik Bold."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Rubik', sans-serif",
+      "body": "'Rubik', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.12)",
+      "fg": "#ffffff",
+      "accent": "#EE3F2C",
+      "border": "rgba(255,255,255,0.12)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "hero-cta-label",
+      "consultation-card-title",
+      "consultation-cta-label"
+    ]
+  },
+  "mechanic": "A single full-viewport black hero playing an unscrimmed autoplaying object-cover looping background video, with a left-aligned upper-third bold-uppercase headline + clipped-corner red 'Get Started' CTA, a top nav bar (white logo, links, clipped-corner red 'Contact Us' button), and a bottom-left liquid-glass 'Book a Free Consultation' card (backdrop-blur(40px) saturate(180%) + diagonal shine + inner shadow); the only motion is the looping video plus CSS hover transitions (no scroll/entrance animation).",
+  "techDelivery": "React + Tailwind CSS single hero section; the Rubik font family loaded as a webfont; clipped-corner buttons built with CSS clip-path (a 10-12px diagonal cut on the top-right and bottom-left corners); glassmorphism via backdrop-filter blur/saturate; Phone icon from lucide-react; responsive via Tailwind breakpoints (headline 64px->42px, padding 64px->32px). No animation library and the logo is an inline/asset SVG.",
+  "reskinNotes": "Brand red #EE3F2C is the only accent and is applied directly to the two clipped-corner buttons; the clip-path corner-cut geometry is a fixed inline style, so a different button silhouette means editing CSS, not a token. The liquid-glass card stacks several baked values (blur 40px, saturate 180%, 1px white border at 12% opacity, a diagonal white-to-transparent shine gradient, and an inner box-shadow) that are visually tuned to a dark video behind them — over a light or busy brand video the glass and the unscrimmed white headline text can lose contrast (there is no overlay scrim to fall back on). Headline metrics (uppercase, ~-4% letter-spacing, 64px/42px) and the compact 'scaled-down' padding (64px->32px) are tuned to Rubik Bold and the specific copy 'Swift and Simple Transport', so a wider face or longer headline will reflow the upper-third block. All copy (nav labels Home/About/Contact Us, both 'Contact Us' and 'Get Started' buttons, 'Book a Free Consultation' / 'Book a Call', brand name 'targo') is hardcoded in the markup."
+}

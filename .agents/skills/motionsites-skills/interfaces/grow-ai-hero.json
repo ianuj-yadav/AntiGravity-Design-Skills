@@ -1,0 +1,68 @@
+{
+  "id": "grow-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection",
+    "SocialProofSection"
+  ],
+  "slots": [
+    {
+      "id": "nav-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark/logo in the top-left of the navbar, rendered at 32px height (h-8) from src/assets/logo.png. Supply transparent so it sits on the near-black hero background; a light/white-on-dark lockup reads best."
+    },
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video for the social-proof section, absolute inset-0 w-full h-full object-cover behind the marquee content. autoPlay muted playsInline, starts at opacity:0. A rAF loop reads currentTime/duration to fade in over the first 0.5s and fade out over the last 0.5s, then on ended resets to currentTime=0 and replays — a seamless manual fade loop (no native loop attr). A from-background via-transparent to-background top/bottom gradient feathers it into the page. Native source is a CloudFront MP4."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display face for the giant 'Grow' headline at text-[230px] font-normal, leading-[1.02], tracking-[-0.024em], painted via bg-clip-text text-transparent over a linear-gradient(223deg, #E8E8E9 0%, #3A7BBF 104.15%). Native family declared inline as 'General Sans', sans-serif (not bundled via @fontsource — must be provided)."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Global UI/body face for the navbar links, subtext, CTA labels, and marquee brand names. Native family 'Geist Sans', 'Inter', system-ui, sans-serif, installed via @fontsource/geist-sans weights 400/500/600/700."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'General Sans', sans-serif",
+      "body": "'Geist Sans', 'Inter', system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#06010f",
+      "surface": "#161618",
+      "fg": "#f3f2f0",
+      "fgMuted": "#a0a0ac",
+      "accent": "#7c3aed",
+      "border": "#313136"
+    },
+    "copySlots": [
+      "headline",
+      "subtext-line-1",
+      "subtext-line-2",
+      "hero-cta-label",
+      "nav-labels",
+      "signup-cta-label",
+      "marquee-intro-label",
+      "marquee-brand-names"
+    ]
+  },
+  "mechanic": "A near-black hero stacks a navbar, a 230px gradient-clipped 'Grow' headline, two-line subtext and a liquid-glass CTA over the background color, immediately followed by a separate section whose fullscreen object-cover video fades itself in/out each loop via requestAnimationFrame behind a top/bottom background-gradient wash and a 20s linear translateX(-50%) logo marquee.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS multi-component spec (Navbar / HeroSection / SocialProofSection composed by an Index page) with shadcn/ui (custom 'hero' and 'heroSecondary' button variants) and lucide-react ChevronDown icons; design tokens are HSL CSS vars in index.css, the marquee keyframe + .liquid-glass utility live in tailwind.config.ts / @layer utilities, and the body font is installed from @fontsource/geist-sans; the video fade-loop is hand-written with requestAnimationFrame (no animation lib).",
+  "reskinNotes": "All theme colors are authored as space-separated HSL channel triples in the :root block (e.g. --background: 260 87% 3%) consumed via hsl(var(--token)); the hex values here are conversions, so reskinning means rewriting those HSL triples, not dropping in hex. The 'Grow' headline is painted with a hardcoded inline linear-gradient(223deg,#E8E8E9 0%,#3A7BBF 104.15%) under WebkitBackgroundClip:text (independent of the token palette) and the .liquid-glass utility bakes its own white rgba border/inset-shadow gradients, so brand tints there require editing CSS/inline styles, not a token swap. The 230px headline and the two-line subtext rely on a manual <br/> split and General Sans' metrics, so a font swap or longer copy reflows the layout. The marquee 'logos' are not image assets — each is a CSS liquid-glass w-6 h-6 square showing the brand's first letter plus its name as text — so brand logos cannot be dropped in as files without re-authoring that markup. All copy is hardcoded in JSX: the 'Grow' headline, the two subtext lines, the 'Schedule a Consult' and 'Sign Up' button labels, the four nav labels (Features/Solutions/Plans/Learning), the 'Relied on by brands / across the globe' marquee intro, and the six placeholder brand names (Vortex/Nimbus/Prysma/Cirrus/Kynder/Halcyn). The marquee animation duration (20s) and the manual 0.5s video fade in/out windows are fixed constants."
+}

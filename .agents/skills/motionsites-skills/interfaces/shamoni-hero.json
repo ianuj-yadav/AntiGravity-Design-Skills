@@ -1,0 +1,59 @@
+{
+  "id": "shamoni-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroScene",
+    "OrbitImages"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover background video behind the entire sticky hero; autoplays muted/inline, loops infinitely, sits at z-0 under a faint black/10 scrim."
+    },
+    {
+      "id": "orbit-images",
+      "type": "image",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Set of 6 images placed evenly around an elliptical offset-path orbit inside the white reveal panel; each renders object-contain inside a circular (border-radius:50%) mask, so square/centered subjects read best. Array order sets orbit spacing, and the frozen motion keyframes are tuned to exactly 6 items."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", serif",
+      "body": "\"Manrope\", sans-serif",
+      "accent": "\"Great Vibes\", cursive"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#FFFFFF",
+      "fg": "#000000",
+      "fgMuted": "rgba(0,0,0,0.1)",
+      "accent": "#FDFFB7"
+    },
+    "copySlots": [
+      "wordmark",
+      "wordmark-mark",
+      "headline",
+      "subheadline",
+      "season-eyebrow",
+      "community-eyebrow",
+      "community-label",
+      "collection-number",
+      "collection-label",
+      "body",
+      "cta-label",
+      "nav-menu-label"
+    ]
+  },
+  "mechanic": "An expanding clip-path ellipse reveal over a 600vh sticky scroll wipes a white panel across a fullscreen video, driving a motion/react offset-path image orbit that scroll-scrubs its radius, item size, rotation and translateX while overlay copy blurs and fades in and out.",
+  "techDelivery": "Multi-file React + Vite + Tailwind v4 (@tailwindcss/vite, @theme font tokens) + motion/react component spec across src/index.css, src/components/OrbitImages.css, OrbitImages.tsx and src/App.tsx; lucide-react is installed but unused (icons are inline SVG).",
+  "reskinNotes": "Accent hex #FDFFB7 and the 'Shamoni' wordmark are baked into an inline SVG <text>/<tspan> in App.tsx (not driven by CSS vars), so the brand color and name live in markup; the header wordmark also hardcodes fontFamily inline. All overlay copy ('Master the Elements', 'embrace', '2K26', '0651', 'COLLECTION', the sailors blurb, 'BUY COLLECTION') and the black overlay text color are hardcoded in JSX. The hamburger icon has stroke='white' baked in (the CTA arrow uses currentColor and is themeable). Layout is font-metric- and viewport-unit-dependent: the wordmark is sized inside a fixed SVG viewBox (90px/28.8px tspans) and the headline mask centers on a hand-tuned 48% offset, so swapping the display/body fonts or using longer copy shifts alignment. The motion/react scroll keyframe arrays (rx/ry/itemSize/rotation/tx/focusStrength) are explicitly frozen ('Do not change any numbers') and tuned to 6 items + baseWidth 800, so changing image count shifts focal spacing. Great Vibes (--font-script) is loaded but unused."
+}

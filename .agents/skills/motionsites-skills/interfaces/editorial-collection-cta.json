@@ -1,0 +1,53 @@
+{
+  "id": "editorial-collection-cta",
+  "role": "cta",
+  "ownSections": [
+    "StaySection"
+  ],
+  "slots": [
+    {
+      "id": "newsletter-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video pinned to the bottom of the section (absolute inset-x-0 bottom-0 w-full object-cover object-bottom, pointer-events-none); autoplays, muted, plays inline, with no overlay, tint, or gradient over it."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Editorial serif display face (Instrument Serif, regular + italic) loaded via Google Fonts and wired to Tailwind font-serif; carries the giant clamp(60px,11vw,160px) 'Stay in' headline line, including its italic span."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans body face (Manrope, weights 300/400/500/600) loaded via Google Fonts and wired to Tailwind font-sans; carries the second headline line, the descriptor paragraph, the email input, and the uppercase Subscribe button."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", serif",
+      "body": "Manrope, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "fg": "#000000",
+      "fgMuted": "rgba(0, 0, 0, 0.78)",
+      "border": "rgba(0, 0, 0, 0.4)"
+    },
+    "copySlots": [
+      "headline-line-1",
+      "headline-line-2",
+      "body",
+      "email-placeholder",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A full-viewport white section with a fullscreen looping video pinned to its bottom behind a max-w-[1480px] content column, where the oversized serif/sans heading and the newsletter block each fade + rise + unblur (opacity 0->1, y 40->0, blur 20px->0) on first scroll-into-view, staggered 200ms apart.",
+  "techDelivery": "React + Vite + Tailwind CSS + Framer Motion (motion/react) component spec, with Google Fonts (Instrument Serif + Manrope) and the Tailwind fontFamily mapping declared in index.html.",
+  "reskinNotes": "All copy is hardcoded in JSX, including the brand-specific 'Editions and invitations from the Bentley fragrance studio, sent twice a season.' descriptor and the 'Stay in / the collection' headline. The placeholder background-video URL is a brand-specific CloudFront asset that must be swapped per brand. Headline sizing is baked inline (serif clamp(60px,11vw,160px) and a fixed 64px sans line with -0.02em tracking), so the two lines are tuned to the native fonts' metrics and will need re-tuning if the typefaces change. The palette is pure black-on-white with rgba(0,0,0,*) opacity tokens for the body text, form divider, and placeholder, so reskinning to a light-on-dark scheme means inverting those rgba values rather than flipping a single token."
+}

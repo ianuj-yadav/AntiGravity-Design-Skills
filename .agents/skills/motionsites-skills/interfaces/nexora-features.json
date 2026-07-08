@@ -1,0 +1,53 @@
+{
+  "id": "nexora-features",
+  "role": "features",
+  "ownSections": [
+    "Features"
+  ],
+  "slots": [
+    {
+      "id": "card-videos",
+      "type": "video",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-bleed autoplay/muted/loop background video filling each bento feature card (object-cover, 100% opacity, no overlay/tint); text sits above it. Card 01 is a tall portrait-ish cell (row-span-2, min-h-28rem), Card 02 is wide (col-span-2), Cards 03/04 are standard cells, so each clip is cropped to a different aspect."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "body": "\"Helvetica Neue\", Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#252B4C",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.4)",
+      "accent": "rgba(255, 255, 255, 0.45)",
+      "border": "rgba(255, 255, 255, 0.2)"
+    },
+    "copySlots": [
+      "headline-line-1",
+      "headline-line-2",
+      "cta-label",
+      "card-01-eyebrow-left",
+      "card-01-eyebrow-right",
+      "card-01-title",
+      "card-01-body",
+      "card-02-title",
+      "card-02-eyebrow-right",
+      "card-03-eyebrow-left",
+      "card-03-eyebrow-right",
+      "card-03-body",
+      "card-04-eyebrow-left",
+      "card-04-eyebrow-right",
+      "card-04-body"
+    ]
+  },
+  "mechanic": "Static dark CSS-grid bento of feature cards, each a full-bleed autoplay looping video layered under relative-positioned text, with the only motion being a liquid-glass button hover scale to 1.02.",
+  "techDelivery": "TanStack Start (route file src/routes/index.tsx) + Tailwind CSS v4 with tokens/global CSS in src/styles.css.",
+  "reskinNotes": "The liquid-glass button highlight is a hardcoded multi-stop white linear-gradient mask baked into the .liquid-glass::before CSS (not tokenized), so reskinning the accent means editing that gradient and its rgba stops by hand. The #252B4C card color lives in raw .feature-card/.feature-card-dark CSS rather than a Tailwind theme token, and the two card classes are intentionally identical despite the '-dark' suffix. All copy is hardcoded inline in the JSX markup, including manual <br/> line breaks in headings and paragraphs, so copy edits require touching the route component, not data."
+}

@@ -1,0 +1,53 @@
+{
+  "id": "power-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "PowerAIHero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover background video behind all hero content; JS-controlled fade loop (0.5s fade-in, 0.5s fade-out, resets to opacity 0 and replays on ended). No gradient overlays."
+    },
+    {
+      "id": "nav-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Navbar brand logo (src/assets/logo.png), rendered at 32px height on the dark hero background; transparency expected."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "General Sans",
+      "body": "Geist Sans"
+    },
+    "colorRoles": {
+      "bg": "hsl(260 87% 3%)",
+      "fg": "hsl(40 6% 95%)",
+      "fgMuted": "hsl(40 6% 82%)",
+      "accent": "#6366f1",
+      "accent2": "#a855f7"
+    },
+    "copySlots": [
+      "headline-plain",
+      "headline-accent",
+      "subtitle",
+      "cta-label",
+      "nav-labels",
+      "signup-label",
+      "marquee-intro",
+      "marquee-brand-names"
+    ]
+  },
+  "mechanic": "Full-height flex column hero (navbar / flex-1 centered headline+subtitle+CTA / bottom logo marquee) over a JS-faded looping object-cover background video, with a blurred bg-gray-950 shape behind the centered gradient-clipped headline and a 20s translateX(0→-50%) infinite logo marquee.",
+  "techDelivery": "React + Tailwind component spec (index.css CSS variables + custom liquid-glass utility, @fontsource/geist-sans, Fontshare General Sans, heroSecondary button variant); video fade loop driven by requestAnimationFrame.",
+  "reskinNotes": "Headline 'AI' accent is a hardcoded inline linear-gradient(to left, #6366f1, #a855f7, #fcd34d) via bg-clip-text — not driven by a CSS variable, so a third gradient stop (#fcd34d amber) and the gradient direction live in markup. Layout is tuned to extreme fixed metrics (220px headline, leading-[1.02], tracking-[-0.024em]) and assumes the General Sans face; swapping fonts will shift the hero composition. Marquee brand icons are CSS liquid-glass tiles showing the first letter of each name (text + backdrop-filter, no image assets), so rebranding the logo row is a copy edit, and the 984x527 blur shape is a fixed-pixel decorative element."
+}

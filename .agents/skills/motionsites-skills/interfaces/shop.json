@@ -1,0 +1,93 @@
+{
+  "id": "shop",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "ScentFinder",
+    "WildScent"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, object-cover, autoplay muted playsInline, playbackRate 1, sits behind nav/title/card at zIndex 0."
+    },
+    {
+      "id": "panel-video",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Split-screen product-panel side videos (ScentFinder right column, WildScent left column), object-cover over a #111 block; desktop fills a 1fr grid column, mobile collapses to a 75vw fixed-height strip. Two distinct clips, same socket role."
+    },
+    {
+      "id": "hero-card-product-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "surface",
+      "notes": "Floating/inline hero product-card bottle shot (Eau So Fresh). Rendered objectFit:contain inside a small rounded ~60x76px box, overscaled to 130% with -15% top/left offset, on a white card — needs a transparent/clean-background packshot."
+    },
+    {
+      "id": "panel-product-image",
+      "type": "image",
+      "card": 2,
+      "aspect": "220:340",
+      "alpha": false,
+      "notes": "Product-panel bottle shots (Eau So Sweet, Eau So Extra), objectFit:cover into a fixed 220/340 portrait box (width clamp(140px,40%,220px)) on a #D9D9D9 placeholder block. Off-ratio art will crop. Two images, same socket role."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Playfair Display\", \"Didot\", \"Bodoni MT\", \"Times New Roman\", serif",
+      "body": "ui-sans-serif, system-ui, sans-serif",
+      "accent": "Georgia, serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#ffffff",
+      "fg": "#000000",
+      "fgMuted": "#B0A2A1",
+      "accent": "#4BB3ED",
+      "accent2": "#BDE84F",
+      "border": "#000000"
+    },
+    "copySlots": [
+      "brand-name-line1",
+      "brand-name-line2",
+      "nav-label-shop",
+      "nav-label-cart",
+      "scroll-indicator",
+      "slide-index",
+      "hero-headline-line1",
+      "hero-headline-line2",
+      "hero-headline-line3",
+      "hero-card-product-name",
+      "hero-card-product-size",
+      "hero-card-cta-label",
+      "scent-panel-eyebrow-left",
+      "scent-panel-eyebrow-right",
+      "scent-panel-product-name",
+      "scent-panel-product-size",
+      "scent-panel-notes",
+      "scent-panel-cta-label",
+      "wild-panel-eyebrow-left",
+      "wild-panel-eyebrow-right",
+      "wild-panel-product-name",
+      "wild-panel-product-size",
+      "wild-panel-notes",
+      "wild-panel-cta-label"
+    ]
+  },
+  "mechanic": "A full-bleed looping hero video with timed staggered translate-and-fade reveals of the nav, headline and product card, scrolling into two split-screen color-block-plus-video product panels that fade-and-rise in on IntersectionObserver (threshold 0.15).",
+  "techDelivery": "Vite + React 18 + TypeScript + Tailwind 3 (stock config, default breakpoints) starter; lucide-react available but unused, @supabase/supabase-js a dependency; all motion is inline-style CSS transitions via an anim() helper (no animation library), not a single-file CDN build.",
+  "reskinNotes": "HERO_TEXT (#332023) is a second baked-in foreground used across the hero, distinct from fg #000000, and the muted desktop headline color #B0A2A1 is hardcoded — reskinning the hero requires overriding these, not just fg. The hero packshot is overscaled 130% with a -15% offset, so framing is metric-dependent. All copy is hardcoded in JSX markup, including the literal '01' slide numeral, the perfume ingredient note strings, and brand name; the headline and product card are duplicated as separate mobile (block sm:hidden, white-with-textShadow) and desktop (hidden sm:block) span sets, so each copy string must be edited in two places. Panel images live in a fixed 220/340 box on a solid color block, so non-portrait art crops/letterboxes."
+}

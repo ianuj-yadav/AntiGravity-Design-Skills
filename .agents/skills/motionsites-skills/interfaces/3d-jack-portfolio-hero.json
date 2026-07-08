@@ -1,0 +1,93 @@
+{
+  "id": "3d-jack-portfolio-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection",
+    "MarqueeSection",
+    "AboutSection",
+    "ServicesSection",
+    "ProjectsSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-portrait",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "The single centered hero subject (a person/creator portrait) wrapped in a Magnet mouse-following component (padding 150, strength 3) and pinned absolute left-1/2 -translate-x-1/2 z-10, sitting on the bottom edge on sm+ (sm:bottom-0) and vertically centered on mobile. Width scales w-[280px] -> lg:w-[520px]. Must be a transparent (alpha) cutout so it floats over the giant gradient 'Hi, i'm jack' headline and the #0C0C0C stage behind it; the magnetic translate3d makes any background box visible, so no baked backdrop. Native source is a figma.site placeholder PNG (socket to fill)."
+    },
+    {
+      "id": "marquee-showcase-gifs",
+      "type": "image",
+      "card": 21,
+      "aspect": "14:9",
+      "alpha": false,
+      "loop": true,
+      "notes": "Two scroll-driven horizontal marquee rows of project/work thumbnails: row 1 = first 11 tiles tripled and translated RIGHT on scroll, row 2 = remaining 10 tiles tripled and translated LEFT (translateX driven by scrollY offset * 0.3). Each tile is a fixed 420x270 box (~14:9), rounded-2xl, object-cover, lazy-loaded, gap-3. Native assets are 21 animated .gif previews from motionsites.ai (self-looping motion reels), so brand fill should be looping motion thumbnails or static stills of equal count/ratio. Count is load-bearing: the 11/10 split feeds the two opposing rows."
+    },
+    {
+      "id": "about-corner-objects",
+      "type": "image",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Four decorative 3D render objects absolutely positioned in the AboutSection corners (top-left moon, bottom-left 3D object, top-right lego, bottom-right 3D group), each FadeIn-sliding in horizontally from its own edge (x -80 / +80). Widths w-[100px]..w-[220px] scaling by breakpoint. Must be transparent (alpha) cutouts to read against the #0C0C0C stage; purely ornamental framing for the centered 'About me' heading + paragraph. Native source is figma.site placeholder PNGs (sockets to fill)."
+    },
+    {
+      "id": "project-card-images",
+      "type": "image",
+      "card": 9,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Project showcase imagery for the 3 sticky-stacking ProjectsSection cards: each card has a two-column grid — left column (40%) holds 2 stacked images (top clamp height 130-230px, bottom clamp height 160-340px), right column (60%) holds 1 tall image — so 3 images per card x 3 cards = 9. All are heavily rounded (rounded-[40px]..[60px]) and object-cover, so subjects should tolerate aggressive corner cropping. Native assets are CloudFront/higgs.ai placeholder webp renders (sockets to fill); group of 3 per project (Nextlevel Studio / Aura Brand Identity / Solaris Digital)."
+    },
+    {
+      "id": "font-display-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface used for the entire page — the massive font-black headlines ('Hi, i'm jack', 'About me', 'Services', 'Project'), the huge service/project index numerals, nav links, body copy and all labels. Native family is Kanit (Google Fonts, weights 300-900), loaded site-wide. Layout is font-metric dependent: the hero h1 is sized in viewport units (text-[14vw]..[17.5vw]) with whitespace-nowrap, tracking-tight, leading-none, and section headings use clamp(3rem,12vw,160px), so a wider replacement face overflows; needs the full 300-900 weight range (font-light through font-black)."
+    },
+    {
+      "id": "ui-arrow-glyphs",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a key dependency), not a brand asset — decorative line icons available to the nav/button chrome and rendered in the fg color (#D7E2EA, themeable via currentColor/stroke). Optional socket: only swap if the brand ships an equivalent line-icon system; otherwise the lucide default stands."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Kanit', sans-serif",
+      "body": "'Kanit', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0C0C0C",
+      "surface": "#FFFFFF",
+      "fg": "#D7E2EA",
+      "fgMuted": "#646973",
+      "accent": "#B600A8",
+      "accent2": "#7621B0",
+      "border": "rgba(12,12,12,0.15)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "hero-headline",
+      "hero-subcopy",
+      "contact-cta-label",
+      "about-heading",
+      "about-body",
+      "services-heading",
+      "service-items",
+      "projects-heading",
+      "project-numbers",
+      "project-categories",
+      "project-names",
+      "live-project-cta-label"
+    ]
+  },
+  "mechanic": "A full-viewport dark hero with a giant viewport-sized gradient wordmark and a magnetic mouse-following portrait, flowing into a scrollY-driven dual-row image marquee (opposed left/right translateX), a character-by-character scroll-reveal About paragraph, and a sticky card-stacking Projects section whose cards scale down via Framer Motion useScroll/useTransform as you scroll past.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS v3 + Framer Motion v12 + lucide-react; Kanit linked from Google Fonts; reusable FadeIn (whileInView), Magnet (pointer-follow) and AnimatedText (scroll-reveal) helper components, plus a passive scroll listener driving the marquee.",
+  "reskinNotes": "Brand colors are baked into raw CSS/Tailwind arbitrary values rather than tokens: bg #0C0C0C is hardcoded on html/body/#root/wrapper and again as bg-[#0C0C0C] on the dark sections; the heading gradient is an inline linear-gradient(180deg,#646973,#BBCCD7) on the .hero-heading class with -webkit-background-clip:text (so retinting headings = editing CSS, and the gradient's two stops #646973/#BBCCD7 are not both captured by colorRoles — only the dark stop is mapped to fgMuted). The ContactButton is a fixed 4-stop linear-gradient(123deg,#18011F,#B600A8,#7621B0,#BE4C00) with layered inset box-shadows and a white outline baked inline (accent/accent2 only sample the middle two stops; #18011F and #BE4C00 have no colorRole). The Services section flips to a hardcoded #FFFFFF surface with #0C0C0C text, and all text/border use literal #D7E2EA / rgba(12,12,12,0.15) inline. All copy is hardcoded in JSX: nav ('About','Price','Projects','Contact'), 'Hi, i\\u0027m jack' (lowercase, curly apostrophe), the hero subcopy, 'About me' + its paragraph, 'Services', the five numbered service title/description pairs, 'Project', and per-project number/category/name plus 'Contact Me' and 'Live Project' button labels. Placeholder asset URLs (figma.site portrait + corner objects, 21 motionsites.ai marquee GIFs, 9 CloudFront/higgs.ai project images) are inlined in the markup/arrays as the image sockets. Layout is font-metric dependent (hero h1 in vw + whitespace-nowrap, headings in clamp(3rem,12vw,160px), giant numerals in clamp), so a non-Kanit replacement that is wider or has different weight coverage will overflow or break the font-black look. Marquee row membership (11/10 split, tripled tiles) and the scroll-offset math (* 0.3) are coded literally, and the Projects card-stacking scale (targetScale = 1 - (n-1-i)*0.03, top offset i*28px) is logic-coupled in JS rather than CSS-overridable."
+  }

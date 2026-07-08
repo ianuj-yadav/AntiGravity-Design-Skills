@@ -1,0 +1,69 @@
+{
+  "id": "designpro-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Rendered as <video autoPlay loop muted playsInline> with absolute inset-0, w/h-full, object-cover, sitting at z-0 behind all foreground content on a pure-black (#000000) h-screen section. Cover-cropped so it fills any viewport. Foreground is white-on-dark (giant headline, nav pill, two body paragraphs, CTA) layered above at relative z-10, so pick calm/dark footage that reads well under white overlay text across the whole frame. Currently a CloudFront placeholder mp4."
+    },
+    {
+      "id": "brand-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo mark in the left of the navbar, beside the 'DesignPro' wordmark. Spec describes a circular badge: a 2px white-bordered outer circle containing a smaller filled white solid circle (concentric dot-in-ring). Rendered small (nav-height, ~h-8/w-8). Built from divs/borders or inline SVG with white stroke + white fill baked to the white-on-black scheme; supply the brand mark as a single-color, fill/stroke-inheriting (currentColor) glyph so it stays tintable rather than hard-coding the hex."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Directional arrow icon (ArrowRight) from lucide-react, rendered inside the 'Apply for Next Enrollment' CTA button (and a second arrow on the 'Contact us' nav link). Inherits currentColor (white) and sits at button text size. On group-hover it translate-x's to the right via a smooth CSS transition. Swap for the brand's arrow/chevron glyph; keep it a single-color line icon that inherits currentColor."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global UI typeface. Spec specifies Inter (sans-serif) applied to the whole hero. Drives everything: the giant two-line headline ('Become' / 'Product Leader.') at text-5xl scaling to text-9xl with line-height 0.85 and tracking-tighter, the small uppercase eyebrow, nav links (text-sm), the CTA label, the wordmark, and both body paragraphs (text-sm/text-base). Swap with the brand display sans; the headline layout (0.85 line-height, tracking-tighter, 9xl scale) is tuned to Inter's metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.8)",
+      "accent": "#64CEFB",
+      "accent2": "#ffffff",
+      "border": "#374151"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "eyebrow",
+      "headline-line-1",
+      "headline-line-2",
+      "body-left",
+      "body-right",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A single full-viewport (h-screen) black hero layering an autoplaying object-cover looping background video (z-0) beneath a relative z-10 stack: a rounded-pill navbar with a dot-in-ring logo, a two-column intro paragraph row, and a centered eyebrow + giant two-line headline whose second line ('Product Leader.') is a framer-motion ShinyText that continuously sweeps a 100deg #64CEFB→#ffffff gradient left-to-right across background-clip:text on a 3s loop, closing with a rounded-full CTA whose lucide arrow translate-x's on group-hover.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS (mobile-first sm/md/lg/xl breakpoints, utility classes only); framer-motion drives the ShinyText gradient-sweep animation and lucide-react supplies the arrow icons; Inter loaded as the global sans; includes a custom ShinyText component implementing the background-clip:text transparent-fill gradient sweep.",
+  "reskinNotes": "The ShinyText animation bakes two hex literals into the component as the gradient stops — base color #64CEFB and shine #ffffff (plus a hard-coded 3s speed and 100deg spread) — so retinting the headline shine means editing the component props/CSS gradient, not a token. The logo is a CSS/SVG dot-in-ring built from white border + white fill in markup rather than a swappable asset file. All copy is hard-coded in the JSX: the 'DesignPro' wordmark, the seven nav labels (Home, About Us, Courses, Instructors, Testimonials, Blog, Contact us), the 'Seats for Next Program Opening Soon' eyebrow, both intro paragraphs (the transformative-programs sentence and '8000+ Talented Designers Launched !'), the two headline words, and the 'Apply for Next Enrollment' CTA. The palette is expressed via Tailwind opacity utilities (white/80, gray-700 border, black/gray-900 button) rather than CSS custom properties, so there is no single token block to retheme. The headline is viewport-scaled (text-5xl→text-9xl, line-height 0.85, tracking-tighter) and tuned to the specific two-word copy and Inter's metrics, so longer headline copy or a wider typeface will reflow the centered layout."
+}

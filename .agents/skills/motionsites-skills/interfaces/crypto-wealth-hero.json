@@ -1,0 +1,89 @@
+{
+  "id": "crypto-wealth-hero",
+  "role": "hero",
+  "ownSections": [
+    "VideoBackground",
+    "Navbar",
+    "Hero",
+    "PopupCard",
+    "ShowcaseSection",
+    "Dashboard"
+  ],
+  "slots": [
+    {
+      "id": "fixed-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen fixed looping hero background video (VideoBackground.tsx) pinned fixed inset-0 at zIndex 0 behind everything, object-cover, autoPlay/loop/muted/playsInline, pointer-events-none. Scroll zooms it from scale(1) to scale(1.3) via the inner transform wrapper (transformOrigin center center). All foreground content (Hero, Showcase) sits over it at higher z, so pick footage that reads under white/translucent cards and a fading dark hero; transparency not needed. Native source is a CloudFront-hosted MP4."
+    },
+    {
+      "id": "showcase-card-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Background video filling the rounded showcase card in ShowcaseSection (absolute inset-0 object-cover, autoplay/loop/muted/playsInline), inside a max-w-7xl card that is min-h-[480/560/680px] across breakpoints. A bg-gradient-to-t from-black/90 via-black/50 to-transparent overlay sits over it for white headline/legibility on the left half and to seat the Dashboard card on the right, so favor footage that tolerates a heavy bottom-to-top black scrim. Native source is a CloudFront-hosted MP4 distinct from the fixed-bg-video."
+    },
+    {
+      "id": "logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark: an inline four-rounded-corner 'petal' SVG (viewBox 0 0 256 256, single path d='M 128 192 ...') filled solid black. Used twice: 28x28 as the left logo in the floating Navbar pill, and 24x24 as the leading icon of the first PopupCard. Supply transparent; it sits on the white/70 nav pill and white/80 card, so a dark/solid mark reads best. Note the fill is hardcoded black in the SVG markup (not a CSS var), so retinting means editing the path's fill."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI icons from lucide-react (a dependency), not brand assets: Layers, Lock, BarChart3 as the leading icons of PopupCards 2-4 (tinted emerald-600 / blue-600 / amber-600), and FileText in the Dashboard 'Total Reach' tile (text-gray-600). Calendar is imported in the declared icon set but not placed. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand. Each is currentColor-tinted via Tailwind text-* utilities."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally via the universal reset (* { font-family: 'Inter', sans-serif }) and loaded from Google Fonts (preconnect in index.html, weights 300-900). Drives the nav links, the large hero <h1> (up to 3.75rem, leading-none, tracking-tighter, font-medium), the popup-card labels, the showcase <h2>/<p>, the Dashboard numerals (498,098 etc.), and all SVG chart axis labels (fontSize 9, Inter). Native family 'Inter'."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#1f2937",
+      "fg": "#111827",
+      "fgMuted": "#6b7280",
+      "accent": "#f59e0b",
+      "accent2": "#3b82f6",
+      "border": "#e5e7eb"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-subcopy",
+      "popup-card-labels",
+      "showcase-headline",
+      "showcase-subcopy",
+      "dashboard-metric-label",
+      "dashboard-metric-value",
+      "dashboard-legend-labels",
+      "dashboard-period-label",
+      "channel-row-labels"
+    ]
+  },
+  "mechanic": "Two scroll-linked fullscreen sections crossfade over one fixed video background within a 200vh page: a rAF scroll hook maps 0->1 over the first viewport height, fading and lifting the Hero out (opacity 1-p*2.5, translateY -60px*p) while zooming the fixed bg video scale(1)->scale(1.3) and fading/scaling the ShowcaseSection in between p=0.35 and 0.75 (opacity 0->1, scale 0.88->1, transform-origin center top); on-mount CSS keyframes stagger the popup cards, slide the dashboard in, draw the chart line (dashoffset) and fill the progress rings.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS (default config) multi-component spec (App + VideoBackground/Navbar/Hero/PopupCard/ShowcaseSection/Dashboard, a custom useScrollProgress rAF hook, and inline-SVG AnimatedChart/ProgressRing), no external animation library; lucide-react for icons; Inter loaded via Google Fonts; mount-time animations driven by CSS keyframes in src/index.css.",
+  "reskinNotes": "Palette is expressed almost entirely as Tailwind neutral utility classes (text-gray-900/700/600/500/400, bg-white/70-80, border-gray-100/200, bg-gray-100, text-zinc-400) rather than a :root token block, so reskinning the base neutrals means editing class names across the markup. The signature dual-accent gradient linear-gradient(135deg,#F59E0B,#3B82F6) is hardcoded both in the .gradient-border-btn ::before CSS (a -webkit-mask + mask-composite:exclude border trick) and as per-card SVG <linearGradient> stops on the spin-ring arcs (#F59E0B->#3B82F6, #10B981->#06B6D4, #3B82F6->#0EA5E9, #F59E0B->#EF4444); the chart, tooltip and drop-line bake #1F2937 / #34D399 inline, the grid lines #E5E7EB, and the three Top-Channels badges/rings carry literal hex (#F59E0B/#3B82F6/#10B981) in component data, so accents must be edited in SVG attributes/JS rather than a token. The logo SVG fill is hardcoded black in markup. All copy is hardcoded in JSX: the three-line hero headline 'A New Way / to Manage Your / Content Flow' (with manual <br/> breaks and a text-zinc-400 first line, tuned to Inter at max-w-2xl), its subcopy, the four nav labels (Features/Workflows/Resources/Pricing) + 'Get started', the four popup-card labels, the showcase 'Your Content Engine, Faster and Clearer' headline + body, and the Dashboard's literal data (498,098 Total Reach, weekly chart values, Published/In Draft legend, Monthly badge, and the BLG/SOC/NWS channel rows with their +4.20%/-1.05%/+2.87% deltas). Numerous animation constants are fixed in code: scroll multipliers (p*2.5, -60px, zoom*0.3), the showcase fade window (0.35-0.75 / scale 0.88-0.12), per-card 150ms stagger, dashboard 1.2s delay, spin-ring 1.4s, progress-fill dashoffset 88 over 1.2s at 2s, and the page only scroll-animates within min-h-[200vh]. The progress rings are hardcoded to 70% (positive) / 30% (negative), not driven by the displayed percentages."
+}

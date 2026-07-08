@@ -1,0 +1,114 @@
+{
+  "id": "nexar-hero",
+  "role": "dashboard",
+  "ownSections": [
+    "BackgroundVideo",
+    "Header",
+    "SectionHeader",
+    "LeftColumn",
+    "CenterColumn",
+    "RightColumn"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen fixed looping hero background video behind all content; object-cover, z-index -10, autoPlay/muted/playsInline."
+    },
+    {
+      "id": "sprint-metrics-bg",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Background image for the Sprint Metrics card in the left column; object-cover, anchored top center, behind stat columns."
+    },
+    {
+      "id": "crew-avatars-header",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Three overlapping circular team-member portrait avatars in the section header Crew cluster (-space-x-2), followed by a +9 counter."
+    },
+    {
+      "id": "card1-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Three overlapping circular portrait avatars in the bottom-left of TaskCard 1 (Sprint Planning Call), followed by a +7 counter."
+    },
+    {
+      "id": "card2-assignee-avatars",
+      "type": "image",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Two overlapping circular assignee portrait avatars in the bottom-left of TaskCard 2 (Layout Critique)."
+    },
+    {
+      "id": "card3-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Three overlapping circular portrait avatars in the bottom-left of TaskCard 3 (Zenith Crew Check), followed by a +5 counter."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/serif typeface (Instrument Serif regular+italic) applied via .font-serif-display to brand name, greeting, and Voice Input heading."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#FFFFFF",
+      "fg": "#111827",
+      "fgMuted": "#6B7280",
+      "accent": "#000000",
+      "accent2": "#3B82F6",
+      "border": "rgba(0,0,0,0.1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "view-toggle-labels",
+      "greeting",
+      "active-items-label",
+      "crew-label",
+      "crew-overflow-count",
+      "project-title",
+      "project-subtitle",
+      "productivity-score",
+      "productivity-subtitle",
+      "sprint-metrics-title",
+      "sprint-metrics-badge",
+      "sprint-metrics-stats",
+      "taskcard-title",
+      "taskcard-tag",
+      "taskcard-details",
+      "taskcard-bottom-text",
+      "taskcard-button-label",
+      "fast-commands-title",
+      "fast-commands-add-label",
+      "fast-commands-items",
+      "voice-input-badge",
+      "voice-input-heading"
+    ]
+  },
+  "mechanic": "Static 12-column dashboard grid of white pill/cards floating over a fullscreen fixed looping video, with staggered fadeUp entrance animations (opacity+translateY) cascaded via per-element animationDelay.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS v3 + lucide-react icons; Google Fonts link in index.html, custom fadeUp keyframe and .font-serif-display utility in index.css.",
+  "reskinNotes": "Status/tag palette (green-500/yellow-400/red-500), the red-400->orange-500 avatar gradient, the #DBECFC light-blue accent surface, and the yellow X icon stroke (#EAB308) are hardcoded as Tailwind utilities/inline SVG in markup rather than tokens; all copy (brand name, nav, task cards, stats, waveform heights) is hardcoded inline; layout uses fixed pixel-scaled type ramps (e.g. 80-140px score, 28-42px greeting) tuned to Instrument Serif metrics, so a swapped display font may need ramp retuning."
+}

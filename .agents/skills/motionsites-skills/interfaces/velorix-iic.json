@@ -1,0 +1,55 @@
+{
+  "id": "velorix-iic",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "fullscreen object-cover autoplay/muted/playsInline looping hero background video sitting behind the centered hero stack"
+    },
+    {
+      "id": "nav-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "monochrome stroke UI glyphs (lucide Menu, X, ArrowRight) for hamburger toggle, close, and CTA/menu-link arrows; rendered white via hardcoded color, strokeWidth 1.5"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "'Courier New', Courier, monospace"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#0C0C0C",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "accent": "#ffffff",
+      "border": "rgba(255,255,255,0.08)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "subhead",
+      "hero-cta-label",
+      "mobile-cta-label"
+    ]
+  },
+  "mechanic": "Fullscreen autoplay/loop/muted background video behind a centered headline-subhead-CTA stack, with a CSS-only animated navbar (cubic-bezier hamburger icon crossfade and a staggered max-height mobile menu reveal).",
+  "techDelivery": "single-file React 18 + TypeScript component (App.tsx) using Tailwind utility classes plus inline styles and lucide-react icons; CSS-only motion, no Framer Motion or build tooling declared.",
+  "reskinNotes": "All colors are baked into inline style={{}} hex/rgba (nav pill #0C0C0C, hamburger-open #1a1a1a, panel rgba(8,8,8,0.97), white-alpha tints and borders) rather than Tailwind tokens; font-family is hardcoded per-element inline (Inter on most, Courier New on the subhead); icon stroke color is hardcoded color=\"white\"; all copy is hardcoded in markup with nav labels in a NAV_ITEMS array; the unused @supabase/supabase-js dependency is presentational-only and irrelevant to reskinning."
+}

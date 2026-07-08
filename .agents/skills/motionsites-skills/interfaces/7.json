@@ -1,0 +1,80 @@
+{
+  "id": "7",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Floating looping muted/autoplay HLS (.m3u8) hero background video in an 80vh container positioned absolute bottom-[35vh], sitting behind the centered text at full 100% opacity with no dark overlay. Played through a memoized VideoPlayer using hls.js (with native application/vnd.apple.mpegurl fallback) and cleaned up on unmount. Native source is a Mux stream URL."
+    },
+    {
+      "id": "integration-badge-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Row of three small 'Integrated with' logos, one per glass-effect badge pill above the headline. Supply as transparent currentColor/white marks so they read on black inside the frosted pills."
+    },
+    {
+      "id": "marquee-logos",
+      "type": "svg",
+      "card": 6,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Static bottom row of grayscale, 40%-opacity partner/client logos (the spec uses placeholder SVGs). Rendered desaturated and dimmed, so supply as monochrome transparent SVGs; card count is the indicative number of logos in the row."
+    },
+    {
+      "id": "logo-wordmark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Navbar brand lockup, native value is the text wordmark 'Synapse' (font-medium, tracking-tight, white). Supply as a transparent/currentColor white lockup; swapping in an image/SVG mark replaces the text logo on the left of the blurred-glass navbar."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI sans applied throughout the section (navbar wordmark + links, badges, ~80px headline, subtext, both CTA labels). Uses font-medium for the logo and a tight tracking on the large headline. The spec does not name a family, so the native value is the Tailwind default sans stack (system-ui / -apple-system / Segoe UI / Roboto)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "body": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.10)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.70)",
+      "accent": "#ffffff",
+      "accent2": "#000000",
+      "border": "rgba(255, 255, 255, 0.20)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "badge-eyebrow",
+      "headline",
+      "body",
+      "cta-primary-label",
+      "cta-secondary-label"
+    ]
+  },
+  "mechanic": "A static black hero floats an 80vh full-opacity hls.js background video (absolute bottom-[35vh]) behind a vertically-centered content column of glass badges, an ~80px tight-tracked headline, subtext and two layered CTAs under a fixed blurred-glass navbar, with motion/react staggered fade-in-up animating the badges, headline, subtitle and buttons on load.",
+  "techDelivery": "React + Tailwind CSS + Framer Motion (motion/react), with the hls.js library driving the Mux HLS background video inside a memoized VideoPlayer component (native HLS fallback, cleanup on unmount).",
+  "reskinNotes": "No font family is declared, so the layout (~80px tight-tracking headline) leans on the Tailwind default sans stack and will reflow if a brand face with different metrics is dropped in. The navbar 'Features' active state is a gradient-border treatment and 'Case Studies' is a strikethrough style baked into markup, and both CTAs are layered glass/gradient pills (white-to-gray gradient nav button; solid-black + white-border primary; transparent glass secondary) hardcoded around white-on-dark rather than tokenized, so retinting means editing the className constructions. The video sits with no overlay at 100% opacity and is parked with magic offsets (height 80vh, absolute bottom-[35vh]) tuned to the frame. All copy is hardcoded in JSX: logo 'Synapse'; nav 'Features / Insights / About / Case Studies / Contact'; nav CTA and primary CTA both 'Get Started for Free'; secondary CTA \"Let's Get Connected\"; the 'Integrated with' badge label; the headline 'Where Innovation Meets Execution'; and the two-line testing/deployment subtext. Marquee and integration logos are placeholder SVGs, so brand assets must be supplied to replace them."
+}

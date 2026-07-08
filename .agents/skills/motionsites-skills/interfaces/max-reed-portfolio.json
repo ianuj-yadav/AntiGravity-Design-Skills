@@ -1,0 +1,80 @@
+{
+  "id": "max-reed-portfolio",
+  "role": "features",
+  "ownSections": [
+    "Header",
+    "BackgroundCard",
+    "ClientVoiceCard",
+    "RaisedStatCard",
+    "DailySoftwareCard",
+    "ReachMeCard"
+  ],
+  "slots": [
+    {
+      "id": "card-background-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three distinct fullscreen object-cover looping background videos, one per bento card: BackgroundCard (career-timeline card), RaisedStatCard (the huge 10M+ stat), and DailySoftwareCard. Each rendered autoPlay loop muted playsInline, absolute inset-0 object-cover behind a tracking-wide section label and overlaid white content, so footage must be dark / low-contrast to keep the white text legible. Native prompt hardcodes three separate CloudFront MP4 URLs (these are sockets to fill, not values to keep)."
+    },
+    {
+      "id": "daily-software-icons",
+      "type": "icon",
+      "card": 16,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Tool/brand glyphs for the two scrolling marquee rows in DailySoftwareCard, each mounted in a liquid-glass tile (h-14 w-14 md:h-16 md:w-16, rounded-xl). 16 tile positions total: row 1 scrolls left with 8 [Figma, Framer, Palette, PenTool, Layers, Type, Aperture, Chrome], row 2 scrolls right with 8 [Camera, Brush, Box, Wand2, Figma, Framer, Type, Layers] (12 unique glyphs across the two rows; some repeat). Each row is duplicated in markup for a seamless loop. Native source is lucide-react at strokeWidth 1.5; reskin swaps to the brand's actual daily-software stack as monochrome line icons so the glass tile shows through. Transparent (alpha) required."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Functional UI chrome glyphs (not brand assets): Sparkle, used both as the decorative pair flanking every uppercase section label and as the year/role separator in the BackgroundCard timeline (h-3 w-3, strokeWidth 1.5, text-white/60-70); and ArrowUpRight inside the ReachMeCard round button (h-9 w-9 rounded-full). Native source is lucide-react; only swap if the brand ships an equivalent line-icon system."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface for the heading, intro body, the huge 10M+ stat (font-light), and all uppercase section labels. Native declaration is Inter with antialiased smoothing and a system fallback. Display sizes use tracking-tight and section labels use tracking-[0.22em] uppercase, so any replacement should be a clean geometric/grotesque sans with tight tracking tolerance to preserve the single-screen lg:h-screen fit."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0a",
+      "surface": "#324444",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "headline",
+      "intro-body",
+      "cta-label",
+      "section-label-background",
+      "timeline-rows",
+      "section-label-client-voice",
+      "testimonial-quote",
+      "testimonial-attribution",
+      "stat-value",
+      "stat-caption",
+      "section-label-daily-software",
+      "section-label-reach-me",
+      "contact-email",
+      "contact-phone"
+    ]
+  },
+  "mechanic": "A full-viewport (lg:h-screen) dark 3-column bento grid of rounded-2xl cards layered over autoplaying looping background videos, whose signature motion is two opposed CSS-keyframe icon marquees (22s left / 26s right, edge-masked) reading through liquid-glass gradient-border tiles.",
+  "techDelivery": "React + TypeScript + Tailwind CSS + lucide-react, with the liquid-glass gradient-border, marquee keyframes, and SVG-feTurbulence noise-overlay hand-authored in index.css.",
+  "reskinNotes": "Surfaces are baked into raw CSS rather than tokens: card surface #324444 and bg #0a0a0a are hardcoded inline (bg-[#324444], bg-black); the noise-overlay is an inline SVG feTurbulence data-URI with its white-tint hex encoded in the feColorMatrix; the liquid-glass border is a fixed white-alpha linear-gradient driven by -webkit-mask-composite:xor / mask-composite:exclude, so retinting to a dark/non-white accent means editing CSS, not config. All copy (headline, intro paragraph, three timeline rows, testimonial quote + Elena Brooks attribution, the 10M+ stat and 'Raised for startups' caption, hi@maxreed.com, +44 207 81 63, the CTA and every section label) is hardcoded in JSX. Marquee icon membership and per-row direction/speed are literal lucide imports plus fixed 22s/26s animation durations. Section labels depend on tracking-[0.22em] uppercase and the heading on tracking-tight at responsive sizes, so a wider/narrower replacement font will shift the single-screen bento fit."
+}

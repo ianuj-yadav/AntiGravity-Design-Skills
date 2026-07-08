@@ -1,0 +1,53 @@
+{
+  "id": "impressive-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay playsInline hero background video, absolutely positioned inset-0 w-full h-full object-cover so it fills the entire viewport behind every foreground element. There is NO dark/gradient/semi-transparent overlay, so the raw footage shows at full brightness and is the page's whole backdrop; the liquid-glass nav, CTA, and bottom tagline pill all rely on a light inset rim against it, so dark-to-mid footage with a calm center reads best behind the centered headline."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally via body font-family with -webkit-font-smoothing:antialiased / -moz-osx-font-smoothing:grayscale. Drives the VEX logo, the four nav links, the nav pill button, the character-staggered display headline, the subheading, both hero button labels, and the bottom glass tagline. Native family is the system stack 'Helvetica Neue', Helvetica, Arial, sans-serif at weight 400 (no web font is loaded and no Tailwind theme extension is declared); a brand display face would be swapped into the body font-family / index.css."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "body": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0, 0, 0, 0.4)",
+      "fg": "#ffffff",
+      "fgMuted": "#d1d5db",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.2)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "body",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "glass-tag-label"
+    ]
+  },
+  "mechanic": "A single fullscreen raw looping background video sits behind a floating liquid-glass nav and a vertically centered hero, where the two-line display headline reveals character-by-character via a staggered per-glyph opacity + translateX(-18px -> 0) sweep while the subheading, button row, and bottom-center glass tagline pill each cascade in on sequenced opacity FadeIns.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS with the default config (no theme extensions) and no extra UI/icon/animation libraries. The Helvetica Neue system font stack is set directly in src/index.css body (no web font load); the liquid-glass class (rgba surface + backdrop-blur + ::before gradient mask rim), the FadeIn wrapper (setTimeout + state -> transition-opacity), and the AnimatedHeading per-character split are all hand-authored.",
+  "reskinNotes": "Almost all theming is expressed as Tailwind utility classes rather than a token block: neutrals are bg-black/bg-white/text-black/text-white/text-gray-300 and borders are border-white/20, so reskinning means editing class names, not CSS variables. The liquid-glass effect bakes white rgba gradient stops and an inset highlight into a ::before mask tuned for a light rim on dark video, so it assumes a dark theme and washes out on light footage. All copy is hardcoded in JSX: the 'VEX' logo, the four nav labels (Story/Investing/Building/Advisory), the two-line headline 'Shaping tomorrow\\nwith vision and action.' (the \\n is a literal, load-bearing line break and the per-character animation indexes off each line's length), the subheading, the 'Start a Chat'/'Explore Now' buttons, and the 'Investing. Building. Advisory.' glass tagline. The headline uses an inline letterSpacing:'-0.04em' tuned to Helvetica Neue's metrics and spaces are emitted as \\u00A0 non-breaking spaces inside the per-glyph spans, so a substitute display font may need retuning. Animation timings are fixed constants (charDelay 30ms, 200ms initial + 500ms per-char transition; FadeIns at 800/1200/1400ms delay over 1000ms)."
+}

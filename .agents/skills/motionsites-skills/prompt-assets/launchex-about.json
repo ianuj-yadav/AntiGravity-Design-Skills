@@ -1,0 +1,17 @@
+{
+  "id": "launchex-about",
+  "title": "LaunchEx About",
+  "category": "About",
+  "sort_order": 999,
+  "type": "about",
+  "types": null,
+  "created_at": "2026-06-05T12:55:01.48903+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": "https://stream.mux.com/f4aefYW005EmODB002VzYjNAPuY7PB9NydSRUacK700faI.m3u8",
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

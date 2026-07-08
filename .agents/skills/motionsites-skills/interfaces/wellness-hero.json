@@ -1,0 +1,64 @@
+{
+  "id": "wellness-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the entire viewport-height section, with all nav and content layered on top of it (the <video> sits at the base; content is absolute inset-0 z-10). object-cover crops it to any viewport, and there is deliberately NO dark overlay scrim, so the footage itself must carry enough contrast for white text and glass pills to read. Focal point shifts by breakpoint via object-position: 80% center (mobile) / right center (md) / center center (lg), so the meaningful subject should survive being re-anchored toward the right and bottom-center. autoPlay loop muted playsInline."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo mark inside the top-left glass nav pill, left of the 'Aurai' wordmark, w-5 h-5 -> sm w-7 h-7. Native art is a 4-petal pinwheel / 4-quadrant glyph rendered as an inline SVG <path> (viewBox 0 0 256 256), single-color fill via currentColor (white). Swappable by replacing the path; tints with the fg color role."
+    },
+    {
+      "id": "mobile-menu-toggle-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Open/close glyph pair for the mobile hamburger that toggles the mobile menu (native: lucide-react Menu and X), white, sits at the right end of the nav pill with a large left margin (ml-4 -> sm/md/lg ml-32/64/96)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Askan Light\", serif",
+      "body": "\"Inter\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0, 0, 0, 0.30)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.70)",
+      "border": "rgba(255, 255, 255, 0.10)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-cta-label",
+      "mobile-menu-links",
+      "headline",
+      "subtitle",
+      "email-input-placeholder",
+      "email-cta-label",
+      "feature-pill-labels",
+      "page-title"
+    ]
+  },
+  "mechanic": "A single static viewport-height section (glass nav on top, bottom-aligned headline + subtitle + inline-submit email pill + feature pills) layered directly over a fullscreen looping background video with no overlay scrim, relying entirely on glassmorphism pills and white text for contrast, plus a toggled glass mobile menu.",
+  "techDelivery": "React + Tailwind CSS (config extends fontFamily with askan/inter) + lucide-react icons; Askan Light loaded from onlinewebfonts and Inter from Google Fonts; a small global CSS reset sets the Inter body font and font-smoothing. No animation library.",
+  "reskinNotes": "Logo art is a hardcoded inline SVG path (no asset URL), so swapping the mark means editing markup. All copy ('Aurai', headline 'Your calm is always within.', subtitle, nav/mobile-menu labels, 'Join the list', the three feature-pill labels, the email placeholder, and the page <title>) is hardcoded in JSX. There is no declared solid background color — the visual background IS the video; #000000 is only the natural dark fallback, and surface is the bg-black/30 glass fill (the nav pill also uses bg-black/20). Glass surfaces, white text opacities (/70), and borders (white/10) are expressed as Tailwind opacity utilities baked into class strings rather than CSS variables, so retinting means editing utility classes across nav, mobile menu, form, and pills. The email submit handler shows a native alert() with the entered address (placeholder behavior, no real backend). The feature pills are duplicated in two places (a mobile-only flex group and a desktop-only right column), so label edits must be kept in sync. Headline uses the Askan Light display face at large clamp-style responsive sizes with tracking-tight and a max-w-[700px] cap, so a wider replacement display face changes the line wrap."
+}

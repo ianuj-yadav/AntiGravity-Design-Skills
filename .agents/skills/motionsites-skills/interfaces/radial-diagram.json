@@ -1,0 +1,41 @@
+{
+  "id": "radial-diagram",
+  "role": "testimonials",
+  "ownSections": [
+    "BrandingApproachSection"
+  ],
+  "slots": [
+    {
+      "id": "portrait",
+      "type": "image",
+      "card": 1,
+      "aspect": "4:5",
+      "alpha": false,
+      "notes": "object-cover founder/testimonial portrait in a fixed 250x310px frame, overlaid by decorative CSS glitch blocks (the blocks are bg-white divs, not assets)"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'DM Sans', sans-serif",
+      "body": "'DM Sans', sans-serif",
+      "accent": "Georgia, 'Times New Roman', serif"
+    },
+    "colorRoles": {
+      "bg": "#0f0f0f",
+      "fg": "#ffffff",
+      "fgMuted": "#6e6e6e",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "attribution-name",
+      "attribution-title",
+      "nav-labels"
+    ]
+  },
+  "mechanic": "Framer Motion useInView staggered reveal of a header, a glitch-block portrait, and a testimonial quote beside a 1:1 radial circle diagram whose three angled labels and radiating SVG lines bold-and-brighten on shared hover.",
+  "techDelivery": "single-component React 18 + TypeScript spec using Tailwind CSS 3 utility classes and Framer Motion v12 (motion components, useState, useRef, useInView)",
+  "reskinNotes": "All copy is hardcoded in markup; hex values are baked into Tailwind arbitrary-value classes (bg-[#0f0f0f], text-[#6e6e6e], text-[#555]) and into an inline SVG stroke=\"white\"; the radial layout is geometry-baked — label angles (215/335/110 deg) and the 10 glitch-block coordinates are hardcoded into per-element trig/percentage positioning rather than data-driven, so changing label count or portrait size requires editing the component."
+}

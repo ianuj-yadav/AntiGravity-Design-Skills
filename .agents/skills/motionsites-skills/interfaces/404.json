@@ -1,0 +1,86 @@
+{
+  "id": "404",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "MobileNav",
+    "MainContent",
+    "NavigationCards"
+  ],
+  "slots": [
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Navbar wordmark logo to the left of the 'nexto.' text, height 28px. Native asset is an external SVG forced to solid black via filter: brightness(0), so it reads as a single-color glyph tinted to the fg ink."
+    },
+    {
+      "id": "hero-bg-spaceship",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Full-page layered background image (a spaceship PNG) sized background-size: contain, positioned center 40%, background-attachment: fixed, no-repeat, sitting UNDER a linear-gradient(to top left, #F5F5F5, #F7F7F7) wash. Needs transparency so the gradient page tint shows through around it. Responsive: background-size 90% at <=768px, 100% at <=480px."
+    },
+    {
+      "id": "title-float-decorations",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Two decorative glyphs flanking the title (native: Google Material Symbols Rounded 'cloud' top-left 42px and 'favorite' bottom-right 32px). Each is gradient-text-filled (#F7B2FB -> #786EF1 -> #5588FB via background-clip:text) with a white drop-shadow outline and a floatSlow bob/rotate loop on staggered delays."
+    },
+    {
+      "id": "nav-cta-chevron",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Chevron arrow inside the white 24px circle on the LEFT of the dark 'Let's Connect' gradient pill (and a 32px variant inside the mobile-menu CTA). Native art is an inline chevron SVG; dark stroke on the white circle."
+    },
+    {
+      "id": "nav-card-icons",
+      "type": "svg",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Leading glyphs inside each navigation card's 48px circular #eaecf0 container (native: inline house SVG with white door cutout for 'Main Page', inline circle-dot SVG for 'Showcase'). Single-color line/fill art; container scales 1.05 on card hover."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"DM Sans\", sans-serif",
+      "body": "\"DM Sans\", sans-serif",
+      "accent": "\"Material Symbols Rounded\""
+    },
+    "colorRoles": {
+      "bg": "#F5F5F5",
+      "surface": "#ffffff",
+      "fg": "#1a1a1a",
+      "fgMuted": "#888888",
+      "accent": "#786EF1",
+      "accent2": "#5588FB",
+      "border": "rgba(0,0,0,0.05)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "cta-label",
+      "lost-eyebrow",
+      "headline",
+      "subtext-body",
+      "subtext-highlight-tags",
+      "card-titles",
+      "card-subtitles"
+    ]
+  },
+  "mechanic": "A non-scrolling 100vh flex-column (dashed-border navbar / centered title block with floatSlow-bobbing cloud + heart glyphs / bottom-anchored navigation cards) layered over a fixed gradient-washed spaceship background, with a right-slide full-screen mobile overlay.",
+  "techDelivery": "React + Vite + Tailwind CSS, with DM Sans and Google Material Symbols Rounded loaded as external fonts and a single floatSlow @keyframes.",
+  "reskinNotes": "The decorative cloud/heart glyphs, the title-wrapper highlight tags, the CTA pill, and both nav-card icons are gradient/color-baked in CSS and inline SVG rather than driven by the four CSS custom properties, so the accent gradient (#F7B2FB/#786EF1/#5588FB), the dark CTA gradient (#2c2c2c->#111111), the highlight-tag #E0E2E7, and the #eaecf0 icon wells must each be edited by hand to retint. The logo is recolored purely via filter: brightness(0), so a non-black brand mark needs that filter removed. All copy (brand 'nexto.', nav labels, 'Seems you've wandered off...', the 'Whoops! Nothing here yet' title, the subtext with its inline 'chat'/'define' tags, and both card title/subtitle pairs) is hardcoded in markup, and the title letter-spacing -1.5px with clamp() sizing is tuned to DM Sans metrics."
+}

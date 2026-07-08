@@ -1,0 +1,86 @@
+{
+  "id": "interactive-discovery",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "RevealLayer",
+    "Nav"
+  ],
+  "slots": [
+    {
+      "id": "base-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Default fullscreen base layer of the hero (BG_IMAGE_1): an absolutely-positioned bg-center bg-cover bg-no-repeat div at z-10 that fills the 100dvh black section and carries a slow 1.8s Ken-Burns zoom-out (hero-zoom, scale 1.12 -> 1.0). This is the image shown everywhere OUTSIDE the cursor spotlight, sitting behind white headline/paragraph text, so a dark, center-weighted full-bleed photo with quiet upper/lower margins reads best."
+    },
+    {
+      "id": "reveal-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Spotlight-revealed fullscreen layer (BG_IMAGE_2) inside RevealLayer at z-30: a bg-center bg-cover bg-no-repeat div masked by a canvas radial gradient so it is only visible within a soft ~260px-radius circle (SPOTLIGHT_R) that trails the rAF-smoothed cursor. Must share the exact framing/subject as base-bg-image (an alternate take, lit or colored differently) since the two register pixel-for-pixel through the moving mask; misaligned framing breaks the peel-back illusion."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI/body face applied globally via the universal reset (* { font-family: 'Inter', sans-serif }) and re-asserted inline on the root div. Drives the nav pill links, the 'Sign Up' button, the second heading line ('tales of time'), both bottom paragraphs, and the 'Start Digging' label. Native family 'Inter', weights 300/400/500/600/700, loaded from Google Fonts via @import in src/index.css."
+    },
+    {
+      "id": "display-accent-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Italic display/wordmark accent face (Tailwind .font-playfair). Native family 'Playfair Display', italic only (ital weights 400/500/600), loaded alongside Inter via the same Google Fonts @import. Used on the italicized 'Lithos' wordmark in the nav and on heading line 1 ('Layers hold', italic, letterSpacing -0.05em) at text-5xl -> sm:7xl -> md:8xl, so a substitute must be a high-contrast serif whose italic holds at huge display sizes and tight tracking or the heading block rewraps."
+    },
+    {
+      "id": "logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark in the fixed nav left slot, authored as an inline 26x26 SVG (viewBox 0 0 256 256) with a two-parallelogram path (M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z) filled fill=#ffffff. Supply as a transparent-background single-color glyph squared to the 256 viewBox; it sits white over the dark hero, and the fill hex is baked into the markup (not a CSS var), so retinting means editing the SVG."
+    },
+    {
+      "id": "menu-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Mobile hamburger toggle, a lucide-react line glyph rendered only below md (md:hidden) over the dark hero. Swap as a single-state line icon matching the lucide stroke weight; tinted to the white nav foreground."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Playfair Display', serif",
+      "body": "'Inter', sans-serif",
+      "accent": "'Playfair Display', serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.2)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.8)",
+      "accent": "#e8702a",
+      "accent2": "#d2611f",
+      "border": "rgba(255,255,255,0.3)"
+    },
+    "copySlots": [
+      "site-name",
+      "nav-labels",
+      "signup-cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "intro-paragraph",
+      "feature-paragraph",
+      "primary-cta-label"
+    ]
+  },
+  "mechanic": "A cursor-following ~260px radial-gradient spotlight, redrawn each frame onto a hidden canvas and applied as a maskImage, reveals a second background image over a Ken-Burns-zooming base image inside a 100dvh black hero, beneath a fixed glassy nav and blur-rise staggered Playfair/Inter headline.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS multi-component spec (App + inline RevealLayer using useRef + requestAnimationFrame mouse smoothing, no external animation libs); lucide-react for the mobile menu icon; Inter + Playfair Display loaded via @import at the top of src/index.css ahead of the @tailwind layers.",
+  "reskinNotes": "The reveal effect requires two near-identical full-bleed images that line up pixel-for-pixel under the moving mask, so a brand reskin must supply a coordinated image PAIR (base + alternate take), not one hero asset. The logo SVG fill #ffffff is hardcoded on an inline two-parallelogram <path>, not a CSS var. Neutral/foreground colors are expressed as Tailwind opacity utilities over the black section (text-white, text-white/80, bg-white/20, border-white/30) and the CTA brand orange is a literal arbitrary value baked into class names (bg-[#e8702a], hover:bg-[#d2611f], shadow-[#e8702a]/30) rather than a :root token, so reskinning means editing class strings. All copy is hardcoded in JSX: the 'Lithos' wordmark, the two-line headline 'Layers hold' / 'tales of time' (split across two block spans with per-line letterSpacing -0.05em / -0.08em tuned to Playfair-italic + Inter metrics), the five nav labels (Course active + Field Guides/Geology/Plans/Live Tour), the 'Sign Up' and 'Start Digging' buttons, and both bottom paragraphs (the left one max-w-[260px]). The spotlight radius (SPOTLIGHT_R 260), the gradient stop ramp, the 0.1 mouse-lerp factor, and the load-animation delays (0.25s/0.42s/0.7s/0.85s) are fixed constants in the code; a light or busy image pair will wash out the white text and the soft-edged mask."
+}

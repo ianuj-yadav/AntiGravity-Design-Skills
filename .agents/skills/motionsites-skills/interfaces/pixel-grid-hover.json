@@ -1,0 +1,62 @@
+{
+  "id": "pixel-grid-hover",
+  "role": "blog",
+  "ownSections": [
+    "HeroHeader",
+    "CaseStudyGrid",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "case-study-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "4:3",
+      "alpha": false,
+      "notes": "The four case-study / blog-card background photos (one per card in the 2x2 grid), each absolutely positioned h-full w-full object-cover inside a group relative overflow-hidden aspect-4/3 frame. On hover a 12x8 grid of bg-black/80 blocks pixel-dissolves over the image and 5-6 magnetic black squares track the cursor, so the photo must read both clean and partially occluded; a white info-plate (title/category/year) overlaps its bottom-left up to 70% width, so keep that corner uncluttered. Placeholders are Pexels stock; supply on-brand project/editorial imagery."
+    },
+    {
+      "id": "marquee-logo-icons",
+      "type": "svg",
+      "card": 8,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The eight client/brand logo glyphs in the bottom infinite horizontal marquee (each paired with a name label, doubled to 16 items for a seamless 28s loop, paused on hover). Native placeholders are eight inline single-color SVGs at varying viewBoxes (code 22x18, dots 20x20, circle-ring 22x22, arrow 18x18, wave-circle 22x22, lines 24x18, bolt 14x20, plus 18x18) drawn in pure black stroke/fill. This is the brand logo wall: swap in the real partner/section marks; they tint to fg (black) via the icon's own stroke/fill."
+    },
+    {
+      "id": "sans-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The single typeface for the entire section (badge, two-tone heading, card titles/category/year, footer paragraph, CTA label, marquee names) via inline fontFamily and the page font. Native value is the Google Font 'DM Sans' (weights 400 and 500). Headings use font-light at clamp(1.8rem,3.2vw,2.8rem) with tracking-tight leading-[1.25], so a substitute must hold up light and large; body/labels run 12-14px."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'DM Sans', sans-serif",
+      "body": "'DM Sans', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#ffffff",
+      "fg": "#000000",
+      "fgMuted": "rgba(0,0,0,0.6)",
+      "accent": "#000000",
+      "accent2": "rgba(0,0,0,0.8)",
+      "border": "rgba(0,0,0,0.2)"
+    },
+    "copySlots": [
+      "header-badge",
+      "header-heading",
+      "card-titles",
+      "card-categories",
+      "card-years",
+      "footer-paragraph",
+      "footer-cta-label",
+      "marquee-logo-names"
+    ]
+  },
+  "mechanic": "A white editorial case-study section — parallax-bobbing black squares behind a centered badge+two-tone heading, a 2x2 card grid whose signature motion is a per-card 12x8 grid of bg-black/80 blocks that diagonally pixel-dissolves the photo on hover while 5-6 magnetic squares spring toward the cursor, closed by a footer with a hover-lifting arrow CTA and an infinite logo marquee that pauses on hover.",
+  "techDelivery": "React 18 + TypeScript component spec using Framer Motion v12 (useScroll/useTransform/useSpring/useMotionValue/useInView/motion) + Tailwind CSS 3, with one injected <style> block for the marquee keyframe; no other libraries.",
+  "reskinNotes": "Identity is hardcoded black throughout: the eight marquee logos are inline SVGs with black stroke/fill, the parallax and magnetic squares are CSS-positioned bg-black divs (hand-tuned x%/y%/size px arrays, separate per card and per header), and the CTA arrow is an inline white SVG path inside a black square — none are swappable image files. The palette is not tokenized: white/black plus Tailwind alpha literals (bg-black/80 pixel blocks, text-black/40 on the muted half of the heading, text-black/60 body, border-black/20 and border-white/30 plus buttons) baked into class names. The heading is a two-tone split ('Insights from ' + 'Our' / 'Case Studies' in text-black/40) hardcoded in markup, and all copy is literal in JSX: the 'Projects' badge, every card's title/category/year (note Swave and 45 Degrees carry literal ® / ° glyphs), the footer paragraph, the \"Let's work together\" CTA, and the eight marquee logo names. Layout is motion- and font-metric-dependent: card aspect is fixed 4/3, the pixel grid is a fixed 12x8 with diagonal-stagger timing, the info-plate is capped at maxWidth 70%, and the magnetic-square offsets assume the declared coordinates, so a wider substitute font or longer copy can break the card and marquee composition."
+}

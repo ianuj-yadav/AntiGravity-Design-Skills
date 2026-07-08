@@ -1,0 +1,94 @@
+{
+  "id": "scroll-landing",
+  "role": "hero",
+  "ownSections": [
+    "VideoBackground",
+    "FixedHeader",
+    "HeroSection",
+    "ScrollRevealSection",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scrubbed-full",
+      "notes": "Fullscreen fixed cinematic background video, object-fit cover, scroll-scrubbed: currentTime is driven by scroll fraction (top of page -> footer at 20vh) rather than auto-playing or looping. Must be seekable/keyframe-dense for smooth frame-by-frame scrubbing. Sits at z-0 behind all content."
+    },
+    {
+      "id": "brand-wordmark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark/logo, inlined SVG (native is 157x25, 4 white vector paths spelling 'WISA'). Reused in 3 places: fixed header (~25px tall), section 2 col 1 (scaled to 18px tall), and footer brand column (14px tall). Single-color, tinted via fg (white). Must scale crisply across those sizes."
+    },
+    {
+      "id": "decorative-globe-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Decorative wireframe globe mark beside the wordmark in section 2 col 1 (native 71x43 viewBox, stroke-only horizontal/vertical/meridian lines, no fill). Single stroke color (white). Optional/swappable brand motif slot."
+    },
+    {
+      "id": "font-sans",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display + body sans typeface. Native is Manrope weights 300-700, loaded via Google Fonts @import and bound to --font-sans. Drives all headings (clamp-scaled) and body copy."
+    },
+    {
+      "id": "font-mono",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fgMuted",
+      "notes": "Monospace accent typeface for eyebrows, nav labels, button labels, footer headers, and copyright. Native is JetBrains Mono weights 400-700, loaded via Google Fonts @import and bound to --font-mono. Used at small tracked-out sizes (10-12px)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Manrope",
+      "body": "Manrope",
+      "mono": "JetBrains Mono"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(26, 26, 26, 0.6)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.64)",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "nav-labels (LEAGUES, STADIUMS, TRAINING, COMPETITIONS, TICKETS)",
+      "nav-cta-label (BUY MATCH PASS)",
+      "hero-headline (Championing / The Pitch Of Legends)",
+      "hero-body (Advanced preparation and training of world-class football teams for leagues, tournaments, and trophies. We bring the trophy closer to your cabinet.)",
+      "hero-cta-label (EXPLORE OUR STADIUMS)",
+      "scroll-reveal-body (Complete Football Programs For Professional Player Development. We Build The Foundations For Next-Generation Strikers, Midfielders, And Star Defenders.)",
+      "feature-col1-tagline (Winning the future on pitch)",
+      "feature-col2-heading (Performance Analytics / Facilities)",
+      "feature-col2-body",
+      "feature-col3-heading (Matchday Premium / Fan Experiences!)",
+      "feature-col3-body",
+      "footer-cta-headline (Ready To Score / Your Winning Season?)",
+      "footer-cta-label (START YOUR SEASONS)",
+      "footer-brand-tagline",
+      "footer-company-links (About, Rosters, Press, Contact)",
+      "footer-services-links (Coaching, Training Camp, Fitness, Tryout)",
+      "footer-connect-links (LinkedIn, X / Twitter, YouTube, Newsletter)",
+      "footer-copyright (2026 WISA. ALL RIGHTS RESERVED.)",
+      "footer-legal-links (PRIVACY, TERMS)",
+      "loading-label (LOADING)"
+    ]
+  },
+  "mechanic": "A fixed cinematic background video is scroll-scrubbed (currentTime mapped to scroll fraction from page top to the footer at 20vh, guarded by video.seeking) beneath a layered, pointer-events-gated scroll stack whose hero/footer fade-rise into view and whose scroll-reveal section de-blurs and un-rotates GSAP-staggered word-by-word.",
+  "techDelivery": "React 19 + Vite + Tailwind CSS v4 (@tailwindcss/vite), motion (framer-motion v12) for useScroll/useTransform + viewport reveals, GSAP ScrollTrigger for the word-reveal, lucide-react icons; fonts via Google Fonts @import and theme tokens in @theme; model-viewer 3.4.0 script included in head though unused.",
+  "reskinNotes": "Brand wordmark and globe are inlined SVGs with white fills/strokes baked into path markup (no fill currentColor), so recoloring requires editing the SVG, not just a token. The hero video URL is a hardcoded CloudFront constant and the asset must be specifically scrubbable/keyframe-dense, not just any clip. All copy is hardcoded in JSX (headlines use literal <br/> line breaks, e.g. 'Championing'<br/>'The Pitch Of Legends', and the hero body mixes a font-semibold white emphasis span inline). The footer is styled almost entirely with inline rgba/blur styles rather than tokens, so color-role swaps must also update those inline values. The scroll-scrub stop point and headerY transform use literal pixel thresholds (500/800/0.2vh) tuned to this layout. Two webfonts are pinned to specific weight ranges via the Google Fonts @import URL; swapping families means editing that import string."
+}

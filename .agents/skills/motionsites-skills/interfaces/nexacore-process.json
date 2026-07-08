@@ -1,0 +1,77 @@
+{
+  "id": "nexacore-process",
+  "role": "features",
+  "ownSections": [
+    "TrustedSection",
+    "ServiceCard"
+  ],
+  "slots": [
+    {
+      "id": "trusted-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Dark full-bleed background image for the whole TrustedSection (background-size:cover, position center, no-repeat) sitting behind the centered header and the four-up ServiceCard grid; a 180px bottom-to-white linear-gradient overlay fades it out into the page below."
+    },
+    {
+      "id": "service-card-hover-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Decorative top-layer image (Layer 1) revealed on ServiceCard hover; object-fit:cover, object-position:top, occupies the top 55% of the card. Shared across all four cards. Default state opacity 0.7 / translateY(-30%); on hover animates to opacity 1 / translateY(0) over 500ms. PNG placeholder, so transparency may be used."
+    },
+    {
+      "id": "card-dot-icon",
+      "type": "svg",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "The per-card badge glyph rendered inside the pill badge icon-wrapper (viewBox 0 0 16 16, fill:none, sized 100% of a ~1.11vw/min-14px x 17px box). Four distinct variants, one per card, differentiated only by an inner concentric dot radius (DesignIcon = hollow ring, OnboardingIcon r=2, DeliveryIcon r=3, DeploymentIcon r=4); the outer ring is identical. All filled with the accent purple (ICON_COLOR rgb(200,111,255)) hardcoded into the path/circle fill."
+    },
+    {
+      "id": "list-bullet-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "List-bullet marker used as a CSS background-image on every ServiceCard <li> (background-size 18px, position 0% 50%, no-repeat) with padding-left clamp(22px,1.8vw,28px) reserving space for it. Single shared glyph across all cards/bullets; accent-purple tinted."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Custom display/body typeface 'Mazzard H' loaded via @font-face in two weights (400 normal for body/bullets, 500 for badges/titles/headings) and applied globally to html, body, * with a sans-serif fallback. Carries clamp()-fluid card titles, the large section H2, the badge labels and the bullet list."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Mazzard H",
+      "body": "Mazzard H"
+    },
+    "colorRoles": {
+      "bg": "rgb(255, 255, 255)",
+      "surface": "rgba(10, 5, 20, 0.88)",
+      "fg": "#ffffff",
+      "fgMuted": "rgb(189, 174, 231)",
+      "accent": "rgb(200, 111, 255)",
+      "accent2": "rgb(28, 78, 255)",
+      "border": "rgb(41, 31, 57)"
+    },
+    "copySlots": [
+      "section-headline",
+      "section-headline-highlight",
+      "section-body",
+      "card-label",
+      "card-title",
+      "card-bullets",
+      "card-cta-label"
+    ]
+  },
+  "mechanic": "A cover background-image section that fades to white at the bottom, holding a centered gradient-highlight headline above a 1/2/4-column grid of glassmorphic dark ServiceCards, each of which on hover runs a 500ms multi-layer reveal: a top image slides down and brightens, a bottom dark gradient slides up, the title/bullets block lifts 8px, and a gradient 'Learn more' button expands from max-height 0.",
+  "techDelivery": "React 18 + TypeScript + Tailwind CSS v3, per-component .tsx files (ServiceCard.tsx, TrustedSection.tsx) with useState-driven hover; all icons are inline SVG (no icon library); 'Mazzard H' registered via @font-face in src/index.css and applied globally; responsive via Tailwind grid breakpoints plus clamp()/vw inline sizing.",
+  "reskinNotes": "Brand color is baked literally into inline styles and inline SVG rather than tokenized. The accent purple rgb(200,111,255) is hardcoded as the fill on all four card dot icons (path + circle), and the card surface rgba(10,5,20,0.88), badge fill rgb(41,31,57), muted text rgb(189,174,231), and the bottom-to-white fade are all hand-coded inline. Two multi-stop brand gradients must be recreated by hand: the button/CARD_GRADIENT linear-gradient(90deg, rgb(28,78,255), rgb(172,36,255) 50%, rgb(254,136,27)) and the headline-highlight linear-gradient(90deg, rgb(43,167,255), rgb(202,69,255) 50%, rgb(254,136,27)) applied via background-clip:text. All copy is hardcoded in JSX (the CARDS data array of labels/titles/bullets, the 'Learn more' button text, and the section H2/paragraph), with titles carrying literal <br /> line breaks tuned to the placeholder copy length, so reskinning text means editing markup, not data. Card heights and paddings are clamp()/vw-driven so a wider substitute font can reflow the <br />-tuned titles and bullet rows; the badge icon box (1.11vw / min 14px x 17px) and 18px bullet background-size are fixed and font-metric sensitive."
+}

@@ -1,0 +1,60 @@
+{
+  "id": "keep-ahead-features",
+  "role": "features",
+  "ownSections": [
+    "FeaturesSection"
+  ],
+  "slots": [
+    {
+      "id": "card-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "One line-art glyph per feature card, seated 20x20px inside the 44x44px rounded mini-card (.feat-icon) at the top of each card. Native marks are inline <svg viewBox='0 0 24 24' fill='none' stroke-width=2 stroke-linecap=round stroke-linejoin=round> stroked at rgba(255,255,255,0.88) (the 'fg' near-white) via stroke, NOT filled. The three in order are: (1) orange card = document/lines (rect 20x16 rx2 + three horizontal rule paths), (2) blue card = link/chain (single rounded-cap path), (3) green card = cube/package (box path + top polyline + center vertical line). Supply three single-color currentColor-stroked outline icons at ~2px weight; they read on a dark glass tile so keep them light/near-white. Order is fixed (one per orange/blue/green card)."
+    },
+    {
+      "id": "tag-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "One glyph per trust-tag in the bottom .features-tags row, rendered 16x16px. Unlike the card icons these are SOLID fills (fill: rgba(255,255,255,0.6), stroke: none) — the muted near-white. Native marks are inline <svg viewBox='0 0 24 24'> single filled paths, in order: (1) lightning bolt ('Always Current'), (2) gear/settings-in-circle ('Focused for You'), (3) check-in-circle ('Actionable Steps'). Supply three filled single-color (currentColor-tintable) glyphs; they sit small and muted inline before each tag label. Order is fixed and pairs with the tag copy."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "The single typeface for EVERY string in the section (display + body roles share it): the 34px/700 'How We Keep You Ahead' h2 (letter-spacing -0.01em, line-height 1.2), the 22px/700 card titles, the 15px and 14px header paragraphs/subline, the 14px card descriptions, the 13.5px/700 card link labels, and the 13px/600 bottom tag labels. Native = DM Sans (optical-size variable, weights 400/500/600/700) loaded from Google Fonts (family=DM+Sans:ital,opsz,wght@0,9..40,400;500;600;700&display=swap). Substitute must be a clean geometric sans that holds a 700-weight 34px display line at tight -0.01em tracking and still reads at 13px/600. Fixed card min-heights (320px outer / 290px inner) give some slack, so font-metric reflow risk is low."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'DM Sans', sans-serif",
+      "body": "'DM Sans', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#050505",
+      "surface": "#180D0B",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.55)",
+      "accent": "#CF451E",
+      "accent2": "#4663BF",
+      "border": "none"
+    },
+    "copySlots": [
+      "headline",
+      "subhead-body",
+      "subline",
+      "card-titles",
+      "card-descriptions",
+      "card-link-labels",
+      "tag-labels"
+    ]
+  },
+  "mechanic": "A static dark-mode (#050505 dotted-grid) features block — a left-aligned header, a 3-up CSS grid (repeat(3,1fr), collapsing to 1 column under 900px) of glassmorphic cards each painted by a top-left radial glow over a 5-stop vertical gradient that fades near-black -> brand color -> white at the bottom edge with an inset white bottom-glow, and a bottom trust-tag row; the ONLY motion is hover: cards lift translateY(-4px) (0.35s cubic-bezier(.22,1,.36,1)) and link arrows slide their gap 6px->10px while fading to 0.85 opacity.",
+  "techDelivery": "Single-file static HTML5 page with one embedded <style> block (no framework, no JS, no build step); DM Sans pulled from a Google Fonts <link>, a <base target='_blank'> in the head, and all icons as inline <svg>.",
+  "reskinNotes": "Brand color is the heaviest reskin surface and is fully baked into per-variant CSS, not tokens: each card has its OWN hardcoded 5-stop linear-gradient + matching radial glow + icon-tile gradient/border/shadow. Orange = #180D0B base -> #CF451E -> #e9d551 -> #FFFFFF with radial #d9511b50 and icon border rgba(232,120,40,0.22); Blue = #0B0F17 base -> #4663BF -> #a1ccf7 -> #FFFFFF with radial rgba(80,150,255,0.30) and icon border rgba(80,130,255,0.22); Green = #0B0B12 base -> #38D26B -> #aaf8cd -> #FFFFFF with radial rgba(50,200,110,0.30) and icon border rgba(50,200,110,0.22). Reskinning to a brand palette means rewriting all three gradient ramps, the three radial glow rgbas, and the three icon-tile gradient/border/box-shadow/::before-glow sets by hand (chosen surface token #180D0B is just the orange card's base; bg #050505, fg #fff, and the rgba(255,255,255,*) muted text/icon values are also raw, not variables). The shared inset bottom glow box-shadow: inset 0 -4px 15px -2px rgba(255,255,255,0.9) and the white gradient stops assume a dark card, so a light palette breaks the effect. All 6 icons are inline SVG path data baked in markup (3 stroked card glyphs + 3 filled tag glyphs) and all copy is hardcoded in HTML, including HTML entities that must be preserved: the registered mark &#174; in the headline, the curly apostrophe &#8217; in the subline, the em dash &#8212; in two card descriptions, and the right arrow &#8594; appended to each card link label. The card backgrounds are pure CSS gradients, so there are NO image/video sockets to fill — only the font and the two icon sets."
+}

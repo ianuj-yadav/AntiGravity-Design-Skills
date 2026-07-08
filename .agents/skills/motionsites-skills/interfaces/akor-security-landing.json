@@ -1,0 +1,85 @@
+{
+  "id": "akor-security-landing",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "Services",
+    "AboutUs"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplaying muted looping hero background video, absolute inset-0 object-cover behind the H1/CTA stack."
+    },
+    {
+      "id": "about-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "About Us autoplaying muted looping inline video in the left 45% column, w-full h-auto rounded-sm."
+    },
+    {
+      "id": "service-icons",
+      "type": "image",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Set of four 64x64 service-card icon images, object-contain, on the near-white inverted Services section (transparent background needed)."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "primary",
+      "notes": "Inline hexagon logo glyph inside a 32x32 rounded bg-primary box in the navbar; the glyph is tinted by the primary green."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Sora",
+      "body": "Sora"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 10%)",
+      "surface": "hsl(0 0% 8%)",
+      "fg": "hsl(0 0% 96%)",
+      "fgMuted": "hsl(0 0% 60%)",
+      "accent": "hsl(119 99% 46%)",
+      "border": "hsl(0 0% 20%)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-subtext",
+      "hero-cta-primary-label",
+      "hero-cta-secondary-label",
+      "services-eyebrow",
+      "services-heading",
+      "services-cta-label",
+      "service-card-titles",
+      "service-card-descriptions",
+      "service-card-numbers",
+      "about-eyebrow",
+      "about-heading",
+      "about-body",
+      "about-cta-label"
+    ]
+  },
+  "mechanic": "A fixed-navbar dark landing whose sections fade-up (opacity+translateY) on entry, anchored by a fullscreen object-cover looping hero video with bottom-left headline/CTAs, then an inverted near-white 2x2 service-card grid and a black split video/text About section.",
+  "techDelivery": "React + Tailwind CSS with HSL CSS custom properties and a custom animate-fade-up keyframe; Sora loaded from Google Fonts.",
+  "reskinNotes": "Colors are declared as raw HSL triplets in Tailwind CSS custom properties (e.g. --primary: 119 99% 46%), so reskinning means editing those triplets, not hex; the Services section relies on foreground (0 0% 96%) being near-white to invert to a light background with text-background, so changing fg breaks that inversion. The navbar logo is an inline SVG hexagon tinted by --primary and must be swapped in markup. All copy (brand name, nav labels, headlines, the four service card titles/descriptions/numbers, About paragraph) is hardcoded in JSX. Headline uses an explicit line break after \"Intelligent\" and card titles use whitespace-pre-line with embedded \\n, so copy length and break points are layout-load-bearing."
+}

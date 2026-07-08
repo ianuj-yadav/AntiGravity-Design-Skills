@@ -1,0 +1,78 @@
+{
+  "id": "digital-epoch-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroContainer",
+    "HeroContent",
+    "FloatingNavbar",
+    "MarqueeScroller"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the rounded-[48px] 600px hero card (object-cover scale-105, transition-transform duration-1000). autoPlay + loop + muted + playsInline, no overlays, sits in an absolute inset-0 z-0 layer behind all text."
+    },
+    {
+      "id": "marquee-logo-icons",
+      "type": "icon",
+      "card": 8,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Eight partner/brand single-color logo marks (svgl.app SVGs: Procure, Shopify, Blender, Figma, Spotify, Lottielab, Google Cloud, Bing) for the seamless marquee scroller. Each sits in a 96x160 (h-24 w-40) rounded-full white card and is inverted to solid black on group-hover (group-hover:brightness-0 group-hover:invert), so each must be a flat monochrome silhouette that reads when forced to black. The list is rendered twice inline to seamlessly loop. Each logo is data-paired with a per-card hex gradient object baked into the inline logos array (see reskinNotes), so item N's gradient hue is part of this socket."
+    },
+    {
+      "id": "navbar-logo",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Small circular brand logo placeholder on the left of the floating bottom navbar (w-9 h-9 white circle, slate-100 border, subtle shadow). Default is the star glyph '✦' (text character, not an asset); a brand swaps in its own monochrome mark/icon."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display face for the hero headline (text-[42px] md:text-[56px], medium weight, tight tracking, color #0a1b33). Native family: Outfit (weights 400/500/600), imported from Google Fonts in index.css and wired to Tailwind --font-display."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans/body face for the subheadline, buttons, nav labels and marquee card labels. Native family: Inter (weights 400/500/600/700), imported from Google Fonts in index.css and wired to Tailwind --font-sans."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Outfit",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#f9fafb",
+      "surface": "#ffffff",
+      "fg": "#0a1b33",
+      "fgMuted": "#64748b",
+      "accent": "#0a152d",
+      "border": "rgba(226,232,240,0.5)"
+    },
+    "copySlots": [
+      "headline",
+      "headline-line-2",
+      "subheadline",
+      "hero-cta-label",
+      "navbar-logo-glyph",
+      "nav-labels",
+      "nav-cta-label",
+      "marquee-logo-alts"
+    ]
+  },
+  "mechanic": "A rounded 600px hero card holds an autoplaying object-cover background video behind a Motion fade-rise headline/CTA and a backdrop-blurred floating bottom navbar, with a separate pure-CSS @keyframes translateX(0->-50%) edge-masked logo marquee scrolling infinitely below it (pausing on hover, each card's gradient revealing on group-hover as the logo inverts to black).",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS v4 (theme tokens --font-sans/--font-display declared in index.css) + Motion (motion/react) for hero entrance and button hover; lucide-react for the ChevronRight icon; marquee animation is a pure CSS @keyframes (no JS).",
+  "reskinNotes": "Every color is a literal Tailwind arbitrary value or slate utility hardcoded in JSX (bg-[#0a152d], text-[#0a1b33], text-slate-500, border-slate-200/50, etc.), not a CSS variable, so retinting means editing classes throughout. The 8 marquee logos live in an inline array where each entry pairs an svgl.app src + alt with a per-card hex gradient object (blue/yellow/purple/pink/green/teal) used for the group-hover reveal panel, so changing logos or their hover hues means editing that array, not the skin block. The hero headline copy is split across a literal <br /> ('Foundation of the' / 'new digital epoch') and all copy (headline, subheadline, 'Contact Us', '✦', 'Products', 'Docs', 'Get in touch') is hardcoded in markup. The hero card height is a fixed h-[600px] and the navbar logo is a text glyph rather than a real asset; logos are force-inverted to pure black on hover so any colored or multi-tone logo loses its color in that state."
+}

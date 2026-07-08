@@ -1,0 +1,129 @@
+{
+  "id": "mindloop-landing",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "SearchHasChanged",
+    "Mission",
+    "Solution",
+    "Cta",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video covering the entire 100vh Hero section. Rendered as <video autoPlay loop muted playsInline> filling the section, with an h-64 bottom bg-gradient-to-t from-background to-transparent fade-to-black over it and the centered avatar row + headline + subtitle + email form overlaid at z-10. Native source is a CloudFront-hosted MP4. Keep footage dark/moody so the white headline and hero-subtitle text stay legible."
+    },
+    {
+      "id": "mission-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Large centered 800x800 (square) looping autoplaying muted video anchoring the Mission section, sitting above the two scroll-driven word-by-word reveal paragraphs. Native source is a CloudFront-hosted MP4. Square framing; pure-black-friendly footage that reads on the #000 page."
+    },
+    {
+      "id": "solution-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Wide banner video in the Solution section, rounded-2xl with aspect-[3/1] object-cover (ultra-wide letterbox, treat as ~16:9 source cropped). Sits between the 'meaningful content' heading and the 4-column feature grid. Native source is a CloudFront-hosted MP4; supply wide footage since it is hard-cropped to a 3:1 band."
+    },
+    {
+      "id": "cta-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-bleed looping background video for the CTA section, streamed via hls.js (Hls.isSupported() with native-HLS fallback for Safari). absolute inset-0 object-cover z-0 behind an absolute inset-0 bg-background/45 overlay (z-1) and the centered logo + 'Start Your Journey' heading + two buttons (z-10). Native source is a Mux .m3u8 HLS stream. Footage must be dark enough that white text reads through the 45% black scrim."
+    },
+    {
+      "id": "platform-icons",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Three 200x200 centered platform/logo icons in the 'Search has changed' 3-card grid (ChatGPT, Perplexity, Google AI), each above a platform name and description. Native sources are local PNGs (icon-chatgpt.png / icon-perplexity.png / icon-google.png). For a brand reskin these become the three competing-platform or comparison marks; supply transparent square images to sit on the black background."
+    },
+    {
+      "id": "subscriber-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Three overlapping circular subscriber avatars in the Hero social-proof row (-space-x-2, each w-8 h-8 rounded-full border-2 border-background), paired with the '7,000+ people already subscribed' label. Native sources are local PNGs (avatar-1.png / avatar-2.png / avatar-3.png). Round-cropped portrait/face images; alpha not required since they are clipped to circles."
+    },
+    {
+      "id": "brand-typefaces",
+      "type": "font",
+      "card": 2,
+      "notes": "Two-family type system. Inter (sans, weights 400/500/600/700) is the global body/UI face for nav, paragraphs, labels and buttons; Instrument Serif (400 + 400-italic) supplies the italic accent words inside headings ('Inspired', 'changed.', 'meaningful', 'Start Your Journey'). Native loading is via @fontsource/inter and @fontsource/instrument-serif. Replace as a coordinated sans+serif-italic pair."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a key dependency), not brand assets: the three Navbar social icons Instagram / Linkedin / Twitter, each centered in a liquid-glass rounded-full w-10 h-10 button. currentColor / white-tinted. Optional socket: only swap if the brand ships an equivalent line-icon social set; otherwise the lucide defaults stand. NOTE: the Mindloop logo mark is NOT here — it is built inline from two nested bordered divs (concentric circles), so it is a CSS construct, not an icon/image asset."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 0%)",
+      "surface": "hsl(0 0% 5%)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(0 0% 65%)",
+      "accent": "hsl(170 15% 45%)",
+      "accent2": "hsl(210 17% 95%)",
+      "border": "hsl(0 0% 20%)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "hero-eyebrow-social-proof",
+      "hero-headline",
+      "hero-subtitle",
+      "hero-email-placeholder",
+      "hero-cta-label",
+      "search-headline",
+      "search-subtitle",
+      "search-card-titles",
+      "search-card-bodies",
+      "search-bottom-tagline",
+      "mission-paragraph-1",
+      "mission-paragraph-2",
+      "solution-eyebrow",
+      "solution-headline",
+      "solution-feature-titles",
+      "solution-feature-bodies",
+      "cta-headline",
+      "cta-subtitle",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "footer-copyright",
+      "footer-links"
+    ]
+  },
+  "mechanic": "A pure-black monochrome single-page scroll (fixed transparent nav over a fullscreen looping-MP4 hero, then a 3-platform card row, a square mission video, a 3:1 banner-video solution block, an HLS-video CTA, and a footer) whose signature motion pairs a reusable Framer Motion fadeUp helper (opacity 0->1, y 20->0, IntersectionObserver once, 0.6s easeOut staggered delays) with a useScroll/useTransform scroll-driven word-by-word opacity reveal (0.15 -> 1 per word) on the Mission paragraphs, all over frosted .liquid-glass surfaces (backdrop-blur + mask-composite gradient border).",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS + shadcn/ui + Framer Motion, with hls.js for the CTA background HLS stream and lucide-react for the social icons. Fonts via @fontsource/inter (400/500/600/700) and @fontsource/instrument-serif (400 + italic); animations use tailwindcss-animate. Design tokens are HSL channel triples in :root (consumed as hsl(var(--token))) and the .liquid-glass utility lives in index.css.",
+  "reskinNotes": "The palette is authored as space-separated HSL channels in :root (no hsl() wrapper in the variable), consumed via hsl(var(--token)); the page is locked to a pure-black/white monochrome system, so swapping in a colored brand means more than retinting one token — the only chromatic value is --accent (170 15% 45%, a muted teal) which is barely used, and --hero-subtitle (210 17% 95%, near-white) is applied directly as an inline color on the hero subtitle. The .liquid-glass effect is load-bearing identity and fully hardcoded in CSS: rgba(255,255,255,0.01) fill, background-blend-mode:luminosity, backdrop-filter blur(4px), an inset white highlight shadow, and a ::before gradient-border built from a white linear-gradient plus -webkit-mask-composite:xor / mask-composite:exclude — retinting the glass means editing these encoded rgba stops, not flipping a variable. The Mindloop logo is NOT an asset: it is two nested bordered divs forming concentric circles (outer w-7 h-7 border-2 border-foreground/60, inner w-3 h-3 border border-foreground/60 in the navbar; w-10/w-5 in the CTA), so a real brand mark would replace this CSS construct. All copy is hardcoded in JSX across the seven sections: nav items (Home/How It Works/Philosophy/Use Cases) separated by bullet dots; the hero '7,000+ people already subscribed' proof line, the 'Get Inspired with Us' headline (with 'Inspired' as font-serif italic) and its subtitle and 'SUBSCRIBE' button; 'Search has changed. Have you?' ('changed.' serif italic) with the three platform card names/bodies and the \"If you don't answer the questions, someone else will.\" tagline; the two Mission paragraphs (with 'curiosity'/'meets'/'clarity' hardwired as the highlighted words); the 'SOLUTION' label, 'The platform for meaningful content' heading ('meaningful' serif italic) and four feature titles/bodies (Curated Feed/Writer Tools/Community/Distribution); the CTA 'Start Your Journey' + buttons; and the footer '© 2026 Mindloop.' copyright + Privacy/Terms/Contact links. Layout is font-metric dependent on Instrument Serif italic: headings run up to text-8xl with tracking-[-2px] and the Mission reveal uses tracking-[-1px], so a wider/taller replacement display face will alter the tight wraps. The Mission word-reveal also bakes which words highlight into the markup, not into data. Placeholder media (three CloudFront MP4s + one Mux .m3u8 HLS stream + three local platform-icon PNGs + three avatar PNGs) are the asset sockets to fill."
+}

@@ -1,0 +1,75 @@
+{
+  "id": "digitwist-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video, absolute behind the centered content at object-fit:cover with opacity 60% under a bg-black/60 backdrop-blur-[2px] overlay. Played muted/loop/playsInline via HLS.js (with a Safari canPlayType('application/vnd.apple.mpegurl') native fallback) that loadSource+attachMedia and auto-plays on MANIFEST_PARSED. Native source is an HLS .m3u8 stream (Mux); supply an adaptive HLS manifest or a swappable MP4."
+    },
+    {
+      "id": "hero-video-poster",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Poster/still fallback image for the background <video> shown before the HLS stream loads or when autoplay/streaming is unavailable. Sits behind the same black/blur overlay, so a dark abstract/technology still that reads under 60% opacity works best. Native placeholder is an Unsplash dark-tech photo."
+    },
+    {
+      "id": "nav-logo",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark in the top-left of the navbar, a 24x24px SVG rendered in white (the native placeholder is a sunburst/sun glyph). Supply transparent and single-color so it inherits the white foreground over the dark hero."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display face for the 'Design at the speed of thought' pre-headline at text-3xl/sm:text-5xl/lg:text-[48px], leading-[1.1]. Native family declared inline as 'Instrument Serif', imported from Google Fonts (ital@0;1)."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans face for everything else — the giant 'Build Faster' headline (font-semibold, text-6xl/sm:text-8xl/lg:text-[136px], leading-[0.9], tracking-tighter, painted via bg-clip-text text-transparent over a from-white via-white to-[#b4c0ff] vertical gradient), the subheadline, navbar links and all CTA labels. Native family 'Instrument Sans', imported from Google Fonts (wght 400..700, ital)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Instrument Sans', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#ffffff",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#3054ff",
+      "accent2": "#b4c0ff"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "subheadline",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "nav-labels",
+      "book-demo-label",
+      "get-started-label"
+    ]
+  },
+  "mechanic": "A pure-black min-h-screen hero layers an HLS background video (object-cover, 60% opacity) under a black/backdrop-blur overlay and two blurred blue/indigo mix-blend-screen gradient blobs, with a fixed transparent navbar above and a centered max-w-5xl stack — serif eyebrow, a 136px gradient-clipped 'Build Faster' headline, subheadline and dual CTAs — that staggers in via Motion fade/scale/translate transitions on load.",
+  "techDelivery": "React + TypeScript component spec styled with Tailwind utility classes; animations via motion/react (motion), HLS playback via hls.js with a native Safari fallback, icons via lucide-react (ChevronDown, ArrowRight), and the Instrument Sans/Serif faces imported through a Google Fonts @import.",
+  "reskinNotes": "Several brand colors are baked into inline Tailwind arbitrary-value utilities rather than tokens: the headline gradient end #b4c0ff lives in `to-[#b4c0ff]`, the primary CTA arrow circle is `bg-[#3054ff]`/`hover:bg-[#2040e0]`, and the primary CTA label color is the near-black `#0a0400` — reskinning these means editing the className strings, not swapping a variable. The 136px headline and max-w-5xl/max-w-xl copy widths depend on Instrument Sans metrics, so a font swap or longer copy reflows the layout. All copy is hardcoded in JSX: the 'Design at the speed of thought' eyebrow, the 'Build Faster' headline, the subheadline, the 'Start Building Free' and 'See Examples' CTA labels, the 'Book A Demo'/'Get Started' buttons, and the four nav labels (Products/Customer Stories/Resources/Pricing). The Motion stagger delays (0.2s/0.4s/0.6s) and the video opacity (60%) are fixed constants, and the navbar's ChevronDown/ArrowRight glyphs are lucide-react components (not asset files)."
+}

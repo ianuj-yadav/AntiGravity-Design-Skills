@@ -1,0 +1,117 @@
+{
+  "id": "guardnet-landing",
+  "role": "hero",
+  "ownSections": [
+    "LogoMark",
+    "Navbar",
+    "Hero",
+    "SecuritySection",
+    "CompaniesSection",
+    "BenefitsSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video for the Hero section. Rendered <video autoPlay loop muted playsInline> at 'absolute inset-0 w-full h-full object-cover' behind three giant text-[24vw]/md:text-[18vw] white headline words, a body paragraph and three corner stat blocks; a bottom-to-black gradient fade (h-48) darkens the lower edge for legibility. Cover-cropped to any viewport. Pick calm/dark footage that reads under white overlay text. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "security-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video for the SecuritySection (full h-screen black section). Same attrs as the hero video (autoPlay loop muted playsInline, object-cover). Overlaid by a top black-to-transparent gradient fade (h-48), a floating 'confirm real person' / 'run demo' pill at top-center, and two white body paragraphs (left and right). Favor footage that stays legible behind white copy on both sides. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "benefit-card-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Looping video filling the top 75% of the second BenefitsSection card (autoPlay loop muted playsInline, 'w-full h-full object-cover block'). A bottom transparent-to-neutral-950 gradient fade (h-32) blends the video into the card body, which holds the 'Know-how and Sectoral / Awareness' heading. Card-shaped (rounded-2xl, ~460px tall), not fullscreen, so aspect is flexible. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "brand-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo mark in the left Navbar pill, beside the 'guardnet' wordmark. Inline SVG, viewBox 0 0 256 256, rendered at h-4/h-5, with a custom four-quadrant interlocking path filled white (hard-coded white fill on the path, not currentColor). Supply the brand mark as a single-color SVG; to stay tintable by the white-on-dark scheme, deliver it as a currentColor / fill-inheriting glyph rather than a baked hex."
+    },
+    {
+      "id": "company-logos",
+      "type": "svg",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four fictional client/partner logo lockups in the CompaniesSection grid (one per neutral-950 rounded-2xl card, each over a soft blurred color blob). Each = an inline white-fill SVG glyph (h-6/h-8) plus a wordmark: Apex (star glyph, blue #1e3a8a blob), forge (cube glyph, orange #FA8453 + yellow #F5D547 blobs), Eastern Delta (two-line wordmark, yellow #F5D547 blob), Skybank (stacked-diamonds glyph, blue #1e3a8a blob). These are placeholder third-party marks, not the guardnet brand: swap to whichever logos a brand wants to showcase. Deliver as transparent single-color marks; the per-card blob hues are separate (see accent-blob-colors / colorRoles)."
+    },
+    {
+      "id": "brand-display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary brand/display typeface 'Futura Md BT Medium', loaded via @import from db.onlinewebfonts.com and set as the global body font-family ('Futura Md BT Medium', system-ui, -apple-system, sans-serif). Drives everything visible: the three text-[24vw]/md:text-[18vw] hero headline words (font-medium, .hero-title letter-spacing -0.04em / line-height 0.95), the 'guardnet' wordmark and nav links, CTAs, the +2.7b/+90k/+450k stat numbers, the 'Key Benefits' heading, and all body copy. Replace with the brand display sans; layout is tuned to Futura's metrics."
+    },
+    {
+      "id": "tailwind-sans-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Secondary UI typeface: the Tailwind config extends fontFamily.sans to ['\"Readex Pro\"','system-ui','sans-serif'], so any element using the default font-sans utility renders in 'Readex Pro' rather than the Futura body face. A lower-priority socket than the display font (most large type uses Futura via the body reset); supply the brand's UI/text sans if reskinning the font-sans-tagged elements. Spec does not declare a @font-face/import for Readex Pro, so it falls back to system-ui unless the brand provides the face."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Futura Md BT Medium', system-ui, -apple-system, sans-serif",
+      "body": "'Futura Md BT Medium', system-ui, -apple-system, sans-serif",
+      "accent": "'Readex Pro', system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(23,23,23,0.9)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#FA8453",
+      "accent2": "#F8C9B2",
+      "border": "rgba(255,255,255,0.4)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "navbar-cta-label",
+      "hero-headline-word-1",
+      "hero-headline-word-2",
+      "hero-headline-word-3",
+      "hero-body",
+      "stat-1-number",
+      "stat-1-label",
+      "stat-2-number",
+      "stat-2-label",
+      "stat-3-number",
+      "stat-3-label",
+      "security-pill-ghost-label",
+      "security-pill-cta-label",
+      "security-body-left",
+      "security-body-right",
+      "company-wordmarks",
+      "companies-body",
+      "companies-cta-label",
+      "benefits-heading",
+      "benefit-card-titles",
+      "benefit-card-bodies"
+    ]
+  },
+  "mechanic": "A black multi-section single-page scroll stacking a full-viewport hero (object-cover looping video behind three absolutely-positioned giant text-[24vw] headline words staggered down the diagonal plus three rotated-hairline corner stat blocks and a frosted pill navbar) over a second full-screen video SecuritySection with a floating gradient pill and split body copy, a CompaniesSection of four blurred-blob logo cards, and a three-card BenefitsSection (one card embedding a looping video); the only motion is video loops and CSS hover color transitions on nav links and CTAs (no scroll or entrance animation).",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS authored as a multi-component single-file spec (everything in src/App.tsx + src/index.css, utility classes only, mobile-first md: breakpoints, no router or state); lucide-react permitted only if needed and no other UI libs; 'Futura Md BT Medium' loaded via @import from db.onlinewebfonts.com with Tailwind fontFamily.sans extended to 'Readex Pro'; the body reset, the .hero-title class (letter-spacing -0.04em / line-height 0.95) and html/body/#root height:100% are the only custom CSS; logos are inline SVG; no animation library.",
+  "reskinNotes": "The accent is a two-stop gradient linear-gradient(90deg, #FA8453 0%, #F8C9B2 100%) hard-coded inline (style attribute) on the 'run demo' pill, the CompaniesSection gradient-border 'Run Demo' button, and as a 1.5px border wrapper, so retinting the brand accent means editing those literal inline gradients, not a token. The navbar LogoMark and all four company logos are inline SVG <path>s with fill #ffffff baked into markup, so reskinning marks means editing JSX, not swapping files. Decorative blurred 'blob' hues are literal Tailwind arbitrary hex classes scattered across the cards (bg-[#1e3a8a] blue, bg-[#F5D547] yellow, bg-[#FA8453] orange, bg-[#F8C9B2] peach) at varying opacities, with no shared token. All copy is hard-coded lowercase in the JSX and must be edited in the markup: brand 'guardnet', nav labels products/offerings/mission/contact, 'start today' / 'run demo' / 'Run Demo' / 'confirm real person' CTAs, the three headline words shelter/user/info, the three stat numbers +2.7b/+90k/+450k with sublabels (mb info was concealed / ventures run / transfers), the four company wordmarks (Apex, forge, Eastern Delta, Skybank), 'Key Benefits', the benefit card headings and bodies, and the long marketing paragraphs. The palette is otherwise monochrome and expressed via Tailwind opacity utilities (bg-neutral-900/80-90, bg-neutral-950, white/40, white/70, white/80, white/90, text-black/text-white) rather than CSS custom properties, so there is no single token block to retheme. The hero composition is absolutely positioned with viewport-unit type (text-[24vw]/md:text-[18vw]) and percentage top/left offsets tuned to Futura's metrics and the three specific headline words, so longer copy or a wider replacement display face will overlap the stat blocks. Stat-block dividers are hairlines (h-px w-24 bg-white/40) at hard-coded rotations (+/-20deg). Readex Pro is referenced in the Tailwind config but never actually @font-face-loaded, so font-sans elements silently fall back to system-ui unless the brand supplies the face."
+}

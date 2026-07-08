@@ -1,0 +1,91 @@
+{
+  "id": "404-planet",
+  "role": "404",
+  "ownSections": [
+    "NavBar",
+    "MobileMenu",
+    "Hero404",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video behind all content (absolute inset-0, object-cover so it crops to any viewport); native asset is a cinematic dark-blue Earth-from-space shot. autoPlay muted loop playsInline."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Nav logo mark, w-8 h-8, sits left of the wordmark. Native art is a 4-quarter-circle leaf glyph rendered as an inline SVG path (viewBox 0 0 480 480), single-color white fill."
+    },
+    {
+      "id": "nav-cta-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Trailing icon inside the LOG IN gradient pill (native: Lucide ArrowRight, w-4 h-4, white on the emerald-to-cyan gradient)."
+    },
+    {
+      "id": "mobile-menu-toggle-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Open/close glyph pair for the mobile hamburger that cross-fades with rotation (native: Lucide Menu and X)."
+    },
+    {
+      "id": "footer-social-icons",
+      "type": "icon",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Social row under the footer CONNECT heading (native: Lucide Facebook, Twitter, Dribbble, Youtube, Linkedin, Instagram; w-4 h-4, white/50 hover white)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Helvetica Now Var\", Helvetica, Arial, sans-serif",
+      "body": "\"Helvetica Now Var\", Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.8)",
+      "accent": "#34d399",
+      "accent2": "#06b6d4",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "login-cta-label",
+      "hero-subtitle-line-1",
+      "hero-subtitle-line-2",
+      "hero-404-text",
+      "return-cta-label",
+      "footer-column-titles",
+      "footer-column-links",
+      "newsletter-heading",
+      "newsletter-input-placeholder",
+      "newsletter-cta-label",
+      "social-heading"
+    ]
+  },
+  "mechanic": "A single static min-h-screen flex column (nav / centered 404 hero / multi-column footer) layered over a fullscreen looping background video, with glassmorphism on the CTA and a staggered cross-fading mobile menu.",
+  "techDelivery": "React + Tailwind CSS + Lucide React icons (with two custom CSS classes, .four-oh-four glow and .liquid-glass border-gradient).",
+  "reskinNotes": "Logo art is a hardcoded inline SVG path (no asset URL), so swapping the mark means replacing markup. All copy (NEXOVA, nav labels, 404 lines, footer columns, newsletter) is hardcoded in JSX. The emerald-400-to-cyan-500 accent gradient is baked into Tailwind utility classes (bg-gradient-to-r from-emerald-400 to-cyan-500), not CSS variables, so retinting requires editing class strings in nav, mobile menu, and newsletter button. The .four-oh-four glow and .liquid-glass effect use literal white rgba values in custom CSS. The bg color is not a declared solid hex — the visual background IS the video; #000000 is only the natural dark fallback. The design uses a non-default 'xs' Tailwind breakpoint that must be registered or remapped to 'sm'."
+}

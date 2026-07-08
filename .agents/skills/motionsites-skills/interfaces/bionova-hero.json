@@ -1,0 +1,66 @@
+{
+  "id": "bionova-hero",
+  "role": "hero",
+  "ownSections": [
+    "BionovaHero"
+  ],
+  "slots": [
+    {
+      "id": "headline-image-pill",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Small rounded-full image pill (w-20/sm:w-24, h-10/sm:h-12) set bg-cover, displayed inline inside the H1 next to the word 'World-class'. Wide rounded-pill crop, not square."
+    },
+    {
+      "id": "card-background-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three HLS (.m3u8) card-background videos that fill the dark right-column cards behind z-10 content. All autoPlay, muted, loop, playsInline, preload=auto. Card 1: object-cover full-bleed. Card 2: scaled 150% center-translated. Card 3: scaled 280% center-translated. Delivered as Mux HLS streams (hls.js with native-Safari canPlayType fallback)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Poppins"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 100%)",
+      "surface": "hsl(0 0% 0%)",
+      "fg": "hsl(0 0% 17%)",
+      "fgMuted": "rgba(255, 255, 255, 0.85)",
+      "accent": "hsl(213 90% 78%)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "login-label",
+      "request-call-label",
+      "headline-line1",
+      "headline-pill-label",
+      "headline-line2",
+      "headline-line3",
+      "headline-play-pill-label",
+      "headline-line4",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "description",
+      "logo-bar-names",
+      "card1-heading",
+      "card1-description",
+      "card2-badge",
+      "card2-heading",
+      "card2-description",
+      "card3-badge",
+      "card3-stat",
+      "card3-description"
+    ]
+  },
+  "mechanic": "100vh sticky two-column hero where a left text column and a right grid of three HLS-video cards both fade-up (translateY+opacity+blur, staggered 150ms) on load, with inline image/play pills embedded in the oversized headline.",
+  "techDelivery": "single-file React with CDN Tailwind, Poppins from Google Fonts, and hls.js for Mux HLS streaming (useRef per video, single useEffect attaching all 3 streams with native-Safari fallback)",
+  "reskinNotes": "Colors are declared as Tailwind HSL design tokens (bg/foreground/hero-btn) so retheming is token-level, but the three card backgrounds are HLS video URLs hardcoded inline with per-card object-scale transforms (cover / 150% / 280%) that assume specific source framing; the four-line headline with inline image+play pills is hardcoded in JSX and is highly font-metric- and line-break-dependent (Poppins sizing across 4 breakpoints), and dark card surfaces rely on white/85 and white/80 text plus bg-background circle buttons rather than named tokens."
+  }

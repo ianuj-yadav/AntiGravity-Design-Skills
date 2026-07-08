@@ -1,0 +1,147 @@
+{
+  "id": "ecommerce-website-landing",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "ProductsGrid",
+    "WeightLossSection",
+    "ProductCarousel",
+    "ScienceNatureSection",
+    "FAQSection",
+    "HealthGuideSection",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-marquee-images",
+      "type": "image",
+      "card": 8,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Product/lifestyle shots for the two vertical auto-scrolling marquee columns in the Hero right half (hidden on mobile). Two side-by-side columns, each holding 4 images, so 8 fillable sockets total; within a column the 4 images are duplicated in markup to make the @keyframes marquee/marquee-reverse (translateY 0->-50% / -50%->0, 30s linear infinite) loop seamlessly. Column one scrolls up, column two scrolls down. Top and bottom h-32 fade gradients (from-background to-transparent) overlay each column, so the vertical edges of each image will be feathered into the near-white page. Tall portrait-leaning crop; frame for object-cover."
+    },
+    {
+      "id": "product-grid-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Square product images for the Products Grid section cards (3-column grid, md:grid-cols-2 lg:grid-cols-3). One per card, rendered rounded-2xl shadow-lg hover:shadow-xl above a title, a 'per month' price, and a full-width gradient-border 'Get Started' button linking to /product/{handle}. Card count tracks the catalog; the native spec implies a 3-up grid, so 3 sockets as the canonical set. Square 1:1 crop, object-cover."
+    },
+    {
+      "id": "weightloss-product-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Single product image filling the right column of the Weight Loss section (bg-gray-50 two-column grid), rendered rounded-2xl. Pairs with the left-column 'Lose weight with a plan made just for you.' heading, three Calendar/Pill/CheckCircle bullet features, and two CTAs. No overlay text on the image itself; object-cover."
+    },
+    {
+      "id": "carousel-card-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Background images for the Product Carousel section cards (bg-gray-100 two-column grid): one static full-height card on the left (h-[32rem] sm:h-[40rem] md:h-[48rem] rounded-3xl) plus the horizontal carousel of similar cards on the right. Each card is a tall rounded-3xl panel with the image as background, group-hover:scale-105 zoom, and overlay text (price label, price, title) + a gradient 'Get Started' button sitting on top, so footage should stay mid-to-dark enough for white overlay copy to read. 4 sockets as a representative set (1 static + 3 carousel slides). Tall portrait crop, object-cover."
+    },
+    {
+      "id": "healthguide-card-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Top-of-card images for the Health Guide section (4-column grid of white rounded-3xl guide cards). One per card, rendered h-48 object-cover rounded-3xl above description text and a pill-shaped category link button (border-2 border-zinc-900/[0.13] rounded-full + chevron). 4 sockets for the 4 guide cards. Landscape banner crop (roughly card-width by 12rem tall)."
+    },
+    {
+      "id": "hero-info-card-thumb",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Small thumbnail image inside the Hero left-column info card ('Is This Right for You?' + arrow link). A single product/lifestyle thumbnail paired with the card label and a forward arrow; small square-ish crop, object-cover."
+    },
+    {
+      "id": "feature-line-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI/feature glyphs from lucide-react (a dependency, not a brand asset), reused throughout: nav User icon; hero feature rows Syringe/DollarSign/Truck and the rating-badge Star; Weight Loss bullets Calendar/Pill/CheckCircle; Product Carousel ChevronLeft/ChevronRight; Health Guide chevron; and the Science & Nature 6-badge grid (Rabbit, TreePine, Leaf, FlaskConical, Atom, Wheat — all w-20 h-20 strokeWidth-1.5). Optional socket: only swap if the brand ships its own line-icon set; otherwise the lucide defaults stand. Stroked in currentColor (near-black fg), so retint via a text-* utility."
+    },
+    {
+      "id": "footer-social-svgs",
+      "type": "svg",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Social-media brand glyphs in the Footer (bg-zinc-900 text-white): Facebook, Instagram, X, TikTok, LinkedIn, YouTube — authored as inline SVG icons (6 sockets). Rendered white on the dark zinc-900 footer. Supply transparent single-color marks; they read as white against the dark footer. These are recognizable third-party brand marks, so they are typically left as-is unless the brand replaces its own social set."
+    },
+    {
+      "id": "footer-compliance-badges",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Two compliance/trust badges in the Footer below the divider: a LegitScript badge and a compounded-pharmacy badge. Domain-specific verification marks (relevant to the health/pharmacy archetype) shown on the dark zinc-900 footer; supply as transparent PNG/SVG lockups. Optional/swap-only — they are regulatory badges, not decorative brand art, so a non-pharmacy reskin may drop them entirely."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "system-ui font stack (Tailwind default font-sans; the spec explicitly loads no custom fonts — 'use system defaults')"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 98%)",
+      "surface": "#f9fafb",
+      "fg": "hsl(11 6% 11%)",
+      "fgMuted": "rgba(0,0,0,0.6)",
+      "accent": "#84a9fa",
+      "accent2": "#fb6fec",
+      "border": "rgba(0,0,0,0.08)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-get-started-label",
+      "nav-login-label",
+      "hero-rating-badge",
+      "hero-headline",
+      "hero-feature-items",
+      "hero-price",
+      "hero-price-subtext",
+      "hero-cta-label",
+      "hero-info-card-label",
+      "products-eyebrow",
+      "products-heading",
+      "product-card-titles",
+      "product-card-prices",
+      "product-card-cta-label",
+      "weightloss-heading",
+      "weightloss-feature-items",
+      "weightloss-cta-labels",
+      "weightloss-disclaimer",
+      "carousel-card-price-labels",
+      "carousel-card-prices",
+      "carousel-card-titles",
+      "carousel-cta-label",
+      "science-heading",
+      "science-cta-labels",
+      "science-badge-labels",
+      "faq-questions",
+      "faq-answers",
+      "healthguide-heading",
+      "healthguide-cta-labels",
+      "healthguide-card-descriptions",
+      "healthguide-card-category-labels",
+      "footer-email-signup-label",
+      "footer-privacy-text",
+      "footer-link-columns",
+      "footer-bottom-disclaimer"
+    ]
+  },
+  "mechanic": "A static (non-scroll-driven) stacked health/e-commerce landing on a near-white page with globally pill-rounded borders (--radius 9999px): a sticky navbar over a two-column hero whose right half runs two side-by-side vertical CSS-keyframe image marquees (translateY 0->-50% and -50%->0, 30s linear infinite, with top/bottom fade gradients), followed by a products grid, a weight-loss split, a chevron-driven horizontal product carousel with group-hover:scale-105 card zoom and pagination dots, a 6-up science-and-nature icon-badge grid, a Radix accordion FAQ, a health-guide card grid, and a dark footer; the signature flourish is a reusable gradient-border button (2px animated rainbow border whose backgroundPosition sweeps 0%->200% over 0.8s on hover) used throughout.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS + shadcn/ui component spec; lucide-react for all icons (User, Star, Syringe, DollarSign, Truck, Calendar, Pill, CheckCircle, ChevronLeft/Right, Rabbit, TreePine, Leaf, FlaskConical, Atom, Wheat); Radix UI accordion drives the FAQ; design tokens are CSS custom properties in HSL (--background, --foreground, --primary, --card, --muted, --border, --radius); the two hero marquees are plain CSS @keyframes (marquee / marquee-reverse) and the carousel is a custom chevron + pagination-dot component; no external animation library.",
+  "reskinNotes": "The signature gradient-border button is the trickiest reskin surface: its rainbow is hardcoded as a Tailwind arbitrary gradient bg-gradient-to-r from-[#84a9fa] via-[#fb6fec] via-[#fba69e] via-[#fdd4a3] via-[#fb6fec] to-[#84a9fa] with bg-[length:200%] and an inline 0%->200% backgroundPosition hover animation (0.8s) — six literal hex stops baked into class/inline-style values (not tokens), so retinting the brand accent means editing this stop list everywhere the button is reused (nav, products grid, weight-loss, carousel). Section background tones are hardcoded Tailwind grays rather than a single surface token: bg-gray-50 (navbar, weight-loss, science, FAQ, health-guide), bg-gray-100 (carousel), and bg-zinc-900 (footer) with the border-2 border-zinc-900/[0.13] guide-card pill — so the surface ladder is spread across literal class names. Card shadows are the arbitrary value shadow-[2px_4px_12px_rgba(0,0,0,0.08)] repeated on science badges and FAQ cards. No custom fonts are loaded (the page rides the system-ui sans stack per the spec's 'use system defaults'), so there is no native display face to map — a brand display typeface is a net-new addition, not a swap. All copy is hardcoded in JSX: the 'Logo' wordmark; the six nav labels (Weight Loss, Strength, Anti-Aging, Hair Growth, Mood, More) + 'Get started' + 'Login'; the hero '4.5 Average Rating • 453 Reviews' badge, the 'Compounded Semaglutide for Weight Loss' headline, the three feature-item strings, the '$296/mo' price + '*No matter the dose' subtext + 'Get Started', and the 'Is This Right for You?' info-card label; the 'OUR MEDS' eyebrow + 'Medication Made Affordable Without The Insurance' heading and per-card titles/prices; the 'Lose weight with a plan made just for you.' heading + bullet strings + 'Get started'/'See if you're eligible' + disclaimer; the carousel price labels/prices/titles; the 'Discover the harmony of science and nature.' heading + the six line-broken badge labels; the five FAQ question/answer pairs (GLP-1 programs, insurance, medications, pricing guarantee, plan inclusions); the 'Your guide to health and wellness starts here.' heading + per-card descriptions + category-link labels; and the footer email-signup label, privacy text, three link columns (Popular/Company/Legal), and bottom disclaimer. The big headings use a responsive text-4xl md:text-5xl lg:text-6xl font-semibold ramp tuned to the system-font metrics, and the science badge labels carry intentional line breaks. The LegitScript and compounded-pharmacy footer badges plus the GLP-1/semaglutide/insurance copy are pharmacy-vertical-specific, so a non-health reskin must replace both the imagery and the regulated wording."
+}

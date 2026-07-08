@@ -1,0 +1,218 @@
+{
+  "luxury-editorial": {
+    "required_assets": [
+      "cinematic hero video or high-end photography",
+      "logo mark",
+      "display serif font",
+      "case-study or campaign imagery",
+      "testimonial names and roles"
+    ],
+    "optional_assets": [
+      "partner logos",
+      "editorial texture overlays",
+      "poster image",
+      "footer background media"
+    ],
+    "recommended_sections": [
+      "hero",
+      "proof bar",
+      "capabilities",
+      "case studies",
+      "testimonials",
+      "cta",
+      "footer"
+    ],
+    "motion_style": "cinematic",
+    "visual_markers": [
+      "dark luxury palettes",
+      "serif display typography",
+      "glass or blur accents",
+      "restrained CTA count"
+    ]
+  },
+  "agency": {
+    "required_assets": [
+      "hero video or poster",
+      "brand logo",
+      "service or work thumbnails",
+      "proof metrics",
+      "cta copy"
+    ],
+    "optional_assets": [
+      "client logos",
+      "team portraits",
+      "process illustrations"
+    ],
+    "recommended_sections": [
+      "hero",
+      "services",
+      "process",
+      "selected work",
+      "testimonials",
+      "cta"
+    ],
+    "motion_style": "premium-ui"
+  },
+  "saas-ai": {
+    "required_assets": [
+      "product UI screenshots",
+      "icon set",
+      "hero background or abstract loop",
+      "benchmark stats",
+      "pricing data",
+      "faq content"
+    ],
+    "optional_assets": [
+      "dashboard demo video",
+      "architecture diagrams",
+      "integration logos"
+    ],
+    "recommended_sections": [
+      "hero",
+      "features",
+      "how it works",
+      "stats",
+      "pricing",
+      "faq",
+      "footer"
+    ],
+    "motion_style": "data-driven",
+    "visual_markers": [
+      "dark gradients or product neutrals",
+      "structured cards",
+      "clear information hierarchy",
+      "high-contrast CTA"
+    ]
+  },
+  "fintech": {
+    "required_assets": [
+      "trustworthy hero image or loop",
+      "product or dashboard UI",
+      "stats and social proof",
+      "security/trust icons"
+    ],
+    "optional_assets": [
+      "compliance badges",
+      "partner bank logos"
+    ],
+    "recommended_sections": [
+      "hero",
+      "benefits",
+      "security",
+      "stats",
+      "pricing or demo CTA",
+      "faq"
+    ],
+    "motion_style": "subtle"
+  },
+  "real-estate": {
+    "required_assets": [
+      "cinematic property imagery or video",
+      "brand wordmark",
+      "listing or space gallery",
+      "trust stats",
+      "contact CTA"
+    ],
+    "optional_assets": [
+      "agent portraits",
+      "location imagery",
+      "amenity icons"
+    ],
+    "recommended_sections": [
+      "hero",
+      "property highlights",
+      "gallery",
+      "stats",
+      "testimonials",
+      "contact"
+    ],
+    "motion_style": "cinematic"
+  },
+  "ecommerce": {
+    "required_assets": [
+      "product photography",
+      "category images",
+      "brand logo",
+      "pricing or promotion data",
+      "review proof"
+    ],
+    "optional_assets": [
+      "ugc imagery",
+      "lifestyle campaign video"
+    ],
+    "recommended_sections": [
+      "hero",
+      "category grid",
+      "featured products",
+      "benefits",
+      "reviews",
+      "cta"
+    ],
+    "motion_style": "playful"
+  },
+  "portfolio": {
+    "required_assets": [
+      "hero visual",
+      "project thumbnails",
+      "personal or studio mark",
+      "about copy"
+    ],
+    "optional_assets": [
+      "case study media",
+      "social links",
+      "process sketches"
+    ],
+    "recommended_sections": [
+      "hero",
+      "selected work",
+      "about",
+      "services",
+      "contact"
+    ],
+    "motion_style": "signature"
+  },
+  "education": {
+    "required_assets": [
+      "course hero visual",
+      "instructor or brand image",
+      "curriculum bullets",
+      "community proof",
+      "faq content"
+    ],
+    "optional_assets": [
+      "student testimonials",
+      "lesson previews"
+    ],
+    "recommended_sections": [
+      "hero",
+      "curriculum",
+      "outcomes",
+      "testimonials",
+      "faq",
+      "cta"
+    ],
+    "motion_style": "subtle"
+  },
+  "service-business": {
+    "required_assets": [
+      "hero photo or loop",
+      "service explanation visuals",
+      "contact form states",
+      "credibility proof"
+    ],
+    "optional_assets": [
+      "team photos",
+      "before/after imagery",
+      "location map"
+    ],
+    "recommended_sections": [
+      "hero",
+      "services",
+      "process",
+      "proof",
+      "contact form",
+      "faq"
+    ],
+    "motion_style": "minimal"
+  }
+}

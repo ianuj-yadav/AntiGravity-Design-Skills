@@ -1,0 +1,70 @@
+{
+  "id": "features",
+  "role": "features",
+  "ownSections": [
+    "CapabilitiesBento"
+  ],
+  "slots": [
+    {
+      "id": "card-background-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three independent fullscreen-within-card looping background clips, one per media card: the Column 1 tall 'Program Background' card, the Column 2 'Highly Qualified Engineers' metric panel, and the Column 3 'Core Systems' tool-marquee card. Each is an absolute inset-0 100% w/h object-fit:cover element with transform:scale(1.02), autoplay muted loop playsinline. White overlay content (uppercase labels, the giant '2K' metric, the timeline rows, the frosted tool pills) sits on top under a two-stop dark linear-gradient scrim, so each clip must be dark / low-contrast enough to keep white text legible. Supply 3 seamless cinematic loops (native placeholders are mixkit 720p mp4s 45229, 23211, 23843)."
+    },
+    {
+      "id": "phosphor-ui-icons",
+      "type": "icon",
+      "card": 13,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Phosphor Icons web font (regular weight, @2.1.1 CDN stylesheet) used as monochrome glyphs throughout: ph-arrow-up-right in the header 'Start a Program' pill (18px) and again in the dark circular contact icon-button (19px, rendered white on #111), plus the ten tool-marquee pill icons at 20px (row 1: ph-gear-six, ph-fire, ph-gauge, ph-atom, ph-wrench; row 2: ph-cpu, ph-wave-sine, ph-shield-check, ph-rocket-launch, ph-chart-line-up). Single-color icon-font glyphs with transparency; a reskin can swap the equivalent set from any icon library. Tinted by the surrounding fg / button-fill color, not by a fill prop."
+    },
+    {
+      "id": "primary-font",
+      "type": "font",
+      "card": 1,
+      "notes": "The single sans typeface for every string in the section, set as a global font stack. Carries the light-weight clamp-sized H2 headline (weight 300, up to 54px, line-height 1.08), the teal-gray body copy (weight 400, ~17px, line-height 1.62), the uppercase 0.18em-tracked micro labels (11px, weight 760), the bold 14px button/pill text (weight 700), the very-light giant metric number ('2K', weight 220, up to 134px, line-height 0.9) and the timeline rows. Native declaration is 'Geist' with 'Inter' fallback then ui-sans-serif/system-ui. Pick a clean geometric grotesque that holds tight tracking at light weight and renders cleanly at very large sizes for the metric figure (font-metric-sensitive)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Geist\", \"Inter\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "body": "\"Geist\", \"Inter\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f7f8f8",
+      "surface": "#edf2f2",
+      "fg": "#111111",
+      "fgMuted": "#677070",
+      "accent": "#dce3e3",
+      "accent2": "#758080",
+      "border": "rgba(18, 35, 35, 0.09)"
+    },
+    "copySlots": [
+      "header-headline",
+      "header-body",
+      "header-cta-label",
+      "tall-card-label",
+      "timeline-rows",
+      "quote-card-label",
+      "quote-blockquote",
+      "quote-attribution-name",
+      "quote-attribution-role",
+      "metric-card-value",
+      "metric-card-caption",
+      "tools-card-label",
+      "tool-marquee-pill-labels",
+      "contact-card-label",
+      "contact-card-email",
+      "contact-card-phone"
+    ]
+  },
+  "mechanic": "A light-background three-column CSS bento grid of mixed cards (tall looping-video card with a stacked program timeline, a soft-mint glass quote card, a video metric panel with a giant translucent figure, an infinite two-row tool-pill marquee card with horizontal mask-fade, and a contact card) where the only motion is the two marquee rows translating in opposite directions (marquee-left translateX 0 to -50% over 24s, marquee-right -50% to 0 over 28s, linear infinite) over autoplaying card videos; collapses 3->2->1 columns at 1080px and 760px.",
+  "techDelivery": "Single static HTML + CSS section (semantic .capabilities markup with BEM-ish classes, CSS grid + clamp() fluid sizing, CSS @keyframes marquee animations and mask-image fades), Phosphor Icons web font and the Geist/Inter font stack loaded via CDN; no framework, no JS (videos use native autoplay/loop attributes).",
+  "reskinNotes": "Color is baked literally into inline CSS, not tokenized: the page bg #f7f8f8 and #111 text, the teal-gray muted values (#677070, #758080, #6b7676, #263030), the card surfaces (#dce3e3 video-card base, the #edf2f2 mint and white/72-238/244 gradient stops on the quote and contact cards), the dark scrim two-stop linear-gradients (rgb(5 12 14 / .3/.78) etc., with a lighter variant on the tools card), the frosted pill backgrounds/borders (rgb(255 255 255 / .18) / .2 with backdrop-blur and inset white top-highlights) and the white-with-alpha overlay text (/.76/.78/.82) must each be hand-edited. All copy is hardcoded in markup with no data source: the headline, body, both card labels and the 'Start a Program' / 'Reach Engineering' / 'Core Systems' / 'Mission Voice' / 'Program Background' labels, the three timeline rows (year + program + note), the blockquote and 'Dr. Lena Morris / Propulsion Lead, Orbital Systems Group' attribution, the '2K' figure + 'Highly Qualified Engineers' caption, the ten tool-pill names, and the programs@enginetech.com / +1 415 018 4270 contact details. Layout is font-metric-dependent: the headline and the giant '2K' metric use clamp() sizing at very light weights (300 / 220) so a wider substitute font reflows them; the contact card uses asymmetric padding (20px 76px 20px 24px) to clear the absolutely-positioned circular icon-button, and the timeline rows are a fixed 4-column grid (58px 16px minmax(0,1fr) auto) that re-columns at 760px, so longer reskin strings can overflow. The marquee requires each pill row to be duplicated once in markup for a seamless -50% loop, and row 2 must start pre-offset at translateX(-50%)."
+}

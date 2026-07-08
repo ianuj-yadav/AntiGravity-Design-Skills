@@ -1,0 +1,46 @@
+{
+  "id": "veloce-cards",
+  "role": "features",
+  "ownSections": [
+    "InsightsSection"
+  ],
+  "slots": [
+    {
+      "id": "card-bg-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Per-card fullbleed looping background video, object-cover, autoplay/muted/playsInline, sitting behind a tinted color overlay and the stat content block (one video per stat card)"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "body": "Helvetica Neue, Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "fg": "#00041F",
+      "fgMuted": "#49484F",
+      "surface": "rgba(206,223,235,0.25)",
+      "accent": "rgba(247,236,233,0.6)",
+      "accent2": "rgba(218,218,218,0.2)"
+    },
+    "copySlots": [
+      "headline",
+      "body",
+      "card1-stat",
+      "card1-description",
+      "card2-stat",
+      "card2-description",
+      "card3-stat",
+      "card3-description"
+    ]
+  },
+  "mechanic": "On-scroll reveal of a stat section where a blur-in heading sits above a stagger-children row of three video-backed cards (each fading up y:30->0) that flex from a stacked column on mobile to a bottom-aligned desktop row where the shorter middle card creates a staggered baseline.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS + Framer Motion (standalone section component with a reusable BlurIn useInView wrapper)",
+  "reskinNotes": "Three card overlay tints double as the per-card surface/accent colors and are baked inline as Tailwind arbitrary rgba values (bg-[rgba(...)]) on each card, so reskinning requires editing markup not a token file; headline, paragraph, all stat numbers and descriptions, and card min-heights (450/350/450) are hardcoded in the component, and the staggered bottom-alignment layout depends on those fixed heights plus Helvetica Neue font metrics (tracking-[-0.03em], leading-[60px])."
+}

@@ -1,0 +1,88 @@
+{
+  "id": "wisa-space-hero",
+  "role": "hero",
+  "ownSections": [
+    "LoadingScreen",
+    "Header",
+    "HeroSection",
+    "ScrollRevealSection",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "scroll-scrubbed-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scroll-scrubbed",
+      "notes": "Single fixed fullscreen background video (fixed inset-0 z-0, absolutely centered with translate(-50%,-50%), minWidth/minHeight 100%, objectFit cover) that is NOT autoplayed or looped: its currentTime is driven by window.scrollY, scrubbing from frame 0 at page top to its full duration when the Footer reaches 20% of viewport height. It is the sole source of all visual depth/color behind the pure-black base and white glass UI. Supply a brand cinematic clip (the spec hardcodes a CloudFront mp4) long enough to feel continuous across the full scroll and dark/low-contrast enough that white type and glass panels stay legible the whole way down. A loading screen blocks until canplaythrough."
+    },
+    {
+      "id": "brand-wordmark-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Primary brand wordmark used in three places (fixed Header at full 157x25, Section 2 column 1 scaled to h-[18px] w-auto, and Footer brand column at h-14px). Native art is an inline SVG, 157x25 viewBox, four white fill paths spelling W-I-S-A in a custom face; single-color (white) so it tints to fg."
+    },
+    {
+      "id": "decorative-globe-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small wireframe globe glyph in Section 2 column 1, sitting left of the wordmark with gap-4. Native art is an inline SVG, 71x43 viewBox, horizontal/vertical/meridian lines, white stroke and no fill. Decorative brand mark; swap for an equivalent line-art glyph."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Trailing arrow inside the two-part CTA buttons (hero 'EXPLORE OUR STADIUMS' and footer 'START YOUR SEASONS'). Native is Lucide ArrowRight (w-5 h-5) that fly-out/fly-in cross-translates horizontally on group hover; white on the white/8 glass cell, inverting to black when the cell hovers to white."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Manrope\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Manrope\", ui-sans-serif, system-ui, sans-serif",
+      "mono": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, monospace"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(26, 26, 26, 0.4)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.64)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-description",
+      "hero-cta-label",
+      "scroll-reveal-statement",
+      "feature-column-tagline",
+      "feature-column-titles",
+      "feature-column-body",
+      "footer-cta-heading",
+      "footer-cta-label",
+      "footer-brand-tagline",
+      "footer-column-titles",
+      "footer-column-links",
+      "footer-copyright",
+      "footer-legal-links",
+      "loading-label"
+    ]
+  },
+  "mechanic": "A long single-column scroll over a fixed video layer whose currentTime is scrubbed by window.scrollY (mapped 0 to full-duration as the footer nears the top, guarded by video.seeking for tear-free frames), while a GSAP ScrollTrigger reveals body copy word-by-word (rotation + opacity + blur) and motion whileInView blur-fade-up cascades each block in and the header slides out past 500px.",
+  "techDelivery": "React 19 + Vite + Tailwind CSS v4 (@tailwindcss/vite, @theme tokens) multi-file component spec, using motion (framer-motion v12) for useScroll/useTransform and whileInView reveals, GSAP + ScrollTrigger for the word-by-word ScrollReveal, and lucide-react icons; Manrope + JetBrains Mono via Google Fonts @import.",
+  "reskinNotes": "The WISA wordmark and the globe are hardcoded inline SVG path data (no asset URLs), so rebranding means replacing the markup, and the wordmark's 157x25 ratio is reused at three sizes. All copy, the five nav labels, the four footer link columns, and both CTA labels are hardcoded in JSX. The hero H1 uses whitespace-nowrap with a clamp(2.5rem,6vw,5rem) size tuned to Manrope, so a longer headline or a wider substitute font will overflow horizontally. The whole design is dark-only: glass surfaces (#1A1A1A at 40-60%, blur 80px), white/8->white buttons, and white-on-video type only read over dark footage. There is no chromatic accent (accent is white); accent2 is omitted. The signature scroll-scrub maps scroll distance to the footer position, so it self-adjusts to content height but the perceived playback speed depends on the supplied clip's duration. The four fly-in/fly-out hover keyframes (cubic-bezier(0.4,0,0.2,1)) and the motion easing [0.16,1,0.3,1] are authored inline, not tokenized."
+}

@@ -1,0 +1,84 @@
+{
+  "id": "nike-hover",
+  "role": "features",
+  "ownSections": [
+    "SpotlightSection"
+  ],
+  "slots": [
+    {
+      "id": "spotlight-reveal-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen hover-revealed background video inside SpotlightReveal: a bare <video> at z-0 with classes absolute inset-0 w-full h-full object-cover and attributes muted/loop/playsInline. It sits BEHIND the full-bleed base image and is only glimpsed through the cursor-following 6-circle radial mask hole, and it plays only while the cursor is inside one of the two invisible hover hotzones (isPlaying toggled by onMouseEnter/onMouseLeave; on mobile default to autoplay). Supply one seamless muted brand short-loop clip (mp4) of the product/science subject that visually registers with the base image under the moving mask. Reference asset is a pikaso.cdnpk.net token-signed mp4."
+    },
+    {
+      "id": "spotlight-base-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Fullscreen base photo that the spotlight mask reveals through, drawn as an SVG <image href> with width/height 100% and preserveAspectRatio=xMidYMid slice (cover behavior). This is the static overlay layer the cursor-following 6-circle radial-gradient hole punches through to expose the video beneath, so it should be center-weighted full-bleed and visually coordinate with the video (an alternate take / still of the same subject). Reference asset is a GitHub-raw .png so the socket may carry alpha, but transparency is not functionally required since it composites over a black background."
+    },
+    {
+      "id": "stat-squiggle-chart",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Small inline trend-line graphic beside the big '78%' stat in the glass card: a single wavy <path> stroke (stroke-width 2) rendered at 160x80 inside a viewBox 0 0 289 138, with a Gaussian-blur drop-shadow filter in the same accent color. Both the stroke color #DA3A16 and the shadow (a feColorMatrix expressing the same hue as float channels 0.854902 / 0.227451 / 0.0862745) are hardcoded in the markup, so retinting means editing the SVG attributes. Supply as a transparent single-accent-color squiggle/sparkline glyph."
+    },
+    {
+      "id": "brand-cta-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark (the Nike swoosh in the reference) rendered white at width 86 inside the red (#DA3A16) CTA tile at the bottom-right of the section, authored as a single inline <svg>/<path> with viewBox '135.5 361.38 420.32 149.8' and a hardcoded fill='white'. Supply the brand logo glyph transparent; the path d-string and the white fill are baked into the markup (not a CSS var), so reshaping or retinting means editing the inline SVG."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Serif display/accent face (Tailwind font-serif), native value the Google Font 'Instrument Serif' (400, with an italic axis). Carries the big '78%' stat (72px italic, tinted accent), the uppercase card title (15px) and subtitle (13px), the bold 10px uppercase CTA label, and the italic spans of the mixed hero headline (lines 3-4 plus the 'Everyday' word). Loaded via @import in index.css; a substitute must provide a true italic and tolerate the fixed text-[44px] headline metric or the multi-span block rewraps."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Sans body/headline face (Tailwind font-sans), native value the Google Font 'Manrope' (400-700). Used at font-medium (500) for headline lines 1-2 ('Bringing Aerospace- / Grade Infrastructure') at a fixed text-[44px] leading-[1.05]. Loaded via @import in index.css; the headline line breaks are tuned to Manrope's medium metric, so a wider substitute rewraps the block."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", serif",
+      "body": "\"Manrope\", sans-serif",
+      "accent": "\"Instrument Serif\", serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0, 0, 0, 0.16)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255, 255, 255, 0.6)",
+      "accent": "#DA3A16",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "stat-value",
+      "stat-card-title",
+      "stat-card-subtitle",
+      "headline",
+      "cta-badge-label"
+    ]
+  },
+  "mechanic": "A single sticky 100dvh black section where a cursor-following trail of 6 lagging radial-gradient circles (rAF spring-eased) acts as an SVG mask punching a soft hole through a full-bleed base image to expose a looping video underneath, the video playing only while the cursor sits inside an invisible hover hotzone, over a glassmorphism stat card (top-left), a mixed sans/serif italic hero headline (bottom-left), and a red Nike-swoosh CTA tile (bottom-right).",
+  "techDelivery": "React + Tailwind CSS v4 + GSAP component spec (SpotlightReveal assembled in App.tsx); index.css uses @import \"tailwindcss\" plus a @theme block defining --font-sans Manrope / --font-serif Instrument Serif, both faces loaded from Google Fonts via @import. Declared deps are react-player and gsap, but SpotlightReveal drives a raw <video ref> + requestAnimationFrame for the mask trail (react-player effectively unused).",
+  "reskinNotes": "The signature orange #DA3A16 is baked into inline SVG attributes and Tailwind arbitrary values, not a token: the stat squiggle-chart stroke is stroke=\"#DA3A16\", its drop-shadow is a feColorMatrix with the same colour as float channels (0.854902 0.227451 0.0862745), the '78%' stat uses text-[#DA3A16], and the CTA tile is bg-[#DA3A16] — so retinting the accent means editing SVG attributes and arbitrary class values in several places. The Nike swoosh is an inline <path> with hardcoded fill=\"white\". All copy is hardcoded in JSX: the '78%' stat value, the card title 'NEXT-GEN CUSHIONING ARCHITECTURE' and subtitle 'Impact Absorption & Energy Return Dynamics', the CTA badge 'THE SCIENCE OF IMPACT CONTROL', and the multi-span headline ('Bringing Aerospace- / Grade Infrastructure / Directly To Your Everyday / Urban Exploration') with manual per-line and per-word font-sans/font-serif/italic toggles at a fixed text-[44px] leading-[1.05] tuned to the Manrope + Instrument Serif metrics, so longer copy or a wider substitute font rewraps the block. Layout depth relies on many viewport-tuned magic-number offsets via Tailwind arbitrary values — the two invisible hover hotzones and the glass stat panel are placed with left-[calc(8%+200px)], top-[calc(20%+190px)], right-[calc(8%+100px)], bottom-[12%], w-[calc(50%-50px)], h-[calc(50%+230px)], etc. — so a different copy length or viewport can desync the hotzones from what they reveal, and the responsive rework re-hardcodes separate positions per breakpoint. The reveal requires a coordinated base-image + video pair that line up under the moving mask. Spotlight behaviour is governed by fixed constants in SpotlightReveal: NUM_TRAILS=6, baseRadius 520 here (280 on mobile), the lead-point ease 0.2 and trailing ease 0.35, the per-circle radius decrement (i*35) and opacity falloff (1 - i*0.15), and the holeGradient stops (1 / 0.8 / 0 at 0/60/100%). The glass stat panel uses backdrop-blur(80px) over rgba(0,0,0,0.16) with a 1px rgba(255,255,255,0.1) border and rounded-sm 2px radius."
+}

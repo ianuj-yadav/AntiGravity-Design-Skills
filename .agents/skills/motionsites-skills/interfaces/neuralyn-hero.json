@@ -1,0 +1,93 @@
+{
+  "id": "neuralyn-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Testimonial"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-bleed background video behind the dashboard screenshot; absolutely positioned inset-0, w-full h-full object-cover, in a w-screen 16:9 band. Muted ambient loop."
+    },
+    {
+      "id": "hero-dashboard",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Product/dashboard screenshot composited over the hero video with mixBlendMode 'luminosity' and a parallax y:0->-250; max-w-5xl w-[90%] rounded-2xl. Wide landscape app shot."
+    },
+    {
+      "id": "logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Small navbar logo icon sitting left of the 'Neuralyn' wordmark on a pure-black bg; needs transparency."
+    },
+    {
+      "id": "quote-symbol",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Decorative opening quotation-mark glyph above the testimonial (w-14 h-10 object-contain) on black; needs transparency."
+    },
+    {
+      "id": "testimonial-avatar",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Circular author headshot in the testimonial author row; rendered w-14 h-14 rounded-full with a 3px white border, object-cover."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/UI typeface served via @fontsource/inter at weights 400/500/600/700; fills the 'body' font role."
+    },
+    {
+      "id": "accent-serif-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Italic display accent typeface served via @fontsource/instrument-serif (400 + 400-italic); used only for the italic accent word 'Overview' in the headline; fills the 'accent'/'display' font role."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "Inter",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 0%)",
+      "surface": "hsl(0 0% 5%)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(0 0% 65%)",
+      "border": "hsl(0 0% 20%)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "signin-label",
+      "tag-pill-badge",
+      "tag-pill-text",
+      "headline-line1",
+      "headline-line2-accent",
+      "subtitle",
+      "cta-label",
+      "testimonial-quote",
+      "testimonial-author-name",
+      "testimonial-author-role"
+    ]
+  },
+  "mechanic": "Framer Motion useScroll parallax over a tall sticky hero — hero copy rises and fades (y:0->-200, opacity 1->0) while a luminosity-blended dashboard screenshot drifts (y:0->-250) above a looping full-bleed video, then a second section scroll-reveals a testimonial word by word from grey to white.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS + Framer Motion + shadcn/ui, with @fontsource font packages and HSL CSS custom properties in :root.",
+  "reskinNotes": "Theme colors are clean HSL CSS variables, but the testimonial word-reveal hardcodes its grey->white interpolation as literal 'hsl(0 0% 35%)'->'hsl(0 0% 100%)' inside a Framer Motion useTransform (not the --foreground token), and the liquid-glass pill bakes white rgba stops (0.45/0.15/0.1) directly into CSS — so a non-monochrome brand must edit both the JS motion values and the .liquid-glass gradient. All copy is hardcoded in JSX, and the Instrument Serif italic styling is welded to a single word inside the headline, so headline-line2 is split into a plain run plus the styled accent word ('Overview'). The hero subtitle color uses a separate --hero-subtitle variable (210 17% 95%) distinct from --foreground."
+}

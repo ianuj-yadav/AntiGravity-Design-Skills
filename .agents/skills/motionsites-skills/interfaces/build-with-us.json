@@ -1,0 +1,75 @@
+{
+  "id": "build-with-us",
+  "role": "hero",
+  "ownSections": [
+    "LandingCard"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping, muted, autoplaying (playsInline) hero background video filling the rounded card via absolute inset-0 object-cover; all content (nav, headline, contact form) sits above it at z-10. Supply a silent seamless-looping reel; framing should survive object-cover crop at any viewport ratio."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "32x32 brand logo mark in the glass pill navbar, authored inline as a viewBox=\"0 0 256 256\" SVG with two black-filled paths forming a stylized 'M' (path data hardcoded in JSX). Replace with the brand mark; supply transparent (sits on a translucent white pill) and note the fill is a hardcoded black, so retint/replacement is a markup edit, not a token flip."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 4,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Four 32x32 rounded-xl social buttons in the contact card's email row, each a lucide-react icon at size 13 on a pastel tint chip: Twitter (gray-100/gray-800), Circle (pink-100/pink-500), Instagram (orange-100/orange-400), Linkedin (blue-100/blue-600). Supply as currentColor-driven glyphs; both the icon color and its chip background are hardcoded Tailwind utilities per button, so rebranding the social palette is a per-button class edit."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "surface": "#FFFFFF",
+      "fg": "#000000",
+      "fgMuted": "#9CA3AF",
+      "accent": "#000000",
+      "accent2": "#2563EB",
+      "border": "#E5E7EB"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "headline-line-1",
+      "headline-accent-word",
+      "form-heading",
+      "form-email-label",
+      "form-email-address",
+      "or-divider-label",
+      "form-vision-label",
+      "form-name-placeholder",
+      "form-email-placeholder",
+      "form-message-placeholder",
+      "form-services-label",
+      "service-tags",
+      "submit-label",
+      "submit-sending-label",
+      "success-heading",
+      "success-subtext"
+    ]
+  },
+  "mechanic": "A single viewport-locked rounded card with a fullscreen object-cover looping video background, over which a glassmorphic backdrop-blur pill navbar sits at top and a bottom-anchored row pairs a drop-shadowed white headline (one word swapped to italic Instrument Serif) with a white contact-form card whose submit fakes a 1s async delay then swaps the form for a green-check success state; all motion is Tailwind hover/focus/transition utilities plus multi-select service-chip toggles, no animation library.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS (standard config scanning ./index.html + ./src) as a single-file App.tsx component with a SocialBtn helper; lucide-react for icons; Inter + Instrument Serif loaded via Google Fonts @import in src/index.css with a global * { font-family:'Inter' } rule.",
+  "reskinNotes": "Every color is a hardcoded Tailwind utility class rather than a CSS token, so reskinning is find-replace across markup, not editing variables: the accent blue lives as text-blue-600 (mailto link) and the blue-100/blue-600 LinkedIn chip; neutrals are gray-50/100/200/400/700/800/900 and bg-white/60; the four social chips bake their own pastel pairs (pink-100/500, orange-100/400, blue-100/600); the success state uses bg-green-50. The logo is an inline two-path SVG with black fill hardcoded in JSX. The 'products' accent word is a <span> with an inline style object (fontFamily 'Instrument Serif', italic, 400) rather than a class, so the accent font binding is buried in markup. Emoji are baked into copy (the 'Say hello! 👋' heading and the success '✓' check). ALL copy is hardcoded inline including the SERVICES array (9 fixed chip labels) and the VIDEO_URL/mailto/nav strings; the headline uses a hardcoded <br /> line break and drop-shadow tuned to the white-on-video treatment, so a brand font or longer copy can shift the intended two-line composition."
+}

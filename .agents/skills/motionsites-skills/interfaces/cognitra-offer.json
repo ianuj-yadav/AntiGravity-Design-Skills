@@ -1,0 +1,47 @@
+{
+  "id": "cognitra-offer",
+  "role": "features",
+  "ownSections": [
+    "ServicesSection"
+  ],
+  "slots": [
+    {
+      "id": "service-card-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "4:3",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three 4:3 looping thumbnail clips, one per service card in the 3-column grid (autoPlay muted loop playsInline; absolute inset-0, width/height 100%, object-fit:cover inside a fixed aspect-ratio 4/3 frame). The reference cards are Process Streamlining, Strategic advisory and Assistant engineering. Each clip fills the top of a transparent hairline-bordered card with the title/description in a separate text area below (not overlaid), so the videos do not need to reserve space for text; supply three short seamless brand loops cropped to 4:3."
+    },
+    {
+      "id": "sans-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The single variable typeface used across the whole section via the universal selector (counter label, the uppercase word-staggered 'EXPLORE WHAT WE OFFER' h2, subtext, card titles and descriptions). Native face is 'Helvetica Now Var' imported from db.onlinewebfonts.com with a 'Helvetica Neue', Helvetica, Arial, sans-serif fallback. The heading is font-weight 700 uppercase at clamp(26px,3vw,42px) with line-height 1.05 and slight negative tracking (-0.01em); a replacement must hold bold at that fluid display size and read cleanly down to the 11px counter label."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "body": "'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#C5C5C5",
+      "fg": "#1a1a1a",
+      "fgMuted": "#3a3a3a",
+      "border": "rgba(0,0,0,0.18)"
+    },
+    "copySlots": [
+      "counter-label",
+      "heading",
+      "subtext",
+      "card-titles",
+      "card-descriptions"
+    ]
+  },
+  "mechanic": "A full-viewport (100vh) vertically-centered services band on a solid #C5C5C5 ground: a counter label over a heading/subtext flex row above a 3-column card grid of 4:3 looping video thumbnails, where the uppercase heading reveals word-by-word and every block (label, subtext, each card) fades and rises in (y 24-28px -> 0, opacity 0 -> 1, 0.7s ease [0.22,1,0.36,1]) on a staggered delay via Framer Motion whileInView once-only viewport triggers.",
+  "techDelivery": "Single-section React 18 + TypeScript + Tailwind CSS 3 + Framer Motion 12 component spec bundled with Vite, using a reusable FadeUp whileInView wrapper (viewport once, amount 0.2) with per-element delay/y overrides, and the 'Helvetica Now Var' webfont pulled in via an @import from db.onlinewebfonts.com.",
+  "reskinNotes": "All values are baked as inline CSS literals, not tokens: the section background #C5C5C5, the #1a1a1a heading/title ink, the muted greys (#666 counter label, #3a3a3a subtext and descriptions) and the rgba(0,0,0,0.18) card border are hardcoded per-element, so there is no surface/accent palette to retint — a darker brand bg would also require flipping all that near-black text to stay legible. fgMuted is not a single value (the #666 counter label and #3a3a3a body greys differ). All copy is hardcoded in markup: the '003 / 005' counter (which encodes this section's position in a 5-section deck), the 'EXPLORE WHAT WE OFFER' heading split into per-word spans for the stagger, the 'We provide all-in-one AI automation services in one place.' subtext, and the three card titles/descriptions, each with a tuned per-element FadeUp delay (0, 0.1+/word, 0.25, 0.4/0.55/0.70). The heading column is pinned to width 32% / max-width 320px with the heading sized by a clamp() tuned to Helvetica Now Var metrics, so a wider replacement face or longer copy will reflow the two-column row (which collapses to a single column under 900px)."
+}

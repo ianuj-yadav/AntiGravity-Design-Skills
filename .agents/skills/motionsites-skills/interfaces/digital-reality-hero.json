@@ -1,0 +1,65 @@
+{
+  "id": "digital-reality-hero",
+  "role": "social-media",
+  "ownSections": [
+    "PostCard"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "0.75:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the entire 600x800 card (absolute inset-0 z-0 h-full w-full object-cover opacity-100, so it crops to the 0.75/1 card box). Configured autoPlay loop muted playsInline with NO dark gradient overlay on top, so the footage must read legibly under white serif/sans text and the orange-accented glass button without help from a scrim. Native source is a single hardcoded CloudFront MP4 URL (the asset socket); replace with the brand's vertical-friendly motion plate."
+    },
+    {
+      "id": "grain-overlay-texture",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "notes": "Film-grain noise layer over the video (absolute inset-0 z-50 opacity-[0.06] mix-blend-overlay pointer-events-none). Authored procedurally as an inline SVG fractalNoise data URI (viewBox 0 0 200 200, baseFrequency 0.85, numOctaves 3, stitchTiles stitch), NOT a swappable raster asset. Optional socket: a brand may substitute a custom grain/noise tile, otherwise the procedural default stands."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Serif display face for the three headline lines: top-left tagline 'Work fast. Live slow.' (text-[22px]), main title 'Create your digital reality.' (text-[38px] leading-tight, whitespace-nowrap with ml-[-0.3px] optical nudge), and the white serif tone overall. Native family: Didot, loaded via @theme --font-serif from a specific onlinewebfonts.com web-font URL (db.onlinewebfonts.com/c/251039e6849ad977a8bfc40b564dce89). Layout is font-metric dependent: the title is fixed-px and whitespace-nowrap inside the 600px card, so a wider replacement serif overflows or clips."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fgMuted",
+      "notes": "Sans body face for the subtitle 'From nothing to everything...' (text-[15.5px] font-extralight tracking-wide), the 'Send a message' button label (text-[14px] font-light), and the footer row labels ('your.name', 'web', 'product', 'brand'). Native family: Inter weights 100-500, loaded via @theme --font-sans from Google Fonts. Thin weights (extralight/light) are load-bearing for the cinematic feel, so the replacement needs comparable low weights."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif",
+      "body": "Inter, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.03)",
+      "fg": "#ffffff",
+      "fgMuted": "#a3a3a3",
+      "accent": "#ff8c46",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "subtitle",
+      "cta-label",
+      "footer-author",
+      "footer-nav-labels"
+    ]
+  },
+  "mechanic": "A single static 600x800 glassmorphic social-media card centered on solid black, layering a fullscreen looping background video, a mix-blend film-grain noise overlay, and a flex-column content stack (top serif tagline, flex-1 spacer, bottom title/subtitle/glass CTA, and a diamond-separated footer row) whose only motion is the CTA's hover radial-glow fade.",
+  "techDelivery": "Single React functional component + Tailwind CSS (v4 @theme font tokens), Google Fonts (Inter) plus an onlinewebfonts.com Didot import; all surfaces, shadows, and the noise texture are inline styles/data-URI with no animation library.",
+  "reskinNotes": "Heavy inline baking. The signature glassmorphic CTA is a stack of literal values: background rgba(255,255,255,0.03), a multi-part boxShadow with an orange inset 'inset 0 1px 0 rgba(255,140,70,0.5)' plus white/black insets, an absolute top-highlight gradient from-[#ff8c46]/10, and a group-hover radial-gradient 'rgba(255,120,50,0.1)' inner glow - none of which are CSS variables, so retinting the accent means editing several inline strings. The orange accent appears as three slightly different literals (#ff8c46, rgba(255,140,70,0.5), rgba(255,120,50,0.1)). Text colors are per-element hex literals (#f0f0f0 tagline, #a3a3a3 subtitle, #e0e0e0 button, #7a7a7a footer, #555 diamond divider) rather than shared tokens. Only the two font families are tokenized (@theme --font-serif / --font-sans). The footer separator is a hardcoded '✦' glyph, not an icon asset. All copy ('Work fast. Live slow.', 'Create your digital reality.', the subtitle, 'Send a message', 'your.name', 'web/product/brand') is hardcoded in JSX. The card is a fixed 600x800 inline-styled box (not responsive/min-h-screen), and the title is whitespace-nowrap with a fixed 38px size, so longer headlines or a wider replacement serif overflow the card width."
+}

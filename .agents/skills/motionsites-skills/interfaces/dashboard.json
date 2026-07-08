@@ -1,0 +1,109 @@
+{
+  "id": "dashboard",
+  "role": "dashboard",
+  "ownSections": [
+    "Background",
+    "TopNavigation",
+    "DashboardGrid",
+    "Indicators",
+    "BottomBar",
+    "ComponentsButton",
+    "FloatingControls"
+  ],
+  "slots": [
+    {
+      "id": "bg-video-light",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen fixed-inset looping background video for light theme (autoplay, muted, playsInline, object-fit cover, z-index -1); no overlay sits on top."
+    },
+    {
+      "id": "bg-video-dark",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen fixed-inset looping background video swapped in for dark theme (autoplay, muted, playsInline, object-fit cover, z-index -1); keyed to force reload on theme toggle."
+    },
+    {
+      "id": "avatars",
+      "type": "image",
+      "card": 40,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Circular user/host avatars used everywhere: 48px profile button, 32px meeting host, card-footer member stacks + count badges across all 8 cards, 18px chart-marker faces on Card 3, the 44/40px active-speaker and participant cluster in the bottom bar, and the 2x2 mini-avatar grid in the components button. Placeholders are pravatar/seed-keyed; brand should supply a pool of square headshots cropped to circles."
+    },
+    {
+      "id": "screen-share-thumbs",
+      "type": "image",
+      "card": 4,
+      "aspect": "16:10",
+      "alpha": false,
+      "notes": "Four 160x100 (radius 16) thumbnails in the horizontal drag-to-scroll Screen Share strip on Card 8; placeholders are picsum seed images."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 14,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "lucide-react glyph set tinted by current text color: Plus, Zap, MoreHorizontal, BarChart2, Video, VideoOff, Mic, MicOff, Play, Search, X, plus the moon/sun mode-switch marks. Monochrome line icons inheriting --text-main / accent."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Inter (weights 300/400/500/600/700) from Google Fonts; single family drives all display, body, and numeric/mono usage in the template."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.55)",
+      "fg": "#1a1a1a",
+      "fgMuted": "#6b7280",
+      "accent": "#3b82f6",
+      "accent2": "#e05e36",
+      "border": "rgba(255, 255, 255, 0.6)"
+    },
+    "copySlots": [
+      "nav-meeting-alert-label",
+      "nav-meeting-alert-time",
+      "nav-view-switcher-labels",
+      "card1-create-room-label",
+      "card2-title",
+      "card2-subtitle",
+      "card2-count-badge",
+      "card3-title",
+      "card4-title",
+      "card4-subtitle",
+      "card4-count-badge",
+      "card5-title",
+      "card5-subtitle",
+      "card5-count-badge",
+      "card6-title",
+      "card6-subtitle",
+      "card6-count-badge",
+      "card7-title",
+      "card7-subtitle",
+      "card7-count-badge",
+      "card8-chip-labels",
+      "card8-thumb-tag-label",
+      "card8-count-badge",
+      "bottombar-overflow-count"
+    ]
+  },
+  "mechanic": "A fixed-height non-scrolling 4x2 liquid-glass card grid over a theme-swapped fullscreen looping video, with hover lift (translateY -3px scale 1.01), an animated voice-wave equalizer badge on active speakers, and a sliding mode-switch handle toggling dark-mode glass tokens.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind component spec; lucide-react icons, Inter via Google Fonts, optional @supabase/supabase-js wiring.",
+  "reskinNotes": "Heavy use of inline rgba glass tokens and hardcoded hex (#3b82f6 blue, #e05e36 orange tag, #ff4545 alert red, #e5e7eb/#f0f0f0 greys) baked directly into card and chip styles rather than CSS variables, so a reskin must touch many inline values. The grain texture is a procedurally generated inline SVG feTurbulence filter (not a brand asset). Card titles, subtitles, count badges, and the Weekly Insights bar-chart height arrays (24 blue + 36 grey fixed integers) are hardcoded in markup. Light-mode UI assumes dark-leaning translucent text-over-video contrast; brand video luminance must keep all text contrast-safe in both themes. Layout (40px radii, 88x48 mode switch, 44/48px avatar circles) is metric-tuned to Inter."
+}

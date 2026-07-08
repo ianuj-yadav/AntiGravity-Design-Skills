@@ -1,0 +1,64 @@
+{
+  "id": "finflow",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "bg",
+      "notes": "Fullscreen looping hero background video for the whole min-h-screen page, a bare <video> at absolute inset-0 w-full h-full object-cover z-0 (autoPlay/muted/loop/playsInline). It is force-desaturated to grayscale via inline filter:saturate(0) and acts as the DIRECT backdrop with no scrim or overlay, so dark #111111/#333333 foreground text (nav, headline, subtitle, CTAs) sits straight on top of the footage — supply a bright, low-busy clip whose grayscale upper/center region keeps dark text legible. Native source is a CloudFront-hosted MP4 placeholder to be replaced by a brand-owned loop."
+    },
+    {
+      "id": "payment-brand-logos",
+      "type": "svg",
+      "card": 6,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Six third-party payment/commerce brand logos in the bottom white trust card, each an <img> pulling a single-color SVG from the simple-icons v11 jsDelivr CDN, rendered in native brand colors with no filter at opacity-60 hover:opacity-100. Order: Shopify, Stripe, Visa, Apple Pay, Mastercard, PayPal; sizing is h-6 sm:h-7 by default but Visa/Apple Pay/Mastercard get h-7 sm:h-8 (~15% larger). These are external partner/payment-network marks (a social-proof logo wall), NOT brand-owned art — swap the set only to reflect the integrations the brand actually supports, otherwise the official simple-icons marks stand. Supply transparent-background SVGs. Native sources are simple-icons CDN URLs."
+    },
+    {
+      "id": "ui-menu-glyphs",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional mobile-nav hamburger/close glyphs (lucide-react Menu and X, size 22, color #111111) toggling the mobileMenuOpen dropdown — a UI dependency rather than a brand asset. Tinted dark to match the #111111 header wordmark. Optional socket: only swap if the brand ships its own menu/close line icons; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'ITC Avant Garde Gothic W02 Bk', sans-serif",
+      "body": "'ITC Avant Garde Gothic W02 Bk', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#e5e5e5",
+      "surface": "#ffffff",
+      "fg": "#111111",
+      "fgMuted": "#333333",
+      "accent": "#111111",
+      "border": "#222222"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-login-label",
+      "nav-signup-label",
+      "hero-headline",
+      "hero-subtitle",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "logo-card-brand-titles"
+    ]
+  },
+  "mechanic": "A single non-scrolling min-h-screen hero where a fullscreen grayscale (filter:saturate(0)) looping video is the direct backdrop with no overlay, behind a z-10 column of a pill-grouped navbar, a clamp-sized centered headline/subtitle/dual-CTA stack, and a bottom white rounded trust card holding a six-logo payment-brand wall; motion is limited to Tailwind hover/transition color and opacity utilities (no scroll or entrance animation).",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS single-component spec (one default-exported App in src/App.tsx, no extra packages) with lucide-react for the Menu/X mobile-nav icons; native <video autoPlay muted loop playsInline> backdrop; mobile dropdown gated by a single mobileMenuOpen useState; index.html, tailwind.config and index.css are left untouched, so the font and all theming live inline in JSX.",
+  "reskinNotes": "The entire palette is expressed as Tailwind arbitrary literals and inline style strings rather than design tokens, scattered across className/style attributes: #111111 (wordmark, headline, icons, CTA text), #1a1a1a (nav-link text), #222222 (outline-button border/text), #333333 (subtitle), #e5e5e5 (nav pill + mobile-dropdown background), #c0c0c0 (dropdown divider border), plus two baked button gradients background:'linear-gradient(to bottom,#3a3a3a,#111111)' (Sign up + Start building) and the trust-card boxShadow '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1)' — all must be swept by hand. The display font 'ITC Avant Garde Gothic W02 Bk' is set ONLY via an inline fontFamily on the root and is never actually loaded (no @font-face / index.html link / Google Fonts import), so it silently falls back to sans-serif unless the brand provides and loads the face; the clamp(1.75rem,6vw,3.75rem) headline and 800px maxWidth are tuned to its metrics. The six payment logos are pulled live from the simple-icons v11 jsDelivr CDN (external runtime dependency / version pin) and three of them (Visa, Apple Pay, Mastercard) carry a hand-tuned ~15% size bump that must be preserved per-logo on swap. The deliberate filter:saturate(0) on the hero video and the no-overlay rule mean any replacement clip must itself read well in grayscale behind dark text. All copy is hardcoded inline in JSX — 'Fenvex' wordmark, Platform/Tutorials/Compare/Solutions nav, Log in/Sign up, the headline 'Discover a faster path to financial flow', the 'Tap the Fenvex platform...' subtitle, Start building/Reach our team CTAs, and the six logo title attributes."
+}

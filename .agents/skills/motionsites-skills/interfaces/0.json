@@ -1,0 +1,69 @@
+{
+  "id": "0",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the min-h-screen black section behind ALL content. Rendered autoplay + loop + muted; scaled to 150% (scale-150) with the focal point pinned to the TOP-LEFT (origin-top-left, object-left-top), so the upper-left region of the footage is what stays in frame while the right/bottom bleed off and crop. The section background is #000000 (only a pre-load fallback), so the footage carries the entire backdrop. Legibility of the centered white headline/CTA and the bottom dark-glass card assumes calm footage; native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark/logo in the left cluster of the transparent absolute-top navbar. Native is a solid-white logo overlaying the dark video. Single-color, alpha so it composites over the footage. Replace with the brand lockup; keep it a horizontal mark that reads white on the dark hero."
+    },
+    {
+      "id": "nav-chevron-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small white chevron-down glyph placed immediately to the right of the 'Features' nav link, signalling a dropdown. Monochrome white to match the white nav-link color, alpha to overlay the video. Replace with the brand's caret/disclosure icon in a square box."
+    }
+  ],
+  "skin": {
+    "fontRoles": {},
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(0,0,0,0.7)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.8)",
+      "accent": "#ffffff",
+      "accent2": "#000000",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "signin-cta-label",
+      "get-started-nav-cta-label",
+      "hero-tag-pill",
+      "hero-headline",
+      "hero-subtitle",
+      "hero-primary-cta-label",
+      "feature-card-1-title",
+      "feature-card-1-body",
+      "feature-card-2-title",
+      "feature-card-2-body",
+      "feature-card-3-title",
+      "feature-card-3-body",
+      "feature-card-4-title",
+      "feature-card-4-body"
+    ]
+  },
+  "mechanic": "A single static (non-scroll-driven) min-h-screen black hero layers a scale-150 top-left-anchored autoplay/loop/muted background video, a transparent top navbar, a centered z-stacked column of a glassmorphic tag pill, a huge white headline (up to ~100px), a subtitle and a white pill CTA, and a bottom-floating dark-glassmorphism (bg-black/70, backdrop-blur-xl, white border) 4-column features card, with the only motion being hover scale on the CTA/Get Started buttons.",
+  "techDelivery": "React + Tailwind CSS component spec (utility classes only, no animation library or scroll engine declared); native <video> with autoplay/loop/muted for the background and a chevron-down icon glyph in the nav. No typeface is declared — type relies on the Tailwind/browser default sans stack.",
+  "reskinNotes": "The prompt declares NO typefaces at all (pure Tailwind defaults), so there are no font tokens to map and brand fonts must be introduced from scratch; the headline is explicitly tuned to ramp up to ~100px on desktop, so a heavier/wider brand display face or longer translated copy can rewrap or overflow. All color is expressed as Tailwind opacity utilities rather than hex tokens (black #000000 bg, white text, bg-black/70 dark-glass card, white border at low opacity, semi-transparent white tag-pill bg/border, slightly-transparent subtitle), so retinting means swapping utility classes, and the white-on-black + white pill buttons with black text means the accent IS white — a colored brand accent has no native slot and must be added. All copy is hardcoded in markup: logo, nav items ['Features','Company','Blogs'], 'Sign in' / 'Get Started', tag 'Real-Time Budget Tracking', headline 'Build Wealth That Lasts Generations', the subtitle, the 'Start Building Wealth' CTA, and the four feature steps (title + body each: Create Your Free Account / Connect Your Bank Accounts / Set Your Financial Goals / Track, Grow, and Optimize). The 4-column features grid assumes four cards, so adding/removing steps breaks the layout. Legibility of the centered white content and the bottom dark-glass card depends on the background video being calm, and the scale-150 origin-top-left crop means only the upper-left of the footage is framed."
+}

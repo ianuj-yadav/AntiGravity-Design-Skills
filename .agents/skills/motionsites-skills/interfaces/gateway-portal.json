@@ -1,0 +1,77 @@
+{
+  "id": "gateway-portal",
+  "role": "hero",
+  "ownSections": [
+    "WorldBackground",
+    "Nav",
+    "IntroPortalScene",
+    "RealWondersSection",
+    "ArcCardCarousel",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "portal-foreground-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Foreground 'portal' image (PORTAL_BG) the user zooms INTO. Fills the position:sticky 100vh stage inside the 160vh intro track at width/height 100%, objectFit cover, transformOrigin 52% 38%. Scroll scales it 1x -> 7.5x while it parallaxes on the mouse (MAG 7), then fades out from scrollProgress 0.66 -> 0.88. Wants a center-to-upper-weighted full-bleed image with an obvious focal 'mouth'/aperture near 52%/38% to sell the zoom-through; whatever is at that point becomes the exit hole into the world behind."
+    },
+    {
+      "id": "world-background-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Cloud/world background (WORLD_BG) revealed behind the portal. Lives in the position:fixed inset-0 layer at zIndex 0, width/height 100%, objectFit cover, transformOrigin 50% 50%; never scrolls. Scroll scales it 1x -> 1.18x and it parallaxes opposite the portal (MAG 6). It is the backdrop for the entire 'Real wonders' carousel + footer, so it must stay legible behind white text and the frosted glass cards across its full height; a soft, mid-to-light dreamy sky reads best."
+    },
+    {
+      "id": "ui-display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI/heading/body face for ALL non-decorative text (nav 'gate' wordmark tail, buttons, hero copy, section titles, testimonial quotes, footer). Native family 'Helvetica Now Display', sans-serif (with 'Inter' as the secondary fallback in the body stack), weights 400/500/600 used; loaded via the db.onlinewebfonts.com CDN <link>. Layout is tuned to its metrics with tight letterSpacing (-0.02em headings, -0.01em quotes), so a substitute must hold tracking at clamp() display sizes or lines rewrap."
+    },
+    {
+      "id": "script-accent-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Decorative cursive script accent (Mr Dafoe Regular) used ONLY on flourish words: the 'Aura' half of the wordmark, the leading 'Discover' span (color #9a9a9a, 1.15em), and the oversized 'A.' mark in hero column 2. Native family 'Mr Dafoe Regular', cursive; loaded via the db.onlinewebfonts.com CDN <link>. Sized relative to adjacent display text (em-based) and baseline-aligned inline, so a swap needs a script face with a similar x-height/baseline or the wordmark and 'A.' misalign."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Now Display', sans-serif",
+      "body": "'Helvetica Now Display', 'Inter', sans-serif",
+      "accent": "'Mr Dafoe Regular', cursive"
+    },
+    "colorRoles": {
+      "bg": "#0a0608",
+      "surface": "rgb(247, 251, 255)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.5)",
+      "accent": "#9a9a9a",
+      "accent2": "#2c2420",
+      "border": "rgba(255, 255, 255, 0.28)"
+    },
+    "copySlots": [
+      "page-title",
+      "wordmark",
+      "nav-watch-demo-label",
+      "hero-headline",
+      "hero-discover-accent",
+      "hero-subcopy",
+      "hero-secondary-mark",
+      "hero-secondary-caption",
+      "section-headline",
+      "section-subcopy",
+      "testimonial-quotes",
+      "footer-brand-line",
+      "footer-column-titles",
+      "footer-links"
+    ]
+  },
+  "mechanic": "A 160vh sticky-pinned scroll zooms a foreground portal image from 1x to 7.5x (origin 52%/38%) while the fixed world background scales to 1.18x and both parallax in opposite directions on the mouse; the bottom hero copy fades out by 22%, then the portal fades out 66%->88% to reveal the cloud world behind a centered 'Real wonders' arc-fanned testimonial card carousel ending in a footer.",
+  "techDelivery": "React + TypeScript (Vite) single-page app authored with inline style objects (no CSS modules, no UI libraries); Tailwind used only for a few layout utility classes on the hero copy container; scroll/parallax engine is hand-rolled with useRef + scroll/resize listeners + requestAnimationFrame and easeInOut/lerp/clamp helpers; inline SVGs for the hamburger and carousel chevrons; fonts (Helvetica Now Display, Mr Dafoe Regular) + Google Fonts (Viaoda Libre/Imprima/Inter) loaded via <link> tags in index.html.",
+  "reskinNotes": "The portal->world zoom is a coordinated image PAIR: the portal must have a focal aperture at the baked transformOrigin 52%/38% that the world image sits behind, so a brand reskin supplies two registered images, not one hero asset, and the dark #0a0608 base shows through any letterboxing during the 7.5x scale. All copy is hardcoded in JSX: the 'Auragate' wordmark (split 'Aura' script + 'gate' display), the three-line 'Discover Living / Digital Worlds / Vivid, Alive, Endless' headline (with the 'Discover' span in Mr Dafoe at #9a9a9a), both hero paragraphs, the 'A.' mark + caption, the 'Real wonders. / Real worlds.' title, the section subcopy, all 7 testimonial quotes, the '(c) 2026 Auragate' line, the three footer column titles (Explore/Contact/Legal) and their links incl. literal email hello@auragate.com. Colors are inline literals not CSS vars: the white-glow card boxShadow stack ('0 0 50px/90px rgba(255,255,255,...)'), the frosted-glass gradient + backdropFilter blur(18px) saturate(140%), the chevron drop-shadow glows, and the #2c2420 quote/chevron ink are all baked into style objects. Layout depends on Helvetica Now Display metrics (tight -0.02em/-0.01em tracking, lineHeight 1.04, clamp() font sizes) and on Mr Dafoe baseline alignment for the wordmark/'A.'; carousel geometry (cardW/cardH/stepX/dropY/tilt/containerH, center +30/+22 bump) and the 767px mobile breakpoint are fixed JS constants, and the frosted glass + white glows assume a darkish world background for legibility."
+}

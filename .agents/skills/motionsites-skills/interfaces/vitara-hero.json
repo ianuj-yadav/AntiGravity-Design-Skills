@@ -1,0 +1,59 @@
+{
+  "id": "vitara-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "ProactiveShieldSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay+playsInline hero background video, position:absolute full width/height, object-fit:cover with object-position:bottom, sitting behind the white nav and centered hero stack. A 32px-high bottom gradient overlay fades transparent -> #2B3534 into the next dark section, so footage should be calm/mid-toned to keep the white hero text and word-by-word reveals legible. Native source is a CloudFront-hosted MP4."
+    },
+    {
+      "id": "action-and-send-glyphs",
+      "type": "icon",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react, NOT brand assets: Zap ('Start Wellness Check' pill), Stethoscope ('Chat with MedAI' pill), BarChart3 ('View Insights' pill) inside the #2B3534 input box's horizontally-scrolling white-border/rounded-full button row, plus Send in the white/gray-800 send button. Rendered white/currentColor (gray-800 inside the send button). Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inria Serif', serif",
+      "body": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#2B3534",
+      "surface": "#ffffff",
+      "fg": "#111827",
+      "fgMuted": "#4B5563",
+      "accent": "#1F2937",
+      "border": "rgba(255,255,255,0.15)"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-menu-labels",
+      "nav-login-label",
+      "nav-signup-label",
+      "hero-headline",
+      "hero-subheading",
+      "input-placeholder",
+      "input-action-labels",
+      "shield-heading",
+      "shield-body"
+    ]
+  },
+  "mechanic": "A white-navbar-over-fullscreen-looping-video hero whose object-cover footage (object-position:bottom, 32px transparent->#2B3534 bottom fade) sits behind a centered stack — AnimatedText word-by-word fadeUp headline + subheading (0.6s ease-out, 0.1s/word stagger, fill forwards) above a #2B3534 rounded-2xl input box with a transparent textarea, a horizontally-scrolling hidden-scrollbar row of icon action pills with a right-edge fade, and a Send button — followed by a full-width #2B3534 two-column section repeating the same word-by-word reveal.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS (responsive utility classes, mobile-first md: breakpoints) with lucide-react icons (Send, Zap, Stethoscope, BarChart3); Inria Serif (300/400/700) loaded from Google Fonts in index.html, headings set in Inria Serif with letter-spacing:-0.07em and body in the Helvetica Neue system stack; a hand-authored index.css carries the fadeUp @keyframes / .animate-fadeUp and the .scrollbar-hide rules, and AnimatedText is a custom word-splitting component (no Framer Motion / GSAP).",
+  "reskinNotes": "The palette is expressed as Tailwind utility classes hardcoded in markup (bg-white, text-gray-900/600/800, gray-300/400, white text on dark) plus the literal brand hex #2B3534 baked inline in the input-box and second-section backgrounds and the 32px bottom-gradient overlay (transparent -> #2B3534), so reskinning means find-replacing those classes/hex rather than editing tokens. Border/hover affordances on the action pills are white-at-opacity (white/15 border, white/10 hover) tuned to a dark scene. 'Vitara' is a plain text wordmark (no logo asset socket) and the action pills are Lucide icons, so rebranding the mark/icons means editing markup, not swapping assets. All copy is hardcoded inline — nav menu (Home, Services, Team, Membership, Resources), Login/Sign up, the h1 'Smart Care Begins with Data + Insight', subheading, the textarea placeholder, the three action labels, and the second-section heading/body — and the AnimatedText word-splitting is structural to the entrance motion. Headings depend on Inria Serif metrics (letter-spacing:-0.07em across a text-4xl->7xl responsive scale), so a wider display face or longer copy can reflow the tight headlines."
+}

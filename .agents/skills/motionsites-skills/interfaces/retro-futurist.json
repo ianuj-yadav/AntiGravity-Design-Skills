@@ -1,0 +1,65 @@
+{
+  "id": "retro-futurist",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-scrub-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scrub-timeline",
+      "notes": "Fullscreen mouse-scrubbed background video (position:fixed inset-0 z-0 object-cover, object-position 70% center) that fills the entire viewport behind the nav and hero copy. It does NOT autoplay or loop: it loads muted/playsInline/preload=auto paused at currentTime 0, and horizontal mouse movement scrubs forward/backward through the timeline (delta/innerWidth * SENSITIVITY 0.8 * duration, clamped 0..duration, seek-chained via the onSeeked handler to prevent seek-flooding). Needs full per-frame seekability and a fairly long shot so the scrub has range; nothing overlays the footage, so a busy/light clip will wash out the black nav, blurred label, and typewriter text drawn on top."
+    },
+    {
+      "id": "font-heading",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading face, used ONLY for the logo text 'Mainframe(R)' in the navbar (CSS var --font-heading). Native value is 'HelveticaNowDisplay-Medium' (a medium-weight grotesque) loaded from an onlinewebfonts.com CDN <link> in index.html, with fallback stack 'Helvetica Neue', Arial, sans-serif. The logo renders text-[21px] -> sm:text-[26px], tracking-tight; a substitute must hold a tight medium-grotesque metric so the wordmark and adjacent asterisk stay aligned."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Body face applied to <body> via CSS var --font-body and used for the entire page except the logo: nav links, CTA, mobile overlay, the blurred intro label, the typewriter line, and all pill buttons. Native value is 'HelveticaNowDisplayW01-Rg' (regular-weight grotesque) loaded from an onlinewebfonts.com CDN <link> in index.html, with fallback stack 'Helvetica Neue', Arial, sans-serif. The typewriter and blurred label run at clamp(18px,4vw,26px) with fixed line-heights (1.35 / 1.3) and a min-height:54px reservation, so a wider substitute will reflow those blocks."
+    },
+    {
+      "id": "copy-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Tiny 12x12 inline-SVG 'copy' glyph (two overlapping rectangles) rendered after the email on the single outline pill button ('Reach us: hello@mainframe.co'). Inherits the pill's currentColor (white border/text on transparent, inverting to black on hover), so supply as a transparent-background single-color line glyph that tints via currentColor; clicking the pill copies the email through navigator.clipboard.writeText()."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif",
+      "body": "'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "rgba(255, 255, 255, 0.95)",
+      "fg": "#000000",
+      "border": "rgba(0, 0, 0, 0.1)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "primary-cta-label",
+      "intro-label-line-1",
+      "intro-label-line-2",
+      "typewriter-text",
+      "pill-button-labels",
+      "outline-pill-email"
+    ]
+  },
+  "mechanic": "A non-scrolling 100vh hero where a position:fixed object-cover background video is scrubbed forward/backward by horizontal mouse position (no autoplay/loop, seek-chained on onSeeked) behind a max-w-xl bottom/center copy stack — a blur(4px) intro label, a character-by-character useTypewriter line with a blinking cursor, and a row of fade/slide-up white pill buttons plus one outline copy-email pill — under a fixed black-text navbar with a text logo, comma-separated center links, an underlined CTA, and an animated hamburger -> full-screen white/95 backdrop-blur overlay on mobile.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS component spec; native <video> driven by a window mousemove handler plus an onSeeked seek-chain (prevX/targetTime tracked in refs, SENSITIVITY 0.8), a custom useTypewriter hook (speed 38ms, startDelay 600ms) for the typed line, the two HelveticaNowDisplay faces loaded via onlinewebfonts.com CDN <link> tags in index.html and exposed as --font-heading/--font-body CSS vars in index.css (which also defines the blink + fade/slide keyframes). No UI libraries (lucide-react available but unused); the copy icon and hamburger bars are hand-authored inline SVG/divs.",
+  "reskinNotes": "The scrub interaction IS the identity and is metric-sensitive: SENSITIVITY 0.8 and the onSeeked re-queue threshold are tuned to a long, fully-seekable clip, so a short or sparsely-keyframed brand video feels jumpy, and since nothing overlays the footage a light/busy video washes out the all-black nav, the blur(4px) intro label, and the typewriter text. Palette is near-monochrome and expressed almost entirely as Tailwind utility classes / inline styles (bg-white, text-black, border-black/10, border-white, bg-white/95, #000) rather than design tokens, so reskinning means find-replacing classes, not editing variables, and the white-on-video pills assume a dark scene. Both fonts are proprietary faces pulled from third-party onlinewebfonts.com CDN URLs (single point of failure / licensing concern) and the clamp() type + min-height:54px typewriter reservation is tuned to their metrics. The logo is hardcoded text 'Mainframe(R)' plus a literal asterisk character (not an asset), and ALL copy is hardcoded inline: the registered-trademark logo string, the comma-rendered nav labels (Labs, Studio, Openings, Shop), the 'Get in touch' CTA, the two blurred A.R.I.A. intro lines, the full typewriter sentence (whose per-character reveal is structural), the four white pill labels, and the 'Reach us: hello@mainframe.co' outline pill (the email is also baked into the clipboard copy call). The copy-icon is a hand-drawn 12x12 inline SVG, so restyling it means editing the markup."
+}

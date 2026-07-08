@@ -1,0 +1,77 @@
+{
+  "id": "arceage-contact-us",
+  "role": "form",
+  "ownSections": [
+    "ContactForm"
+  ],
+  "slots": [
+    {
+      "id": "valid-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Monochrome mask shape for the 'field valid' indicator, shown at the input's right edge once a touched field passes its rule. Consumed as a CSS mask-image on a w-5 h-5 div whose background supplies the color (tinted to the success green via colorRole, not shown as-is), so the SVG must be a flat single-color silhouette. Native art is a tick/check-circle glyph, centered, no-repeat, mask-size contain."
+    },
+    {
+      "id": "invalid-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "Monochrome mask shape for the 'field invalid/required' indicator, shown at the input's right edge once a touched required field fails its rule. Consumed as a CSS mask-image on a w-5 h-5 div whose background supplies the color (tinted to the error red via colorRole), so the SVG must be a flat single-color silhouette. Native art is a close/X-circle glyph, centered, no-repeat, mask-size contain."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Primary UI face for labels, inputs, placeholders, the subtitle, the submit button, and most of the heading. Native family: Barlow (full weight range 100-900 plus italics, exposed as Tailwind v4 --font-sans / font-sans). Imported via Google Fonts @import in global CSS. Heading uses font-medium at fluid clamp(1.5rem,4vw,3.5rem) with tracking-tight, so a wider replacement face shifts the two-line heading wrap."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Accent italic face applied only to the opening 'Let's grow!' Typewriter segment of the heading (rendered italic, font-normal). Native family: Instrument Serif (exposed as Tailwind v4 --font-dm-serif / font-dm-serif). Imported via Google Fonts @import in global CSS. Font-metric sensitive: this italic phrase shares the heading line with Barlow text and is revealed character-by-character, so glyph widths affect the inline wrap."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "\"Barlow\", ui-sans-serif, system-ui, sans-serif",
+      "accent": "\"Instrument Serif\", serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "fg": "#000000",
+      "fgMuted": "#1f2937",
+      "accent": "#27BD09",
+      "accent2": "#FF1F1F",
+      "border": "#D9D9D9"
+    },
+    "copySlots": [
+      "headline-accent",
+      "headline-line1",
+      "headline-line2",
+      "subtitle",
+      "label-name",
+      "label-email",
+      "label-phone",
+      "label-farm",
+      "label-message",
+      "placeholder-name",
+      "placeholder-email",
+      "placeholder-phone",
+      "placeholder-farm",
+      "placeholder-message",
+      "cta-label"
+    ]
+  },
+  "mechanic": "On-scroll staggered reveal of a centered single-column white contact form, where the heading and subtitle run a character-by-character Typewriter fade (motion useInView staggerChildren) and each underline field fades-and-rises (opacity/y formVariants whileInView) while live per-field regex/length validation swaps a CSS-mask-tinted green check or red X icon at the input's right edge, and the submit pill swaps black to green on hover.",
+  "techDelivery": "React 19 + Tailwind CSS v4 (@tailwindcss/vite) + motion (\"motion/react\") component spec, bundled with Vite v6+; fonts via Google Fonts @import in global CSS.",
+  "reskinNotes": "Validation icons are external GitHub raw SVGs (dsMagnatov/Acreage-landing-assets) referenced by URL and recolored via CSS mask-image (bg-[#27BD09]/bg-[#FF1F1F]), so the swatch lives in markup not the SVG — re-skin must replace both the mask URL and the bg color class, and the art must stay a flat single-color silhouette or it collapses to one tint. Accent green #27BD09 is hardcoded in two places (valid icon bg and button hover) and the border #D9D9D9 doubles as the placeholder text color, so token changes ripple across states. All heading/subtitle/label/placeholder/CTA copy is hardcoded in JSX (the 'Let's grow!' segment is a separate Instrument-Serif italic span), and the heading mixes that italic with Barlow on a fluid clamp() size, so the two-line wrap is font-metric sensitive. Field names (name/email/phone/farm/message) are load-bearing keys shared by formData, touched, validations, and the regex rules plus per-field Typewriter delays — renaming a copy label must not change its field key."
+}

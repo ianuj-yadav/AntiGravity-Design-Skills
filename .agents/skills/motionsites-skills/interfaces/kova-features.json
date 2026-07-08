@@ -1,0 +1,62 @@
+{
+  "id": "kova-features",
+  "role": "features",
+  "ownSections": [
+    "FeaturesSection"
+  ],
+  "slots": [
+    {
+      "id": "card-background-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "3:4",
+      "alpha": false,
+      "colorRole": "bg",
+      "notes": "Three independent fullscreen-within-card background photos, one each for the dark photo cards Card 1 (Smart Budgeting), Card 2 (Bank-Grade Security) and Card 4 (Wealth Building). Each is an absolute inset-0 w-full h-full object-cover img filling a 3:4 portrait card, sitting under a bottom-to-top dark-green gradient scrim (from-#08150C/80 via-#08150C/20 to-transparent) with a white icon-pill label at the top and a white/80 caption at the bottom, so each image must be dark/low-contrast enough at top and bottom to keep the white overlay text legible; a #08150C (Card 1) / stone-700 (Cards 2 and 4) fallback fill shows while the image loads. Native placeholders are images.higgs.ai-proxied PNGs; Card 3 has NO image (it is the light donut card)."
+    },
+    {
+      "id": "lucide-ui-icons",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "lucide-react line-icon glyphs used as monochrome currentColor marks: Play (header Watch Demo button, size 13, fill-white, placed after the label), Sparkles (Card 1 label, size 16), ShieldCheck (Card 2 label, size 16), PieChart (Card 3 label, size 16), TrendingUp (Card 4 label, size 16). The four card icons render inside white (Cards 1/2/4) or text-stone-700 (Card 3) label pills and tint via the surrounding text color; the Play icon is filled white on the dark-green button. Not swappable image assets - reskin by choosing different lucide glyph names."
+    },
+    {
+      "id": "cooper-display-fonts",
+      "type": "font",
+      "card": 2,
+      "notes": "Two Cooper BT W01 web faces loaded via onlinewebfonts CDN <link> tags in index.html and exposed through index.css utilities: 'Cooper BT W01 Medium' (.font-cooper-medium, weight 500, fallbacks 'Cooper BT W01 Light','Georgia',serif) carries the H2 section heading 'Designed to sharpen every decision' (clamp text-2xl->3xl->4xl, 24->30->36px, leading-snug), and 'Cooper BT W01 Light' (.font-cooper, fallbacks 'Georgia',serif) is declared as a prerequisite display face though only the Medium utility is applied in the section markup. All other text (button, card labels, captions, donut text) uses the default Tailwind sans stack. Pick a rounded high-contrast display serif in two weights for a like-for-like swap; the Light utility class exists for adjacent sections."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Cooper BT W01 Medium', 'Cooper BT W01 Light', 'Georgia', serif",
+      "accent": "'Cooper BT W01 Light', 'Georgia', serif",
+      "body": "ui-sans-serif (default Tailwind font-sans system stack; no custom body face declared)"
+    },
+    "colorRoles": {
+      "bg": "#FDF5EB",
+      "surface": "#EBE4DC",
+      "fg": "#08150C",
+      "fgMuted": "#78716C",
+      "accent": "#C46B2D",
+      "accent2": "#7A8C3E",
+      "border": "none declared (cards are borderless rounded-2xl fills; no flat border color)"
+    },
+    "copySlots": [
+      "section-heading",
+      "button-label",
+      "card-label",
+      "card-description",
+      "donut-card-title",
+      "donut-card-date-range",
+      "donut-center-value",
+      "donut-center-caption"
+    ]
+  },
+  "mechanic": "A warm-cream (#FDF5EB) Features section with a header row (a Cooper-medium clamp heading and a dark-green rounded-xl 'Watch Demo' pill button) above a 1->2->4 column grid of 3:4 portrait rounded-2xl cards - three dark #08150C photo cards each layering a background image under a bottom-up dark-green gradient scrim with a top icon-pill label and a bottom white/80 caption, plus one light beige card holding an inline-SVG donut chart (a -rotate-90 ring of four hardcoded strokeDasharray segments over a base circle with a centered 50% overlay) - where every element fades and rises in on scroll via a staggered FadeUp (opacity 0->1, y 24->0, blur 8px->0, 0.7s cubic-bezier(.25,.1,.25,1), whileInView once at -60px margin).",
+  "techDelivery": "React 18 + TypeScript + Tailwind CSS 3 + Framer Motion + lucide-react; the entry animation is a reusable FadeUp motion.div component (hidden/visible variants, whileInView with viewport once and -60px margin), the two Cooper BT W01 web fonts are loaded via onlinewebfonts CDN <link> tags in index.html with .font-cooper / .font-cooper-medium utilities added to index.css after the @tailwind directives, and the donut is hand-authored inline SVG.",
+  "reskinNotes": "Color is baked literally into Tailwind arbitrary values and inline styles, not tokenized: the section bg #FDF5EB, the dark-green #08150C (heading text, photo-card fill, button bg) and its #1a2e1f hover, plus stone-500/700/800 and white/80 text are all hardcoded utilities/classes in the markup. Card 3 uses inline style backgroundColor #EBE4DC (outer) and #F4F1EC (inner content + donut base ring) because they are custom hexes. The entire donut chart is hardcoded inline SVG: its four segment colors (#C46B2D, #7A8C3E, #A8B87A, #B8AFA4), the base ring #F4F1EC, and the percentage geometry (strokeDasharray/strokeDashoffset pairs '26.4 61.56'/0, '22 65.96'/-26.4, '17.6 70.36'/-48.4, '22 65.96'/-66 over circumference ~87.96 at r=14, plus the -rotate-90 start offset) must each be hand-edited to reskin or re-weight the chart - there is no data source. All copy is hardcoded in markup (heading 'Designed to sharpen every decision', 'Watch Demo', the four labels Smart Budgeting / Bank-Grade Security / Spend Insights / Wealth Building, the four card descriptions, and the donut strings 'Monthly Spend' / '1 Apr - 30 May 2026' / '50%' / 'of budget'). The bottom-up readability scrim is the fixed Tailwind gradient from-#08150C/80 via-#08150C/20 to-transparent. Layout uses fixed pixel donut sizes (w-28 h-28 -> sm:w-36 h-36) and the prompt forbids purple/indigo, so substitute accents must stay outside that hue range."
+}

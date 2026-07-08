@@ -1,0 +1,55 @@
+{
+  "id": "conversion",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "fullscreen looping autoplay/muted background video behind the entire hero, object-cover"
+    },
+    {
+      "id": "qr-code",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "scannable QR-code image inside the accent-tinted 'Try Now' card; rounded-lg object-cover, square"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Qanelas-Heavy",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "surface": "#ffffff",
+      "fg": "#111827",
+      "fgMuted": "#4b5563",
+      "accent": "#4CAF50",
+      "accent2": "#43A047",
+      "border": "#e5e7eb"
+    },
+    "copySlots": [
+      "brand-name",
+      "brand-suffix",
+      "nav-labels",
+      "lang-code",
+      "lang-label",
+      "cta-label",
+      "headline",
+      "subtitle",
+      "qr-label"
+    ]
+  },
+  "mechanic": "static fullscreen looping-video hero with a glass-blur nav and centered content whose heading, subtitle, and QR card stagger in via fade-up (cubic-bezier(0.16,1,0.3,1)) on cascading delays, plus a slide-down/up mobile menu.",
+  "techDelivery": "React + TypeScript + Tailwind CSS (config fontFamily extend) + Lucide React icons; fonts via index.html (Qanelas-Heavy CDN + Inter Google Fonts), keyframes in index.css.",
+  "reskinNotes": "Accent green is baked into Tailwind arbitrary classes (bg-[#4CAF50]/hover:bg-[#43A047]) rather than a token, so re-skinning requires find-replace across markup; all copy (brand split into qanelas-italic 'Zipwire.' + inter 'Dev', headline, subtitle, nav links, 'Try Now', 'Get It Today', 'EN'/'DE') is hardcoded in JSX; Qanelas-Heavy is a font-metric-dependent display face (uppercase, leading-[0.95], tracking-tight, sizes up to 110px) so substitute fonts may reflow the headline; bg/fg grays come from Tailwind gray-900/700/600/200 utilities, not declared hex tokens."
+}

@@ -1,0 +1,82 @@
+{
+  "id": "veloce-finance-landing",
+  "role": "hero",
+  "ownSections": [
+    "Header",
+    "Hero",
+    "InsightsSection",
+    "TextFillSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video for the opening h-screen block, a bare <video> at absolute object-cover z-0 covering the full area (autoPlay/loop/muted/playsInline), object-[10%_center] on mobile and object-center on desktop. Header + Hero foreground sit over it; the only scrim is a 32px bg-gradient-to-t from-white fade strip pinned to the bottom of the hero, so the upper area is raw footage behind black 'veloce' logo, nav and the dark/gradient headline. Favor a light, low-contrast-in-the-upper-region clip so #00041F text stays legible. Native source is a CloudFront-hosted MP4 placeholder to be replaced by a brand-owned loop."
+    },
+    {
+      "id": "insights-card-videos",
+      "type": "video",
+      "card": 3,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Three distinct looping background videos, one per InsightsSection stat card, each absolute inset-0 w-full h-full object-cover inside a rounded-[40px] overflow-hidden card (autoPlay/loop/muted/playsInline). A tinted color wash sits over each (Card1 rgba(206,223,235,0.25) cool, Card2 rgba(247,236,233,0.6) warm, Card3 rgba(218,218,218,0.2) neutral) under bottom-anchored stat copy ('1.6M' / '850K' / '120+'), so footage reads through a pale overlay behind dark navy numerals. Cards are min-h 450/350/450; supply three different clips. Native sources are CloudFront-hosted MP4 placeholders."
+    },
+    {
+      "id": "store-badge-images",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Two small app-store badge marks shown side by side at the bottom of the Hero inside bordered pill buttons (border border-[#00041F]), each an <img> at w-6 h-7 object-contain beside its own microcopy: Google Play badge ('GET IT ON' / 'Google Play') and Apple App Store badge ('Download on the' / 'App Store'). These are platform store glyphs, not brand-owned art; swap only if distributing under different stores or if the brand supplies its own badge lockups, otherwise the official store badges stand. Supply transparent-background marks so they sit cleanly inside the light pill. Native sources are images.higgs.ai webp-proxy URLs wrapping CloudFront PNG placeholders."
+    },
+    {
+      "id": "ui-menu-glyphs",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional mobile-nav hamburger glyphs (lucide-react Menu and X), a dependency rather than a brand asset, cross-faded with AnimatePresence + motion.div (rotate + opacity, 0.2s) to toggle the mobile dropdown. Tinted dark via currentColor to match the #00041F header text. Optional socket: only swap if the brand ships its own menu/close line icons; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      "body": "'Helvetica', 'Arial', sans-serif",
+      "accent": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#EFF4FF",
+      "surface": "#FFFFFF",
+      "fg": "#00041F",
+      "fgMuted": "#49484F",
+      "accent": "#B56939",
+      "accent2": "#454BBB",
+      "border": "#00041F"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-login-label",
+      "nav-signup-label",
+      "hero-headline",
+      "hero-headline-accent",
+      "hero-subtitle",
+      "store-badge-microcopy",
+      "insights-heading",
+      "insights-lead-paragraph",
+      "insights-card-stat",
+      "insights-card-description",
+      "textfill-paragraph"
+    ]
+  },
+  "mechanic": "A vertically stacked #EFF4FF fintech landing page whose signature motion is a scroll-driven clip-path text-fill on the closing paragraph (a brand-gradient overlay span revealed left-to-right via inline clipPath inset(0 X% 0 0) keyed to the section's getBoundingClientRect top across a windowHeight 0.8 -> 0.2 band) layered over a fullscreen looping-video hero with Framer-Motion BlurIn (blur(20px)+opacity reveals on viewport entry) headings and a staggered whileInView fade/translate-up grid of three looping-video stat cards.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS (tailwind.config.js fontFamily/colors extend + index.css @layer base with Google Fonts @import for Manrope & Inter and antialiased smoothing) multi-component spec (App composing Header + Hero + InsightsSection + TextFillSection plus a reusable BlurIn wrapper); framer-motion for BlurIn useInView reveals, AnimatePresence nav toggle and whileInView card stagger; lucide-react for Menu/X icons; @supabase/supabase-js installed but unused in UI; native <video autoPlay muted loop playsInline> for the hero and all three insight-card backgrounds; the TextFillSection scroll fill is hand-rolled via useEffect + useRef + getBoundingClientRect (no scroll library).",
+  "reskinNotes": "The brand gradient from-[#B56939] via-[#5C3779] to-[#454BBB] is hardcoded as inline Tailwind arbitrary classes in two places (the 'lightspeed.' hero accent span and the TextFillSection overlay span) and must be swept together with the scroll-fill animation. The TextFillSection requires its h2 copy to be duplicated verbatim across two absolutely-stacked spans (base #B8B7BA layer + gradient bg-clip-text overlay) — any copy change must edit both spans identically or the reveal breaks. The whole palette lives as Tailwind arbitrary literals rather than CSS variables: #00041F (logo/nav/buttons/stats/borders), #010828 (hero headline, distinct from #00041F), #49484F (subtitles/descriptions), #EFF4FF (signup button text), #B8B7BA (text-fill base), and the three per-card overlay rgba washes rgba(206,223,235,0.25)/rgba(247,236,233,0.6)/rgba(218,218,218,0.2) are all scattered across className strings. Tailwind colors are declared under sintra-* token names (sintra-dark/accent/light/gray) that do not match the in-markup hex usage. Five fonts are referenced but only two (Manrope, Inter) are actually loaded via Google Fonts; Helvetica, Helvetica Neue, Product Sans and SF Compact Display are assumed system-installed and will silently fall back to Arial/system-ui on most machines, so the display/body look is font-metric-dependent on fonts that are not bundled. All copy is hardcoded inline in JSX (the 'veloce' wordmark, Home/About us/Faq nav, Log in/Sign up, the split headline 'Fast payments, your way at ' + 'lightspeed.', 'Handle finances with ease and power' subtitle, the two store-badge microcopy pairs, 'Instant payment clarity counts' + its lead paragraph, the three stat value/description pairs — note '850K' and '120+' use mixed Cyrillic/Latin glyphs — and the long text-fill paragraph). Three CloudFront placeholder MP4s (one hero + three cards = four total videos) and two images.higgs.ai-proxied PNG store badges are inlined and must all be swapped."
+}

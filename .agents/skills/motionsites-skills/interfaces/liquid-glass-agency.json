@@ -1,0 +1,129 @@
+{
+  "id": "liquid-glass-agency",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "StartSection",
+    "FeaturesChess",
+    "FeaturesGrid",
+    "Stats",
+    "Testimonials",
+    "CtaFooter"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Cinematic hero background film for the 1000px-tall Hero section. Rendered as a <video autoPlay loop muted playsInline> positioned absolute, w-full h-auto object-contain, z-0, pushed down with top:20% (NOT object-cover fullscreen — it floats in the upper-mid band, not edge-to-edge). A bg-black/5 scrim and a 300px bottom-to-transparent black gradient fade sit over it, and the BlurText headline + subtext + CTAs + partners bar overlay it. Native source is a CloudFront-hosted MP4; a poster still (/images/hero_bg.jpeg) shows before playback. Keep footage dark/moody so white headline text stays legible."
+    },
+    {
+      "id": "section-background-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two full-bleed looping HLS section background videos played via hls.js: one behind StartSection ('How It Works') and one behind CtaFooter ('Your next website starts here.'). Each is absolute inset-0 w-full h-full object-cover, autoPlay loop muted playsInline, with 200px black-to-transparent gradient fades at top and bottom and centered white text/CTAs overlaid. Native sources are Mux .m3u8 HLS streams. Footage should be dark/atmospheric for white-text legibility."
+    },
+    {
+      "id": "stats-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "fgMuted",
+      "notes": "Dedicated looping HLS background video for the Stats section, kept SEPARATE because it is rendered desaturated via CSS filter:saturate(0) (black & white). Same object-cover + 200px top/bottom black gradient-fade treatment as the other section videos, behind a centered liquid-glass stats card. Native source is a Mux .m3u8 stream; because color is stripped at render, pick footage that reads well in monochrome (tonal contrast over hue)."
+    },
+    {
+      "id": "feature-showcase-gifs",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "notes": "Two self-looping animated product/preview GIFs for the FeaturesChess alternating rows: row 1 image on the right (paired with 'Designed to convert. Built to perform.'), row 2 image on the left (paired with 'It gets smarter. Automatically.'). Each is mounted inside a liquid-glass rounded-2xl overflow-hidden frame, so corners are clipped. Native assets are motionsites.ai preview .gif files (finlytic + wealth dashboards). Brand fill = two looping motion reels or product UI captures; transparency not required since the glass frame clips them."
+    },
+    {
+      "id": "brand-logo-icon",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Square brand mark in the fixed floating Navbar, top-left, rendered h-12 w-12 (~48px). Native source is a local PNG (src/assets/logo-icon.png). Supply a transparent (alpha) square logo/glyph so it floats cleanly over the video-backed page."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a key dependency), not brand assets: ArrowUpRight (primary 'Get Started' / 'Book a Call' CTA buttons and the nav 'Get Started' pill), Play (filled, 'Watch the Film' text link), and the four FeaturesGrid card glyphs Zap / Palette / BarChart3 / Shield (each centered in a liquid-glass-strong rounded-full w-10 h-10 circle). All currentColor / white-tinted. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.12)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "accent": "#FFFFFF",
+      "accent2": "#85A7D1",
+      "border": "rgba(255,255,255,0.25)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "hero-eyebrow-badge",
+      "hero-eyebrow-new-tag",
+      "hero-headline",
+      "hero-body",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "hero-partners-eyebrow",
+      "hero-partner-names",
+      "start-eyebrow",
+      "start-headline",
+      "start-body",
+      "start-cta-label",
+      "features-chess-eyebrow",
+      "features-chess-headline",
+      "features-chess-row-titles",
+      "features-chess-row-bodies",
+      "features-chess-row-cta-labels",
+      "features-grid-eyebrow",
+      "features-grid-headline",
+      "features-grid-card-titles",
+      "features-grid-card-bodies",
+      "stats-values",
+      "stats-labels",
+      "testimonials-eyebrow",
+      "testimonials-headline",
+      "testimonial-quotes",
+      "testimonial-names",
+      "testimonial-roles",
+      "cta-headline",
+      "cta-body",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "footer-copyright",
+      "footer-links"
+    ]
+  },
+  "mechanic": "A dark, video-backed luxury single-page scroll (fixed glass nav over a 1000px hero with a floating CloudFront MP4, then HLS-video and grid sections — How-It-Works, alternating feature chess rows, a 4-card why-us grid, a desaturated stats card, testimonials, and a video CTA/footer) whose signature motion is a reusable BlurText component that dissolves headings in word-by-word from below (blur(10px)/opacity:0/y:50 -> blur(0)/opacity:1/y:0, ~200ms stagger, IntersectionObserver-triggered), echoed by delayed blur-in fades on hero subtext and CTAs, all reading through frosted liquid-glass surfaces built from backdrop-blur plus a mask-composite gradient-border pseudo-element.",
+  "techDelivery": "React + Vite + Tailwind CSS + shadcn/ui + Framer Motion (motion/react), with hls.js for the Mux HLS section videos and lucide-react for icons; deps pinned at motion ^12.35.0 / hls.js ^1.6.15 / lucide-react ^0.462.0 / react-router-dom ^6.30.1. Fonts (Instrument Serif + Barlow) via Google Fonts and wired into tailwind.config fontFamily (font-heading / font-body). The two .liquid-glass / .liquid-glass-strong utilities and the HSL :root design tokens live in index.css under @layer components.",
+  "reskinNotes": "The declared :root token palette is a PERIWINKLE-BLUE light theme (--background 213 45% 67% = #85A7D1, --card #729ACA, --secondary/--accent #97B4D8, --primary white) expressed as space-separated HSL channels, yet the rendered page is forced near-black: the outer wrappers hardcode bg-black and every video section is darkened with literal black-to-transparent linear-gradient fades and bg-black/5 scrims, while text is overwhelmingly white at fixed opacities (text-white, text-white/60, text-white/70, text-white/40). So a reskin must reconcile two layers — the HSL custom properties AND the hardcoded black backgrounds / white-opacity text utilities baked directly into the markup (they are not driven by the tokens). The two liquid-glass effects are the load-bearing visual identity and are fully hardcoded in CSS: rgba(255,255,255,0.01) fills, background-blend-mode:luminosity, fixed backdrop-blur (4px subtle / 50px strong), inset white highlight shadows, and a ::before gradient-border built with a white linear-gradient + -webkit-mask-composite:xor / mask-composite:exclude trick — retinting the glass means editing these encoded gradients and rgba stops, not flipping a variable. --radius is 9999px (everything pill/round). All copy is hardcoded in JSX across eight components: nav items (Home/Services/Work/Process/Pricing) + 'Get Started'; the hero 'New' badge + 'Introducing AI-powered web design.', the BlurText headline 'The Website Your Brand Deserves', hero subtext, 'Get Started'/'Watch the Film', the 'Trusted by the teams behind' bar with five partner names (Stripe/Vercel/Linear/Notion/Figma); StartSection 'How It Works'/'You dream it. We ship it.'; the two FeaturesChess row titles/bodies/labels; the four FeaturesGrid card titles/bodies; the four Stats value/label pairs (200+/98%/3.2x/5 days); three Testimonials quotes with names/roles (Sarah Chen·Luminary, Marcus Webb·Arcline, Elena Voss·Helix); and CtaFooter 'Your next website starts here.' + buttons + the '(c) 2026 Studio.' copyright and Privacy/Terms/Contact links. Layout is font-metric dependent on Instrument Serif italic: the hero headline uses leading-[0.8] with tracking-[-4px] at up to text-[5.5rem] and section headings use leading-[0.9] tracking-tight, so a wider/taller replacement display face will break the tight wraps. Placeholder media (one CloudFront MP4, three Mux .m3u8 HLS streams, two motionsites.ai GIFs, a local logo PNG + hero poster JPEG) are inlined as the asset sockets to fill. The Stats video's desaturation (filter:saturate(0)) is a hardcoded render effect, not a property of the asset."
+}

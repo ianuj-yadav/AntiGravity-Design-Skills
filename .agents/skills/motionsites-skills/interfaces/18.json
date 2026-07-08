@@ -1,0 +1,38 @@
+{
+  "id": "18",
+  "role": "hero",
+  "ownSections": [
+    "LoadingScreen",
+    "AppWrapper"
+  ],
+  "slots": [
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display serif used for both the center rotating words (italic) and the bottom-right 000->100 counter (upright, tabular-nums). Native value is the Google Font 'Instrument Serif' at weight 400; the words render in its italic style while the counter renders upright, so a substitute must offer both an italic and an upright cut and must support tabular figures so the zero-padded 3-digit counter does not shift width as it ticks."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0a",
+      "fg": "#f5f5f5",
+      "fgMuted": "#888888",
+      "border": "#1f1f1f",
+      "accent": "#89AACC",
+      "accent2": "#4E85BF"
+    },
+    "copySlots": [
+      "eyebrow",
+      "rotating-word-1",
+      "rotating-word-2",
+      "rotating-word-3"
+    ]
+  },
+  "mechanic": "A fixed fullscreen loader on a near-black field plays a fixed-duration intro: three serif-italic words swap in the center every 900ms while a bottom-right counter rAF-counts 000->100 over 2.7s and a bottom-edge gradient progress bar scales its origin-left fill to match, then after a 400ms hold the whole overlay fades out (opacity, 0.6s) to reveal the page beneath.",
+  "techDelivery": "Next.js 14 + TypeScript React component spec using Framer Motion (motion.div / AnimatePresence mode=\"wait\") plus Tailwind utility classes; no asset pipeline, counter and progress are driven by requestAnimationFrame and setInterval in component state.",
+  "reskinNotes": "Purely typographic + motion template with no brand image/video/icon/SVG sockets, so reskinning is mostly tokens and copy. Caveats: the progress-bar fill color is a hardcoded inline linear-gradient(90deg, #89AACC 0%, #4E85BF 100%) with a matching boxShadow glow rgba(137,170,204,0.35), so retinting the bar means editing the inline style string rather than the CSS variables (the gradient/glow are not wired to --tokens). Foreground text uses opacity-modified tokens (text-text/80 on the words), and the eyebrow plus the three rotating words ('Portfolio', 'Design'/'Create'/'Inspire') are hardcoded in markup. The choreography is hand-timed (900ms word swaps, 2.7s count, 400ms hold) and the counter is zero-padded to exactly 3 digits via padStart(3,'0'), so it assumes a 0-100 range and tabular figures; the rotating-words AnimatePresence is keyed by word index and stops at the last word without looping."
+}

@@ -1,0 +1,56 @@
+{
+  "id": "nimbus-pricing",
+  "role": "pricing",
+  "ownSections": [
+    "PricingTop",
+    "PricingPlanRow",
+    "PricingBars"
+  ],
+  "slots": [
+    {
+      "id": "sans-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Primary UI/body sans (--font-sans), loaded as 'IBM Plex Sans' weights 400/500 from Google Fonts with preconnect; drives the .eyebrow-adjacent body copy and the two headline h2s (the page-shared clamp(25px,4vw,52px) base plus the pricing-copy override at clamp(34px,4vw,68px) line-height:1), the .pricing-table h3, the plan-card h3/p, and the .pricing-row label spans. Substitute a clean humanist sans that holds at the very large clamp(34px,4vw,68px) headline rendered at line-height:1."
+    },
+    {
+      "id": "mono-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Technical monospace (--font-mono), loaded as 'IBM Plex Mono' weights 400/500 from Google Fonts; used for the uppercase .eyebrow, the .billing-toggle 'Per month / Per GiB' pills, the right-aligned .pricing-row price strongs ($0.021 / GiB / month etc.), and the uppercase pill-shaped plan-card CTA links. Letter-spacing-tuned uppercase mono, so pick a true monospace with even caps to preserve the price/technical voice."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "body": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "mono": "\"IBM Plex Mono\", \"SF Mono\", ui-monospace, monospace"
+    },
+    "colorRoles": {
+      "bg": "#17130d",
+      "surface": "rgba(255, 239, 199, 0.16)",
+      "fg": "#fff4d5",
+      "fgMuted": "#dacaa1",
+      "accent": "#ead09a",
+      "accent2": "#ffd879",
+      "border": "rgba(255, 240, 199, 0.28)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "table-title",
+      "billing-toggle-labels",
+      "pricing-row-labels",
+      "pricing-row-values",
+      "plan-titles",
+      "plan-descriptions",
+      "plan-cta-labels"
+    ]
+  },
+  "mechanic": "A single warm gold-on-olive-black pricing section that stacks a two-column top block (copy headline/body beside a 5-row mono price table with a billing-mode pill toggle), then a 3-up plan-card row (Starter/Team/Enterprise, each with a pill mono CTA), above a full-bleed 12-column row of flush gold gradient bars anchored to the bottom edge that undulate via a scroll-driven dual-sine wave (each bar offset by index) writing a -48px..+48px --bar-morph onto its base --bar-height through calc(), smoothed by a height 80ms linear transition.",
+  "techDelivery": "Vanilla multi-file Vite project (vite ^5.4.2, type:module, dev/build/preview scripts) with plain index.html + styles.css + script.js and a default vite.config.js; no frameworks and no animation libraries. All layout/visuals are pure CSS (grids, gradients, pseudo-element glows), fonts via Google Fonts preconnect+link, and the only JS is a passive scroll/resize listener that recomputes each bar's --bar-morph from two trig waves.",
+  "reskinNotes": "This template ships zero image/video/icon/svg assets — every visual (the 12 gold bars, the top-left cyan radial blur, the dark fade overlay over the bars) is hand-authored CSS gradients, so there are no asset sockets to fill, only fonts and color tokens. The bar look is NOT driven by the :root tokens: each .pricing-bar and .pricing-bar.muted bakes in raw rgba gradient stops (gold rgba(234,208,154,0.82)->rgba(87,76,43,0.42), muted rgba(201,180,124,0.7)->rgba(78,69,42,0.38), plus the rgba(255,247,222,...) specular hotspot and inset top-edge box-shadow), so recoloring the bars means editing those CSS rules, not a variable. The decorative cyan glow (rgba(151,211,235,...) in .pricing-section::before) has no token at all and only appears inline. The section background is a separate near-black #11120f / #11120f stops (in .pricing-section and the .pricing-bars::before fade), distinct from the page --bg #17130d. The billing-toggle active pill text #241d0f, the plan-card surface/border alphas (rgba(255,247,222,0.08..0.48)) and several row/border alphas (rgba(255,247,222,0.1), rgba(255,247,222,0.2)) are literal, not tokens. The 12 base bar heights (66/58/50/62/45/54/48/64/72/70/78/82%) and their alternating regular/.muted pattern are hardcoded inline per-div in the markup, and min-height:120px floors them. All copy (eyebrow, both headlines, body, table h3, 5 price rows with labels+values, the 'Per month/Per GiB' toggle, and 3 plan cards' titles/descriptions/CTA labels) is hardcoded in the HTML with no data source. Layout is font-metric-dependent: the pricing-copy h2 runs at line-height:1 with max-width:560px and the price table uses a minmax(0,1fr) auto two-column grid, so a wider/taller substitute font can reflow the headline or wrap price values; the 820px breakpoint collapses the top grid and each table row to single column (label above value) and stacks the plan cards, while 520px only narrows the plan width and shrinks the eyebrow."
+}

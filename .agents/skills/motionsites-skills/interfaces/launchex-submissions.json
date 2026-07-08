@@ -1,0 +1,65 @@
+{
+  "id": "launchex-submissions",
+  "role": "features",
+  "ownSections": [
+    "SubmissionsSection",
+    "NominationCard"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Center-column square showcase video (object-cover, autoplay/muted/inline, no controls, no border-radius); fills a 220->460px equal width/height box"
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display face for the 'submissions' H2 (.font-firs); native family 'TT Firs Neue' with Inter/system-ui fallback"
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Body/UI face for eyebrow label and all card title/subtitle text; native family 'Inter' with system-ui/-apple-system fallback"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'TT Firs Neue', 'Inter', system-ui, sans-serif",
+      "body": "'Inter', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F0F0F0",
+      "surface": "#F0F5F7",
+      "fg": "#154359",
+      "border": "rgba(6, 99, 119, 0.25)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "card-1-title",
+      "card-1-subtitle",
+      "card-2-title",
+      "card-2-subtitle",
+      "card-3-title",
+      "card-3-subtitle",
+      "card-4-title",
+      "card-4-subtitle",
+      "card-5-title",
+      "card-5-subtitle",
+      "card-6-title",
+      "card-6-subtitle"
+    ]
+  },
+  "mechanic": "A full-viewport vertically-centered three-column layout (left/right chamfered nomination cards flanking a center square autoplay video under a 'submissions' heading) with only a per-card hover-lift and a bottom transparent-to-surface gradient fade.",
+  "techDelivery": "plain React + Tailwind CSS (no extra UI libraries), with a small global CSS block declaring the body font and the .font-firs display-font class",
+  "reskinNotes": "Card 'border' is an inline SVG polygon whose stroke hex rgba(6,99,119,0.25) is baked into markup (not a CSS token), so border recolor requires editing the SVG; subtitle 'muted' tone is fg at opacity-80 rather than a distinct fgMuted color; all eyebrow/heading/6x card title+subtitle copy and the video source URL are hardcoded in JSX; #F0F5F7 surface is duplicated as the fade gradient's rgba(240,245,247,*) stops."
+}

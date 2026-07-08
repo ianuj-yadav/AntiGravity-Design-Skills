@@ -1,0 +1,56 @@
+{
+  "id": "luminex-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-screen HLS (.m3u8) looping hero background video that fills the entire viewport behind everything, autoplay + muted + playsInline + loop, object-cover so it bleeds edge-to-edge without distortion. It is the sole backdrop for the whole section, so the footage carries all visual weight. The glassmorphic nav and the bottom-left hero copy sit directly on top with no separate dark overlay declared, so deliver footage that stays mid-to-dark in the top strip (for nav legibility) and the lower-left quadrant (for the hero headline/CTA). Consumed as an HLS stream via hls.js with a native application/vnd.apple.mpegurl fallback; supply as a seamless short loop."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global UI typeface for the whole hero: the nav links, the bottom-left hero headline, supporting body line, and the CTA label. The source prompt does not name a family, so the brand display/body font fills this socket. Because the hero copy reads as white type over moving video, supply a face with solid weight at large display sizes and a legible 400/500 for the body line."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand wordmark or logo glyph anchored at the left of the glassmorphic navigation header. Supply transparent (alpha) so it floats on the translucent glass bar over the video, and as a single-color/currentColor mark that tints to the light foreground color for contrast against the dark footage. The source prompt does not specify a logo asset, so this is the brand mark socket for the nav."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "sans-serif",
+      "body": "sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.10)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.70)",
+      "border": "rgba(255, 255, 255, 0.20)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "eyebrow",
+      "headline",
+      "body",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A single full-viewport hero where an autoplaying looping HLS video plays edge-to-edge behind a fixed glassmorphic (backdrop-blur translucent) navigation header at the top and a left-aligned headline + CTA block anchored in the bottom-left corner.",
+  "techDelivery": "React landing-page component spec; full-screen HLS (.m3u8) background video driven by the hls.js library (with native application/vnd.apple.mpegurl fallback) and a glassmorphic header built with backdrop-blur translucent surfaces. The harvested prompt is a single high-level sentence with no embedded code, fonts, hex tokens, or asset URLs, so the exact CSS framework (e.g. Tailwind utilities vs. plain CSS) and animation library are not pinned by the source.",
+  "reskinNotes": "The source prompt for this template is a single high-level descriptive sentence and does NOT declare any concrete fonts, color hex/rgba tokens, component markup, or placeholder asset URLs (unlike richer MotionSites prompts). Every value in skin is therefore an inferred convention for the described look (white-on-dark glassmorphism over video), not a literal token lifted from the prompt, and must be re-derived against real markup before reskinning: the font families are generic sans-serif placeholders pending the brand face, and the translucent surface/border/fgMuted values are representative glassmorphism alpha-whites rather than declared constants. The hero is video-dependent: with no dark overlay specified, legibility of the nav and the bottom-left copy rests entirely on the supplied footage being mid-to-dark in the top strip and lower-left quadrant, so a brand reskin must coordinate the HLS clip with the type color rather than swapping a flat background. The bottom-left corner anchoring means the headline block's width and line breaks are layout-position-sensitive over the live video."
+}

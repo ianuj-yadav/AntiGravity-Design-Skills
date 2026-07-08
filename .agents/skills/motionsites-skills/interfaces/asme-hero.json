@@ -1,0 +1,55 @@
+{
+  "id": "asme-hero",
+  "role": "hero",
+  "ownSections": [
+    "NavigationBar",
+    "BackgroundVideo",
+    "HeroContent",
+    "SocialFooter"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen muted autoplay hero background video, absolute object-cover filling the min-h-screen black container behind all foreground UI. Shifted down 17% (translate-y-[17%]) so the top is cropped and the lower portion of the frame reads as the focal content. Loop is driven by a custom JS requestAnimationFrame opacity fade (500ms fade-in on load/loop, 500ms fade-out at 0.55s remaining) rather than the native loop attribute, so the source should tolerate a hard currentTime=0 reset and read cleanly at full and zero opacity."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display serif for the H1 headline only, applied via inline fontFamily. Native value is Google Font 'Instrument Serif' (regular + italic). Loaded via CSS @import; needs a serif fallback."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.8)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.45)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-signup-label",
+      "nav-login-label",
+      "headline",
+      "email-placeholder",
+      "body",
+      "manifesto-label",
+      "social-aria-labels"
+    ]
+  },
+  "mechanic": "A single full-screen flex-column hero (liquid-glass nav, centered Instrument Serif headline with a glass email-capture bar and manifesto button, and a glass social-icon footer) layered over a fullscreen object-cover background video that loops via a custom requestAnimationFrame opacity fade in/out.",
+  "techDelivery": "Vite + React 18 + TypeScript single component, Tailwind CSS 3 (default config, no extensions), lucide-react for all icons; Instrument Serif via CSS @import, liquid-glass effect as a hand-authored .liquid-glass class, video loop fade driven by useRef + useEffect + requestAnimationFrame.",
+  "reskinNotes": "The signature .liquid-glass class bakes white rgba values into the surface (rgba(255,255,255,0.01) + luminosity blend), the inset highlight (inset 0 1px 1px rgba(255,255,255,0.1)), and especially the ::before rim gradient (linear-gradient with rgba(255,255,255,0.45/0.15/0) stops + a -webkit-mask-composite:xor border-only mask), so every glass element assumes a light rim over a dark video and retinting requires editing that CSS rather than a token. fgMuted is expressed as Tailwind opacity utilities (text-white/80, placeholder:text-white/40) rather than a single hex, so muting varies per element. The background video's 17% downward crop (translate-y-[17%]) and the hero's -translate-y-[20%] vertical offset are framing magic numbers tuned to this video and viewport. The headline is whitespace-nowrap and font-metric-dependent on Instrument Serif (tracking-tight), so a longer headline or a substitute display font can overflow or rewrap. All copy (logo 'Asme'; nav 'Features'/'Pricing'/'About'; 'Sign Up'/'Login'; headline 'Built for the curious'; email placeholder; the subscribe subtitle; the manifesto button) and the Instagram/Twitter/Globe icon choices plus their aria-labels are hardcoded in JSX."
+}

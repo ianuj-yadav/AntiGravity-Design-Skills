@@ -1,0 +1,79 @@
+{
+  "id": "ai-image-generator-ui",
+  "role": "hero",
+  "ownSections": [
+    "CoreFeatures"
+  ],
+  "slots": [
+    {
+      "id": "font-inter",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single typeface for the entire section: the 'Core Features' badge (600), the 'Built for Speed & Quality' title (500, the display use), the subtitle (400), the three card h3 headings (600), and all pill/prompt-box body copy. Native family: Inter (weights 400/500/600), loaded from Google Fonts (https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap). Layout is font-metric dependent: the title uses letter-spacing -0.02em at 2.75rem (2.25rem under 600px) and the prompt-box / pills are fixed-size absolutely-positioned boxes, so a wider replacement face shifts the card overlays."
+    },
+    {
+      "id": "card2-network-image",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "API-network diagram art that fills the upper body of Card 2 ('API Access'). Renders as <img class=\"c1-network-img\"> inside .c1-api-visual (width 100%, height 180px, object-fit contain, 20px top margin), so the subject should be a transparent line/diagram graphic that reads against the pink->cream radial card gradient. Placeholder host is r2.dev (viktor/network.svg) — this is the asset socket, not a value to keep."
+    },
+    {
+      "id": "card3-folder-image",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Folder / library glyph art centered near the top of Card 3 ('Project Library'). Renders as <img class=\"c1-folder\"> absolutely positioned top:50px, horizontally centered (left:50%; translateX(-50%)), width 170px, with a soft drop-shadow, sitting over the dotted .c1-mesh overlay. Transparent cutout required. Placeholder host is r2.dev (viktor/library icon.svg) — socket to be filled by a brand asset."
+    },
+    {
+      "id": "card1-cursor-arrow-svg",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Decorative mouse-cursor arrow prop on Card 1 ('Smart Prompt Suggestions'), absolutely positioned top:205px/left:110px, 24x24, z-index 10. Inline SVG path (M4 2L20 11L11 13L9 22L4 2Z) filled #0f172a (the fg hex) with a 1px white stroke and a drop-shadow. Tints via fill; transparent background."
+    },
+    {
+      "id": "card3-search-icon-svg",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Lucide-style search (magnifying glass) icon inside the 'Search in library' pill on Card 3: 14x14, inline SVG (circle cx=11 cy=11 r=8 + line 21,21->16.65,16.65), stroke #64748b (the fgMuted hex), stroke-width 2, round caps/joins, no fill. Tints via stroke; transparent."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#F4F8F9",
+      "fg": "#0f172a",
+      "fgMuted": "#64748b",
+      "accent": "#FFB347",
+      "accent2": "#E5A1F5",
+      "border": "#000000"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "subtitle",
+      "card-1-heading",
+      "card-1-prompt-text",
+      "card-1-pill-label",
+      "card-2-heading",
+      "card-3-heading",
+      "card-3-search-label"
+    ]
+  },
+  "mechanic": "A max-width 1100px centered header (gradient-clip badge + title + subtitle) above a static three-up gradient feature-card grid (collapsing 3->2->1 columns), where each 340px card is a fixed radial-gradient panel with absolutely-positioned decorative props (prompt box + cursor on Card 1, network image on Card 2, folder + dotted mesh + search pill on Card 3) and a bottom-anchored heading; purely static styling, no motion or hover.",
+  "techDelivery": "Hand-authored single static HTML + CSS component spec (BEM-ish .c1-* classes, no framework or build step), Inter via a Google Fonts <link>, all decorative marks as inline SVG; no JavaScript or animation, Supabase noted as optional but unused.",
+  "reskinNotes": "Brand color lives entirely in inline CSS with literal hex, not variables: the badge text uses a clipped linear-gradient(90deg,#F5C344,#F28482,#B567C2); each card has its own three-stop radial-gradient (Card1 #FFB347/#F9ED96/#F4F8F9, Card2 #E5A1F5/#F8ACA0/#F4F8F9, Card3 #F9ED96/#E5A1F5/#F4F8F9) and the Card1 prompt 'blur' phrases use a clipped linear-gradient(90deg,#FFB347,#E5A1F5) — so the 7 colorRoles only sample these palettes (#F5C344/#F28482/#B567C2/#F9ED96/#F8ACA0, plus prompt-text #475569 and sparkle #a855f7, have no role); a real retint means editing every gradient. The two SVG decorations carry baked stroke/fill hex (#0f172a, #64748b) and the pills/prompt boxes use literal '1px solid black' borders and white backgrounds. The 'Add more details' pill includes a hardcoded Unicode sparkle glyph (U+2726 '✦') colored #a855f7 inline rather than a swappable icon. The two image sockets are hardcoded r2.dev placeholder URLs (one filename is space-encoded 'library%20icon.svg'). All copy ('Core Features', 'Built for Speed & Quality', 'Everything you need to go / from idea to image', the three card headings, the sample prompt sentence with its bold sub-phrases, 'Add more details', 'Search in library') is hardcoded in markup, and the subtitle's line break is a literal <br>. The card decorations are positioned with fixed top/left pixel offsets, so swapping fonts or asset sizes can misalign the cursor, pill, and mesh overlays."
+}

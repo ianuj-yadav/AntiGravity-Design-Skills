@@ -1,0 +1,17 @@
+{
+  "id": "creative-studio",
+  "title": "Creative Studio",
+  "category": "Agency",
+  "sort_order": 999,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-05-11T05:59:00+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": "https://stream.mux.com/gzcKZeWPVE0100AbmzB2CIun2zAyPweshVRfONxYCkhpU.m3u8",
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

@@ -1,0 +1,62 @@
+{
+  "id": "guardnet-demo",
+  "role": "about",
+  "ownSections": [
+    "SecuritySection",
+    "CompaniesSection"
+  ],
+  "slots": [
+    {
+      "id": "security-hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video for SecuritySection (absolute inset-0 w-full h-full object-cover, autoPlay loop muted playsInline). It fills a min-h-[600px] h-screen container and sits under a top black-to-transparent fade overlay plus white overlaid pill nav and two white/80-90 paragraphs, so supply a dark, low-contrast cinematic loop that keeps white text and the orange gradient pill legible. Crop-tolerant (object-cover, no reserved text safe-area)."
+    },
+    {
+      "id": "company-logo-icons",
+      "type": "svg",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four monochrome white-fill logo glyphs (h-6 w-6 sm:h-8 sm:w-8, fill white, viewBox 0 0 24 24), one centered in each CompaniesSection card next to a text wordmark: Apex (star), forge (hex/cube), Eastern Delta (W), Skybank (stacked diamonds). Currently authored as inline <svg> path elements baked directly into the card markup, not external files — a reskin swaps the four paths/wordmarks wholesale. Single-color marks that must read as white over a near-black neutral-950 card with soft blurred color blobs behind them."
+    },
+    {
+      "id": "futura-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The single typeface for the entire page (nav, headlines, body, wordmarks), loaded via an onlinewebfonts.com @import as 'Futura Md BT Medium' with a system-ui / -apple-system / sans-serif fallback stack. Geometric medium-weight sans set in all-lowercase with antialiasing; the substitute should hold a clean geometric lowercase look at small body sizes (13-18px) and the larger 3xl card wordmarks."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Futura Md BT Medium', system-ui, -apple-system, sans-serif",
+      "body": "'Futura Md BT Medium', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#0a0a0a",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#FA8453",
+      "accent2": "#F8C9B2",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "nav-ghost-label",
+      "nav-cta-label",
+      "security-left-paragraph",
+      "security-right-paragraph",
+      "company-wordmarks",
+      "companies-paragraph",
+      "companies-cta-label"
+    ]
+  },
+  "mechanic": "Two stacked black sections — a full-height hero with a looping background video under a top fade, a centered glass pill nav and two floating paragraphs, above a 2/4-col grid of neutral-950 logo cards lit by blurred color blobs — with no JS animation; all motion comes from the looping video.",
+  "techDelivery": "React + TypeScript components styled with Tailwind CSS utility classes (no extra libraries beyond React and Tailwind), mobile-first responsive across default/sm/md tiers, with a single onlinewebfonts @import for the Futura web font and a few inline style props for linear-gradient fills.",
+  "reskinNotes": "The four company logos are inline <svg> path strings hardcoded in the card markup (not assets), and every brand color is baked as a Tailwind arbitrary value or inline style rather than a token: the orange→peach button gradient (linear-gradient(90deg,#FA8453 0%,#F8C9B2 100%)) is repeated inline on both CTAs (filled pill and gradient-border pill), and the decorative blob colors bg-[#1e3a8a], bg-[#FA8453], bg-[#F5D547] are per-card literals with hand-tuned opacities/offsets — none are tokenized, so reskinning means editing class lists and inline styles in place. The card surface is Tailwind's neutral-950 (not a custom hex). All copy is hardcoded lowercase in the markup, including the two long security paragraphs, the per-card wordmarks (Eastern Delta carries a literal <br/> line break), and both button labels (the hero CTA reads 'run demo', the bottom CTA 'Run Demo' — inconsistent casing). Body text opacity is not a single muted value; it varies per element from white/70 through white/90."
+}

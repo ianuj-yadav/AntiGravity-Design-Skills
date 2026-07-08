@@ -1,0 +1,77 @@
+{
+  "id": "kresna-footer",
+  "role": "footer",
+  "ownSections": [
+    "FooterLeft",
+    "FooterRight",
+    "Watermark"
+  ],
+  "slots": [
+    {
+      "id": "left-card-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Background video filling the 350px-wide left card (position:absolute; inset:0; object-fit:cover; z-index:0; pointer-events:none) behind the logo, tagline and social row; autoplay, muted, playsinline, no controls and NO overlays/tints/noise. Cover-cropped to a near-square card, so any source aspect works; #1e4fc0 is the fallback background before it loads."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four 15x15 white brand glyphs (Discord, X/Twitter, LinkedIn, GitHub, in that order) inside 36x36 near-black rounded tiles in the left-card social row; supplied as <svg viewBox=\"0 0 24 24\"> path data filled white, lifting on hover."
+    },
+    {
+      "id": "display-body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary sans (native: DM Sans, Google Fonts weights 400/500/600/700) carrying body, nav links, buttons, logo wordmark, the 'K' logo marks, and the giant watermark <text>; the watermark's getBBox fit is sensitive to this font's metrics."
+    },
+    {
+      "id": "accent-script-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Handwritten accent face (native: Caveat, Google Fonts weights 500/600/700) used only for the 'Stay in touch!' label, the 'Feeling lucky?' badge text, and the italic column titles 'Navigation'/'Company'."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "DM Sans",
+      "body": "DM Sans",
+      "accent": "Caveat"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#f0f1f5",
+      "fg": "#111827",
+      "fgMuted": "#9ca3af",
+      "accent": "#1f65d6",
+      "accent2": "#1448be",
+      "border": "#e5e7eb"
+    },
+    "copySlots": [
+      "brand-name",
+      "tagline",
+      "social-label",
+      "lucky-badge-label",
+      "lucky-cube-mark",
+      "nav-col-1-title",
+      "nav-col-1-links",
+      "nav-col-2-title",
+      "nav-col-2-links",
+      "cta-headline",
+      "subscribe-placeholder",
+      "subscribe-cta-label",
+      "copyright",
+      "watermark-wordmark"
+    ]
+  },
+  "mechanic": "A max-w-1150px two-column CSS grid (350px video-backed dark card + 1fr light-gray nav card with a rotated 'Feeling lucky?' cube badge overflowing its top edge) sits above a giant faded brand wordmark whose SVG viewBox is refit to the glyph bounding box via getBBox() after fonts load and on resize; all motion is hover-driven CSS transitions (no keyframes) over one autoplaying looping background video.",
+  "techDelivery": "Single self-contained .html file with inline <style> and inline <script>, Google Fonts (DM Sans + Caveat) loaded in <head>, and a vanilla-JS getBBox watermark fitter run on document.fonts.ready and resize.",
+  "reskinNotes": "Brand identity is baked into markup in several non-token places: the watermark is a hardcoded SVG <text>Kresna</text> and the two logo badges are hardcoded 'K' letters, so a rename needs three text edits PLUS a re-run of the getBBox fitter (the watermark viewBox is font-metric-dependent and only auto-fits after font load/resize). The 'Feeling lucky?' cube gradient (linear-gradient(135deg,#5b9ffb,#1e5dd7,#1448be)) and its layered inset/drop box-shadows, plus the dark icon/button surfaces (#0e1014, #111214, #000) and the left-card fallback #1e4fc0, are all inline hex not exposed as variables. The hand-drawn lucky arrow and the four social glyphs are hardcoded inline SVG path data (social paths are real brand marks). All copy (Kresna name, tagline, nav links, CTA headline, copyright, button/placeholder text) is hardcoded in the markup."
+}

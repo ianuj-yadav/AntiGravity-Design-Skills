@@ -1,0 +1,84 @@
+{
+  "id": "13",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "MarqueeBanner",
+    "ShippingSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": "bg",
+      "notes": "Fullscreen looping hero background video, autoplay + muted + playsInline, rendered full width as w-full h-auto object-cover behind the overlaid 'Framelix 3D / Cinematic Motion Studios' headline and the bottom 'Explore Reel' CTA. There is NO scrim/overlay, so the footage must be dark/cinematic enough on its own for the white headline and white pill button to stay legible. Currently a CloudFront placeholder mp4 (d8j0ntlcm91z4.cloudfront.net/...9feec9ab... .mp4) — replace with a brand-owned cinematic reel loop."
+    },
+    {
+      "id": "shipping-product-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Square product/showreel video in the 'Shipping Now' section, autoplay + muted + looped, rendered at a fixed 800x800px box with object-contain + rounded-2xl and -my-24 negative vertical margin to overlap the surrounding light-gray panel. Sits on the #EAEAEA light-gray surface (NOT the black hero), so it must read against light. object-contain means the asset's own framing/background shows through the letterboxing — supply a clean centered product/figure loop. Currently a CloudFront placeholder mp4 (d8j0ntlcm91z4.cloudfront.net/...03a5f7ec... .mp4)."
+    },
+    {
+      "id": "brand-logo",
+      "type": "image",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Navbar brand logo in the top-left, rendered at 36px height as an <img>. The markup forces it white via CSS filter brightness-0 invert, so the supplied asset can be any solid color but should be a transparent-background mark whose silhouette survives being flattened to pure white. Sits on the black navbar."
+    },
+    {
+      "id": "cart-ticket-icon",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Custom ticket/coupon-shaped cart glyph at the top-right of the navbar: a 27x30 viewBox SVG with scalloped (notched) edges, drawn in white on the black navbar, with the live cart-count number ('0') absolutely overlaid and centered on top of it. Deliver as a single-color transparent SVG (currentColor / fill-inheriting) so the count text stays centered and the mark stays tintable in the white-on-black scheme."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single global typeface: Inter (imported from Google Fonts), carrying every text element across all four sections — nav links, the superscript 'Framelix 3D' lockup, the 'Cinematic Motion Studios' and 'Shipping Now' headlines (clamp 2rem->68px / 2rem->52px, medium weight), both pill CTAs ('Explore Reel', 'Buy Now'), the marquee text, and the 'Explore now' label (font-weight 450). Swap with the brand display/body sans; the clamp headline sizes and medium/450 weights are tuned to Inter's metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#EAEAEA",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#A6A4FF"
+    },
+    "copySlots": [
+      "nav-labels",
+      "brand-name",
+      "brand-superscript",
+      "hero-headline",
+      "hero-cta-label",
+      "hero-cta-subtext",
+      "marquee-text",
+      "shipping-headline",
+      "shipping-cta-label",
+      "shipping-cta-subtext",
+      "cart-count"
+    ]
+  },
+  "mechanic": "A pure-black multi-section landing page (white logo + 3-column nav + scalloped ticket cart navbar) stacking a full-screen unscrimmed object-cover looping hero video with framer-motion fade/slide-in headline and CTA, a lavender (#A6A4FF) infinite CSS translateX(0->-50%) 20s-linear marquee banner, and a light-gray (#EAEAEA) rounded-bottom 'Shipping Now' section centered on an 800x800 object-contain looping product video.",
+  "techDelivery": "React + Tailwind CSS + TypeScript with framer-motion; Inter loaded from Google Fonts; the hero headline/CTA entrance uses framer-motion fade+slide (0.8s, with a 0.3s-delayed up-slide on the CTA) while the marquee is a pure CSS keyframe (translateX 0 to -50%, 20s linear infinite) registered in tailwind.config alongside the tailwindcss-animate plugin; rounded-full pill buttons and a 9999px global border-radius token; the cart icon is an inline scalloped SVG and the logo is an <img> whitened via the brightness-0 invert filter.",
+  "reskinNotes": "Three distinct background surfaces are baked as literal hex per section rather than a single token set: black (#000) shell, lavender #A6A4FF marquee, and light-gray #EAEAEA shipping panel (40px rounded bottom corners) — a retint means editing each section, and the marquee/shipping blocks flip to black-on-light text so a dark brand palette can invert legibility. The hero video has NO overlay scrim, so a light reel drops the white headline + white pill out. The logo relies on a CSS brightness-0 invert filter to force white, which silently breaks if the brand mark is multi-color or already white-on-transparent. The scalloped ticket/coupon cart icon is a hand-authored 27x30 inline SVG path with the count number overlaid — a different cart silhouette means redrawing the path, not swapping a token. Headline sizes are viewport clamps (2rem->68px hero, 2rem->52px shipping) at medium weight tuned to Inter, the 'Explore now' label is an unusual font-weight 450, and the shipping video uses fixed 800x800 + -my-24 negative margins, so a wider face / longer copy / non-square video reflows those blocks. All copy ('Framelix' + '3D' superscript, 'Cinematic Motion Studios', 'Ready in 24-48 hours', 'New! 3D OS V1.2.1 out now!' x6, 'Shipping Now', 'Explore Reel', 'Buy Now', 'Explore now', the nav labels Reels/Services/Projects/Pipeline/Careers/Get In Touch, and the '0' cart count) is hardcoded in the markup."
+}

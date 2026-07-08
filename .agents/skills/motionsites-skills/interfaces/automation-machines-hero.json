@@ -1,0 +1,63 @@
+{
+  "id": "automation-machines-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "spline-scene",
+      "type": "other",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Fullscreen 3D Spline runtime scene (.splinecode) behind all content, absolute inset-0 z-0, lazy-loaded via Suspense, shifted translateX(15%); black div fallback while loading."
+    },
+    {
+      "id": "feature-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three circular outline icon buttons (Lucide Snowflake, Maximize, Zap) at 16px in w-10 h-10 rounded-full borders; monochrome, tinted by foreground color."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Orbitron",
+      "body": "Space Grotesk",
+      "mono": "JetBrains Mono",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.10)",
+      "fg": "#f5f5f5",
+      "fgMuted": "#888888",
+      "accent": "#F27D26",
+      "border": "#1f1f1f"
+    },
+    "copySlots": [
+      "headline-line-1",
+      "headline-line-2",
+      "body",
+      "specs-label",
+      "spec-row-1-label",
+      "spec-row-1-value",
+      "spec-row-2-label",
+      "spec-row-2-value",
+      "spec-row-3-label",
+      "spec-row-3-value",
+      "spec-row-4-label",
+      "spec-row-4-value",
+      "pill-active",
+      "pill-2",
+      "pill-3",
+      "pill-4"
+    ]
+  },
+  "mechanic": "Single full-viewport dark hero with a fullscreen 3D Spline scene behind pointer-events-none content, where heading, subtitle, icons, specs card, and pill bar enter on a timed initial-to-animate stagger (0s-1s) rather than on scroll.",
+  "techDelivery": "Vite + React 19 single-section app with Tailwind CSS v4 (@tailwindcss/vite + @theme tokens), motion/react for entrance animation, lucide-react icons, and @splinetool/react-spline runtime.",
+  "reskinNotes": "Spline scene is an opaque externally-hosted .splinecode asset that cannot be recolored or re-themed without re-authoring in Spline. Heading gradient (from-white/20 via-white/70 to-white) and the entire white-opacity tint scale (white/80..white/5) assume a near-black background, so any non-dark bg breaks contrast. Declared --color-brand-orange (#F27D26) is unused in the hero. All copy (headline, subtitle, four spec rows, four pill labels) is hardcoded in JSX markup. Font choices are metric-specific: Orbitron at font-extralight with tracking-tight and leading-[0.9] is tuned for that wide geometric face."
+}

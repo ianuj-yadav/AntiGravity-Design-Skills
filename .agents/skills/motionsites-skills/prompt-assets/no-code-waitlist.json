@@ -1,0 +1,17 @@
+{
+  "id": "no-code-waitlist",
+  "title": "No-Code Waitlist",
+  "category": "Waitlist",
+  "sort_order": 999,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-05-20T06:10:00+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": "https://stream.mux.com/iY611PYuZ02AKpIzYB4Q1BMpl7W2O3UwqjQm9p01xlmVg.m3u8",
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

@@ -1,0 +1,75 @@
+{
+  "id": "neural-interface",
+  "role": "hero",
+  "ownSections": [
+    "Header",
+    "Hero",
+    "CinematicParagraph",
+    "StatsCarousel"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen scroll-scrubbed background video living in the fixed #video-layer (position:fixed inset-0, object-fit cover, z-1, muted playsInline). It does NOT autoplay on a timeline — the JS seeks video.currentTime to the page scroll progress and drives a progressive blur (0->~55px) + scale (1.03->1.11) + entrance zoom/opacity fade-in over it. Supply a seamless muted loop whose whole duration reads well when scrubbed frame-by-frame. URL is hardcoded twice (markup src + JS VIDEO_URL const)."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Logo-pill brand mark, currently an inline 4-fold rotational SVG glyph (viewBox -50 -50 100 100, one path replicated at rotate 0/90/180/270, fill=currentColor). Single-color flat shape that tints to fg; rendered 18x18 in the desktop glass logo pill and 14x14 in the mobile pill. Path geometry is hardcoded inline (and duplicated across the desktop + mobile headers)."
+    },
+    {
+      "id": "download-cta-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Glyph inside the white 'Download' pill button, currently the Bootstrap Icons 'bi-apple' mark (font icon, 16px desktop / 13px mobile, color #000 so it reads on the white accent button). Sits left of the 'Download' label; swap for the brand's platform/app-store glyph."
+    },
+    {
+      "id": "mono-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary typeface served from Google Fonts as 'Space Mono' (400/700, + italics) and set on html/body as the global monospace face; also re-declared explicitly on .stat-title and .stat-footer. Fills BOTH the 'mono' and 'body' font roles (the template has no separate display/serif face). The fixed-width scramble-in title layout depends on its monospace metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "\"Space Mono\", monospace",
+      "mono": "\"Space Mono\", monospace"
+    },
+    "colorRoles": {
+      "bg": "#000",
+      "surface": "rgba(255,255,255,0.15)",
+      "fg": "#fff",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "accent": "#fff",
+      "border": "rgba(255,255,255,0.05)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-links",
+      "download-cta-label",
+      "hero-title-lines",
+      "hero-description",
+      "cinematic-paragraph",
+      "stat-card-titles",
+      "stat-card-values",
+      "stat-card-details",
+      "stat-card-footers"
+    ]
+  },
+  "mechanic": "A single tall scroll page that fixes a fullscreen background video and scrubs its currentTime to scroll progress while progressively blurring + scaling it, over which a glyph-scramble-in/out hero title and a 3D-perspective parallax paragraph (rotateX(24deg) + translateY/Z with an opacity keyframe band) animate, closing on a coverflow Swiper stats carousel that reveals on scroll; Lenis smooths the wheel on desktop and a timed entrance fades the video/header/content in.",
+  "techDelivery": "Single-file static HTML document with all CSS inline in one <style> block and all behavior in one vanilla-JS IIFE (no framework, no build step). CDN deps: Swiper 11 (CSS + JS, coverflow carousel), Bootstrap Icons 1.11.3, Google Fonts 'Space Mono'; Lenis 1.1.18 is injected dynamically and only on non-mobile. The hero glyph scramble, scroll-scrub video seeking, parallax, and stats reveal are all hand-rolled in a single requestAnimationFrame tick loop.",
+  "reskinNotes": "No CSS custom properties at all — every color is a literal #000/#fff or white-rgba stop (glass fills 0.15/0.22/0.04, card-inner bg rgba(0,0,0,0.45), borders 0.05, muted text 0.6/0.85/0.55) repeated inline across dozens of rules, so each tone (and both the desktop + duplicated mobile header) must be hand-retinted; the white 'Download' pill is the only accent and is welded to literal #fff bg / #000 text. The brand-mark SVG path is hardcoded inline and duplicated in both headers. All copy is baked into markup/JS: the hero title is split into scramble <span>s whose visible width is set by hand-counted &nbsp; runs and a data-text attribute (changing the words requires re-tuning those spacer counts to the Space-Mono monospace metrics), the cinematic <h2> paragraph is inline, and the six stat cards (title/value/details/footer) live in the JS statsData array. The background-video URL is hardcoded twice (markup src + JS VIDEO_URL). The download button href is a hardcoded personal Instagram link. The .swiper-slide supports a background-image but the carousel is built purely from text data, so there is no image socket to fill (and no real footer/contact section ships)."
+}

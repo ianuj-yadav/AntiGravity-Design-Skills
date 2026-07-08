@@ -1,0 +1,32 @@
+{
+  "name": "stitch-ui",
+  "version": "2.0.0",
+  "description": "Google Stitch UI design automation skill for OpenClaw / AI agents. Generate production-ready UI code from text prompts via official Stitch Remote MCP API (API Key or OAuth). Includes Design System management.",
+  "keywords": [
+    "stitch",
+    "google",
+    "ui",
+    "design",
+    "mcp",
+    "remote-mcp",
+    "api-key",
+    "design-system",
+    "playwright",
+    "openclaw",
+    "agent-skill",
+    "tailwind",
+    "code-generation"
+  ],
+  "author": "CLOUD(HK)LIMITED",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudlinkhk/stitch-ui-skill"
+  },
+  "peerDependencies": {
+    "playwright-core": ">=1.40.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

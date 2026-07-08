@@ -1,0 +1,32 @@
+{
+  "id": "book-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroVideo"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video — the single defining asset of this 'Book Hero' template (the catalog ships exactly one video_preview_url, a Mux HLS stream stream.mux.com/y02SDCqb8MF01eRScUoroDtPFAtqYFeEpeexz01F7ywRco.m3u8, and NO image_preview_url). Treat as an opaque object-cover backdrop that fills the viewport behind centered hero copy; autoplay + muted + playsInline + loop; supply a seamless short loop kept mid-to-dark so overlaid text stays legible. The Mux stream is a placeholder to be replaced with a brand clip."
+    }
+  ],
+  "skin": {
+    "fontRoles": {},
+    "colorRoles": {},
+    "copySlots": [
+      "headline",
+      "eyebrow",
+      "body",
+      "cta-label"
+    ]
+  },
+  "mechanic": "Single full-viewport hero built around one opaque fullscreen autoplay/muted/loop object-cover background video with centered hero copy layered over it.",
+  "techDelivery": "Not declared in the captured prompt. Catalog metadata only (id=book-hero, type=hero, one Mux HLS video_preview_url); the harvested prompt_text for this template is the placeholder '1', so the authoring stack (React/Tailwind/GSAP/etc.) is unspecified.",
+  "reskinNotes": "SPEC NOT CAPTURED: every source in this export (prompts/book-hero.txt, prompt-assets/book-hero.json, prompts-with-text.json, prompt-metadata.tsv) carries the placeholder prompt_text '1' instead of the real spec, so fonts, color hexes, component structure, motion, and copy could NOT be read from the prompt. This interface is reconstructed from catalog metadata alone: title 'Book Hero', category/type 'hero', and a single Mux video preview with no image preview — hence one HeroVideo section and one video slot. fontRoles and colorRoles are intentionally empty (no native typefaces or hex/rgba values are declared anywhere); copySlots are the generic hero text fields a booking hero implies (headline/eyebrow/body/cta-label), not slots verified against markup. Before skinning, re-harvest the real book-hero prompt and re-derive slots/skin; until then a brand should supply only the looping hero video and standard hero copy."
+}

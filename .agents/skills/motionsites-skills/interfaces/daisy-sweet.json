@@ -1,0 +1,51 @@
+{
+  "id": "daisy-sweet",
+  "role": "features",
+  "ownSections": [
+    "ScentFinderSection",
+    "ProductPanel"
+  ],
+  "slots": [
+    {
+      "id": "product-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Single looping product/atmosphere film that fills the right half of the section. The exact same source is rendered twice via two absolute inset-0 object-cover <video autoPlay muted loop playsInline> elements: a desktop panel (hidden below md, fills the right grid column to min-h-screen) and a mobile strip (md:hidden, fixed height:75vw below the product panel). object-cover crops the footage into both a tall half-screen portrait box and a wide 75vw landscape strip, so the asset has no fixed authoring aspect and must read well center-cropped in both orientations. A #111 background shows behind it while it loads. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "product-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "11:17",
+      "alpha": false,
+      "colorRole": "surface",
+      "notes": "Hero product bottle shot inside the left sky-blue panel. Rendered object-cover into a fixed portrait box (aspectRatio 220/340 ~ 11:17, width clamp(140px,40%,220px), borderRadius 2px) over a #D9D9D9 placeholder fill that shows while it loads. Cover-cropped and opaque (the box is filled), so transparency is not required; supply a full-bleed packshot framed for an upright ~11:17 crop."
+    }
+  ],
+  "skin": {
+    "colorRoles": {
+      "bg": "#4BB3ED",
+      "surface": "#D9D9D9",
+      "fg": "#000000",
+      "accent": "#ffffff",
+      "accent2": "#111",
+      "border": "#000000"
+    },
+    "copySlots": [
+      "eyebrow-left",
+      "eyebrow-right",
+      "product-name",
+      "product-size",
+      "note-label",
+      "note-ingredient",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A two-up layout (md grid 1fr/1fr min-h-screen, stacked flex-col on mobile) pairing a static sky-blue product panel against a fullscreen object-cover looping product video, where an IntersectionObserver one-shot (threshold 0.15) flips a persistent visible flag that fires a staggered fade+slide-up entrance (opacity 0 + translateY -> 0, cubic-bezier(0.22,1,0.36,1)) cascading through the panel's labels, bottle, caption, notes, and SHOP NOW button (delays 0/300/600/900/1150ms).",
+  "techDelivery": "Standalone React 18 + TypeScript + Tailwind CSS 3 (default config/breakpoints) + Vite component spec, no extra packages. Entrance motion is a hand-rolled anim(visible, delay, {y,x,duration}) helper that returns a spread-able { style } object of inline opacity/transform CSS transitions (no motion library); reveal is gated by a native IntersectionObserver in a useEffect.",
+  "reskinNotes": "All copy and both asset URLs are hardcoded in the component (SCENT_PRODUCT object + verbatim CloudFront video URL): product name 'Eau So Sweet', size '100 ml / 3.3 oz', the three note label/ingredient pairs, the top eyebrow labels (Daisy love/Sweet, or Daisy wild/Playful when the unused noteStyle='bold' variant is selected), and the 'SHOP NOW' button text. Colors are literal hex baked into inline styles and constants, not tokens: #4BB3ED panel bg, #000000 for every text run and the 1px button border, #D9D9D9 image placeholder, #111 video-load backdrop, and the #ffffff button hover fill that scales in from origin-left (with group-hover:text-black keeping the label legible over white). The note ingredients render uppercase tracking-widest as authored, and the bottle box is a fixed 220/340 aspect with width clamp(140px,40%,220px), so a differently-proportioned packshot will be cover-cropped. No fonts are declared — the section intentionally uses Tailwind's default system sans stack, so there is no swappable typeface."
+}

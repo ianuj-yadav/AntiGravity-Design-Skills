@@ -1,0 +1,104 @@
+{
+  "id": "aetheris-voyage-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Capabilities"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video for Section 1. Rendered oversized at width/height 120% (style), absolute left-1/2 top-0 -translate-x-1/2, object-cover object-top z-0, so the top of the frame is the focal point and the bleed hides edges. No dark overlay sits on top — contrast comes from the liquid-glass chrome — so the upper-center of the footage should stay mid-to-dark for white UI legibility. Driven by the FadingVideo component (rAF crossfade, native loop attribute OFF, manual loop on ended); supply as a seamless short loop, autoplay/muted/playsInline/preload=auto."
+    },
+    {
+      "id": "capabilities-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video for Section 2 (Capabilities). Full-bleed, no 120% scale: absolute inset-0 w-full h-full object-cover z-0. Same FadingVideo rAF-crossfade treatment, no overlay; white text and three liquid-glass cards sit on top, so footage should read mid-to-dark across the frame. Supply as a seamless short loop, autoplay/muted/playsInline/preload=auto."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading typeface, used ALWAYS in italic. Mapped to Tailwind font-heading -> 'Instrument Serif', serif. Drives the navbar logo glyph 'a', the word-by-word BlurText hero headline (text-6xl..5.5rem, leading-[0.8], tracking-[-4px]), the Capabilities heading (up to 6rem, tracking-[-3px]), the large stat numbers (text-4xl), the 5 partner names (text-2xl/3xl), and the three capability card titles. Loaded from Google Fonts (Instrument+Serif:ital@0;1). The aggressive negative letter-spacing is tuned to this face's metrics."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/UI typeface mapped to Tailwind font-body -> 'Barlow', sans-serif. Drives nav links, badge text, the hero subheading (font-light), CTA labels, stat labels, the Capabilities kicker, the pill tags, and the three capability card body paragraphs. Weights used: 300/400/500/600. Loaded from Google Fonts (Barlow:wght@300;400;500;600)."
+    },
+    {
+      "id": "ui-action-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline lucide-style action icons authored as raw SVG in markup (24x24, currentColor, strokeWidth 2, round caps), tinted via currentColor to white (or black on the inverted white CTA). [0] ArrowUpRight (M7 17L17 7 + M7 7h10v10) used on the navbar 'Claim a Spot' button and the primary 'Start Your Voyage' CTA. [1] Play (filled polygon 6 4 20 12 6 20 6 4) used on the secondary 'View Liftoff' link. Geometry is hardcoded as SVG path data, not an icon-font reference."
+    },
+    {
+      "id": "stat-card-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Two 28x28 white outline SVG icons, one per hero stat card, tinted via currentColor (text-white). [0] clock (card 1: '34.5 Min'), [1] globe (card 2: '2.8B+'). Authored inline in markup as SVG paths; swap for brand-relevant metric glyphs while keeping the currentColor tint so the white-on-glass treatment holds."
+    },
+    {
+      "id": "capability-card-icons",
+      "type": "icon",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three Material-Icons SVG glyphs, one per Capabilities card, each sitting in a 44x44 nested liquid-glass square (h-6 w-6, fill currentColor, text-white). [0] image icon (AI Scenery), [1] movie icon (Batch Production), [2] lightbulb icon (Smart Lighting). The exact Material path 'd' strings are hardcoded inline in markup ('random Material icons' per the spec); reskinning means swapping the path data."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.9)",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "logo-glyph-letter",
+      "nav-labels",
+      "navbar-cta-label",
+      "badge-chip-label",
+      "badge-text",
+      "headline",
+      "subheading",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "stat-1-value",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-label",
+      "partners-chip-label",
+      "partner-names",
+      "capabilities-kicker",
+      "capabilities-heading",
+      "capability-titles",
+      "capability-bodies",
+      "capability-tags"
+    ]
+  },
+  "mechanic": "Two stacked full-viewport sections, each fronted by a rAF-crossfaded looping background video (custom FadingVideo: opacity eased via requestAnimationFrame, 500ms fade, 0.55s fade-out lead, manual loop on ended) behind a liquid-glass UI, with the hero headline blurring in word-by-word on 10% IntersectionObserver visibility and all hero content entering via Framer Motion staggered blur(10px)/opacity/y transforms.",
+  "techDelivery": "Single-file CDN-only build: cdn.tailwindcss.com + Babel standalone 7.29 + UMD React/ReactDOM 18.3.1 + framer-motion 11.11.17 (aliased to window.Motion), React app mounted on #root with each component authored in a <script type=\"text/babel\"> block and exported via window.X; Tailwind configured inline (font-heading/font-body families, borderRadius DEFAULT 9999px) and liquid-glass utilities in a <style> block.",
+  "reskinNotes": "All copy is hardcoded in the JSX/babel markup (5 nav labels, 'Claim a Spot', the 'New' + 'Maiden Crewed Voyage to Mars Arrives 2026' badge, the 'Venture Past Our Sky Across the Universe' headline, the subheading, both CTA labels, the two stat value/label pairs, the partners chip + 5 partner names, the '// Capabilities' kicker, the 'Production evolved' two-line heading, and the three card titles/bodies/tag-sets) and must be edited in code. Icon geometry is baked as inline SVG path data (lucide ArrowUpRight/Play, Material image/movie/lightbulb, clock/globe outlines), so retinting works via currentColor but reshaping requires editing path strings. The headline layout is highly font-metric-dependent on Instrument Serif: tracking-[-4px] with leading-[0.8] and a per-word marginRight of 0.28em (a non-breaking space is deliberately avoided because the -4px letter-spacing eats it) — a font swap will break headline word spacing. The global Tailwind borderRadius DEFAULT override to 9999px means every bare 'rounded' renders as a full pill, so brand corner-radius changes must override this token. The liquid-glass look depends on backdrop-filter blur (4px / 50px) plus an inset 1px white box-shadow and a masked gradient ::before border (white-alpha stops) — there is no solid border color, and the whole palette is monochrome white-on-black with no brand accent hue (the primary CTA simply inverts to bg-white/text-black), so introducing a brand accent is a net-new color rather than a swap. Video crossfade is intentionally rAF-driven with the native loop attribute OFF; CSS transitions on the videos are explicitly disallowed."
+}

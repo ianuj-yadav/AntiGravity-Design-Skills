@@ -1,0 +1,42 @@
+{
+  "id": "scroll-marquee",
+  "role": "carousel",
+  "ownSections": [
+    "ImageMarquee"
+  ],
+  "slots": [
+    {
+      "id": "row1-marquee-gif",
+      "type": "image",
+      "card": 11,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Top marquee row: 11 decorative animated-GIF preview tiles that scroll RIGHT as the user scrolls down. Each fills a fixed 420x270px (~1.556:1) flex-shrink-0 card, rounded-2xl (16px) + overflow-hidden, object-cover, loading=\"lazy\", empty alt=\"\". The 11-image array is tripled in the DOM ([...ROW,...ROW,...ROW]) for seamless continuous scroll, so supply self-looping GIFs/animations that read well repeated; gap-3 (12px) between tiles."
+    },
+    {
+      "id": "row2-marquee-gif",
+      "type": "image",
+      "card": 10,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Bottom marquee row: 10 decorative animated-GIF preview tiles that scroll LEFT (opposite of row 1) as the user scrolls down. Same tile spec as row 1 (fixed 420x270px / ~1.556:1, flex-shrink-0, rounded-2xl 16px, overflow-hidden, object-cover, loading=\"lazy\", empty alt=\"\"). Array tripled in the DOM for seamless looping; gap-3 (12px) between tiles and gap-3 (12px) vertical gap to row 1."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Kanit', sans-serif",
+      "body": "'Kanit', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0C0C0C"
+    },
+    "copySlots": []
+  },
+  "mechanic": "Two opposite-direction horizontal image rows on a dark section whose DOM-tripled tracks are translateX-driven in real time by a passive scroll listener (offset = (scrollY - sectionTop + innerHeight) * 0.3, row1 = offset-200, row2 = -(offset-200)) applied straight to refs with willChange:transform for a 60fps scroll-parallax marquee.",
+  "techDelivery": "React functional component (useRef + useEffect) + Tailwind CSS utility classes + vanilla JS passive scroll events; no animation library (no framer-motion/GSAP), with the Google Font 'Kanit' (wght 300-900) loaded via <link> in the HTML head.",
+  "reskinNotes": "Both image arrays (the 11 ROW_1 and 10 ROW_2 GIF URLs) are hardcoded inline in the component, as are the parallax magic numbers (0.3 factor, +/-200px offsets) and the fixed 420x270px tile size and gap-3 spacing, so swapping in brand assets means editing the source arrays directly rather than passing data. This section declares only one color (bg #0C0C0C) and no editable text/copy at all (tiles are decorative alt=\"\"), so its visual identity comes entirely from the supplied looping GIFs; ratios other than ~1.556:1 will be cropped by object-cover. Card 1 of each socket is the seed tile but every tile in the row should be filled for a coherent rail."
+}

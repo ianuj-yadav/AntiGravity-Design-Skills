@@ -1,0 +1,65 @@
+{
+  "id": "slate-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video, absolute inset-0 w-full h-full object-cover covering the whole viewport behind all foreground content. autoPlay muted loop playsInline. Brand white text and liquid-glass surfaces are layered over it, so it should be a darkish ambient clip that keeps white legible. Native source is a CloudFront MP4."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "22x22 navbar logo mark (currently a white four-square chevron drawn as an inline SVG <path> in a 0 0 256 256 viewBox), sitting left of the wordmark. Brand swaps this for its own logo; supply a transparent 1:1 mark that reads white-on-video."
+    },
+    {
+      "id": "ui-arrow-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Two inline glyphs from lucide-react: ArrowRight (size 13) in the 'Read Guide' badge link and ArrowUpRight (size 18) in the primary 'Start today' CTA, which nudges on group hover. White-on-video; swap for a brand icon set if desired."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "body": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "surface": "rgba(255,255,255,0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.65)",
+      "accent": "rgba(255,255,255,0.22)",
+      "border": "rgba(255,255,255,0.45)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "badge-text",
+      "badge-link-label",
+      "headline-line-1",
+      "headline-line-2",
+      "subtext",
+      "cta-primary-label",
+      "cta-secondary-label"
+    ]
+  },
+  "mechanic": "A single fullscreen-video hero (navbar + centered badge/heading/subtext/CTA column over a looping object-cover background) whose signature motion is a GSAP SplitText per-character scroll-trigger entrance on the two stacked headline lines (y:40, power3.out, per-char stagger) plus cubic-bezier(0.22,1,0.36,1) hero-fade-up reveals staggered across the subtext and the two liquid-glass CTAs.",
+  "techDelivery": "Vite + React + TypeScript + Tailwind CSS multi-component spec, lucide-react icons, and gsap/@gsap/react driving a custom SplitText component; global font stack and the .liquid-glass / .hero-fade-up utilities + heroFadeUp keyframe live in index.css.",
+  "reskinNotes": "Global rule forces font-weight 200 (ultralight Helvetica) on every element with h1-h6 inheriting it, so swapping to a brand face that lacks a true 200 weight shifts the whole type color and the clamp() headline metrics (-1.5px tracking, 1.1 line-height, the -0.15em line-2 overlap). The logo is a hardcoded inline SVG path (M 256 256 L 128 256 ... viewBox 0 0 256 256), not an asset file, so the brand mark must replace that markup. The .liquid-glass utility and its ::before bake their own white rgba(255,255,255,*) border/inset-highlight gradients, and the nav pill + primary CTA carry an inline background:rgba(255,255,255,0.22); these assume light-on-dark over the video and must be edited in CSS/inline styles rather than a token swap. Spec hard-bans purple/indigo and any non-white glass tint. All copy is hardcoded in JSX (wordmark 'Slate', nav labels Our Approach/Products/Story/Resources/Billing, 'Start today', 'Welcome to Slate 2.4!', 'Read Guide', the two headline lines 'Grow Your Team'/'Thriving', the two-line <br>-split subtext, and the 'Start today'/'Watch demo' CTA labels), and the subtext relies on a manual <br className=\"hidden sm:block\"> split. SplitText timing (delay 60, duration 0.8, power3.out) and the hero-fade-up animationDelays (0.6s/0.85s/1.0s) are fixed constants."
+}

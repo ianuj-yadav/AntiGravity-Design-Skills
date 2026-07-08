@@ -1,0 +1,64 @@
+{
+  "id": "halo-benefits",
+  "role": "features",
+  "ownSections": [
+    "InfoSection",
+    "BackedBySection"
+  ],
+  "slots": [
+    {
+      "id": "feature-card-background-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Single full-bleed background image for the 'Savings that bloom' card (Card 1, the lg:col-span-2 wide card in the Row-2 grid). Set as a CSS background-image with backgroundSize:cover / backgroundPosition:center on a rounded-2xl min-h-80 (320px) panel that is wider than tall. There is deliberately NO overlay or scrim: black title 'Savings that bloom' and black/70 description text sit directly on the image, so the asset must be bright / low-detail in its upper-left and lower-left regions to keep dark text legible. Native placeholder is a higgs.ai-proxied webp render; supply a brand visual (product/lifestyle still) that reads cleanly behind dark text at ~2:1."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single lucide-react 'ArrowRight' glyph inside the 'Discover it' pill button, rendered w-5 h-5 (20px) text-black, seated in a white rounded-full circle on the right of the black capsule. Tints via currentColor (black on the white chip), not a fill prop; a reskin swaps it for any equivalent right-arrow glyph rather than an image asset."
+    },
+    {
+      "id": "primary-font",
+      "type": "font",
+      "card": 1,
+      "notes": "The single sans typeface for every string in both sections, set as a global html/body font stack (* inherits). Carries the medium-weight H2 'Meet USD Halo.' (font-medium, up to 5xl, leading-tight, -0.03em tracking), the large normal-weight intro paragraph (2xl/3xl, leading-relaxed), the card titles (2xl font-medium, -0.02em) and card descriptions (base font-normal), plus the marquee's left label. Native declaration is 'TT Norms Pro Regular' (loaded via an onlinewebfonts.com CDN stylesheet link) with ui-sans-serif/system-ui fallback. Pick a clean geometric grotesque that holds tight negative tracking at medium weight. NOTE: the marquee wordmarks intentionally do NOT use this face (see reskinNotes)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'TT Norms Pro Regular', ui-sans-serif, system-ui, sans-serif",
+      "body": "'TT Norms Pro Regular', ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F5F5F5",
+      "surface": "#2B2644",
+      "fg": "#000000",
+      "fgMuted": "rgba(0, 0, 0, 0.7)",
+      "accent": "#000000",
+      "accent2": "#FFFFFF",
+      "border": "transparent (no card borders; separation via #F5F5F5 gap-4 gutters)"
+    },
+    "copySlots": [
+      "section-headline",
+      "cta-label",
+      "intro-paragraph",
+      "card1-title",
+      "card1-description",
+      "card2-title",
+      "card2-description",
+      "card3-title",
+      "card3-description",
+      "marquee-label",
+      "backer-brand-names"
+    ]
+  },
+  "mechanic": "A flat #F5F5F5 features block: Row 1 is a two-column heading/CTA-pill + large-paragraph grid, Row 2 is a responsive 4->2->1 card grid (one wide image-background card spanning 2 cols, two #2B2644 navy cards), followed by a flush sibling strip whose only motion is a CSS-only infinite backer marquee translating its duplicated track translateX 0 to -50% over 30s linear.",
+  "techDelivery": "React + TypeScript + Tailwind CSS utility classes (arbitrary values like bg-[#F5F5F5], max-w-[88rem]) with lucide-react for the CTA icon; TT Norms Pro loaded via an onlinewebfonts.com <link> in index.html and applied through an @layer base rule in index.css. Static markup, no JS animation lib (the marquee is a component-injected <style> @keyframes).",
+  "reskinNotes": "Brand color is baked literally as Tailwind arbitrary values and inline styles, not tokens: page bg #F5F5F5 (repeated on both sections), the navy card fill #2B2644 (inline backgroundColor on Cards 2 & 3), black CTA capsule with white chip, and alpha-text utilities (text-black/70, text-white/60). The Card-1 background image URL is hardcoded inline. All copy is hardcoded in markup: the 'Meet USD Halo.' headline, 'Discover it' CTA, intro paragraph, three card title/description pairs (titles use literal <br /> line breaks, e.g. 'Always fluid,<br />always pegged.' and 'Fully<br />automated', so reskin strings must re-place their own breaks), and the marquee label. The marquee is the trickiest reskin surface: the eight BACKER_BRANDS entries are pure styled <span> text with NO logo images, each faking a distinct wordmark via a hardcoded system font + weight + letter-spacing + size (Times New Roman / Arial Black / Impact / Georgia / Helvetica / Verdana uppercase / Courier New / Palatino) that deliberately bypasses the TT Norms Pro brand face; swapping in real partner logos means replacing the text-span technique entirely, and the array must stay duplicated ([...BRANDS, ...BRANDS]) with the -50% keyframe for a seamless loop. Layout is font-metric-dependent: headline/card titles rely on tight negative letter-spacing (-0.03em / -0.02em) and min-h-80 fixed-height cards with justify-between top-to-bottom distribution, so a wider substitute face or longer strings reflow the cards; the CTA pill's asymmetric padding (pl-8 pr-2) is tuned to embed the circular icon chip."
+}

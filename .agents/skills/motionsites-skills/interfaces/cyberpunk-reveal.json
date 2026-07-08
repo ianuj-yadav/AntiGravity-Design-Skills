@@ -1,0 +1,79 @@
+{
+  "id": "cyberpunk-reveal",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "base-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Default fullscreen base layer of the 100dvh hero (BG_IMAGE_1), a bg-center bg-cover div at z-10 with a 2.4s Ken Burns intro (scale 1.12 -> 1, cubic-bezier(0.22,1,0.36,1)). Shown everywhere outside the cursor spotlight; the native asset is a red-tinted portrait, so a vertical/center-weighted full-bleed subject reads best and white text must stay legible over it."
+    },
+    {
+      "id": "reveal-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Spotlight-revealed fullscreen layer (BG_IMAGE_2), a second bg-cover div at z-30 masked by a canvas-generated radial gradient (260px radius, feathered stops) that follows the rAF-smoothed cursor (lerp 0.1). Only visible inside the moving soft circle, so it should share framing/subject with base-bg-image (an alternate take, lit/colored differently) since the two register pixel-for-pixel through the mask."
+    },
+    {
+      "id": "grid-pattern",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Decorative full-size SVG grid backdrop at z-0, opacity 0.1: a 48px-square <pattern> of grid lines stroked #64748b at width 0.6, whose x/y pattern offset parallax-eases toward the mouse (target = (cursor-0.5) x 16px, lerp 0.06). Replace with a brand line/mesh tile; stroke color is inline on the SVG (not a CSS var), so retinting means editing the markup."
+    },
+    {
+      "id": "logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark inside the fixed nav pill: an inline 22x22 white SVG, viewBox 0 0 256 256, a single angular geometric <path> filled white. Supply as a transparent-background single-color glyph squared to the 256 viewBox; it sits on the black/60 blurred pill, and its fill is hardcoded in markup so retinting means editing the SVG."
+    },
+    {
+      "id": "menu-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Mobile hamburger toggle icon pair (open + close), the lucide-react 'Menu' and 'X' glyphs at size 22. Only rendered below md (in the right-hand black/60 pill); swap as a 2-state line-icon pair matching the same stroke weight."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'JetBrains Mono', monospace",
+      "body": "'JetBrains Mono', monospace",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "rgba(0,0,0,0.6)",
+      "fg": "#ffffff",
+      "fgMuted": "#64748b",
+      "accent": "#111827",
+      "border": "#f3f4f6"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "reserve-cta-label",
+      "nav-labels",
+      "connect-cta-label",
+      "stat-values",
+      "stat-labels"
+    ]
+  },
+  "mechanic": "A canvas-drawn 260px radial-gradient spotlight, rebuilt each frame as a maskImage, wipes a second background image over a Ken-Burns base image inside a 100dvh hero, while a faint 48px inline-SVG grid parallax-eases toward the cursor and three concentric stroke-drawn stat arcs (centered off-canvas left) sweep in and pop their dots on load.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS single-component spec (src/App.tsx using useRef + one requestAnimationFrame loop for all mouse-driven effects, no external animation libs; all keyframes hand-authored in src/index.css); lucide-react for the Menu/X icons only; JetBrains Mono loaded via @import in index.css.",
+  "reskinNotes": "The reveal effect requires two near-identical full-bleed images that line up under the moving mask, so a brand reskin must supply a coordinated image pair, not a single hero asset, both able to carry legible white text. Fonts are effectively single-family: everything resolves to JetBrains Mono via the universal reset (* { font-family }) and even the .font-helvetica-neue class and the declared @font-face 'Helvetica Neue Roman' (/fonts/HelveticaNeue-Roman.woff2|.woff) fall back to the mono face, so the Helvetica @font-face is dead/declared-only. Neutral colors are Tailwind utility classes (bg-white, bg-black/60, text-white, text-gray-300/800/900, border-gray-100) and the grid stroke #64748b is inline on the SVG, so reskinning means editing class names / SVG attributes rather than a :root token block. The entire stats overlay is a hardcoded inline SVG (viewBox 0 0 380 700, arcs centered at -110,300) with three arcs whose radii (330/395/460), angle spans, dot angles, per-arc userSpaceOnUse gradients and the '10+ YEARS REAL' / '40+ USE FORMS' / '95% REPEAT MEMBERS' stat text are all literal in markup; the arc-line stroke-dash length is passed per-arc as a --len CSS var. All hero copy is hardcoded in JSX: the 'Gateway to your augmented self' eyebrow (italic span), the 'A window / of coming / enhancements' H1 with manual <br/> line breaks tuned to the mono metric and max-w-[300px]/max-w-md block, the paragraph, the five nav labels ('Module' active + 'Case Records'/'Biotech'/'Tiers'/'Live Demo'), and the 'Connect' / 'Reserve Now' button labels. The spotlight radius (260px), grid cell (48px), parallax (16px @ 0.06 lerp) and cursor smoothing (0.1 lerp) are fixed constants, and the whole stats arc is pointer-events-none and hidden below sm."
+}

@@ -1,0 +1,95 @@
+{
+  "updated_at": "2026-06-19T12:09:02.821Z",
+  "prompts": {
+    "neural-interface": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 34002,
+      "at": "2026-06-19T12:08:50.676Z"
+    },
+    "3d-story": {
+      "is_free": true,
+      "status": "ok",
+      "chars": 19051,
+      "at": "2026-06-19T11:54:36.279Z"
+    },
+    "wellness-hero": {
+      "is_free": true,
+      "status": "ok",
+      "chars": 4719,
+      "at": "2026-06-19T11:54:37.820Z"
+    },
+    "cosmic": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 9217,
+      "at": "2026-06-19T12:08:52.240Z"
+    },
+    "404-planet": {
+      "is_free": true,
+      "status": "ok",
+      "chars": 7598,
+      "at": "2026-06-19T11:54:39.331Z"
+    },
+    "bl": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 41396,
+      "at": "2026-06-19T12:08:53.775Z"
+    },
+    "future-state": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 8143,
+      "at": "2026-06-19T12:08:55.276Z"
+    },
+    "saas-value": {
+      "is_free": true,
+      "status": "ok",
+      "chars": 8755,
+      "at": "2026-06-19T11:54:40.711Z"
+    },
+    "luxury-focus": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 9692,
+      "at": "2026-06-19T12:08:56.747Z"
+    },
+    "synthesis": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 5459,
+      "at": "2026-06-19T12:08:58.312Z"
+    },
+    "conversion": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 5900,
+      "at": "2026-06-19T12:08:59.768Z"
+    },
+    "interactive-discovery": {
+      "is_free": true,
+      "status": "ok",
+      "chars": 6894,
+      "at": "2026-06-19T11:54:42.317Z"
+    },
+    "cyberpunk-reveal": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 7086,
+      "at": "2026-06-19T12:09:01.233Z"
+    },
+    "gateway-portal": {
+      "is_free": false,
+      "status": "ok",
+      "chars": 10770,
+      "at": "2026-06-19T12:09:02.767Z"
+    },
+    "audio-showcase": {
+      "is_free": true,
+      "status": "ok",
+      "chars": 6927,
+      "at": "2026-06-19T11:54:43.806Z"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "aurora-onboard",
+  "role": "hero",
+  "ownSections": [
+    "HeroPanel",
+    "SignUpForm"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the left panel (object-cover, autoplay, muted, playsInline, no overlay/tint allowed)."
+    },
+    {
+      "id": "brand-mark-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand/logo glyph in the hero lockup beside the wordmark; native is the Lucide 'Circle' icon filled white (fill-white text-white)."
+    },
+    {
+      "id": "social-provider-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Two social-login provider glyphs inside the SocialButton grid; native are Lucide 'Chrome' (Google) and 'Github' icons."
+    },
+    {
+      "id": "password-reveal-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Password show/hide toggle glyph absolutely positioned at the right of the password input; native is the Lucide 'Eye' icon."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#1A1A1A",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255,255,255,0.40)",
+      "border": "rgba(255,255,255,0.10)"
+    },
+    "copySlots": [
+      "brand-wordmark",
+      "hero-headline",
+      "hero-subhead",
+      "step-1-label",
+      "step-2-label",
+      "step-3-label",
+      "form-headline",
+      "form-subhead",
+      "social-google-label",
+      "social-github-label",
+      "divider-label",
+      "field-first-name-label",
+      "field-last-name-label",
+      "field-email-label",
+      "field-password-label",
+      "password-helper-text",
+      "cta-label",
+      "footer-login-link"
+    ]
+  },
+  "mechanic": "Two-column lg split with a fullscreen looping video behind a motion staggerChildren fade-and-rise hero lockup, beside a single easeOut fade-in sign-up form column.",
+  "techDelivery": "single-file React + TypeScript (App.tsx + index.css) with Tailwind CSS v4 @theme tokens, motion/react animations, and lucide-react icons.",
+  "reskinNotes": "Hero video URL is hardcoded as a CRITICAL exact CDN string with an explicit no-overlay constraint; all copy is hardcoded in markup; colors are Tailwind utility opacities (white/40, white/20, white/10, white/30) plus a single --color-brand-gray token rather than full semantic CSS variables, so accent2 has no native value; icons are Lucide components not swappable image assets."
+}

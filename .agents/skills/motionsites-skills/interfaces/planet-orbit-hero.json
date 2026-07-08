@@ -1,0 +1,66 @@
+{
+  "id": "planet-orbit-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The template's single load-bearing asset: a fullscreen looping hero background video that covers the ENTIRE section, from the navbar pill down through the social-proof marquee. Rendered as <video autoPlay loop muted playsInline> positioned absolute inset-0 with object-cover, sitting behind all liquid-glass chrome (nav, announcement badge, heading, CTAs, marquee) which read directly on top of it with no dark scrim declared. Native source is a CloudFront-hosted MP4. Keep footage dark/moody (the page base is near-black 260 87% 3%) so the warm off-white heading and green accent stay legible full-bleed; the whole frame fills the viewport (not cropped to a fixed ratio), so compose for an edge-to-edge cover fill."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome icons, not brand assets: the crosshair/target glyph inside the small rounded-lg gradient logo square ('APEX' lockup), the chevron-down on the 'Features' and 'Learning' nav items, and the ChevronRight inside the 'Explore' chip of the announcement badge. All render monochrome (currentColor, foreground/white-tinted) at small nav sizes. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the defaults stand. NOTE: the six marquee brand 'icon squares' are NOT asset sockets — each is a liquid-glass rounded-lg square showing the first LETTER of the brand name (typographic), so they are filled by copy, not images."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single global typeface for the whole section (display + body + nav + buttons). Native value is Geist Sans loaded via @fontsource/geist-sans at weights 400/500/600/700. Carries the text-4xl/6xl/7xl semibold tracking-tight heading, the text-lg subheading, all nav items, badge text, CTA labels and the marquee brand names. Needs a sans-serif fallback chain. The heading uses tracking-tight + leading-[1.05] at up to text-7xl, so a substitute face is mildly font-metric dependent on the two-line wrap."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Geist Sans', sans-serif",
+      "body": "'Geist Sans', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#05010E",
+      "surface": "#27272A",
+      "fg": "#F3F3F1",
+      "fgMuted": "#D4D2CE",
+      "accent": "#87FB89",
+      "accent2": "#0D0D0D",
+      "border": "#313135"
+    },
+    "copySlots": [
+      "logo-label",
+      "nav-labels",
+      "nav-cta-label",
+      "announcement-badge-text",
+      "announcement-chip-label",
+      "headline",
+      "subheading",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "social-proof-eyebrow",
+      "marquee-brand-names"
+    ]
+  },
+  "mechanic": "A single dark SaaS hero where every layer — a centered liquid-glass navbar pill, a rounded-full announcement badge, the two-line semibold headline + subheading, two pill CTAs, and a bottom brand row — floats over one fullscreen autoplaying background video, with the only motion being the social-proof marquee: a DOM-duplicated brand strip translating translateX(0%) -> translateX(-50%) over 20s linear infinite for a seamless logo loop.",
+  "techDelivery": "React + Tailwind CSS component using class-variance-authority for the 'hero' / 'heroSecondary' button variants, with Geist Sans loaded via the @fontsource/geist-sans package; the HSL design tokens, the reusable .liquid-glass utility (rgba white fill + luminosity blend + backdrop-blur + inset highlight + a mask-composite ::before gradient border) and the marquee keyframes live in CSS.",
+  "reskinNotes": "The signature .liquid-glass utility is the load-bearing visual identity and is fully hardcoded in CSS — rgba(255,255,255,0.01) fill, background-blend-mode:luminosity, backdrop-filter:blur(4px), inset 0 1px 1px rgba(255,255,255,0.1) highlight, and a ::before 1.4px gradient-border built from a white vertical linear-gradient (rgba(255,255,255,0.45/0.15/0 stops) + -webkit-mask:...content-box + -webkit-mask-composite:xor / mask-composite:exclude) — so retinting the glass means rewriting these encoded rgba stops, not flipping a variable. Colors are declared as space-separated HSL channels intended for CSS custom properties; the accent is given both as 121 95% 76% and as literal #87FB89. The logo square is a 'gradient square' with the gradient unspecified, and brand swaps must reconcile the green primary (#87FB89) against its dark primary-foreground (0 0% 5%) for button-text contrast. All copy is hardcoded in markup: 'APEX' logo text; nav items Features/Solutions/Plans/Learning + 'Sign Up'; the 'Nova+ Launched!' / 'Explore' announcement badge; the two-line headline 'Accelerate Your / Revenue Growth Now'; the subheading; the 'Start Free Right Now' / 'Schedule a Consult' CTAs; and the social-proof 'Relied on by brands across the globe' label with six brand names (Vortex, Nimbus, Prysma, Cirrus, Kynder, Halcyn) whose marquee icon squares render the brand's FIRST LETTER, so renaming a brand also changes its glyph. The marquee assumes the brand array is duplicated in the DOM for its translateX(0->-50%) loop to seam correctly."
+}

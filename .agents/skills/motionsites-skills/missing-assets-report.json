@@ -1,0 +1,305 @@
+{
+  "generated_at": "2026-06-19T13:43:57.996Z",
+  "templates_with_missing": 22,
+  "byTemplate": {
+    "4": [
+      {
+        "url": "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/thumbnails/t",
+        "http": 404,
+        "reason": "dead"
+      }
+    ],
+    "5": [
+      {
+        "url": "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/697945ca6b876878dba3b23fbd2f1561/manifest/vid",
+        "http": null,
+        "reason": "other"
+      }
+    ],
+    "financialfocus": [
+      {
+        "url": "https://ais-pre-n2veyqxlgp2lg3yian6tqu-115844097173.asia-southeast1.run.app/wave-icon.svg",
+        "http": 404,
+        "reason": "dead"
+      },
+      {
+        "url": "https://ais-pre-n2veyqxlgp2lg3yian6tqu-115844097173.asia-southeast1.run.app/w.svg",
+        "http": 404,
+        "reason": "dead"
+      }
+    ],
+    "vortex-studio-hero": [
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Me",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Bo",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Me",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Bo",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "feedback-slider": [
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Me",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Bo",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Me",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Bo",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "mouse-trail-cta": [
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Me",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Bo",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Me",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Bo",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "nova-space-landing": [
+      {
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_031824_0c85e1e9-fe",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "glassmorphic-feature-tabs": [
+      {
+        "url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260521_014404_bg1.mp4",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "community-cta": [
+      {
+        "url": "https://media.cleanshot.cloud/media/21620/CG4uIqBDEVKcxvtOnH2si7r1u5ne9QKdmAAj5Ym5.jpeg?Expires=1777",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://media.cleanshot.cloud/media/21620/dsPsOuiJtbftO4aFjajygweQMGFKZOJk4ac3ujD1.jpeg?Expires=1777",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://media.cleanshot.cloud/media/21620/xuWsFI56rqEUeYTmLVTHCoq224TH90PxcBKrsp4N.jpeg?Expires=1777",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://media.cleanshot.cloud/media/21620/tvzgP1YqhKu4Rj3N1FmqAmZVgNs6jl9gzgmpmUHk.jpeg?Expires=1777",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "social-media-posts-hero": [
+      {
+        "url": "https://media.cleanshot.cloud/media/21620/LCl5ZplnQ16cj11YhT3EoWIj6Tfpndn3OEd9I1e4.jpeg?Expires=1775",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "ai-designer-agency": [
+      {
+        "url": "https://media.cleanshot.cloud/media/21620/nKosRonaEKSufJVJ4VtouFhOPkqgJ3dPoQ8ZP52S.mp4",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "nike-premium-landing": [
+      {
+        "url": "https://pikaso.cdnpk.net/private/production/4021778466/80a7f7ef-643d-40bc-b533-1e86f159d653-0.mp4?to",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      },
+      {
+        "url": "https://pikaso.cdnpk.net/private/production/4024859125/d070ae9c-55df-47aa-acbe-4ee66337855c-0.mp4?to",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "nike-hover": [
+      {
+        "url": "https://pikaso.cdnpk.net/private/production/4024859125/d070ae9c-55df-47aa-acbe-4ee66337855c-0.mp4?to",
+        "http": 403,
+        "reason": "protected(hotlink)"
+      }
+    ],
+    "shamoni-hero": [
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1776966299/15112343_tuzrbg.jpg",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1776966299/202604232043_vhb6u9.jpg",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1776967124/02604232058_nh1qd1.jpg",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1776966860/202604232047_gxyqne.jpg",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/video/upload/v1776960333/a_kitten_drinks_202604231827_apoc3w.mp",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1776966856/202604232052_ihyslg.jpg",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1776967611/202604232105_lv3fhp.jpg",
+        "http": 401,
+        "reason": "private(signed-url)"
+      }
+    ],
+    "art-landing": [
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/image/upload/v1778597725/cloude_ws7l3z.png",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/video/upload/v1778592404/baby-track-video_e968wn.mp4",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/video/upload/v1778602552/track-video_2_s9lp53.mp4",
+        "http": 401,
+        "reason": "private(signed-url)"
+      }
+    ],
+    "tech-noir-about": [
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/video/upload/v1778602552/track-video_2_s9lp53.mp4",
+        "http": 401,
+        "reason": "private(signed-url)"
+      }
+    ],
+    "pulse-3d": [
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/video/upload/v1780426426/202606021731-ezremove_einsc0.mp4",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/daklr2whx/video/upload/v1780430770/20260602182_x923bh.mp4",
+        "http": 401,
+        "reason": "private(signed-url)"
+      }
+    ],
+    "celestia-hero": [
+      {
+        "url": "https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/dds3_1_rqhg7x.mp4",
+        "http": 401,
+        "reason": "private(signed-url)"
+      }
+    ],
+    "neo-museum": [
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/image/upload/v1779624236/03_hcp3jc.png",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/image/upload/v1779624251/05_kz1tyu.png",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/image/upload/v1779624247/01_udnber.png",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/image/upload/v1779624256/04_get63z.png",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/image/upload/v1779624374/02_pmvxxl.png",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/image/upload/v1779625001/ChatGPT_Image_May_23_2026_12_24_44_PM_",
+        "http": 401,
+        "reason": "private(signed-url)"
+      },
+      {
+        "url": "https://res.cloudinary.com/dsdxaxkiz/video/upload/v1779624998/magnific_use-img-2-as-the-exact-ba_Piu",
+        "http": 401,
+        "reason": "private(signed-url)"
+      }
+    ],
+    "apex-program-accordion": [
+      {
+        "url": "https://stream.mux.com/it9ofSYkTd02WOaeqGcfUnX8rM2iu1hiiJnAHGwM00IKg.m3u8https://stream.mux.com/l4j5",
+        "http": null,
+        "reason": "other"
+      }
+    ],
+    "visual-hero": [
+      {
+        "url": "https://fonts.cdnfonts.com/s/15011/Dirtyline36DaysofType.woff",
+        "http": 404,
+        "reason": "dead"
+      }
+    ],
+    "wanderful-hero": [
+      {
+        "url": "https://fonts.cdnfonts.com/s/15011/Dirtyline36DaysofType.woff",
+        "http": 404,
+        "reason": "dead"
+      }
+    ]
+  }
+}

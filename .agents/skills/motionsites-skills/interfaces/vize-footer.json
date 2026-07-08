@@ -1,0 +1,65 @@
+{
+  "id": "vize-footer",
+  "role": "footer",
+  "ownSections": [
+    "FooterCard",
+    "GlassText"
+  ],
+  "slots": [
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Brand mark for the LogoIcon sub-component: an 18x18 inline SVG (a swoosh path filled white plus a 2px white round-cap stroke) centered inside a w-8 h-8 rounded-[8px] box filled with the accent color (#31A8FF). Sits left of the 'vize' wordmark in the brand column. The glyph itself is solid white-on-accent, so the socket needs a single-color mark that reads on the accent tile; swap the path data and the tile fill together per brand."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three social glyphs (Linkedin, Twitter, Instagram from lucide-react) rendered at w-5 h-5 (size 20) with text-slate-800, each inside a 44x44 white rounded-xl button (border-slate-100, soft shadow, hover:bg-slate-50, active:scale-95). Replace with the brand's actual social set; glyphs inherit currentColor so they tint to the fg/dark-slate value."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Inter (weights 300/400/500/600/700) loaded from Google Fonts and wired to Tailwind --font-sans via @theme; carries the entire footer — the 'vize' wordmark, column headings, links, legal microcopy, AND the giant background 'vize' GlassText element whose composition depends on this face's bold metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F9F9FB",
+      "surface": "#FFFFFF",
+      "fg": "#141414",
+      "fgMuted": "#64748B",
+      "accent": "#31A8FF",
+      "border": "#E2E8F0"
+    },
+    "copySlots": [
+      "brand-wordmark",
+      "brand-description",
+      "social-aria-labels",
+      "product-column-heading",
+      "product-links",
+      "science-column-heading",
+      "science-links",
+      "company-column-heading",
+      "company-links",
+      "copyright",
+      "legal-links",
+      "glasstext-wordmark"
+    ]
+  },
+  "mechanic": "A premium layered footer card (gray #E9EBEE rounded-[48px] body wrapping a white rounded-[40px] inner box over a 5-column brand/Product/Science/Company link grid plus a bottom legal bar) stacked above a massive 'vize' wordmark rendered as white text pushed through a handcrafted multi-stage feMerge SVG filter (outer drop-shadow + inner white and inner black inset-shadow masks) that fades and scales in on view (opacity 0->1, scale 0.98->1) via motion/react whileInView.",
+  "techDelivery": "Vite + Tailwind CSS v4 (@import \"tailwindcss\" with an @theme --font-sans and @layer utilities glass-card / text-glass / liquid-glass) + motion/react animation + lucide-react icons, authored in TypeScript as src/index.css, src/App.tsx, and src/components/Footer.tsx (LogoIcon + FooterCard + GlassText + default Footer).",
+  "reskinNotes": "The signature GlassText effect is a fully hardcoded inline SVG filter (id=\"glass-effect\"): the feDropShadow and the two inner-shadow feFlood stages bake in literal floodColor #000000 / #ffffff at floodOpacity 0.25, so retinting the glass means editing those filter primitives, not flipping a token. The giant wordmark sizing is text-[min(25vw,400px)] font-bold leading-none tuned to Inter Bold metrics — a wider or taller display face will overflow or break the composition. The LogoIcon is inline white SVG path data on a literal bg-[#31A8FF] tile (must be swapped as a pair per brand). Palette is light-theme only and spread as literal hex across markup (body #F9F9FB on #141414, App wrapper #F0F1F3, card #E9EBEE/white, headings #0F172A, muted #64748B and #94A3B8, links #1E293B hover #31A8FF, separators slate-200/slate-300) rather than centralized tokens. The .glass-card/.liquid-glass utilities are white-rgba baked CSS (the liquid-glass ::before is a mask-composite gradient border). ALL copy is hardcoded in JSX: the 'vize' wordmark (twice — brand row and the background GlassText), the marketing description, the three column headings (Product/Science/Company) and every link label (Features/Solutions/Pricing/Updates, Approach/Identity/Research/Metrics, About Us/Partners/Careers), the '(c) 2025 Vize. All rights reserved.' line, and the Legal Center / User Agreement links."
+}

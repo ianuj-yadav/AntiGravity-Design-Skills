@@ -1,0 +1,58 @@
+{
+  "id": "codercrest-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted HLS (.m3u8) hero background video, absolute inset-0 object-cover at z-0 behind all content, no overlay (full opacity). Played via hls.js with native application/vnd.apple.mpegurl fallback. Native source is a Mux stream URL."
+    },
+    {
+      "id": "headline-inline-clips",
+      "type": "video",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Pair of small circular (rounded-full) object-cover looping muted MP4 clips embedded inline inside the headline's third line, one for 'human' and one for 'AI'. Each sits in a clamp(48px,10vw,110px) circular socket. Native sources are CloudFront MP4s (VIDEO_HUMAN / VIDEO_AI)."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display face for the H1 headline (light weight 300, negative letter-spacing). Loaded globally (index.css / external font provider) with sans-serif fallback. Native value: 'YDYoonche L' / 'YDYoonche M'."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'YDYoonche L', 'YDYoonche M', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "#cccccc",
+      "accent": "rgba(39, 243, 169, 0.15)",
+      "accent2": "#999999",
+      "border": "#30463C"
+    },
+    "copySlots": [
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "body",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A 100vh centered hero stacks a light-weight gradient-clipped three-line headline, a muted subheading and a green-glow CTA over a fullscreen hls.js-streamed looping background video, with two small circular looping video glyphs inlined into the headline's 'is [human] + [AI]' line.",
+  "techDelivery": "React + TypeScript single component (src/components/HeroSection.tsx) using Tailwind CSS utility classes plus inline styles, with the hls.js npm package driving the Mux HLS background video (native HLS fallback).",
+  "reskinNotes": "The mint-green glow palette rgba(39,243,169,...) is baked into Tailwind arbitrary shadow utilities (hover:shadow-[0px_6px_32px_8px_rgba(39,243,169,0.22)]) AND the button's inline boxShadow, and the outline color #30463C is hardcoded inline, so retinting the accent means editing both the className string and the style object. The headline grey gradient (linear-gradient(90deg,#666 0%,#d0d0d0 50%,#666 100%) with WebkitBackgroundClip:text) is hardcoded per line and tuned to dark backgrounds. Vertical placement relies on a magic inline marginTop:380px offset (no responsive recalculation) tuned to the 100vh frame and YDYoonche's metrics plus the clamp(2.2rem,7vw,6.5rem)/lineHeight 1.1/-0.22em negative-margin headline, so any font swap or copy-length change shifts the layout. All copy (the three headline lines 'The vision' / 'of engineering' / 'is human + AI', subheading, and 'Join The Movement!' CTA) is hardcoded in JSX, and the inline-clip line literally hardcodes the words 'is', 'human', '+', 'AI' around the two video icons. The circular clip size (size={110}) is passed as a component prop rather than tokenized."
+}

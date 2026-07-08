@@ -33,6 +33,26 @@ A curated library of best practices, UI integrations, and micro-interaction logi
 * **Component Elevation**: Takes standard base components (like buttons, modals, and navbars) and injects them with smooth transitions, perfect padding ratios, and delightful hover states.
 * **Why it's incredible**: It focuses on the "feel" of the application, ensuring that the user experience is as smooth and tactile as the visual design.
 
+### 💎 Impeccable UI (`impeccable`)
+An all-encompassing frontend design polish and audit intelligence.
+* **Holistic Excellence**: Handles visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, typography, motion, micro-interactions, UX copy, and error states.
+* **Why it's incredible**: Transforms bland designs into bold, delightful experiences while hardening UI systems against common anti-patterns.
+
+### 🎯 Frontend Design Taste (`taste-skill`)
+Anti-slop frontend intelligence for landing pages, portfolios, and modern redesigns.
+* **Bespoke Direction**: Infers the optimal aesthetic direction from user briefs and prevents generic, templated-looking AI output.
+* **Why it's incredible**: Ships interfaces with authentic personality and strict pre-flight visual audits.
+
+### ⚡ 花叔Design (`huashu-design`)
+Specialized high-fidelity HTML prototyping, slides, animations, and visual mockups.
+* **Interactive Prototypes**: Creates production-grade HTML mockups, presentations, and exportable animations (MP4/GIF) with built-in expert review heuristics.
+* **Why it's incredible**: Rapidly bridges ambiguous design directions into tangible, interactive frontends.
+
+### 🎬 MotionSites Library (`motionsites-skills`)
+Curated multi-page brand website composer.
+* **1:1 Motion & Layout Fidelity**: Composes coherent multi-page websites by adapting curated templates from the MotionSites library with exact structure and fluid motion.
+* **Why it's incredible**: Enables instant generation of high-impact animated brand experiences with custom reskinning.
+
 ### 🧩 Stitch Kit (`stitch-kit`)
 The architectural backbone for component generation.
 * **Robust Utilities**: Provides the underlying logic and utilities required for dynamic component generation and "stitching" together complex UI fragments seamlessly.
@@ -42,6 +62,13 @@ The architectural backbone for component generation.
 Brings the power of Google Stitch directly into your IDE.
 * **MCP Integration**: Facilitates complete UI generation workflows utilizing the Google Stitch Remote MCP API.
 * **Why it's incredible**: It acts as a bridge to enterprise-level design generation pipelines, allowing for seamless export of production-ready, beautiful code tailored to your exact prompt.
+
+### 🛠️ Playwright & Engineering Suite
+* **`playwright-dev`**: Architecture guidance for developing Playwright APIs, MCP tools, CLI commands, and vendor dependencies.
+* **`playwright-devops`**: DevOps workflows for Playwright including CI failure analysis and release operations.
+* **`playwright-bot-voice`**: Standardized maintainer communication style for issue triage, PR descriptions, and release notes.
+* **`playwright-test-results`**: Query aggregated DuckDB CI test results to diagnose flaky or slow tests.
+* **`playwright-triage`**: Reproduce and verify bug reports from GitHub issues.
 
 ---
 

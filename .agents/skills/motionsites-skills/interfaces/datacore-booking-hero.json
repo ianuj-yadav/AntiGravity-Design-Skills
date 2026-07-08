@@ -1,0 +1,71 @@
+{
+  "id": "datacore-booking-hero",
+  "role": "hero",
+  "ownSections": [
+    "VideoBackground",
+    "Navbar",
+    "HeroContent"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video sitting behind the navbar and centered hero content. Absolute-positioned, min-h-screen object-cover so it fully covers the viewport, autoplay + muted + playsInline + loop, opaque with NO dark overlay on top (the prompt explicitly keeps it opaque). All hero text is white over it, so supply footage that stays mid-to-dark for legibility; provide a seamless short loop. The cloudfront mp4 in the prompt is a placeholder to be replaced with a brand clip."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Navbar logo at top-left, supplied as a single inline SVG path filled solid white (the prompt ships a placeholder 'future logo shape' path beginning M1.04356 6.35771L13.6437 0.666504...). Transparent vector tinted to the foreground color via fill=white. Replace with the brand wordmark/logomark; if it must stay white-on-video, keep it a flat single-color vector or drive its fill from currentColor."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Two lucide-style white UI glyphs rendered inline. [0] ChevronDown next to the 'Services' nav link (desktop). [1] Menu / hamburger icon shown on mobile that toggles the full-screen black overlay menu. Both transparent, tinted white via currentColor; swap geometry while keeping the currentColor tint so they stay legible on the video."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Inter",
+      "accent": "Manrope"
+    },
+    "colorRoles": {
+      "bg": "#2b2344",
+      "surface": "rgba(85,80,110,0.4)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.7)",
+      "accent": "#7b39fc",
+      "accent2": "#2b2344",
+      "border": "rgba(164,132,215,0.5)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-signin-label",
+      "nav-getstarted-label",
+      "pill-badge-label",
+      "pill-text",
+      "headline",
+      "headline-emphasis",
+      "subtext",
+      "hero-cta-1-label",
+      "hero-cta-2-label"
+    ]
+  },
+  "mechanic": "Single full-viewport hero: an opaque fullscreen autoplay/loop/muted object-cover background video behind a transparent overlay navbar and a vertically+horizontally centered Instrument Serif headline with a glassmorphism tagline pill and a two-button CTA row, with a mobile hamburger toggling a full-screen black overlay menu.",
+  "techDelivery": "React + Tailwind CSS component spec (Tailwind utility classes with arbitrary values for spacing/colors, HTML5 <video> background, lucide-style icons); exact bundler/font-loading mechanism not pinned in the prompt beyond 'load and use' the four Google-style web fonts.",
+  "reskinNotes": "The prompt declares FOUR typefaces but the skin schema only exposes display/body/mono/accent: display=Instrument Serif (headline), body=Inter (subtext), accent=Manrope (the persistent nav + Sign In/Get Started UI sans, Medium/Semibold 14px); Cabin (Medium 14-16px) is the FOURTH face used for the tagline pill and the two hero CTA labels and could not be slotted into a role, so reskinners must map both Manrope (nav/buttons) and Cabin (pill/CTAs) to brand UI faces. Several neutral non-brand hexes are baked into inline Tailwind classes and not surfaced as color roles: Sign In button uses white bg with a #d4d4d4 gray border and #171717 black text, Get Started uses #fafafa white text, hero CTA2 uses #f6f7f9 off-white text on the #2b2344 dark-purple bg. There is no solid page background (the video is the backdrop) so bg is set to the secondary dark-purple #2b2344, which doubles as accent2/CTA2 fill; the mobile menu overlay is solid black, distinct from bg. The glassmorphism pill (surface rgba(85,80,110,0.4) + backdrop-blur + border rgba(164,132,215,0.5)) depends on backdrop-filter. The logo is a placeholder inline SVG path filled white (no real mark yet). The headline emphasizes the word 'and' in italic with bespoke spacing and is sized 5xl→96px with line-height 1.1, so it is moderately Instrument-Serif-metric-dependent. All copy (nav labels, button labels, the 'New' badge + 'Say Hello to Datacore v3.2' pill text, the 'Book your perfect stay instantly and hassle-free' headline, the subtext, and both CTA labels) is hardcoded in markup and must be edited in code."
+}

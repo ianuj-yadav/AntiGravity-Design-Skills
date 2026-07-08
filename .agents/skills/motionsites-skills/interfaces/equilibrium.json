@@ -1,0 +1,46 @@
+{
+  "id": "equilibrium",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplay/muted/loop/playsInline background video behind the liquid-glass hero; object-cover fills the viewport and is the template's only source of motion."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Geist",
+      "body": "Geist"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "accent": "#ffffff",
+      "border": "rgba(255,255,255,0.1)"
+    },
+    "copySlots": [
+      "logo-label",
+      "nav-labels",
+      "nav-cta-login",
+      "nav-cta-primary",
+      "headline",
+      "body",
+      "cta-primary-label",
+      "cta-secondary-label"
+    ]
+  },
+  "mechanic": "A single full-screen sticky hero layering a translucent liquid-glass navbar and bottom-left copy over a fullscreen looping object-cover background video, where all motion comes from the video and CSS transition-colors hovers.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS, icons via lucide-react, with custom .liquid-glass CSS (backdrop-filter blur + mask-composite gradient-border pseudo-element) and Geist imported from Google Fonts.",
+  "reskinNotes": "Copy is hardcoded in JSX markup (headline, body, nav labels, CTA labels). The frosted-glass look is hex/rgba baked into the .liquid-glass class and its ::before gradient-border in index.css (white-on-dark assumption), not Tailwind tokens — reskinning to a non-white palette requires editing that CSS plus the white/black Tailwind utility classes (bg-white, text-black, text-white/60, bg-white/15) throughout App.tsx. Geist is loaded by a hardcoded Google Fonts URL and applied via a global `*` font-family rule."
+}

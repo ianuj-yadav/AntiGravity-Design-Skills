@@ -1,0 +1,128 @@
+{
+  "id": "2",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "DashboardPreview"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover autoplay/loop/muted/playsInline background video behind all hero content. Rendered at opacity-50 with a top-to-bottom gradient overlay (black/60 -> #050505) so it fades seamlessly into the dark page at the bottom; supply dark-toned footage that reads under a 50% dim and a solid-black bottom fade."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Taskora wordmark/logo at the left of the floating glassmorphism pill navbar. Needs transparency; monochrome white to read against the dark hero and the bg-white/10 backdrop-blur pill."
+    },
+    {
+      "id": "badge-star-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Star glyph inside the 'Trusted by +30.000 of clients globally' pill badge above the headline. Filled with a blue gradient (the lone chromatic accent on the dark hero); supply as a transparent single-shape star that can take the blue gradient fill."
+    },
+    {
+      "id": "nav-ui-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Hamburger/menu glyph that toggles the mobile glassmorphism dropdown drawer (desktop nav links collapse into it). White currentColor line glyph on transparency."
+    },
+    {
+      "id": "dashboard-rail-icons",
+      "type": "icon",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Navigation glyphs for the thin vertical sidebar rail of the light-mode product-shot dashboard (Home, Users, etc.) plus the header's search and notification-bell icons. Dark/neutral line icons on transparency to read on the #F9F9FA light dashboard surface; card:6 is a placeholder count, the rail lays out however many are supplied."
+    },
+    {
+      "id": "company-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Small company brand mark shown inline in the 'Company' column of the dashboard Deals table (native placeholder is the Amazon.com mark). Supply as a transparent small logo sized for an inline table cell on the light #F9F9FA surface."
+    },
+    {
+      "id": "deal-owner-avatar",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Circular user avatar portrait shown in the 'Owner' column of the dashboard Deals table, and reused for the header user-profile picture(s). Square 1:1 source, cropped to a circle in the cell."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "notes": "Accent serif used strictly for the single italicized word 'Workflow' inside the headline. Native family 'Instrument Serif' (Italic). Only this one word swaps to the serif; the rest of the headline is the display sans, so the substitute must sit visually beside the display face at the same massive size."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/body sans for the 'Trusted by' badge text and the subheadlines. Native family 'Manrope'. The badge and subhead are tuned to Manrope's metrics; supply a clean sans fallback."
+    },
+    {
+      "id": "font-cta",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans used specifically for the main 'Book a Free Demo' CTA button label. Native family 'Cabin'. Isolated to the CTA, so it can differ from the body/UI faces."
+    },
+    {
+      "id": "font-ui",
+      "type": "font",
+      "card": 1,
+      "notes": "UI sans for the navbar links and all text inside the light-mode dashboard product shot (stats cards, revenue chart labels, deals table). Native family 'Inter' / 'Inter Tight'. Dense small-size UI usage, so a legible neutral sans is required."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Manrope",
+      "body": "Inter, 'Inter Tight', sans-serif",
+      "accent": "'Instrument Serif', serif"
+    },
+    "colorRoles": {
+      "bg": "#050505",
+      "surface": "#F9F9FA",
+      "fg": "#ffffff",
+      "fgMuted": "#9ca3af",
+      "accent": "#3b82f6"
+    },
+    "copySlots": [
+      "nav-labels",
+      "signup-label",
+      "signin-label",
+      "badge-text",
+      "headline",
+      "headline-serif-word",
+      "subhead",
+      "cta-label",
+      "dashboard-stat-card-titles",
+      "dashboard-revenue-title",
+      "dashboard-table-headers",
+      "dashboard-deal-rows"
+    ]
+  },
+  "mechanic": "A top-aligned dark hero (over a 50%-dimmed gradient-faded fullscreen background video) Framer-Motion-staggers a glass pill navbar, a star-badge + massive 80px headline with one Instrument-Serif italic word, a gray subhead and white CTA in on load, then docks a detailed non-functional light-mode (#F9F9FA) mock dashboard (sidebar rail + 3 stat cards + revenue bar chart + deals table) below the fold for contrast.",
+  "techDelivery": "React + Tailwind CSS + Framer Motion component spec; native <video> (autoPlay/loop/muted/playsInline) for the fullscreen background, glassmorphism via bg-white/10 backdrop-blur, and a hand-built non-functional dashboard composed of Tailwind-styled divs (mini bar charts and revenue chart are static CSS bars, not a charting lib).",
+  "reskinNotes": "Palette and effects are baked into Tailwind arbitrary-value classes rather than tokens: the #050505 page base, the black/60 -> #050505 video gradient overlay, the light dashboard surface bg-[#F9F9FA], and the blue-gradient star fill must be edited in markup to reskin, and the dashboard's green/red trend percentages are semantic state colors. The headline is split so only the word 'Workflow' is the Instrument Serif italic face while the rest is Manrope, sized up to text-[80px] desktop / text-5xl mobile with tight tracking, so a substitute serif must visually pair with the display sans at scale and longer copy can rewrap the two-line headline. All copy is hardcoded inline: the four nav labels (Home/Features/Company/Contact), Sign Up / Sign In, the 'Trusted by +30.000 of clients globally' badge, the 'Simplify Your Workflow. Stay Focused.' headline, the 'Taskora helps teams manage projects, tasks, and deadlines with clarity.' subhead, the 'Book a Free Demo' CTA, and every dashboard string (Total Sales / Operating Expenses / Gross Profit, Revenue, and the Deal Name/Company/Amount/Date/Owner/Stage table with the Amazon.com row and 'New' tag). Four separate Google Font families (Instrument Serif, Manrope, Cabin, Inter/Inter Tight) are each scoped to specific elements, so a reskin must preserve or remap all four roles, and the whole dashboard product shot is a bespoke hand-coded div tree (logos, avatars, bar charts) that must be re-themed piece by piece rather than via a single surface token."
+}

@@ -1,0 +1,97 @@
+{
+  "id": "global-cta-footer",
+  "role": "cta",
+  "ownSections": [
+    "Nav",
+    "HeroSection",
+    "DashboardPreview",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-fit:cover hero background video behind nav + copy; absolute inset:0, z-index:-2, no scrim. Horizontally flipped (scaleX(-1)); desktop adds scale(1.12) + 26s Ken Burns zoom and loops natively, mobile force-loops back to 0 at 2s via timeupdate. Placeholder source is a CloudFront mp4 to be replaced by a brand asset."
+    },
+    {
+      "id": "dashboard-preview",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Product/dashboard UI shown in the hero as a floating preview (aspect-ratio 1456/1138 ~= 1.28:1). Desktop: absolutely placed card with 16px radius + deep drop shadow. Mobile: 3D-perspective tilted card with 6.5s float animation. Spec embeds it as an iframe to dashboard-orchestrator.html; the brand fills this socket with its own product screenshot/mockup."
+    },
+    {
+      "id": "brand-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logomark used in nav (24-28px), footer brand column and mobile brand lockup. Native art is a monochrome white circle+arc+dot inline SVG (26x26 viewBox, 1.6px strokes); recolored via stroke/fill = foreground white. Brand replaces with its own single-color mark."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 8,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Inline monochrome UI/glyph icons: nav chevron dropdown, play_circle (Watch demo ghost CTA), mail/envelope (waitlist + footer), submit arrow, and three social marks (X/Twitter, LinkedIn, GitHub). Sized 17-22px, tinted via currentColor (muted white -> #fff on hover). Brand swaps the social/glyph set; some are SVG, some come from the Material Icons Round font on desktop."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display/serif typeface socket for h1 hero headline and footer CTA headings (also large mobile heading). Native = EB Garamond (400/500/600 + italics); <em> spans are italic and on mobile tinted with the accent (lime). Loaded from Google Fonts."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Body/UI sans typeface socket for nav, subtitles, buttons, footer links, form fields. Native = Hanken Grotesk (400/500/600/700). Loaded from Google Fonts."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "EB Garamond",
+      "body": "Hanken Grotesk"
+    },
+    "colorRoles": {
+      "bg": "#000",
+      "surface": "rgba(255,255,255,.055)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,.72)",
+      "accent": "#c7ef6b",
+      "accent2": "#b6e34f",
+      "border": "rgba(255,255,255,.16)"
+    },
+    "copySlots": [
+      "brand-name",
+      "tagline-headline",
+      "hero-subheadline",
+      "cta-primary-label",
+      "cta-ghost-label",
+      "nav-labels",
+      "footer-col-product-links",
+      "footer-col-resources-links",
+      "footer-col-company-links",
+      "footer-legal-links",
+      "footer-brand-description",
+      "waitlist-placeholder",
+      "waitlist-submit-label",
+      "footer-cta-heading",
+      "footer-cta-subtitle",
+      "copyright"
+    ]
+  },
+  "mechanic": "Fullscreen flipped + Ken-Burns/force-looped hero video under serif headline and pill CTAs, with a floating dashboard preview card (3D-tilted + float-animated on mobile) and a frosted-glass overlapping footer, all entering via staggered opacity/translate reveal transitions.",
+  "techDelivery": "Two standalone HTML files (desktop + mobile) with all CSS inline in <style> and vanilla-JS reveal/accordion/video-loop logic, loaded via Google Fonts (incl. Material Icons Round on desktop); a thin React App.jsx switches between them in an iframe at a 768px matchMedia breakpoint.",
+  "reskinNotes": "Logo art, social glyphs and chevron/mail/arrow icons are hardcoded inline SVG (stroke/fill #fff baked in) and must be re-pathed per brand; copy (brand name, headlines, nav labels, footer link lists, legal, copyright) is hardcoded in markup across both desktop and mobile files; CSS custom-property values differ between desktop and mobile (muted/line opacities, body bg #000 vs #060707) and the dashboard card position is pinned to magic-number custom properties (--dash-w/--dash-x/--dash-y) plus a fixed 1456/1138 aspect; serif h1 uses text-wrap:balance and ch-based max-widths so layout is font-metric dependent; lime accent <em> styling is tied to the EB Garamond italic."
+}

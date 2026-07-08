@@ -1,0 +1,151 @@
+{
+  "id": "neovision-landing",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "SectionDivider",
+    "AboutSection",
+    "InsightsSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Hero background video pinned absolute right-0 top/bottom-0 at z-1, object-cover object-top, autoPlay + loop + muted + playsInline. On mobile it spans full width at opacity-30; on desktop it occupies the right w-[55%] at full opacity over a solid #FBFDFD fill, so the dark left half stays clear for the headline. Carries a .video-plus-darker class that forces mix-blend-mode:normal. aspect is 'auto' because object-cover crops it to a side panel rather than a fixed ratio. Supply right-weighted footage that reads against a near-white hero and tolerates being cropped to ~55% width."
+    },
+    {
+      "id": "about-section-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "About-section left-column video that fills its half of the two-column dark (#0F0F0F) band, object-cover with mix-blend-lighten so dark tones drop out against the black surface, autoPlay + loop + muted + playsInline. Mobile renders it as a stacked h-[400px] block; desktop fills the column to min-height 700px. Supply bright-on-black footage since the lighten blend hides anything darker than the #0F0F0F background."
+    },
+    {
+      "id": "insight-tab-images",
+      "type": "image",
+      "card": 3,
+      "aspect": "4:3",
+      "alpha": false,
+      "notes": "Three editorial article thumbnails, one per Insights tab (Innovation / Technology / Experience), shown in a lg:w-[420px] xl:w-[480px] aspect-[4/3] rounded-2xl overflow-hidden frame on the dark section. card:3 = one image per tab; swapped as the active tab changes. Native placeholders are local /Mask_group.jpg, /Mask_group-1.jpg, /Mask_group-2.jpg."
+    },
+    {
+      "id": "client-avatars",
+      "type": "image",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Four overlapping circular client avatars in the hero 'Trusted by Clients' social-proof cluster, -space-x-2 overlap, each w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-neutral-100 object-cover, followed by a '20+' count. card:4 = the four overlapping headshots. Native placeholders are Pexels photos (415829, 1222271, 1239291, 2379004)."
+    },
+    {
+      "id": "brand-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Brand logo lockup in the top-left of the navbar, rendered as an <img> at fixed height h-7 md:h-8 (width auto) on the near-white hero. Native placeholder is /image.png in the public folder. Supply a transparent-background mark that reads dark-on-light at small navbar height."
+    },
+    {
+      "id": "nav-search-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Search glyph absolutely positioned inside the right edge of the desktop navbar search pill, in muted neutral text. Native icon is lucide-react Search; supply a single-color/currentColor stroke mark."
+    },
+    {
+      "id": "nav-menu-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Hamburger glyph inside the mobile-only 40px circular button (border-neutral-300) that toggles the mobile nav/search dropdown. Native icon is lucide-react Menu; supply a single-color/currentColor stroke mark."
+    },
+    {
+      "id": "hero-link-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Link/chain glyph inside the w-10 h-10 md:w-12 md:h-12 bordered circle (border-neutral-300) sitting beside the hero description paragraph in the bottom bar. Native icon is lucide-react Link; supply a single-color/currentColor stroke mark."
+    },
+    {
+      "id": "about-play-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Play glyph inside the w-10 h-10 bordered circle next to the About section's 'Watch a Video' link. Native icon is lucide-react Play; supply a single-color/currentColor stroke mark."
+    },
+    {
+      "id": "section-divider-shape",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "surface",
+      "notes": "Inline SVG diagonal divider pinned absolute bottom-0 of the hero wrapper at z-3 (viewBox 0 0 1440 120, preserveAspectRatio='none', h-[60px] md:h-[120px]). A single polygon (points '0,0 0,120 1440,120 1440,80 920,80 680,0') filled solid #0F0F0F cuts an angled transition from the light hero down into the dark About section. The fill hex must match the dark-section surface; deliver as a transparent-background single-color shape that stretches edge to edge."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "No custom font is declared: headlines, body and UI all use the Tailwind default system sans-serif stack (ui-sans-serif/system-ui). Headlines lean on font-light with tight tracking (tracking-tight) and very tight leading (hero leading-[0.95], section leading-[1.05]); the Insights heading is font-light italic. This is the single optional brand-display swap socket; a substitute must tolerate the light-weight, condensed-leading metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "ui-sans-serif, system-ui, sans-serif",
+      "body": "ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#0F0F0F",
+      "fg": "#171717",
+      "fgMuted": "#737373",
+      "border": "#D4D4D4"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-search-placeholder",
+      "hero-eyebrow",
+      "hero-section-number",
+      "headline",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "hero-stat-value",
+      "hero-stat-label",
+      "social-proof-label",
+      "social-proof-count",
+      "hero-description",
+      "about-eyebrow",
+      "about-heading",
+      "about-pill-tags",
+      "about-body",
+      "about-primary-cta-label",
+      "about-secondary-cta-label",
+      "insights-heading",
+      "insights-tab-labels",
+      "insight-title",
+      "insight-body",
+      "insight-cta-label",
+      "insight-date",
+      "insight-author"
+    ]
+  },
+  "mechanic": "A scroll-stacked landing where a split light hero (near-white #FBFDFD left copy over a right-anchored object-cover looping video) is cut into a dark #0F0F0F band by an inline-SVG diagonal polygon divider, flowing into a two-column About section (mix-blend-lighten looping video + text) and a tabbed Insights section that swaps a 4:3 image and article copy per tab; motion is limited to the two autoplay video loops plus hover color/border transitions (no scroll or entrance animation).",
+  "techDelivery": "React 18 + Vite + TypeScript + Tailwind CSS 3 single-page component spec; lucide-react for all icons (Search, Menu, Link, Play); native <video autoPlay loop muted playsInline> elements for both backgrounds; a hand-authored inline <svg><polygon> for the section divider; a small index.css with the .video-plus-darker, .app-hero-wrapper, .hero-description-group and .hero-stat-group helper classes (the latter three holding responsive margin/min-height magic values). No custom fonts and no animation library.",
+  "reskinNotes": "The dark surface #0F0F0F is baked twice: once as the inline SVG divider polygon's fill attribute and once as the About/Insights section backgroundColor, so retinting the dark band means editing the SVG markup AND the inline style in lockstep or the diagonal seam mismatches. The near-white hero fill #FBFDFD is a hardcoded inline background, and the entire palette is expressed as Tailwind neutral-scale utilities (text-neutral-900/600/500/400, border-neutral-300/700/800, bg-neutral-900/800) baked into className strings rather than CSS variables, so a brand reskin means rewriting class names, not dropping in tokens. No brand font family is declared (Tailwind default sans), and the headline metrics (font-light, tracking-tight, leading-[0.95]/[1.05], the responsive text-[2.75rem]->text-[5.5rem] and italic Insights ramp) are tuned to that stack, so a heavier or wider display face will reflow the above-the-fold blocks. The hero 'NEW DIGITAL' / 'UNIVERSE' headline is split into hardcoded lines, and the divider polygon points (920,80 / 680,0) are fixed magic coordinates tuned to a 1440-wide frame; the .hero-stat-group margin-right:20% and .hero-description-group margin-right:50% desktop offsets, plus the hero pb-20/md:pb-36 that keeps the divider off the social-proof row, are layout-critical magic values. All copy is hardcoded in markup, including the three Insights tab records (titles, bodies, dates 08 Feb / 15 Mar / 22 Apr 2025, authors Henry Leonardo / Sarah Mitchell / James Park), the pill tags (Digital/Reality/Next), nav links, stat '47.2% / Reality', and '20+' social-proof count. The About video relies on mix-blend-lighten against the exact #0F0F0F background, so any change to the dark surface or the use of dark footage breaks that knock-out blend."
+}

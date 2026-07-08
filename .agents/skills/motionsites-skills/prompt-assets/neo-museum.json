@@ -1,0 +1,17 @@
+{
+  "id": "neo-museum",
+  "title": "Neo Museum",
+  "category": "Website",
+  "sort_order": 999,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-05-14T09:06:00+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": "https://stream.mux.com/rvV01To34SdNmXrjyPh7Wauq5I14M1YU005fldhLChTuA.m3u8",
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

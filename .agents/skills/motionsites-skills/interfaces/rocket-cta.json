@@ -1,0 +1,87 @@
+{
+  "id": "rocket-cta",
+  "role": "cta",
+  "ownSections": [
+    "CtaSection",
+    "CtaDashboardMock",
+    "ChatPanel",
+    "VelorahHeroPreview"
+  ],
+  "slots": [
+    {
+      "id": "velorah-preview-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The looping muted background video filling the right pane (VelorahHeroPreview) of the dashboard mock; absolutely positioned object-cover at z-0 with autoPlay loop muted playsInline preload=auto, sitting behind the Velorah nav row, serif headline and Begin Journey pill. While it loads, a deep-teal fill (hsl(201 100% 13%)) shows through, so supply a cinematic loop that stays legible under white overlaid type. Native value is a placeholder CloudFront mp4 to be replaced by a brand clip."
+    },
+    {
+      "id": "foreground-grass-horizon",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "Full-bleed foreground 'grass / horizon' overlay PNG pinned to the bottom of the section (left-0 right-0 bottom-[-40/-80/-140px], w-full, object-cover, pointer-events-none, aria-hidden) at z-30 so it occludes the dashboard mock (z-10) and parallaxes on scroll (translateY 200->-200px desktop, 80->-40px mobile). MUST be a transparent-background cutout so the transparent->#14191E section gradient shows through above the horizon line. Native value is a placeholder Cloudinary URL to be replaced by a brand asset."
+    },
+    {
+      "id": "material-symbols-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI glyphs rendered via the Material Symbols Outlined web font through the MIcon span (fontVariationSettings FILL/wght/GRAD/opsz): auto_awesome (28px chat-panel header avatar) and arrow_upward (16px white send button). Single-color font glyphs inheriting currentColor; a reskin can swap the icon set wholesale."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display face used for the Velorah wordmark and the Velorah inner hero <h1>; mapped to font-family 'Instrument Serif'. Native value: Instrument Serif (Google Fonts, weight 400 + italic). Must hold up at leading-[0.95] with -0.03em tracking."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans face used globally — the CTA headline/subtext, PrimaryButton, ChatPanel chrome and message bubbles, and all Velorah body copy; mapped to font-family 'Inter'. Native value: Inter (Google Fonts, weights 400/500/600)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.10)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.60)",
+      "accent": "rgba(255, 255, 255, 0.80)",
+      "accent2": "#14191E",
+      "border": "rgba(255, 255, 255, 0.10)"
+    },
+    "copySlots": [
+      "headline",
+      "body",
+      "cta-label",
+      "brand-name",
+      "trademark",
+      "nav-labels",
+      "nav-cta-label",
+      "velorah-headline",
+      "velorah-body",
+      "velorah-cta-label",
+      "chat-panel-title",
+      "chat-panel-subtitle",
+      "chat-seed-messages",
+      "chat-input-placeholder",
+      "chat-canned-reply"
+    ]
+  },
+  "mechanic": "A two-column CTA where a static left text block (FadeUp-staggered headline -> paragraph -> white AnimatedText pill) sits over a right-pinned liquid-glass dashboard mock (ChatPanel + a Velorah hero preview running a looping video), and a useScroll/useTransform parallax drives the dashboard up (120->-120px) while a full-bleed transparent grass PNG slides over it (200->-200px desktop) as the section background fades transparent->#14191E.",
+  "techDelivery": "React 18 + Vite + TypeScript with TailwindCSS (a white-alpha 'landing' palette extended in tailwind.config.ts), framer-motion for scroll parallax/FadeUp, and clsx + tailwind-merge as cn(); helper primitives (FadeUp, MIcon, PrimaryButton/AnimatedText) plus a hand-written .liquid-glass utility and fade-rise/scrollbar-hide keyframes in index.css; Inter + Instrument Serif + Material Symbols Outlined loaded via <link> in index.html.",
+  "reskinNotes": "All copy is hardcoded in JSX: the CTA headline ('Learn how can one go from 0 to $11.5k with AI in 60 days.'), subtext, 'Start for free' button, the entire Velorah inner mock (wordmark 'Velorah' + registered-trademark sup, nav labels Home/Studio/About/Journal/Reach Us, 'Begin Journey' x2, headline 'Where dreams rise through the silence.', subtext) and the ChatPanel ('Vibe Design course' header, three seed messages and the canned assistant reply) are literal in the markup. The white-alpha palette is functionally fixed to white-on-dark: surfaces, borders, text and the .liquid-glass frame are all rgba-white literals (some baked inline, e.g. ChatPanel bg rgba(8,8,10,0.6)), the deep-teal video-loading fill hsl(201 100% 13%) is an inline literal, the section gradient terminates at #14191E, and the PrimaryButton is hardcoded bg-white/80 black-text. Layout depends on Instrument Serif metrics (leading-[0.95], -0.03em tracking) and a stack of hand-tuned magic offsets — the dashboard's absolute top-[440/460/500px]->lg:top-20 with negative right insets (-right-[8/10/12%]) and the grass bottom-[-40/-80/-140px] with z-30-over-z-10 layering — so a wider substitute font or longer copy will shift the parallax overlap and headline wrap. The grass and Velorah video are placeholder CDN URLs (Cloudinary PNG / CloudFront mp4) wired directly into the markup, not local assets."
+}

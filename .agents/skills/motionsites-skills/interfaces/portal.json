@@ -1,0 +1,77 @@
+{
+  "id": "portal",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "MobileMenu",
+    "HeroContent"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-viewport looping muted autoplaying hero background video. Absolutely positioned 'absolute inset-0 z-0 w-full h-full object-cover' behind the entire page (navbar + hero sit at z-10 on top). Cover-cropped to fill any viewport; the dark #192837 text and #7342E2 accent pills sit directly over it, so pick light/calm footage that keeps centered heading + subtext legible. Currently a CloudFront placeholder mp4."
+    },
+    {
+      "id": "brand-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo mark, left of the navbar and repeated in the mobile-sheet header. Inline SVG component, 32x32, viewBox '0 0 256 256', a custom two-path interlocking geometric glyph with fill hard-coded to #192837 (the fg/text color, not currentColor). Supply as a single-color SVG; deliver as a currentColor / fill-inheriting glyph so it re-tints with the brand fg instead of a baked hex."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Heading display face for the <h1> only. Spec loads 'Helvetica Now Display Bold' via a db.onlinewebfonts.com stylesheet <link> in index.html and exposes it as --font-heading. Drives the two-line hero headline at clamp(1.65rem,5vw,3rem), line-height 1.05, letter-spacing -0.01em. Swap with the brand display face; the -0.01em tracking and nowrap line 1 are tuned to this font's metrics."
+    },
+    {
+      "id": "body-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Global body/UI typeface. Spec @imports Google font 'Inter' (weights 300-900) in index.css and sets body font-family via --font-body. Drives nav links, both CTA buttons, mobile-sheet links, and the hero subtext paragraph. Swap with the brand text sans."
+    },
+    {
+      "id": "inline-ui-icons",
+      "type": "icon",
+      "card": 6,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Lucide React icon set, 6 marks: ArrowRightCircle (CTA, 20px), Zap + LockKeyhole + Fingerprint (rendered inline inside the <h1> copy at 24px, color #192837, vertical-align middle, top -2px), and Menu + X (mobile hamburger / close toggles, 24px and 20px). The three headline icons are load-bearing inline glyphs interleaved with the heading words, not decorative. Supply a tintable icon set that inherits the fg color."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Now Display Bold', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F2F2EE",
+      "surface": "#CFC8C5",
+      "fg": "#192837",
+      "fgMuted": "rgba(25,40,55,0.8)",
+      "accent": "#7342E2",
+      "border": "rgba(25,40,55,0.12)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "body",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "A single non-scrolling full-viewport light hero over a fixed object-cover looping background video, with a max-w-1280 navbar and a centered 660px hero block whose heading, subtext, and pill CTA each fade-up (opacity 0 / y:28 to 0) on a 0.15s-per-index Framer Motion stagger, plus a right-side AnimatePresence slide-in mobile sheet (cubic-bezier [0.22,1,0.36,1]) with its own staggered nav links.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS 3 (default config, no theme extensions) with Framer Motion for the fadeUp variants and mobile-sheet AnimatePresence, and Lucide React icons; 'Helvetica Now Display Bold' loaded via an onlinewebfonts.com <link>, 'Inter' via Google Fonts @import; the design tokens live in :root CSS custom properties.",
+  "reskinNotes": "The logo is an inline SVG with two <path> 'd' coordinates and fill #192837 baked into markup, so reskinning the mark means editing JSX, not swapping a file. Only three brand tokens are declared as CSS vars (--color-text #192837, --color-accent #7342E2, --color-login-bg #F2F2EE); the mobile sheet adds non-tokenized hardcoded values (sheet bg #CFC8C5, backdrop rgba(25,40,55,0.35), shadows/dividers rgba(25,40,55,0.1-0.18)) inline, so a full retheme touches both the :root block and the sheet markup. All copy is hardcoded: the five nav labels (Vault/Plans/Install/News/Help), both pill labels (Start For Free / Sign In), the two-line headline with Lucide icons interleaved between words, the subtext sentence, and the 'Get It Free' CTA. The headline depends on three inline Lucide icons sitting mid-sentence with a nowrap first line, so longer translated copy or a wider display font can break the line-1 layout and icon alignment. Framer Motion stagger delays are inline index multipliers (i*0.15) and the sheet's cubic-bezier easings are literal arrays, so re-ordering elements means hand-editing values."
+}

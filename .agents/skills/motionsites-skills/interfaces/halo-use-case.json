@@ -1,0 +1,57 @@
+{
+  "id": "halo-use-case",
+  "role": "features",
+  "ownSections": [
+    "UseCasesSection"
+  ],
+  "slots": [
+    {
+      "id": "usecase-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen ambient background video that fills the tall right-column card (relative rounded-3xl overflow-hidden min-h-[720px]), rendered as a bare <video> at absolute inset-0 w-full h-full object-cover with autoPlay/muted/loop/playsInline. The 'Commerce' content overlay sits directly on top at z-10 with NO gradient, dark scrim, or blur layer between video and text — so the black h3 heading, black/70 body copy, and the white/80 backdrop-blur circular 'Know more' arrow button all read straight off the raw footage. Because the card is tall (720px min) it crops portrait/vertical, and the text anchors top-left of the overlay, so choose a light/bright clip that keeps the upper-left low-contrast and tolerates a tall crop. Native placeholder is a CloudFront-hosted MP4."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary typeface 'TT Norms Pro Regular' (note the literal 'Regular' suffix in the family name), loaded NOT self-hosted but via an external onlinewebfonts stylesheet <link> in index.html (db.onlinewebfonts.com), then applied globally in index.css under @layer base to html, body, and inherited on * with the stack 'TT Norms Pro Regular', ui-sans-serif, system-ui, sans-serif. Drives every text element: the 'Use modes' h2 (up to text-6xl, letterSpacing -0.04em), the 'Commerce' h3 (text-5xl, letterSpacing -0.03em), the eyebrow, both body paragraphs, and the 'Know more' button label. font-medium is the heaviest weight used; all other text is default weight 400. Headings lean on tight negative letter-spacing tuned to this face's metrics."
+    },
+    {
+      "id": "ui-arrow-glyph",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional lucide-react ArrowRight glyph (a code dependency, not a brand image), used once as the trailing arrow inside the 'Know more' CTA's frosted-glass circle (rendered className w-4 h-4 text-black, so tinted black via currentColor; the enclosing w-9 h-9 span is bg-white/80 backdrop-blur transitioning to solid white on group-hover). Optional socket: swap only if the brand ships its own line/arrow icon, otherwise the lucide default stands."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'TT Norms Pro Regular', ui-sans-serif, system-ui, sans-serif",
+      "body": "'TT Norms Pro Regular', ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F5F5F5",
+      "fg": "#000000",
+      "fgMuted": "rgba(0, 0, 0, 0.7)",
+      "border": "rgba(0, 0, 0, 0.1)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "heading",
+      "lead-paragraph",
+      "card-heading",
+      "card-body",
+      "card-cta-label"
+    ]
+  },
+  "mechanic": "A static (non-scroll-driven) two-column responsive grid on a #F5F5F5 page: a text-only left intro (eyebrow + tight-tracked 'Use modes' heading + lead paragraph) beside a tall rounded-3xl right card that holds a fullscreen object-cover looping background video with black 'Commerce' copy and a frosted-glass circular arrow CTA sitting scrim-free directly on the footage; the only motion is the silent video loop plus a transition-colors hover on the button's icon circle (bg-white/80 -> solid white).",
+  "techDelivery": "React + TypeScript + Tailwind CSS (default config, @tailwind base/components/utilities in index.css) single-component spec (UseCasesSection); lucide-react for the ArrowRight icon; 'TT Norms Pro Regular' loaded via an external onlinewebfonts stylesheet <link> in index.html and applied in an @layer base block; no animation library — motion is just the native <video autoplay muted loop playsInline> and a Tailwind group/group-hover transition-colors.",
+  "reskinNotes": "Palette is expressed entirely as Tailwind arbitrary/opacity utilities, not a :root token block — the section bg is bg-[#F5F5F5], headings are text-black, body copy is text-black/70 and muted text text-black/60, and the button chip is bg-white/80 -> bg-white — so changing the surface tone or the muted-text ladder means editing class names across the markup. All copy is hardcoded in JSX: eyebrow 'USD Halo in Practice', 'Use modes' heading, the lead paragraph, the 'Commerce' card heading, its body, and the 'Know more' label. The two headings carry inline letterSpacing values (-0.04em / -0.03em) tuned to the TT Norms Pro metrics and treat font-medium as the heaviest weight, so a swapped face with different metrics or no medium weight will shift the tight-heading look. The font family name embeds the literal weight word ('TT Norms Pro Regular') and is delivered by a third-party onlinewebfonts URL, so reskinning the type means both replacing that <link> and matching the exact family string used in index.css."
+}

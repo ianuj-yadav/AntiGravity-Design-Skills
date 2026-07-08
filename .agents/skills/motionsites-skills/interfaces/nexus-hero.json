@@ -1,0 +1,47 @@
+{
+  "id": "nexus-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroContent",
+    "TrustedBy"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplaying muted looping hero background video, absolute inset-0 w-full h-full object-fill behind the entire navbar/headline/trusted-by stack. object-fill stretches edge-to-edge with no cropping and no overlay, so the source should read well when distorted to the viewport aspect."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Akshar",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 100%)",
+      "fg": "hsl(220 20% 20%)",
+      "fgMuted": "hsl(220 10% 50%)",
+      "accent": "hsl(212 72% 18%)",
+      "accent2": "hsl(205 65% 48%)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-headline",
+      "hero-subheading",
+      "hero-cta-label",
+      "trusted-by-eyebrow",
+      "trusted-by-brand-names"
+    ]
+  },
+  "mechanic": "A 100vh full-viewport hero with a fullscreen object-fill looping background video behind a z-10 flex column holding the navbar, a vertically centered gradient-clipped headline with a corner-notched CTA button, and a low-opacity trusted-by brand row.",
+  "techDelivery": "React + Tailwind CSS + TypeScript, fonts Akshar and Inter loaded via Google Fonts <link> in index.html; colors as HSL-triplet CSS custom properties with a heading-gradient utility using background-clip:text.",
+  "reskinNotes": "Colors are declared as raw HSL triplets in CSS custom properties (e.g. --primary: 212 72% 18%), so reskinning means editing the triplets, not hex; the headline color is a background-clip:text linear-gradient driven by --heading-gradient-from/--heading-gradient-to (mapped here to accent/accent2), so retinting the headline requires editing those two gradient stops rather than fg. The layout assumes a light --background with dark --foreground text directly over the video (no scrim), so a dark brand video can render text unreadable. Logo (NEXUS), nav labels (HOME/SOLUTIONS/OUR TEAM/NEWS), headline, subheading, CTA labels and the trusted-by brand names (FedEx/amazon/McKESSON/pitney bowes) are all hardcoded in JSX. Headline uses a tight letterSpacing of -0.06em and the Akshar font, so copy length and wrapping at max-w-3xl are font-metric-load-bearing; the CTA is a NotchedButton whose 8 corner-decoration spans (10px x 1px, inset 4px) are CSS, not assets."
+}

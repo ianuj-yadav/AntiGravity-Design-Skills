@@ -1,0 +1,91 @@
+{
+  "id": "duolingo-styleguide-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "ColorPalette",
+    "Typography",
+    "ButtonVariants",
+    "DarkThemeButtons",
+    "Cards",
+    "DarkThemeCards",
+    "Components",
+    "DarkThemeComponents"
+  ],
+  "slots": [
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Navbar brand wordmark logo, displayed 140x33px next to a vertical divider and 'STYLE GUIDE' label"
+    },
+    {
+      "id": "card-thumbnails",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Light-theme card cover photos, rendered 120px tall with object-fit cover (source ~400x200); one per content card"
+    },
+    {
+      "id": "language-flags",
+      "type": "svg",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Flag icons inside dark-theme language pills, 24x18px object-fit contain; one per language pill (Spanish/French/German/Japanese)"
+    },
+    {
+      "id": "avatar-photos",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Overlapping circular avatars in the dark-theme avatar group, 36px diameter with 50% radius and 2px white border; followed by a '+5' count badge"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Feather Bold', 'Nunito', 'DIN Round Pro', -apple-system, BlinkMacSystemFont, sans-serif",
+      "body": "'Nunito', 'DIN Round Pro', -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "rgb(16, 15, 62)",
+      "fg": "rgb(75, 75, 75)",
+      "fgMuted": "rgb(119, 119, 119)",
+      "accent": "rgb(88, 204, 2)",
+      "accent2": "rgb(28, 176, 246)",
+      "border": "rgb(229, 229, 229)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "style-guide-label",
+      "headline",
+      "body",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "color-swatch-names",
+      "type-sample-text",
+      "button-variant-labels",
+      "card-tags",
+      "card-titles",
+      "card-descriptions",
+      "card-footer-labels",
+      "badge-labels",
+      "input-placeholder",
+      "toggle-labels",
+      "progress-values",
+      "tooltip-text",
+      "streak-count",
+      "language-pill-labels",
+      "avatar-group-caption"
+    ]
+  },
+  "mechanic": "A static single-page style-guide showcase — fixed navbar over a gradient hero and an eight-panel two-column grid — whose signature motion is the skeuomorphic 3D button press (a colored box-shadow that collapses as the button translateY(4px) on active) plus hover lifts on swatches and cards.",
+  "techDelivery": "single-file inline CSS + HTML using CSS custom properties for the palette, Google Fonts (Nunito) and an onlinewebfonts CDN @font-face (Feather Bold), no JS framework or scroll library",
+  "reskinNotes": "Many tints are hardcoded as per-element rgba/hex literals rather than referencing the CSS variables (e.g. button shadows #CFCFCF/#CC3C3C/#88879F, dark-theme badge text #7ADB2E/#4DC4F8/#b8920f, '10%/12%/15% opacity' tag backgrounds), so a palette swap requires editing inline values throughout, not just the :root variables. The display font is fetched from a fragile third-party onlinewebfonts URL. Layout is font-metric-dependent (lowercase Feather Bold headline at fixed 52px) and all copy is hardcoded in markup."
+}

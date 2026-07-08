@@ -1,0 +1,101 @@
+{
+  "id": "glassmorphic-feature-tabs",
+  "role": "features",
+  "ownSections": [
+    "CoreFeaturesSection"
+  ],
+  "slots": [
+    {
+      "id": "tab-stage-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "16:10",
+      "alpha": false,
+      "colorRole": null,
+      "notes": "Four full-bleed feature-tab stage images, cross-faded one at a time inside the 16:10 image stage; reused as tutorial thumbnails in the ExclusiveTutorial panel. Order matters (one per tab)."
+    },
+    {
+      "id": "module-cover-thumbnails",
+      "type": "image",
+      "card": 6,
+      "aspect": "16:9",
+      "alpha": false,
+      "colorRole": null,
+      "notes": "Six module/template cover thumbnails cycled through the Courses (16:9 thumbs) and Templates (browser-frame thumbs) dashboard-mock card grids."
+    },
+    {
+      "id": "background-loop-videos",
+      "type": "video",
+      "card": 6,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "colorRole": null,
+      "notes": "Six muted autoplay looping background-video tiles in the BackgroundsTabContent 3x2 grid (autoplay muted loop playsinline); fall back to a matching poster image per tile if a source 404s."
+    },
+    {
+      "id": "play-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": null,
+      "notes": "Transparent play-button glyph overlaid bottom-right on background-video tiles and floating on the featured tutorial card."
+    },
+    {
+      "id": "header-avatar",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "colorRole": null,
+      "notes": "Circular user-avatar in the dashboard-mock header right group, rendered as a bg-cover/bg-center ring-1 circle."
+    },
+    {
+      "id": "display-body-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": null,
+      "notes": "Primary sans typeface (Inter, weights 300-700) used for every heading, pill, paragraph, nav label and caption; layout tracking is tuned to its metrics."
+    },
+    {
+      "id": "icon-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": null,
+      "notes": "Variable icon webfont (Material Symbols Rounded) driving all glyphs via the MIcon component (rocket_launch, search, grid_view, school, dashboard, play_circle, auto_awesome, sell, add, notifications, arrow_back, arrow_forward)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter",
+      "accent": "Material Symbols Rounded"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.10)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "rgba(255,255,255,0.65)",
+      "accent": "rgb(59,130,246)",
+      "accent2": "linear-gradient(135deg, rgb(158,103,250), rgb(254,106,187) 50%, rgb(255,156,101))",
+      "border": "rgba(255,255,255,0.10)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "headline-accent",
+      "body",
+      "nav-labels",
+      "tab-labels",
+      "tab-captions",
+      "mock-titles",
+      "brand-name",
+      "cta-label"
+    ]
+  },
+  "mechanic": "An auto-rotating 4-tab feature carousel (5s interval, stops on first interaction) whose images cross-fade inside a 16:10 stage, wrapped in three mouse-tracked radial-gradient spotlight borders, with a ResizeObserver-autoscaled 900x562 glassmorphic dashboard mock fading in over each tab.",
+  "techDelivery": "React 18 + Vite + TypeScript + TailwindCSS + framer-motion multi-file component spec (clsx + tailwind-merge cn helper), no single-file CDN bundle.",
+  "reskinNotes": "Hex/rgb colors are baked inline in JSX (#000000 body, #0e0e0e and #0e0e0e stage fill, rgb(59,130,246) blue accents, the 135deg rocket brand gradient) rather than tokens; base theme uses HSL Tailwind CSS-variable tokens (--background 270 80% 3%, --foreground 0 0% 100%) plus a landing.surface rgba token. All copy (headline, eyebrow, paragraph, nav/tab labels, captions, 'UI Rocket' brand, 'Invite' CTA) is hardcoded in markup. The dashboard mock is a fixed 900x562 canvas with a hardcoded w-[210px] sidebar, so layout is font-metric- and pixel-dependent. Asset URLs are hardcoded as img/video src with no local imports (placeholder higgs.ai images, CloudFront MP4s, Supabase SVG/PNGs, pravatar avatar)."
+}

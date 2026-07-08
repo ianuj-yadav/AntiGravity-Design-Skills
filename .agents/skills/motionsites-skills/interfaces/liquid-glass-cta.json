@@ -1,0 +1,67 @@
+{
+  "id": "liquid-glass-cta",
+  "role": "cta",
+  "ownSections": [
+    "CtaFooter"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping background video behind the centered CTA copy; absolute inset:0, z-0, autoPlay loop muted playsInline. Native source is a Mux HLS (.m3u8) stream played via hls.js (with native Safari fallback). Black top + bottom 200px gradient fades sit above it (z-[1]) blending the clip into the surrounding black page, and white headline/subtext/buttons sit at z-10 on top — so the clip must stay dark/low-contrast enough to keep white text legible and is darkest-tolerant at its top and bottom edges. Brand replaces the HLS URL with its own looping clip."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single directional glyph reused in both CTA buttons — lucide-react ArrowUpRight, rendered at h-5 w-5 on the primary (glass) button and h-4 w-4 on the secondary (solid white) button. Inherits currentColor (white on the glass button, black on the solid button). Brand can swap the icon set wholesale."
+    },
+    {
+      "id": "font-heading",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Display/serif typeface socket for the h2 hero headline, rendered italic at a tight leading-[0.85] + tracking-tight across very large clamp-style sizes (text-5xl -> md:6xl -> lg:7xl). Native = Instrument Serif (italic 0;1). Loaded from Google Fonts; mapped to Tailwind font-heading. Substitute must hold up italic and large with tight line-height."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fgMuted",
+      "notes": "Body/UI sans typeface socket for the subtext, both button labels, copyright and footer links (mostly font-light at small sizes). Native = Barlow (300/400/500/600). Loaded from Google Fonts; mapped to Tailwind font-body."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.6)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "headline",
+      "subtext",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "copyright",
+      "footer-links"
+    ]
+  },
+  "mechanic": "A fullscreen Mux-HLS looping video background under a centered italic-serif headline and two rounded-full pill CTAs (a liquid-glass button with a mask-composite gradient border + a solid white button), framed by black top/bottom gradient fades, with a thin-bordered copyright + links footer bar appended below in the same section.",
+  "techDelivery": "Single React + Vite + Tailwind CSS component (CtaFooter.tsx) using hls.js to stream a Mux HLS .m3u8 (native HLS fallback for Safari) and the lucide-react ArrowUpRight icon; fonts via Google Fonts and a .liquid-glass-strong utility defined in index.css @layer components; Tailwind fontFamily extended in tailwind.config.ts.",
+  "reskinNotes": "The liquid-glass button look is hand-authored CSS in index.css @layer components (.liquid-glass-strong) with hardcoded rgba fills, blur(50px) backdrop-filter, box-shadow, and a ::before mask-composite (xor/exclude) gradient-border trick whose white-alpha gradient stops are baked in — recoloring/reskinning the glass means editing those rules, not a token. The Mux HLS URL is hardcoded twice (in EXACT COMPONENT CODE and in the spec body). All copy is hardcoded in JSX (headline, subtext with non-breaking-hyphen entity AI&#8209;powered, both button labels, copyright year/name) and the footer links are a hardcoded [\"Privacy\",\"Terms\",\"Contact\"] array .map; there is no separate footer component (the bar lives inside this section). Most colors are Tailwind opacity utilities on white (text-white/60, /40, border-white/10, hover:bg-white/10) rather than named tokens. Layout is font-metric dependent: the serif h2 uses leading-[0.85] + tracking-tight with max-w-3xl mx-auto, so a wider/taller substitute font will reflow the headline."
+}

@@ -1,0 +1,97 @@
+{
+  "id": "prisma-landing",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "About",
+    "Features"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted hero background video filling the inset rounded-2xl/[2rem] container (autoPlay loop muted playsInline, object-cover). A fractal-noise .noise-overlay (opacity 0.7, mix-blend-overlay) plus a top-to-bottom black gradient (from-black/30 via-transparent to-black/60) sit on top, and the giant 'Prisma' wordmark + nav + CTA overlay it, so footage should be dark/moody/low-contrast to keep cream text legible."
+    },
+    {
+      "id": "feature-canvas-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Looping muted background video filling Feature Card 1 (the 'Your creative canvas.' card) in the 4-card Features grid (autoPlay loop muted playsInline, object-cover). Bottom-aligned cream caption overlays it, so keep footage dark enough for #E1E0CC text to read."
+    },
+    {
+      "id": "feature-card-icons",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Small square thumbnail icons mounted at the top of Feature Cards 2, 3 and 4 ('Project Storyboard.', 'Smart Critiques.', 'Immersion Capsule.'), rendered ~10x10 sm:12x12 and rounded. Native prompt sources them as remote webp raster images (one per card, served via the higgs.ai image proxy). Reskin swaps to three brand feature/product thumbnails; transparent background recommended so the rounded mask reads cleanly against the #212121 card."
+    },
+    {
+      "id": "global-sans-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary global UI typeface applied to everything via the universal reset (font-family:'Almarai', -apple-system... sans-serif). Drives the giant Prisma wordmark (font-medium, leading 0.85, tracking -0.07em), nav links, body paragraphs, the non-italic word segments of both About/Features headings, and all checklist/label text. Native family 'Almarai', weights 300/400/700/800, loaded from Google Fonts in index.html."
+    },
+    {
+      "id": "serif-accent-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Italic serif accent typeface used only for the emphasized middle segment of the About heading ('a self-taught director.'), set via fontFamily.serif + italic. Native family 'Instrument Serif' (italic only) loaded from Google Fonts. Pair with a brand display/editorial serif italic; layout assumes it sits inline among Almarai words at the same 3xl->7xl scale."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome glyphs (not brand assets), sourced from lucide-react: ArrowRight (inside the cream 'Join the lab' CTA's black circle, and rotated -45deg on each Feature card's 'Learn more' link) and Check (in front of every Features checklist item). Tinted by CSS in text-primary cream (Check) / white-cream (CTA arrow). Only swap if the brand has an equivalent line-icon system."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Almarai', sans-serif",
+      "body": "'Almarai', sans-serif",
+      "accent": "'Instrument Serif', serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#101010",
+      "fg": "#E1E0CC",
+      "fgMuted": "#9ca3af",
+      "accent": "#DEDBC8",
+      "accent2": "#212121",
+      "border": "rgba(225,224,204,0.8)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "headline",
+      "hero-body",
+      "hero-cta-label",
+      "about-eyebrow",
+      "about-headline-segment-1",
+      "about-headline-segment-2-italic",
+      "about-headline-segment-3",
+      "about-body",
+      "features-headline-line-1",
+      "features-headline-line-2",
+      "feature-card-1-caption",
+      "feature-card-titles",
+      "feature-card-numbers",
+      "feature-checklist-items",
+      "feature-learn-more-label"
+    ]
+  },
+  "mechanic": "A dark cinematic single-page scroll (inset rounded full-bleed hero video + nav + giant 'Prisma' wordmark, then a centered About card, then a 4-card Features grid) whose signature motion is framer-motion word-by-word pull-ups (y:20->0, 0.08s stagger, useInView) on every heading plus a scroll-linked per-character opacity reveal (0.2->1, useScroll offset start 0.8 / end 0.2) on the About body, with staggered scale+fade card entrances in Features.",
+  "techDelivery": "Vite + React 18 + TypeScript + Tailwind CSS 3, with framer-motion for all animation (pull-up text, fade-up, scroll-linked character opacity, card entrances) and lucide-react for icons; fonts via Google Fonts in index.html and two feTurbulence noise utilities in index.css.",
+  "reskinNotes": "Two near-identical cream foregrounds coexist and must both be retinted: #E1E0CC is applied via inline style (wordmark, nav hover, captions, navbar links at rgba(225,224,204,0.8)) while Tailwind's primary #DEDBC8 backs text-primary / text-primary/70 utilities and the CTA pill fill -- they are not the same token. The two .noise-overlay / .bg-noise textures are inline SVG data-URIs with feTurbulence baked in (baseFrequency 0.85/0.9), so any tint/intensity change means editing the encoded SVG, not config. Card surfaces #101010 (About) and #212121 (Features) are hardcoded as Tailwind arbitrary values (bg-[#101010], bg-[#212121]) rather than tokens. All copy is hardcoded in JSX: nav items, the 'Prisma' wordmark and its superscript asterisk, hero paragraph, 'Join the lab' CTA, About eyebrow + the 3-segment Marcus Chen heading (the middle segment is structurally italic-serif) + the Parallax/Berlin body, the two-line Features header, and per-card titles/numbers/checklists/'Learn more'. The hero wordmark superscript asterisk is positioned with em-relative offsets (top-[0.65em] -right-[0.3em] text-[0.31em]) tuned to Almarai's metrics, and the per-character scroll-reveal splits the About body into individually-wrapped AnimatedLetter spans keyed on character index, so copy length and the replacement font's metrics both affect that reveal. Feature checklist Check icons use text-primary, not a configurable accent."
+}

@@ -1,0 +1,63 @@
+{
+  "id": "orbis-cta",
+  "role": "cta",
+  "ownSections": [
+    "CtaSection"
+  ],
+  "slots": [
+    {
+      "id": "cta-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "In-flow (NOT absolutely positioned) autoplay/loop/muted/playsInline background video that defines the whole section's height via its natural aspect ratio (w-full h-auto block, no fixed height). The text overlay and glass social pill float on top of it: the cream headline + lucide icons (text-cream #EFF4FF) sit over it directly and the neon 'Go beyond' accent uses mix-blend-exclusion against it, so the clip must stay mid/dark and low-contrast enough for near-white text to read and for the exclusion blend to register. Brand swaps the CloudFront .mp4 source for its own looping clip; a taller/shorter clip changes section height and the overlay's percentage-based positioning."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three stacked social/contact glyphs inside the bottom-left liquid-glass pill, one per button, top-to-bottom Mail / Twitter / Github (lucide-react). All tinted text-cream (#EFF4FF) and rendered responsively ~10px mobile up to ~23px on lg. Brand can swap the icon set wholesale (and the underlying nav destinations)."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Heavy display/condensed typeface socket for the uppercase 4-line h2 CTA headline, rendered font-normal uppercase at very aggressive responsive sizes (16px mobile -> 60px lg) with tight leading (~1.05 -> 1). Native = Anton (mapped to Tailwind font-grotesk, loaded from Google Fonts). Substitute must hold up bold/condensed and all-caps at large display sizes."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Script/cursive accent typeface socket for the single 'Go beyond' overlay word, absolutely positioned over the headline, normal-case (overrides parent uppercase), neon (#6FFF00) with mix-blend-exclusion + opacity-90, scaled 17px mobile -> 68px lg. Native = Condiment (mapped to Tailwind font-condiment, loaded from Google Fonts). Substitute must be a cursive/handwritten face whose baseline + sizes still tuck just under the 'JOIN US.' line at every breakpoint."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Anton', sans-serif",
+      "accent": "'Condiment', cursive"
+    },
+    "colorRoles": {
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#EFF4FF",
+      "accent": "#6FFF00",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "headline-eyebrow",
+      "headline",
+      "accent-text",
+      "social-links"
+    ]
+  },
+  "mechanic": "A single CTA section where an in-flow autoplay-loop video sets the height while a top-anchored overlay floats a right-aligned uppercase 4-line condensed headline (with a neon mix-blend-exclusion Condiment 'Go beyond' word absolutely tucked under the 'JOIN US.' line) and a bottom-left vertical liquid-glass pill of three icon social buttons; no keyframes — the only motion is the looping video plus a hover:bg-white/10 on the buttons.",
+  "techDelivery": "Single React component using Tailwind CSS (custom fontFamily grotesk:Anton / condiment:Condiment and colors cream:#EFF4FF / neon:#6FFF00 in the Tailwind config), Google-Fonts-loaded Anton + Condiment, lucide-react icons (Mail/Twitter/Github), and a hand-authored .liquid-glass utility (backdrop-blur + mask-composite gradient border) in global CSS.",
+  "reskinNotes": "The .liquid-glass look is hand-authored global CSS with baked-in rgba(255,255,255,*) fills, blur(4px) backdrop-filter, box-shadow, and a ::before mask-composite (xor/exclude) gradient-border whose white-alpha stops are hardcoded — recoloring the glass means editing those rules, not a token. Brand colors live as Tailwind named utilities (text-neon, text-cream) plus opacity-on-white utilities (bg-white/10, border-white/10) rather than full design tokens, so there is no solid page bg color and no fgMuted in the palette (the video IS the background). The accent word relies on mix-blend-exclusion + opacity-90 against the clip, so it only reads correctly over a mid/dark video and will look wrong on a light clip. All copy is hardcoded inline: the headline is split into a <span>JOIN US.</span><br/> eyebrow plus three <br/>-separated lines ('REVEAL WHAT'S HIDDEN.' / 'DEFINE WHAT'S NEXT.' / 'FOLLOW THE SIGNAL.'), and the accent 'Go beyond' is a separate absolutely-positioned span whose top-[8/11/18/37px] offsets are pixel-tuned to sit between 'JOIN US.' and the next line — both are font-metric-dependent (the headline at leading-[1.05->1] and the accent's per-breakpoint top offsets), so a wider/taller substitute font reflows the headline and de-aligns the accent. The three social 'labels' are icon-only buttons (no text), and all of the overlay's positioning (left-[8%], bottom-[12%->20%], translate-y-[10%], lg:pr-[20%]/pl-[15%]) is percentage/viewport-based and tuned to the source clip's aspect ratio, so swapping in a clip with a different ratio shifts the text and pill placement."
+}

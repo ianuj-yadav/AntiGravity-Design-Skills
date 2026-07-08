@@ -1,0 +1,63 @@
+{
+  "id": "nike-premium-landing",
+  "role": "hero",
+  "ownSections": [
+    "FirstScreen",
+    "SecondScreen"
+  ],
+  "slots": [
+    {
+      "id": "spotlight-hero-video",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, one per screen (2 total), rendered as a bare <video> inside SpotlightReveal at z-0 with classes absolute inset-0 w-full h-full object-cover and attributes muted/loop/playsInline. It plays ONLY while the cursor is inside that screen's invisible hover hotzone (isPlaying toggled by onMouseEnter/onMouseLeave) and sits behind the spotlight-revealed base image, so it is glimpsed through the moving mask rather than shown full-bleed. Screen 1 is the atmospheric/lifestyle clip; Screen 2 is the product/science clip. Supply two brand short autoplay-loop clips (mp4), muted and seamless. Reference assets are pikaso.cdnpk.net token-signed mp4s."
+    },
+    {
+      "id": "spotlight-base-image",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Fullscreen base photo revealed by the spotlight mask, one per screen (2 total), drawn as an <image href> inside the SVG with width/height 100% and preserveAspectRatio=xMidYMid slice (cover behavior). It is the layer the cursor-following 6-circle radial-gradient hole punches through to expose the video beneath, so it should be center-weighted full-bleed and visually coordinate with that screen's video (an alternate take / still of the same subject) since the two register under the moving mask. Screen 1 reference is a .jpg, Screen 2 reference is a .png (so the second socket may carry alpha, but transparency is not functionally required since it composites over a black background). Reference assets are GitHub-raw Acreage-landing-assets files."
+    },
+    {
+      "id": "nav-logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark (the Nike swoosh in the reference), authored as a single inline <svg>/<path> with viewBox '135.5 361.38 420.32 149.8' and a hardcoded fill='white'. The same glyph appears twice in markup: as a 120px-wide white logo in the centered header of Screen 1, and as an 86px-wide white logo inside the red (#DA3A16) CTA tile at the bottom-right of Screen 2. (BubbleMenu also accepts an optional `logo` prop but App passes none, so the menu button is the abstract two-bar hamburger, not this glyph.) Replace with the brand logo glyph supplied transparent; note the path d-string and the white fill are hardcoded in markup in both places (not a CSS var), so reshaping or retinting means editing each inline SVG."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", serif",
+      "body": "\"Manrope\", sans-serif",
+      "accent": "\"Instrument Serif\", serif"
+    },
+    "colorRoles": {
+      "bg": "#050505",
+      "surface": "rgba(0, 0, 0, 0.16)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.64)",
+      "accent": "#DA3A16",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "screen1-headline",
+      "screen2-heading",
+      "stat-value",
+      "stat-card-title",
+      "stat-card-subtitle",
+      "cta-badge-label"
+    ]
+  },
+  "mechanic": "Two stacked 100dvh black screens (the first sticky top-0, the second sliding up over it with an inset top shadow), each a SpotlightReveal where a cursor-following trail of 6 lagging radial-gradient circles (rAF spring-eased) acts as an SVG mask that punches a soft hole through a full-bleed base image to expose a looping background video underneath, the video playing only while the cursor sits inside an invisible hover hotzone, with a GSAP back.out(1.5) staggered bubble pill-menu overlay.",
+  "techDelivery": "React + TypeScript + Tailwind CSS v4 (index.css uses @import \"tailwindcss\" plus a @theme block defining --font-sans Manrope / --font-serif Instrument Serif, with both faces loaded from Google Fonts via @import) multi-component spec (BubbleMenu + SpotlightReveal assembled in App); declared deps react-player and gsap, though SpotlightReveal imports ReactPlayer but actually drives a raw <video ref> + requestAnimationFrame for the mask trail (react-player effectively unused) and gsap powers only the BubbleMenu open/close timeline; per-component CSS file BubbleMenu.css.",
+  "reskinNotes": "The signature orange #DA3A16 is baked into inline SVG attributes and Tailwind arbitrary values, not a token: the stat squiggle-chart stroke is stroke=\"#DA3A16\", its drop-shadow is a feColorMatrix with the same colour expressed as float channels (values 0.854902 0.227451 0.0862745), the '78%' stat uses text-[#DA3A16], and the Screen-2 CTA tile is bg-[#DA3A16] — so retinting the accent means editing SVG attributes and arbitrary class values in several places. The Nike swoosh is an inline <path> with hardcoded fill=\"white\" duplicated in two spots (header logo + CTA-tile logo). The BubbleMenu ships a hardcoded rainbow of five per-item hover colours (#ef4444, #3b82f6, #10b981, #f59e0b, #8b5cf6) plus per-item rotation values (-8deg/8deg) in the items array, none of which are tokens. All copy is hardcoded in JSX: the five nav labels (Drops/Innovation/Collections/Community/Stores), the multi-span Screen-1 headline ('Pure Comfort For / Next-Generation Athletes. We Craft / The Ultimate Footwear For Elite Performance, / Urban Exploration, Everyday Style.') with manual per-line font-serif/italic toggles and a translate-y-[50px] nudge, the Screen-2 heading ('Bringing Aerospace- / Grade Infrastructure / Directly To Your Everyday / Urban Exploration') with mixed sans/serif/italic spans, the '78%' stat value, the stat-card title 'NEXT-GEN CUSHIONING ARCHITECTURE' and subtitle 'Impact Absorption & Energy Return Dynamics', and the CTA badge 'THE SCIENCE OF IMPACT CONTROL'. Headline sizing uses clamp(14px,3vw,51px) / leading-[1.05] and the Screen-2 heading is a fixed text-[44px], both tuned to the Manrope + Instrument Serif metrics and their italic/non-italic span breaks. Layout depth relies on many viewport-tuned magic-number offsets via Tailwind arbitrary values — the two SpotlightReveal hover hotzones and the glass stat panel are placed with left-[calc(8%+200px)], top-[calc(20%+190px)], right-[calc(8%+100px)], bottom-[12%], w-[calc(50%-50px)], h-[calc(50%+230px)], etc. — so a different copy length or viewport can desync the hotzones from what they reveal. The reveal requires a coordinated base-image + video pair per screen that line up under the moving mask. Spotlight behaviour is governed by fixed constants in SpotlightReveal: NUM_TRAILS=6, baseRadius 420 (Screen 1) / 520 (Screen 2), the lead-point ease 0.2 and trailing ease 0.35, the per-circle radius decrement (i*35) and opacity falloff (1 - i*0.15), and the holeGradient stops (1 / 0.8 / 0 at 0/60/100%). The glass stat panel uses backdrop-blur(80px) over rgba(0,0,0,0.16); BubbleMenu timing (back.out(1.5), 0.5s duration, 0.12s stagger) and the blur(8px)/blur(12px) menu chrome are also fixed."
+}

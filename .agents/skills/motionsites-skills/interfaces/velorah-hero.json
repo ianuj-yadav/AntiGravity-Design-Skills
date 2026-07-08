@@ -1,0 +1,46 @@
+{
+  "id": "velorah-hero",
+  "role": "hero",
+  "ownSections": [
+    "NavigationBar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay hero background video, absolute inset-0 object-cover behind all foreground content; provides all visual depth for the page."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "hsl(201 100% 13%)",
+      "surface": "hsl(0 0% 10%)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(240 4% 66%)",
+      "accent": "hsl(0 0% 100%)",
+      "border": "hsl(0 0% 18%)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "headline-emphasis",
+      "body",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "A single sticky fullscreen hero where a looping background video sits behind a glassmorphic nav and vertically centered cinematic serif headline that staggers in via a fade-rise (opacity + translateY) reveal.",
+  "techDelivery": "React + Vite + Tailwind CSS + TypeScript with shadcn/ui; fonts from Google Fonts, colors as shadcn HSL CSS variables, liquid-glass and fade-rise as hand-authored CSS.",
+  "reskinNotes": "Colors are declared as bare HSL triplets for shadcn CSS variables (e.g. '201 100% 13%') rather than full hex/rgba, so the consumer must wrap them as hsl(...) or strip back to triplets. All copy is hardcoded in markup, and the H1 splits specific words ('dreams', 'through the silence.') into <em class=\"not-italic text-muted-foreground\"> spans for two-tone color contrast, so the headline copy slot carries inline emphasis structure. H1 uses a font-metric-dependent letter-spacing (tracking-[-2.46px]) and leading-[0.95] tuned to Instrument Serif, which will need retuning for any substitute display font. The liquid-glass effect bakes white rgba gradient stops and an inset highlight into a ::before mask that assumes a light rim on a dark video, so it is tuned for dark themes."
+}

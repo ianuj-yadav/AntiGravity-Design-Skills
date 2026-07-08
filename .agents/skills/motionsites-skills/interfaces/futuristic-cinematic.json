@@ -1,0 +1,54 @@
+{
+  "id": "futuristic-cinematic",
+  "role": "hero",
+  "ownSections": [
+    "NavBar",
+    "ShaderBackground",
+    "HeroContent"
+  ],
+  "slots": [
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI glyphs from lucide-react (Menu and X for the animated mobile hamburger toggle, ArrowRight size-15 inside the hero CTA that translates right 0.5 on hover). Single-color stroke icons that inherit currentColor; a reskin can swap the icon set wholesale."
+    },
+    {
+      "id": "sans-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "The primary brand typeface used for the wordmark, nav links, hero headline and all CTA labels via Inter (weights 400/500/600/700, loaded from Google Fonts with -webkit-font-smoothing:antialiased + -moz-osx-font-smoothing:grayscale globally). Headline renders at clamp(1.75rem,5vw,2.6rem) with leading-[1.12] and tight tracking, so the substitute must hold up at large near-tight settings."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter",
+      "mono": "'Courier New', monospace"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.6)",
+      "accent": "#a9cbe8",
+      "accent2": "#c5b7ed",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "subtext",
+      "hero-cta-label",
+      "mobile-cta-label"
+    ]
+  },
+  "mechanic": "Single full-viewport dark hero where a layered real-time WebGL shader stack (studio lighting + oklab swirl + lens flare + floating particles + cursor ripples + film grain, spherized) renders behind a centered Inter headline, a monospace subtext and a pill CTA, with a liquid-glass nav pill on top and an Escape-dismissable staggered slide-down mobile menu.",
+  "techDelivery": "React + TypeScript + Tailwind CSS + Vite + lucide-react, with the background rendered by the `shaders` npm package (`shaders/react`, v2.5.124+); Inter loaded from Google Fonts; the liquid-glass pill is a custom Tailwind `@layer components` rule.",
+  "reskinNotes": "The signature background is generative, not an asset — there is no video or image to bind; reskinning its look means editing ~20 hardcoded hex literals baked directly into the <Shader> JSX props (StudioBackground backColor #1a0f2e / color #17171c / fillColor + keyColor #ffffff, Swirl colorA #0a0a0d + colorB #0f0f1a in oklab, Spherize lightColor #a9cbe8, FloatingParticles particleColor #c5b7ed), none of which are tokenized. The liquid-glass nav pill's border-gradient is a hardcoded white-alpha linear-gradient (rgba(255,255,255,0.45->0.15->0->0.15->0.45)) plus inset box-shadow in CSS, and the mobile menu background rgba(8,8,8,0.97) and stagger easing cubic-bezier(0.23,1,0.32,1) are literal. All copy is hardcoded in markup, with the headline carrying a mobile-hidden inline <br> (two-line desktop break) and the monospace subtext a second <br>, so per-line breaks live in the JSX. The headline size is a font-metric-dependent clamp(1.75rem,5vw,2.6rem) and the wordmark/nav are white text on the shader (no logo file), so a wider substitute font or longer brand name shifts the centered layout."
+}

@@ -1,0 +1,66 @@
+{
+  "id": "evr-ventures-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Positioned absolute inset-0 z-0 with autoPlay + muted + loop + playsInline; object-cover with a horizontal focal offset (object-[37%_center]) and NO dark overlay, so the footage carries the entire backdrop unmuted behind all foreground UI on a pure-black stage. White foreground text sits directly on it, so supply footage that stays legible under white type or expect a tint to be added."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display face for the third headline line ('regeneration') and overall elegant accent. Native value is the Google Font 'Gilda Display' (serif). The H1 uses very tight leading (0.9) and heavy negative letter-spacing (-0.2em), so a substitute must tolerate that condensed metric without overlapping glyphs."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/sans face for the two light headline lines, nav, eyebrow labels, menu links, stats copy, and marquee. Native value is the Google Font 'Geist' (sans-serif). Used across weights (font-light headline, font-medium labels) and heavy uppercase letter-spacing (tracking-widest to tracking-[0.25em]), so a substitute must read cleanly when spaced-out and uppercased."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Gilda Display', serif",
+      "body": "'Geist', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(0 0% 0%)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(0 0% 100% / 0.7)",
+      "accent": "hsl(220 70% 78%)",
+      "accent2": "hsl(40 80% 82%)",
+      "border": "hsl(0 0% 100% / 0.3)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "eyebrow",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "nav-menu-label",
+      "nav-labels",
+      "cta-label",
+      "menu-overlay-links",
+      "menu-overlay-footer-left",
+      "menu-overlay-footer-right",
+      "stats-percent-label",
+      "stats-body",
+      "partners-label",
+      "partners-count",
+      "marquee-brand-names"
+    ]
+  },
+  "mechanic": "A bottom-aligned (top-aligned on mobile) fullscreen hero layers a three-line light/serif-mixed headline and an animated SVG ring progress meter over an autoplay object-cover background video, with a CSS-marquee partner bar along the bottom and a Menu button that fires a framer-motion clip-path circle() reveal sweeping a full-screen white overlay open from the button corner.",
+  "techDelivery": "React + Tailwind CSS component spec using HSL CSS custom properties (--background / --foreground) for theming; native <video> for the background, framer-motion (AnimatePresence + clipPath + staggered link transitions) for the menu overlay, a hand-authored inline <svg> stroke-dashoffset ring for the stats meter, useState for menu state with body-scroll lock, and a CSS @keyframes animate-marquee (translateX 0 -> -50%, 20s linear infinite) for the partner strip.",
+  "reskinNotes": "The accent is a two-stop gradient baked into a Tailwind arbitrary class (from-[hsl(220,70%,78%)] to-[hsl(40,80%,82%)]) rather than a single token, so retinting the CTA means editing both stops. The SVG progress ring hardcodes stroke='hsl(var(--foreground))' and a 0.15-alpha track, is fixed to a 120x120 viewBox / r=54 / strokeWidth=3 geometry, and animates to a literal 75% (mirrored in the '75%' center label), so changing the value means editing markup in two places. The headline is split into three hardcoded lines ('Navigating the' / 'route to impactful' / 'regeneration') with the third forced to the serif display face, tuned to leading-[0.9] and -tracking-[0.2em], so longer copy or a different display font can rewrap or collide. The seven partner names (Opensense, DKNY, Under Armour, LIU·JO, ATOM, ECCO, ORUM) are hardcoded text duplicated twice in markup for the seamless loop, and the marquee 20s timing assumes that string length. Tagline 'Evolve Responsible Ventures', '© 2026', and 'Backed by 30+ global brands' are hardcoded in markup. Borders/muted text are expressed as foreground/30, foreground/15, foreground/10 alpha utilities rather than named tokens."
+}

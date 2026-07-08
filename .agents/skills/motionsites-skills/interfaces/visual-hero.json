@@ -1,0 +1,58 @@
+{
+  "id": "visual-hero",
+  "role": "hero",
+  "ownSections": [
+    "VideoBackground",
+    "HeroTitle",
+    "Nav",
+    "BottomRow"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover hero background video in the fixed z-0 videoBg layer (scaled 1.08, parallax-shifted by gsap on mousemove). On load it autoplays muted/playsInline, every frame is captured to an offscreen canvas array, and on 'ended' the <video> is hidden and a displayCanvas boomerangs the captured frames forward-then-reverse at 30fps — so the asset must read as a seamless short clip whose ping-pong playback is not jarring. Must be CORS-enabled (crossOrigin='anonymous') because frames are drawn to canvas. No alpha; sits behind all content."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand glyph at the far left of the fixed glass nav pill — native LogoMark is an inline 44x26 SVG (viewBox 0 0 44 26) of three white rounded rects (x=0/16/30, widths 14/12/14, height 20, rx=3). Supply transparent; tints to the foreground/white color. Fills are hardcoded white in the SVG markup, so retinting means editing the SVG, not a CSS var."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif",
+      "accent": "'Dirtyline', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "hero-title",
+      "nav-labels",
+      "signin-label",
+      "nav-cta-label",
+      "bottom-left-blurb",
+      "primary-cta-label",
+      "secondary-cta-label",
+      "bottom-right-blurb"
+    ]
+  },
+  "mechanic": "A fullscreen video is frame-captured to a canvas on first play, then boomerang-looped (forward-then-reverse at 30fps) on a displayCanvas while gsap rAF-lerps a parallax x/y offset toward the cursor, beneath a fixed italic-serif hero title and a liquid-glass nav pill that fade-rise in on mount.",
+  "techDelivery": "Vite + React + TypeScript + Tailwind CSS multi-effect single-component spec (App.tsx with three useEffect hooks: requestVideoFrameCallback frame capture, rAF boomerang render, gsap mouse parallax); gsap + lucide-react, no other UI libs; Instrument Serif + Barlow via @import and Dirtyline via @font-face in src/index.css; tailwind.config.js extends fontFamily (heading/body/dirtyline) and overrides default borderRadius to 9999px.",
+  "reskinNotes": "Default Tailwind border-radius is globally overridden to 9999px, so every `rounded` in the markup is a full pill — reskins inherit pill corners unless the config token is changed. The liquid-glass / liquid-glass-strong classes bake a fixed white gradient border (rgba(255,255,255,0.45->0)) and inset highlight via ::before mask-composite in index.css and assume a dark scene; the primary CTAs hardcode bg-white/text-black with white glow shadows (rgba(255,255,255,0.12->0.25)) — light-theme reskins must rework these. Neutral palette is expressed as Tailwind utility classes inline (bg-black, white/70, white/75, white/0.01) rather than a token block, so reskinning means editing classes. The LogoMark is an inline 3-rect SVG with hardcoded white fills (not a CSS var). The hero-title uses font-style:italic Instrument Serif at clamp(96px,18vw,280px) with line-height 0.92 / letter-spacing -0.02em — layout is tuned to that serif's metrics. The Dirtyline display face is declared via @font-face from a third-party cdnfonts.com URL (licensing / single-point-of-failure) but is not referenced in the shipped markup. All copy is hardcoded inline: the 'MicroVisuals' title, the five nav labels ['Gallery','Styles','API','Pricing','Blog'], 'Sign in' / 'Try it free', the two bottom blurbs ('Forma's AI...' and 'Describe what you see...'), and the 'Start generating' / 'See templates' button labels. The boomerang must use the captured frames[] array (never video.currentTime), and the <video> stays mounted-but-hidden so the canvas keeps drawing."
+}

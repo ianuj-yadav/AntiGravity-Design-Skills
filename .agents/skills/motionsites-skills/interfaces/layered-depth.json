@@ -1,0 +1,138 @@
+{
+  "id": "layered-depth",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Section2"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, objectFit cover behind the 'Qelora' brand text; MP4."
+    },
+    {
+      "id": "bird-animation-sequence",
+      "type": "video",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": true,
+      "loop": false,
+      "duration": "short-loop",
+      "notes": "Transparent (alpha) WebM bird-mascot state machine: enter, idle1, idle2, leave. Plays enter on load, loops idle1<->idle2, swaps to leave on scroll-down and re-enter on scroll-to-top. Overlaid over the hero, pointerEvents none. Asset count and clip roles are hardwired to the state machine."
+    },
+    {
+      "id": "hero-sculpture",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Center sculpture/slab hero image, absolutely centered, scaled to 160vw desktop / 220vw mobile, parallax translateY up on scroll. Needs transparency to sit over the brand text and background video."
+    },
+    {
+      "id": "cta-card-photo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Background photo for the bottom-right CTA card (desktop) / bottom CTA card (mobile), covers the card under a dark top-to-transparent gradient overlay with white copy."
+    },
+    {
+      "id": "brand-logo",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Q brand logo PNG. Declared as an asset URL but unused in the rendered page; a reskin can wire it into the navbar/loader."
+    },
+    {
+      "id": "section2-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video for Section 2, objectFit cover under a warm overlay and the centered headline; MP4."
+    },
+    {
+      "id": "nav-language-chevron",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline chevron-down icon inside the EN language pill (navbar) and mobile menu language row. Stroke tinted to the dark fg color."
+    },
+    {
+      "id": "cta-envelope-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Inline envelope icon in a white rounded square on the CTA card's 'Start a Project' row, 36x36px."
+    },
+    {
+      "id": "explore-arrow-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline down-arrow accompanying the 'Explore our approach' link in the bottom-left tagline panel."
+    },
+    {
+      "id": "hamburger-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline mobile menu toggle: 3-line hamburger when closed, X when open, inside a 42x42px frosted-glass capsule."
+    },
+    {
+      "id": "section2-map-pin",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline 24x28px outline map-pin icon above the Section 2 trust subtext, stroke #2a2420, strokeWidth 1.4."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Zimula Trial Bd', sans-serif",
+      "body": "'Zimula Trial Med', sans-serif",
+      "accent": "'Zimula Trial Reg', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0e0c0a",
+      "surface": "rgba(248,245,240,0.92)",
+      "fg": "#241f21",
+      "fgMuted": "#2a2420",
+      "accent": "#100e0c",
+      "accent2": "rgba(235,230,218,0.12)",
+      "border": "rgba(40,36,37,0.2)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "language-label",
+      "hero-tagline-headline",
+      "explore-link-label",
+      "cta-card-headline",
+      "cta-button-label",
+      "section2-headline",
+      "section2-subtext"
+    ]
+  },
+  "mechanic": "Layered z-indexed hero stacking a looping background video, a warm overlay, an alpha-WebM bird mascot driven by a scroll-aware enter/idle/leave state machine, vw-scaled center brand wordmark, and a parallax sculpture image (translateY up) over scroll-pushed frosted-glass bottom panels, followed by a second video-backed centered-headline section.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind (base reset only) multi-file component spec (main.tsx, App.tsx, Hero.tsx, Section2.tsx, index.css); all element styling via inline styles, react/react-dom/lucide-react deps (lucide declared but unused), no third-party animation library.",
+  "reskinNotes": "All copy is hardcoded in JSX markup (brand name, nav labels, headlines, CTA text). All icons are inline SVGs with hex/stroke colors baked in, not asset references. Hex and rgba values are inlined throughout rather than tokenized as CSS variables. The center wordmark is sized in viewport units (22vw/26vw) with negative letter-spacing, so swapping the display font shifts hero layout (font-metric-dependent). The bird mascot requires exactly four transparent WebM clips matching the enter/idle1/idle2/leave state-machine roles; fewer or non-alpha assets break the animation. Fonts are loaded from onlinewebfonts.com CDN (Zimula Trial Trial fonts), which must be replaced for a licensed reskin."
+}

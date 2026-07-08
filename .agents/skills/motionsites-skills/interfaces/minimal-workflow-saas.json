@@ -1,0 +1,82 @@
+{
+  "id": "minimal-workflow-saas",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "AnimatedTaskList",
+    "LogoCloud"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "long-loop",
+      "notes": "Full-bleed looping hero background video filling the entire viewport behind all content. Rendered as a <video autoPlay muted loop playsInline> with className 'w-full h-full object-cover object-bottom opacity-[0.98]' inside an absolute inset-x-0 top-0 bottom-0 z-0 container, then washed by an overlay div 'absolute inset-0 bg-white/[0.05] backdrop-blur-[2px]'. Because it is object-cover object-bottom it crops to fill any ratio (16:9 source is the native CloudFront placeholder); the bottom of the frame is the anchored edge so key subject matter should sit low. Muted + autoplay + loop means it must read as an ambient seamless loop with no audio dependency. It is the canvas all the white hero text and the glass task card are composited over, so it must stay low-contrast / calm enough for white text at /50-/70 opacity to remain legible. Native source is a hardcoded CloudFront mp4 URL (see reskinNotes) — this socket replaces that with a brand ambient clip."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single sans family used for everything: the brand wordmark 'Script', the nav links, the motion.h1 headline (text-[45px], tracking-tight), the subtext, the dark CTA button label, and every task-list line. Native family: Inter (weights 400/500/600/700). Declared in index.css both via @theme --font-sans and an @import Google Fonts url, and applied to :root font-family. The headline and task card are tightly leading- and tracking-tuned (leading-[1.12], tracking-tight, fixed px sizes like 12.5px/7.5px), so a replacement face with different metrics shifts the glass-card line registration."
+    },
+    {
+      "id": "brand-mark",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "The 'Script' brand glyph: a 3-bar mark rendered NEXT TO the wordmark, rotated -15deg, built from three stacked rounded div bars of decreasing-then-staggered widths (bar1 w-3.5, bar2 w-2.5 +2px, bar3 w-3 +4px) where bars 1-2 are the navy ink #0f172a and bar3 is the muted slate #64748b. It appears twice: in the Navbar beside the wordmark, and as a smaller -15deg variant inside the white 30x30 rounded icon square that sits in the active glass task card (there bars use #0c101d / #475569). It is currently drawn purely in CSS/markup (NOT an image or real SVG asset), so this socket is where a brand drops its own logomark — supply as a transparent (alpha) mark that works at ~14px and again at ~10px, in the brand ink + a muted secondary tint."
+    },
+    {
+      "id": "cta-chevron-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single ChevronRight glyph from lucide-react, rendered white as the trailing affordance on the dark 'Register Now!' hero CTA button (the button is flex items-center gap-1). (The prompt also imports ArrowRight but leaves it unused.) Themeable via stroke / currentColor; swap for the brand's forward-affordance icon."
+    },
+    {
+      "id": "logo-cloud-marks",
+      "type": "svg",
+      "card": 8,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "The eight client/partner brand logos in the LogoCloud strip (a 2/4/8-col responsive grid on a white bar). Native set is Mercedes-Benz, Certainty, STAR MOUNTAIN CAPITAL, Paige, ALARIS, raft, Foobar, Alph4 — each built from inline SVG shapes plus weight-styled text in slate tones (one checkmark is emerald-600). IMPORTANT: this whole component exists in the template but is NOT mounted in the current App.tsx (dormant socket) — fill only if the brand site wants a logo/social-proof row. Supply 8 transparent monochrome partner marks that sit on a white surface in muted slate."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f8fafc",
+      "surface": "rgba(255,255,255,0.08)",
+      "fg": "#1e293b",
+      "fgMuted": "#64748b",
+      "accent": "#0f172a",
+      "accent2": "#252a38",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "nav-cta-label",
+      "headline",
+      "subtext",
+      "hero-cta-label",
+      "task-list-eyebrow",
+      "task-items",
+      "tagline"
+    ]
+  },
+  "mechanic": "A single full-bleed video-backed hero where the headline, subtext and dark CTA enter on a staggered easeOut fade-up (0 / 0.2 / 0.4s), the glass task card scales in at 0.6s and the footer tagline fades at 1s, after which an infinite glass-carded task queue auto-advances one item every 4.5s along a [0.16,1,0.3,1] easing with descending y/opacity/blur and a silent zero-duration teleport back to the start when the tripled list is exhausted.",
+  "techDelivery": "React 19 + TypeScript + Vite 6 with Tailwind CSS v4 via the @tailwindcss/vite plugin (not PostCSS), motion v12+ imported from 'motion/react' (not framer-motion) for the entrance + queue animations, and lucide-react for the ChevronRight icon; Inter is loaded via a Google Fonts @import in index.css and exposed through the @theme --font-sans token. All component logic is hand-written React (the task carousel is three useEffects driving setInterval index math), not a page builder.",
+  "reskinNotes": "Heavy inline coupling. (1) The CloudFront mp4 hero video URL is hardcoded in App.tsx markup, not a prop. (2) The brand mark is not an asset at all — it is three CSS div bars with literal hex fills (#0f172a / #64748b in nav, #0c101d / #475569 in the card) rotated -15deg, so retinting/replacing it means editing markup, not swapping a file. (3) Nearly every color is a Tailwind arbitrary-value literal baked inline: the page bg #f8fafc and body fg #1e293b live in index.css, the CTA is a hardcoded dark gradient from-[#252a38]/to-[#1a1e29] with an inset-white-highlight shadow, and the navy ink #0f172a recurs across nav text and bars; the colorRoles above only sample these. (4) All white text over the video uses literal white / white/70 / white/50 (and the glass card uses white/[0.08] + white/20 + inset white-rgba shadows) inline rather than CSS variables, so a light-on-dark assumption is wired in — a brand whose video reads bright will lose legibility without editing those opacities. (5) All copy is hardcoded in JSX: the 'Script' wordmark, the 5 nav labels (Resources/Service/Support/Developers/Updates), 'Join us', the 3-line headline, the 2-line subtext, 'Register Now!', the 9 task strings, the 'Learn the step' eyebrow, and the 'All people aligned.' tagline. (6) The task-card geometry is pixel-tuned (54px active row, 22px inactive rows, fixed 7.5px/12.5px type, hardcoded distance->y/opacity/blur table) and font-metric dependent, so a non-Inter face or longer task copy can break the glass-row registration. (7) LogoCloud's 8 partner marks are inline SVG + styled text and the component is defined-but-unmounted, so it is a latent socket rather than an active one."
+}

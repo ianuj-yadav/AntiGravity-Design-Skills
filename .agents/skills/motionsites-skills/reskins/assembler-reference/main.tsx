@@ -1,0 +1,20 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './index.css'
+import Shell from './Shell.tsx'
+import App from './App.tsx'
+import Manifesto from './Manifesto.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Shell />}>
+          <Route path="/" element={<App />} />
+          <Route path="/manifesto" element={<Manifesto />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>,
+)

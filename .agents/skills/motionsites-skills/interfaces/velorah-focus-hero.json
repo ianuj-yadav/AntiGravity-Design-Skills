@@ -1,0 +1,64 @@
+{
+  "id": "velorah-focus-hero",
+  "role": "social-media",
+  "ownSections": [
+    "SocialPostFrame"
+  ],
+  "slots": [
+    {
+      "id": "hero-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping muted background video filling the whole 600x800 (3:4) post frame; sits behind all content at z-0 with autoplay/playsInline. The single signature media asset."
+    },
+    {
+      "id": "vhs-noise-texture",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Optional tiling grain texture for the VHS static overlay (mix-blend overlay, opacity 0.15, 0.2s step jitter). Native value is a baked inline feTurbulence fractalNoise data-URI, not a brand asset; only fill this socket if a brand wants a different film grain."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif display face for the headline and the Velorah wordmark; mapped to Tailwind --font-serif. Native value: Instrument Serif (Google Fonts, ital 0;1)."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans body face for the subtext paragraph and the Begin Journey CTA; mapped to Tailwind --font-sans. Native value: Inter (Google Fonts, weights 400/500/600)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif",
+      "body": "\"Inter\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.95)",
+      "accent": "rgba(255, 0, 0, 0.5)",
+      "accent2": "rgba(0, 255, 255, 0.5)",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "headline",
+      "body",
+      "cta-label",
+      "brand-name",
+      "trademark"
+    ]
+  },
+  "mechanic": "A fixed 600x800 (3:4) post frame stacks a staggered fade-rise headline, subtext and liquid-glass CTA over a fullscreen looping video, under three CSS-only VHS layers (animated fractal-noise static, 4px scanlines, a 4s top-to-bottom glitch bar) plus an RGB chromatic-split text-shadow flicker on every type element.",
+  "techDelivery": "Plain React (single App.tsx, no animation libraries) + Tailwind v4 via @import \"tailwindcss\" with an @theme font-family block; all VHS, RGB-glitch and liquid-glass effects are hand-written CSS in index.css.",
+  "reskinNotes": "Single monolithic 600x800px post (one section); the footer wordmark is an absolutely-positioned lockup inside the same frame, not a reusable section. The glitch palette (red rgba(255,0,0) / cyan rgba(0,255,255)) is hardcoded inside the rgb-text-glitch keyframes rather than tokenized. The VHS static is a baked inline feTurbulence SVG data-URI. The liquid-glass button border is a -webkit-mask-composite gradient trick that assumes white-on-dark. All copy (headline 'Focus in a / Distracted World', subtext, 'Begin Journey', 'Velorah' + superscript registered-trademark) is hardcoded in JSX. Layout is non-responsive: the frame is a hard 600x800px and the content block is positioned with a magic -mt-[358px] offset (the descriptive variant says -mt-[180px]) tuned to that frame height and Instrument Serif's metrics plus the 64px / leading-0.95 / -2.46px-tracking headline, so any font or copy-length change visibly shifts vertical centering."
+}

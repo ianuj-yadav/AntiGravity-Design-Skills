@@ -1,0 +1,61 @@
+{
+  "id": "future-state",
+  "role": "hero",
+  "ownSections": [
+    "ScrollVideo",
+    "Navbar",
+    "SectionOne",
+    "SectionTwo"
+  ],
+  "slots": [
+    {
+      "id": "hero-scroll-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scrubbed-full",
+      "notes": "Fixed full-viewport (fixed inset-0 -z-10) background video that is scroll-scrubbed across the WHOLE page (smoothed window.scrollY / (scrollHeight - innerHeight), 0-1). On mount it is fetched as a blob and pre-decoded into 30-120 ImageBitmap frames (clamp(round(duration*24),30,120), max width 1280) that are drawn cover-fit to a canvas as the smoothed scroll index changes; a raw <video> seeked by currentTime is the fallback until frames are ready. Must be short, seekable/keyframe-dense and read well center-weighted, since frames are sampled evenly across its duration. A bg-black/20 overlay sits above it for text contrast."
+    },
+    {
+      "id": "font-display-body-mono",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single typeface bound to BOTH Tailwind `sans` and `mono` families (tailwind.config fontFamily) and set as the body font-family. Drives everything: the uppercase hero/section headlines (text-4xl up to text-7xl), the italic-light emphasis words, and every font-mono element (wordmark, version tag, nav labels, counters like [ 001 /004 ], and the uppercase tracking-[0.15em] pill CTAs). Native is 'Flexo Soft Medium', loaded in index.html head from a db.onlinewebfonts.com CDN <link>. There is no separate mono asset — the same family fills the mono role, so a reskin can supply one family or a paired display+mono set."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Flexo Soft Medium\"",
+      "body": "\"Flexo Soft Medium\"",
+      "mono": "\"Flexo Soft Medium\""
+    },
+    "colorRoles": {
+      "bg": "#0a0a0a",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.85)",
+      "border": "rgba(255, 255, 255, 0.6)"
+    },
+    "copySlots": [
+      "page-title (NOVA_AI — Today AI Aligns With Bold Dreams)",
+      "wordmark ((NOVA_AI))",
+      "version-tag ([ v.01b ])",
+      "nav-labels (main, tiers, features, talk to us)",
+      "hero-headline (Today AI / Aligns with / // Bold / Dreams)",
+      "hero-section-letter (( A ))",
+      "hero-counter ([ 001 /004 ])",
+      "hero-body (NovaAI is where your bravest work finds its true expression. We hand you the means not only to form the future.)",
+      "hero-cta-label (Begin Today)",
+      "section2-headline (Learn to see / Brilliantly)",
+      "section2-section-letter (( B ))",
+      "section2-counter ([ 002 /004 ])",
+      "section2-body (Our AI doesn't just respond — it interprets, sharpens, and delivers. From outline to final render, it supplies the insight you want.)",
+      "section2-cta-label (Run The Demo)"
+    ]
+  },
+  "mechanic": "A fixed fullscreen background video is scroll-scrubbed across total page progress — pre-decoded to ImageBitmap frames and cover-drawn to a canvas (with a currentTime-seeked <video> fallback) as a 0.1-smoothed scroll fraction picks the frame — beneath two bottom/center-anchored 100svh sections whose staggered, indented headline lines and side columns translate-y/​opacity reveal (and replay) via an IntersectionObserver Reveal wrapper.",
+  "techDelivery": "Vite + React + TypeScript + Tailwind CSS, lucide-react icons only; scroll-scrub is hand-rolled (fetch->blob->createImageBitmap frame extraction + requestAnimationFrame canvas draw, no animation library) and reveals use a custom IntersectionObserver Reveal component; the display/mono font 'Flexo Soft Medium' is loaded from an onlinewebfonts.com CDN <link> and bound in tailwind.config.js.",
+  "reskinNotes": "Colors are expressed as Tailwind utility classes / arbitrary values hardcoded in markup (bg-[#0a0a0a], text-white, white/60, white/70, white/80, white/85, border-white/60, bg-black/20), not design tokens, so a palette swap means find-replacing classes rather than editing variables. The single font 'Flexo Soft Medium' is a proprietary face pulled from a third-party onlinewebfonts.com CDN URL (single point of failure / licensing concern) and is mapped to BOTH sans and mono, and the uppercase headline layout (leading-[1.05], tracking-tight, and the per-line indent ramp pl-6/12/10/20/16/32) is tuned to its metrics; the mono counters and tracking-[0.15em] pills assume a mono-ish rhythm the family must hold. All copy is hardcoded in JSX, including headline lines split into separate Reveal spans with literal indents and inline normal-case italic font-light emphasis words ('with', 'to see'), plus structural punctuation/markers ('// Bold', '( A )', '[ 001 /004 ]', '[ v.01b ]') baked into the markup. The hero video URL is a hardcoded CloudFront constant and the asset must be specifically scrubbable (the code pre-extracts frames and falls back to seeking currentTime), not just any clip. Reveal animations REPLAY on every viewport re-entry (visible = isIntersecting) by design. The brand mark is a plain '(NOVA_AI)' text wordmark (no logo asset) and all icons are generic lucide-react glyphs (ArrowUpRight, Share2, ArrowDown), so there is no logo socket to fill. Dark-scene only; drop shadows + a bg-black/20 overlay carry text legibility over the video and assume a dark clip."
+}

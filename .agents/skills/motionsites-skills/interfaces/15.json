@@ -1,0 +1,62 @@
+{
+  "id": "15",
+  "role": "hero",
+  "ownSections": [
+    "LoadingScreen",
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplay/muted/loop/playsInline object-cover hero background video centered with min-w/min-h-full behind the whole hero; covered only by a bg-black/20 wash and a bottom from-bg fade, so it reads near full brightness behind the centered serif headline and floating pill nav."
+    },
+    {
+      "id": "hero-bg-video-poster",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Static .avif poster/fallback frame for the hero <video>, shown before the stream loads or when autoplay is blocked; should visually match the first frame of the looping hero footage."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Instrument Serif",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0a",
+      "surface": "#141414",
+      "fg": "#f5f5f5",
+      "fgMuted": "#888888",
+      "accent": "#89AACC",
+      "accent2": "#4E85BF",
+      "border": "#1f1f1f"
+    },
+    "copySlots": [
+      "loader-eyebrow",
+      "loader-rotating-words",
+      "nav-logo-monogram",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-eyebrow",
+      "hero-name",
+      "hero-role-template",
+      "hero-role-words",
+      "hero-bio",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "scroll-indicator-label"
+    ]
+  },
+  "mechanic": "A 2.7s Framer Motion loading screen (rotating display words, a 000→100 rAF counter, and a gradient scaleX progress bar) fades out via AnimatePresence to hand off to a fullscreen autoplay-loop object-cover video hero whose centered serif name, blur-in eyebrow, and cycling role line animate in on a GSAP power3.out timeline.",
+  "techDelivery": "Next.js 14 App Router + TypeScript multi-component spec with Tailwind v3 CSS-variable theming, GSAP for the hero entrance timeline, Framer Motion (AnimatePresence/motion) for the loader, and Google Fonts (Inter + Instrument Serif) as CSS-variable font families.",
+  "reskinNotes": "The blue accent gradient linear-gradient(90deg,#89AACC,#4E85BF) is hardcoded across the logo ring, button hover borders, and loader progress bar (plus a matching rgba(137,170,204,0.35) glow) rather than driven by a single token, so an accent reskin must touch every occurrence. accent in the native theme equals fg (#f5f5f5), so the gradient stops are the only true brand-accent colors. The oversized Instrument Serif italic name uses leading-[0.9] and tracking-tight, making the hero layout font-metric-dependent on a serif display swap. All copy is hardcoded in markup: the loader words (Design/Create/Inspire), nav monogram \"JA\" and labels, hero name \"Michael Smith\", the cycling role words and \"lives in Chicago\" role template, bio, and both CTA labels. The legibility contract assumes only a bg-black/20 overlay, so a light or busy brand video can wash out the white nav and headline."
+}

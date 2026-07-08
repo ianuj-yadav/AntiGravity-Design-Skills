@@ -1,0 +1,65 @@
+{
+  "id": "creative-studio",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplaying muted looping hero background video, positioned absolute inset-0 with object-cover to fill the entire viewport, sitting behind the flex-column nav/stats/bottom content. No darkening scrim is declared, so footage with enough contrast that the black uppercase text and #5E0ED7 accent stay legible reads best."
+    },
+    {
+      "id": "primary-typeface",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Single face used for ALL text in the template (nav links, stat numbers/labels, tagline, CTAs, description, and the clamp() three-word main heading). Native family 'Inter', sans-serif applied to the root container. Always rendered uppercase, font-weight 600, with tracking-widest/tracking-wide letter-spacing. There is no separate body/display split — one socket covers everything."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Two lucide-react glyphs used inline as UI affordances: ArrowUpRight (sits beside the 'Work With Us' CTA in the bottom row and again in the mobile-menu CTA; rendered in the #5E0ED7 accent color at 18px mobile / 22px sm+) and X (the mobile-menu close button glyph, white on a 36px round black button). Supply as currentColor-driven icons so the accent tint on the CTA arrow and the white tint on the close icon both apply. NOTE: the hamburger open icon and the circular logo are NOT assets here — they are pure CSS (three white span bars; a bordered div with an inner dot)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "surface": "#FFFFFF",
+      "fg": "#000000",
+      "accent": "#5E0ED7",
+      "accent2": "#000000"
+    },
+    "copySlots": [
+      "nav-labels",
+      "stat-1-value",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-label",
+      "stat-3-value",
+      "stat-3-label",
+      "tagline",
+      "cta-label",
+      "mobile-menu-cta-label",
+      "description",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3"
+    ]
+  },
+  "mechanic": "Single non-scrolling min-h-screen hero where a fullscreen object-cover looping video backs a flex column of three bands (fixed nav / flex-1 right-aligned stats row / bottom tagline+CTA+description+heading), all firing on page load: nav elements stagger in via a fadeDown variant (opacity 0,y:-20 -> 0, delay index*0.1s), stats and bottom content rise via a fadeUp variant (opacity 0,y:32 -> 0, delay index*0.12s), and the three stacked main-heading words ('Fearless'/'Vision'/'Delivered') clip-reveal by sliding y:110% -> 0 inside their own overflow-hidden wrappers (delay 0.4 + i*0.14, ease [0.22,1,0.36,1]); a sub-md hamburger opens a fixed white full-screen mobile-menu overlay.",
+  "techDelivery": "React 18 single-component spec authored against Tailwind CSS 3 utility classes + framer-motion (fadeDown/fadeUp variants with custom stagger indices and the [0.22,1,0.36,1] ease, initial->animate on load) + lucide-react (ArrowUpRight, X); Inter is the only typeface. Layout, spacing, sizes, and the responsive sm:/md: tiers are all expressed inline as Tailwind classes; no router, no separate CSS file, no build harness named in the prompt.",
+  "reskinNotes": "Palette and every dimension are expressed as inline Tailwind utility classes / inline-style literals in the markup rather than CSS custom properties, so reskinning means find-replacing classes and the hardcoded #5E0ED7 accent (logo dot border+fill, the stat '+' glyphs, and the CTA link text), not flipping :root tokens. The brand has NO wordmark — the logo is a CSS-drawn circle (2px accent border + 10px accent inner dot), so rebranding the mark means editing those div styles, not swapping a logo asset; likewise the hamburger is three white CSS span bars. The three-word heading uses fontSize clamp(2rem,9vw,9rem) with lineHeight 0.88 and per-word overflow-hidden clip wrappers tuned to Inter's metrics and to short single words, so swapping the display font or using longer/more words can break the intended three-line clip-reveal composition (and the stat numbers' clamp(1.5rem,5vw,3.5rem) with the 0.5em accent '+' is similarly metric-tuned). All copy is hardcoded inline and uppercase: the 4 nav labels (Story/Expertise/Studios/Feedback), the three stat value+label pairs (+300 CRAFTED BRANDS, +200 DIGITAL PRODUCTS, +100 VENTURES FUNDED) where the '+' is a separately rendered accent span, the <br />-split tagline (Shaping Bold / Visions Into Power / For Your Tribe), both 'Work With Us' CTAs, and the description paragraph (Creative Studios Built Around Elevating Your Vision Into Striking Reality). There is no opaque page background color declared (the video IS the background) and no scrim, so legibility of the black text depends entirely on the chosen footage; the only solid surface is the white mobile-menu overlay."
+}

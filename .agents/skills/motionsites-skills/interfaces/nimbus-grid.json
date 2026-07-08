@@ -1,0 +1,107 @@
+{
+  "id": "nimbus-grid",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "PlatformAccordion",
+    "Pricing",
+    "Security",
+    "ConsoleShowcase",
+    "OperationsCube"
+  ],
+  "slots": [
+    {
+      "id": "hero-shader-background",
+      "type": "other",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "colorRole": "accent",
+      "notes": "Fullscreen animated shader that IS the hero background. NOT a fillable video/image file: it is delivered as a hosted generative-shader <iframe class=\"shader-bg\" src=\"https://fragcoord.xyz/embed/...?viewport=WxH\" allow=\"autoplay; fullscreen\"> absolutely centered with transform translate(-50%,-50%) scale(var(--shader-scale,5)), z-index -3, pointer-events:none. JS recomputes the embed's viewport on load + debounced (180ms) resize so the iframe matches window aspect (capped 1422x800, scale = max(innerWidth/W,(innerHeight+110)/H)). A warm-gold CSS-gradient .shader-fallback layer sits behind it (z-index -4, #846f43 -> #f0d27c -> #fff2be radial+linear) so the page still reads intentionally if the embed fails. 'Filling' this socket = re-pointing the embed to the brand's own hosted shader id (or replacing the iframe with a brand WebGL/video background) and retinting the warm-gold fallback gradient to the brand mood; treat it as a generative/embed background socket, not an asset upload. The whole page palette is keyed to this warm-gold field, so the brand background should carry the accent tone."
+    },
+    {
+      "id": "sans-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Primary UI / display sans, loaded as 'IBM Plex Sans' weights 400/500 from Google Fonts (preconnect gstatic + googleapis). Set as the global body font-family and carries BOTH body copy and every heading: the hero H1 (Plex Sans 400, clamp(29px,3.5vw,56px), line-height 1, max-width 18ch), the section H2s (Pricing clamp(34px,4vw,68px), Operations clamp(34px,4.4vw,72px), etc.), all marketing paragraphs, pricing plan cards and security copy. Substitute a clean humanist sans that holds at both the ~12-16px body sizes and the large clamp() display headings; only weights 400 and 500 are used."
+    },
+    {
+      "id": "mono-font",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fgMuted",
+      "notes": "Technical monospace, loaded as 'IBM Plex Mono' weights 400/500 from Google Fonts. Used for all labels/code/nav/CTAs: the NIMBUS GRID brand pill + nav links + 'Get Started' header CTA (Plex Mono 12px uppercase), the console card tabs and 11px typewriter panes (CLI/API/Console), the accordion nav pills (11px uppercase) and their code-window contents, pricing eyebrow (16px) + the right-aligned per-GiB price values + plan CTAs, the security card checklist labels, the asset-table mono labels and the binary-map, the 'Fig. 2' figure pill, the dashboard table headers and cyan status strongs, and the Operations eyebrow + 'Plan operations' CTA. Letter-spacing-tuned uppercase mono, so pick a mono with even caps; only weights 400/500."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "body": "\"IBM Plex Sans\", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "mono": "\"IBM Plex Mono\", \"SF Mono\", ui-monospace, monospace"
+    },
+    "colorRoles": {
+      "bg": "#17130d",
+      "surface": "rgba(255, 239, 199, 0.16)",
+      "fg": "#fff4d5",
+      "fgMuted": "#dacaa1",
+      "accent": "#ead09a",
+      "accent2": "#ffd879",
+      "border": "rgba(255, 240, 199, 0.28)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "header-cta-label",
+      "console-tab-labels",
+      "console-cli-command",
+      "console-cli-output",
+      "console-api-request",
+      "console-api-output",
+      "console-form-fields",
+      "hero-headline",
+      "hero-body",
+      "accordion-nav-labels",
+      "accordion-card-titles",
+      "accordion-card-bodies",
+      "accordion-code-windows",
+      "pricing-eyebrow",
+      "pricing-headline",
+      "pricing-body",
+      "pricing-table-title",
+      "pricing-billing-toggle-labels",
+      "pricing-row-labels",
+      "pricing-row-values",
+      "plan-card-titles",
+      "plan-card-bodies",
+      "plan-cta-labels",
+      "security-eyebrow",
+      "security-headline",
+      "security-body",
+      "security-card-titles",
+      "security-card-bodies",
+      "security-api-window-text",
+      "security-api-spec-text",
+      "security-compliance-rows",
+      "security-asset-table-rows",
+      "console-section-headline",
+      "console-section-body",
+      "console-figure-label",
+      "dashboard-sidebar-label",
+      "dashboard-nav-labels",
+      "dashboard-panel-title",
+      "dashboard-cta-label",
+      "dashboard-table-headers",
+      "dashboard-table-rows",
+      "dashboard-toast",
+      "operations-eyebrow",
+      "operations-headline",
+      "operations-body",
+      "operations-cta-label"
+    ]
+  },
+  "mechanic": "A six-section warm-gold dark single-page scroll over a fullscreen generative-shader iframe hero (window-aspect-matched, scaled, with a CSS-gradient fallback) carrying a glass-pill header, a typewriter console card (per-pane [data-typed] chars typed every 42ms with a blinking caret) and a blur-backed H1; below it a 420svh sticky scroll-driven accordion whose four absolutely-stacked cards translate up (--card-y) and clip-reveal (--card-clip-bottom) by scroll progress while previous cards persist as header strips; a pricing section with a full-bleed 12-column bar field whose per-bar height is JS-morphed (sin/cos of scroll progress) into --bar-morph; a three-card security grid (CSS api-window/openapi-spec, ::before checkmark badges, a 1s/0s binary-map); a 3D-perspective dashboard shell that tilts and sheen-sweeps on hover; and an Operations cube that floats idle (core-cube-float) and explodes on click into ~14 randomized cubic-bezier shard particles.",
+  "techDelivery": "Plain single-page Vite app authored as separate files (index.html full markup + styles.css all styles & @media queries + script.js + package.json vite ^5.4.2 type:module dev/build/preview + default vite.config.js); no frameworks, no build-time component layer, no images — every visual is hand-authored HTML/CSS/SVG/text. Vanilla JS in script.js drives the shader iframe resize (load + 180ms-debounced resize), the console tab switching + per-pane typewriter, the accordion getBoundingClientRect->progress->--card-y/--card-clip-bottom scroll mapping with click-to-segment smooth scroll, the pricing --bar-morph scroll loop, and the operations cube is-exploded click/Enter/Space toggle. Fonts (IBM Plex Sans + IBM Plex Mono) via Google Fonts <link> with preconnect; smooth-scroll + warm radial-gradient body + theme-color #17130d set in CSS/meta.",
+  "reskinNotes": "The hero background is a hosted generative-shader iframe embed (fragcoord.xyz), not an asset to bind, so reskinning the background means re-pointing the embed (or replacing the iframe with a brand background) plus retinting the literal #846f43 -> #f0d27c -> #fff2be .shader-fallback gradient. There are NO image/video/icon/SVG asset files anywhere else: the console card window controls, the accordion code windows and warm-gold visual backplates (linear-gradient(135deg, rgba(234,208,154,0.92), rgba(106,91,52,0.68)) + radial highlight), the security api-window/openapi-spec panels, the ::before checkmark badges (rotated border tick), the <pre class=\"binary-map\"> icon carved from 1s/0s, the pricing bar field, the dashboard skeleton + ::after ghost-document ruled lines + ::before hover sheen, and the 6-face .operations-core-cube (radial gold-blue gradient faces + 14 explode shards) are ALL generative CSS/text, not brand sockets. The :root warm-gold palette IS tokenized (--bg #17130d, --ink #fff4d5, --muted #dacaa1, --accent #ead09a, --accent-2 #ffd879, --line/--glass rgba(255,240,199,...) + --deep #4d3f24, --radius 8px), but several signature values are baked as literals outside it: the shader-fallback gradient stops, the accordion/security visual gold gradients, the cube faces' radial(circle at 48% 44%, rgba(255,216,121,0.98)...) + 135deg cyan->gold->dark gradients and inset highlights, the Section-5 console showcase which deliberately overrides the page tokens with a self-contained cool-cyan palette (#070a0b base, #97d3eb cyan, #dff5ff text, rgba(151,211,235,...) borders) and Section-3's cyan radial blur rgba(151,211,235,0.14) and pricing-toggle #241d0f pill text, none of which follow the --accent token. Motion is parameter-driven by hardcoded numeric constants in script.js (typewriter 42ms/char, accordion collapsedHeight 84px desktop/96px mobile, the per-bar morph sin(progress*2pi + i*0.72)*34 + cos(progress*pi + i*0.34)*14, the 12 seed bar heights 66/58/50/62/45/54/48/64/72/70/78/82%, the cube's ~14 explicit --tx/--ty/--tz/--s/--r/--d shard definitions and cubic-bezier(0.17,0.78,0.18,1) timings, the dashboard hover rotateX(1deg)/rotateY(-1.2deg)/translateY(-8px), and the responsive --spread 0.72/0.48 cube values), so reproducing the look is 1:1 verbatim code, not a config swap. Layout is font-metric-dependent and tuned to the placeholder copy: the H1 max-width 18ch and clamp() display sizes, the console card min(396px,42vw) with 11px mono panes, the accordion 0.22fr|0.78fr sticky grid, the pricing 12-column bar grid and 1fr|auto rows, and the dashboard 240px sidebar + multi-fr status table assume short English strings, with 820px/520px breakpoints that stack columns, hide the diagonal .console-line and drop the dashboard Policy/State columns. ALL copy is hardcoded in index.html markup with no data source: brand 'NIMBUS GRID', nav (Technology/Security/Capacity/Operations), 'Get Started'; the three console panes (the CLI 'nimbus storage create' command + 'storage pool web-db-test queued' output, the API POST /v1/storage/pools JSON + '202 accepted' line, the Console form fields incl. web-db-test/ubuntu-24.04-noble/8 GiB/2 CPUs); the hero H1 + paragraph; the four accordion labels and their code windows (storage_pool block, region policy, capacity forecast, operations view); the pricing eyebrow/headline/body, the 5 storage-cost rows with their $/GiB values, the billing toggle, and the 3 plan cards (Starter/Team/Enterprise titles, bodies, CTAs); the security eyebrow/headline/body, three card titles + bodies, the api-window 'nimbus auth login / VAULT-9AMP / policy attach' text, the openapi spec text, the three compliance rows (SOC 2 / ISO 27001 / GDPR), and the asset table (Reserved tier 24 TiB / Transfer lane EU Central / Revision Q603); the console-showcase headline + paragraph, 'Fig. 2 Nimbus Grid web console', the dashboard sidebar 'Client Vault' + 6 nav items, 'Storage Pools' title, 'New pool', the 4-row status table (finance-vault/design-assets/legal-archive/migration-lane) and the 'Pool created / finance-vault ready' toast; and the operations eyebrow/headline/body + 'Plan operations' CTA. A brand swap rewrites all of these strings in markup."
+}

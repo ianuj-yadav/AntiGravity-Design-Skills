@@ -1,0 +1,103 @@
+{
+  "id": "modern-agency",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "About",
+    "CaseStudies"
+  ],
+  "slots": [
+    {
+      "id": "hero-shader-backdrop",
+      "type": "other",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "Fullscreen animated procedural shader stack that IS the hero background (absolute inset-0 z-10 pointer-events-none) over a #EFEFEF base. Composited from four shaders/react layers: Swirl (colorA #ffffff / colorB #f0f0f0, detail 1.7), ChromaFlow (baseColor #ffffff, all directional colors #ff5f03, momentum 13, radius 3.5), FlutedGlass (aberration 0.61, angle 31, frequency 8, refraction 4, shape rounded, speed 0.15) and FilmGrain (strength 0.05). This is a code-driven generative layer, NOT a fillable image/video file: 'filling' it means supplying the brand tint passed into ChromaFlow's directional colors (currently the #ff5f03 orange) plus the white/near-white Swirl colors, so treat it as a tunable colorRole socket rather than an asset upload."
+    },
+    {
+      "id": "partner-badge-glyph",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "The 'Certified Partner' starburst/compass mark in the hero partner badge, authored as an inline 100x100 viewBox SVG single-path, sized w-5 h-5 sm:w-6 sm:h-6 and tinted via fill-current text-[#E8704E]. Replace with the brand certification/partner glyph; supply transparent (sits on a white pill) and note the tint is a currentColor text-* utility so retinting is a class edit, while the path geometry lives hardcoded in JSX markup."
+    },
+    {
+      "id": "about-images",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "The two editorial photos in the About section, rounded-xl sm:rounded-2xl object-cover. Image 1 is the small/portrait-ish frame at aspect-[438/346] (~5:4), shown sm:w-[45%] on mobile and in the desktop left column (self-end). Image 2 is the large frame at aspect-[900/600] / aspect-[3/2] (3:2 landscape), shown sm:w-[55%] and in the desktop right column. Supply two full-bleed studio/work photos cropped to those two fixed ratios; framing should survive object-cover."
+    },
+    {
+      "id": "case-study-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The two project showcase clips in the Case Studies grid, each an autoPlay + muted + loop + playsInline object-cover <video> inside a rounded-2xl overflow-hidden container. Card 1 (Narrativ) is aspect-[329/246] (~4:3) on a #1a1d2e backplate; Card 2 (Luminar) is aspect-square (1:1) on a #6b6b6b backplate. Supply two silent seamless-looping reels; the backplate color shows only while the video loads, so dark/mid footage reads best."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 5,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline UI glyphs, all currentColor-tinted so text-* utilities and hover rotations apply. Four are lucide-react: ArrowRight (orange-on-white CTA circles + mobile-menu button, rotates -45deg->0 on hover), Clock (size 14, beside the live London time), Menu and X (sub-md hamburger toggle + mobile sheet close). A fifth is a lucide 'link/chain' icon drawn manually as two inline arc paths inside Card 1's expanding white pill (-rotate-45 -> rotate-0 on hover). Supply as currentColor-driven icons so the gray-900/white tints and the cubic-bezier hover transitions still apply."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+      "body": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#EFEFEF",
+      "surface": "#FFFFFF",
+      "fg": "#111827",
+      "fgMuted": "#4B5563",
+      "accent": "#F26522",
+      "accent2": "#ff5f03",
+      "border": "#E5E7EB"
+    },
+    "copySlots": [
+      "brand-mark-initials",
+      "nav-labels",
+      "nav-status-label",
+      "nav-clock-suffix",
+      "nav-cta-label",
+      "mobile-cta-label",
+      "hero-eyebrow",
+      "hero-headline-line-1",
+      "hero-headline-line-2",
+      "hero-headline-line-3",
+      "hero-primary-cta-label",
+      "partner-badge-label",
+      "partner-badge-tag",
+      "about-number",
+      "about-eyebrow",
+      "about-heading-line-1",
+      "about-heading-line-2",
+      "about-body",
+      "about-cta-label",
+      "case-number",
+      "case-eyebrow",
+      "case-heading",
+      "case-1-title",
+      "case-1-description",
+      "case-1-cta-label",
+      "case-2-title",
+      "case-2-description",
+      "case-2-cta-label"
+    ]
+  },
+  "mechanic": "A three-section scroll (light-gray Hero / white About / #F5F5F5 Case Studies) whose signature motion is a four-layer shaders/react procedural backdrop animating behind a bottom-anchored hero headline, plus a recurring vertical text-roll on every CTA (duplicated label in an overflow-hidden h-[20px] flex-col translating -50% with an arrow circle rotating -45deg on group-hover) and grid video cards whose corner pill grows from a w-9 circle to a fixed pixel width on hover.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS 3.4 (default config, no theme extensions), single-page multi-section App component using useState for the menu toggle and a useEffect/setInterval live London clock; hero background via the npm `shaders` package (Swirl/ChromaFlow/FlutedGlass/FilmGrain from shaders/react); lucide-react for ArrowRight/Clock/Menu/X; two .liquid-glass utilities defined in index.css but unused.",
+  "reskinNotes": "The brand orange is baked in three disconnected places that must all be changed together: the ChromaFlow shader's directional color props (#ff5f03) in JSX, the inline Tailwind arbitrary classes bg-[#F26522]/hover:bg-[#e05a1a] on the hero CTA, and the partner-badge inline SVG's text-[#E8704E] fill-current — there is no :root token, so a recolor is an edit across markup + shader props. The hero background is a generative shaders/react stack, not an asset, so reskinning its 'image' means tuning shader parameters (colors, momentum, refraction) rather than swapping a file, and the package must be installed and WebGL-capable at runtime. The whole site uses the system-default font (no webfont loaded) and the headings rely on clamp() sizes (clamp(2.5rem,5vw,4.2rem)) with tracking-[-0.03em]/leading-[1.08] tuned to that metric, plus hardcoded <br className=\"hidden sm:block\"> line breaks, so introducing a brand font or longer copy can break the intended line composition. The 'AX' logo is rendered as text inside a styled circle (no image asset), and the partner-badge SVG path lives inline in JSX. Every neutral (gray-900/600/200/300, the #1a1d2e and #6b6b6b card backplates, #EFEFEF/#ffffff/#F5F5F5 section backgrounds) is an inline Tailwind utility, and ALL copy is hardcoded in markup (brand initials, 4 nav labels, status + clock strings, both headlines, all button labels, the two project titles/descriptions, and the section badge numbers), so reskinning is class/markup editing throughout, not flipping CSS variables. The case-study card pills expand to fixed pixel widths (w-[148px], w-[168px]) sized to their current English labels, so longer CTA text will overflow."
+}

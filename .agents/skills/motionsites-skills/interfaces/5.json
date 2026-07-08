@@ -1,0 +1,71 @@
+{
+  "id": "5",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "LogoCloud"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-width edge-to-edge looping hero background video pinned to the bottom of the hero and pulled up behind the text (negative -mt-[150px], z-10 under z-20 copy). Rendered w-full / auto height, never cropped (no object-contain or fixed height), with mix-blend-screen so its black background drops out into the page. Played through a native <video> tag driven by a custom hls.js useEffect (NOT react-player); native source is a Cloudflare Stream HLS .m3u8 manifest with an MP4 fallback. Because of mix-blend-screen, supply footage on a true-black background."
+    },
+    {
+      "id": "partner-logos",
+      "type": "svg",
+      "card": 6,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Orbit of partner/customer brand logos scrolling forever in the InfiniteSlider logo cloud (OpenAI, Nvidia, GitHub, etc.). Each is a monochrome SVG forced white via brightness-0 invert, so supply flat single-color (currentColor/black) marks on transparency. card:6 is the placeholder set size; the slider tiles however many are provided."
+    },
+    {
+      "id": "announcement-pill-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Single 'Zap'-style glyph in the announcement pill, sitting inside a gradient-filled box with a glow. Sourced from lucide-react by default; supply as a currentColor/transparent icon that reads on the purple/pink gradient chip."
+    },
+    {
+      "id": "cta-arrow-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Arrow glyph inside the circular badge on the 'Book a 15-min call' CTA button; the circle is filled with the primary purple gradient. Single reused mark; supply as a currentColor/transparent icon."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "sans-serif",
+      "body": "sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#010101",
+      "surface": "rgba(28, 27, 36, 0.15)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.8)",
+      "accent": "#C967E8",
+      "accent2": "#FA93FA",
+      "border": "rgba(255, 255, 255, 0.05)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline-line-1",
+      "headline-line-2",
+      "body",
+      "cta-label",
+      "logocloud-label"
+    ]
+  },
+  "mechanic": "A centered dark glassmorphism hero stacks an announcement pill, a two-line white-to-purple gradient-clipped H1, a muted subheadline and a white pill CTA over a bottom-anchored, mix-blend-screen hls.js background video pulled up behind the text, followed by a glass logo-cloud strip whose motion/react InfiniteSlider scrolls white-inverted partner logos horizontally forever.",
+  "techDelivery": "React + Tailwind CSS v4 + Vite multi-file component spec (Hero.tsx, App.tsx, components/ui/infinite-slider.tsx), using the hls.js, motion/react, react-use-measure, clsx, tailwind-merge and lucide-react npm packages; native <video> + custom hls.js useEffect drives the Cloudflare Stream HLS background.",
+  "reskinNotes": "The signature purple/pink gradient is baked inline as Tailwind arbitrary classes (from-[#FA93FA] via-[#C967E8] to-[#983AD6]) reused across the pill icon box, the headline text-clip fill and the CTA arrow circle, so retinting means editing every className string rather than a token. The headline gradient is a background-clip:text fill (white -> purple/pink) hardcoded and tuned for dark backgrounds. The video relies on mix-blend-screen + a baked from-[#010101] via-transparent to-[#010101] overlay and a magic -mt-[150px] overlap offset, so any non-black footage or bg color change breaks the blend, and the responsive 48px->80px headline sizing plus the -150px overlap are tuned to the specific two-line copy. All copy is hardcoded in JSX (eyebrow 'Used by founders. Loved by devs.', headline 'Your Vision' / 'Our Digital Reality.', the subheadline sentence, 'Book a 15-min call', and 'Powering the best teams'). Logo SVGs are remote URLs forced monochrome via brightness-0 invert, so any colored brand logo loses its color; the typeface is only specified as a generic modern sans-serif with no named family."
+}

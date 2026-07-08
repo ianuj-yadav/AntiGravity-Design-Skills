@@ -1,0 +1,35 @@
+{
+  "id": "beauty-categories",
+  "role": "features",
+  "ownSections": [
+    "Categories"
+  ],
+  "slots": [
+    {
+      "id": "category-video",
+      "type": "video",
+      "card": 3,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Full-bleed object-cover looping background video behind each of the 3 category cards (autoplay, muted, playsInline); scales to 105% on card hover."
+    }
+  ],
+  "skin": {
+    "colorRoles": {
+      "bg": "#ffffff",
+      "fg": "#ffffff",
+      "surface": "#ffffff",
+      "accent": "#000000",
+      "border": "rgba(0, 0, 0, 0.15)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "cta-label"
+    ]
+  },
+  "mechanic": "IntersectionObserver one-shot reveal (opacity/translate-y over 1s) of a responsive 1→33-col grid of tall video-backed cards, each with index-staggered 150ms delay, a darkening hover overlay, hover-scaling video, and a vertically-rotated (writing-mode vertical-lr + rotate 180deg) lowercase category title.",
+  "techDelivery": "plain React + Tailwind CSS component spec (utility classes inline, useInView IntersectionObserver hook, .btn-primary defined in the global stylesheet)",
+  "reskinNotes": "Category data (name + CloudFront video URL) is hardcoded in an inline card array; the same lowercase name drives both the <h2> title and the CTA label via the literal pattern \"shop {name}\", so copy and asset binding are coupled. Title rendering depends on inline writingMode:'vertical-lr' + transform:rotate(180deg), which is font-metric/orientation sensitive. All copy is lowercase rendered as-is. Button hover/active shimmer and shadow rgba black values are baked into the .btn-primary CSS rather than tokens."
+}

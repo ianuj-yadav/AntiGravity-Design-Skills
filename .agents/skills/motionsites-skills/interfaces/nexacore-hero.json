@@ -1,0 +1,134 @@
+{
+  "id": "nexacore-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "TrustedSection",
+    "FreedomSection",
+    "PrecisionSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video behind centered headline; object-cover, autoplay/muted/playsInline with a bottom-to-dark fade overlay."
+    },
+    {
+      "id": "trusted-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Dark full-bleed background image for the TrustedSection (cover/center) sitting behind the four ServiceCards, with a bottom white fade."
+    },
+    {
+      "id": "precision-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Light full-bleed background image for the PrecisionSection staircase (cover/center/no-repeat)."
+    },
+    {
+      "id": "freedom-circular-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "HLS-streamed (hls.js, .m3u8) video cropped into a perfect circle in the center column of the FreedomSection; scaled to 160% and centered, autoplay/loop/muted/playsInline, Safari native-HLS fallback."
+    },
+    {
+      "id": "service-card-hover-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "Decorative top-layer image revealed on ServiceCard hover (object-cover, object-position top); shared across all four cards, fades/slides in from translateY(-30%) opacity 0.7 to full."
+    },
+    {
+      "id": "list-bullet-check",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Check-style list-bullet glyph used as a CSS background-image on positive rows (FreedomSection right column) and on ServiceCard bullets; accent-purple tinted."
+    },
+    {
+      "id": "list-bullet-cross",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Cross-style list-bullet glyph used as a CSS background-image on the negative rows in the FreedomSection left column."
+    },
+    {
+      "id": "pillar-logo-icon",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Small brand logo mark shown inside each of the four PrecisionSection pillar chips (width ~1.111vw), repeated across all pillars."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Custom display/body typeface ('Mazzard H') loaded via @font-face in two weights (400 body, 500 headings) and applied globally to html/body/*."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Mazzard H",
+      "body": "Mazzard H"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "rgb(249, 249, 249)",
+      "fg": "rgb(26, 11, 84)",
+      "fgMuted": "rgb(169, 151, 206)",
+      "accent": "rgb(200, 111, 255)",
+      "accent2": "rgb(28, 78, 255)",
+      "border": "rgba(10, 5, 20, 0.88)"
+    },
+    "copySlots": [
+      "nav-label-1",
+      "nav-label-2",
+      "nav-label-3",
+      "nav-label-4",
+      "nav-cta-label",
+      "hero-eyebrow",
+      "hero-headline",
+      "hero-body",
+      "trusted-headline",
+      "trusted-headline-highlight",
+      "trusted-body",
+      "service-card-label",
+      "service-card-title",
+      "service-card-bullets",
+      "service-card-cta-label",
+      "freedom-chip-label",
+      "freedom-headline",
+      "freedom-headline-highlight",
+      "freedom-negatives",
+      "freedom-positives",
+      "precision-chip-label",
+      "precision-headline-line-1",
+      "precision-headline-line-2",
+      "precision-body",
+      "precision-pillar-labels",
+      "precision-pillar-items"
+    ]
+  },
+  "mechanic": "Fixed pill navbar that narrows on scroll above a fullscreen looping hero video, leading into stacked dark/light background-image sections of hover-revealing ServiceCards, a circular HLS video flanked by negative/positive cross-vs-check rows, and a vw-positioned four-pillar 'staircase' with gradient connector lines.",
+  "techDelivery": "Vite + React 18 + TypeScript + Tailwind 3.4 (PostCSS/Autoprefixer), with lucide-react icons and hls.js for HLS streaming; per-component .tsx files, fonts via @font-face in src/index.css.",
+  "reskinNotes": "Brand colors are baked as literal rgb()/hex inside multiple inline SVGs (navbar logo gradient, the four ServiceCard dot icons, the Control and Structured-Delivery chip glyphs) and into a six-stop CSS gradient for the pillar connector line, so re-tinting requires editing SVG/markup rather than swapping a token. Two multi-stop brand gradients (A for logos/buttons, B for headline highlights) are reused via background-clip:text and must be recreated. All copy is hardcoded in JSX. The PrecisionSection desktop staircase uses hardcoded vw-based absolute left/bottom offsets and whitespace-nowrap headlines, making layout sensitive to font metrics and copy length; md:whitespace-nowrap on the hero H1 is likewise length-fragile."
+}

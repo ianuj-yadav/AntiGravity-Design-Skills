@@ -1,0 +1,38 @@
+{
+  "id": "botanical-shadow-about",
+  "role": "about",
+  "ownSections": [
+    "About"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video, object-fit cover, autoplay muted playsInline; sits at z-index 0 under a warm rgba(242,238,230,0.38) off-white tint, so it should read soft/muted for dark-brown text legibility."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Zimula Trial Med",
+      "body": "Zimula Trial Med"
+    },
+    "colorRoles": {
+      "bg": "#0e0c0a",
+      "surface": "rgba(242, 238, 230, 0.38)",
+      "fg": "#2a2420",
+      "border": "rgba(42, 36, 32, 0.25)"
+    },
+    "copySlots": [
+      "headline",
+      "body"
+    ]
+  },
+  "mechanic": "A single static full-viewport section centers a warm-dark-brown headline and a map-pin captioned subtext over a fullscreen looping background video veiled by a warm off-white tint, with no scroll, parallax, or entrance motion.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS, but the about.tsx component itself is styled entirely with inline styles (no Tailwind utility classes in the component); fonts loaded via onlinewebfonts <link>/@import in index.html and index.css.",
+  "reskinNotes": "Single monolithic static section, so all copy is hardcoded in markup, including the headline's explicit <br/> line breaks that are visually tuned to the 780px max-width. The map-pin is an inline <svg> <path> with stroke #2a2420 baked in (not a fillable asset socket), so re-tinting requires editing the SVG markup. The warm overlay alpha rgba(242,238,230,0.38) is tuned to the placeholder video's brightness and will need re-tuning per brand video. Three Zimula Trial weights (Med/Bd/Reg) are loaded but only Med is referenced; fonts come from third-party onlinewebfonts CDN URLs."
+}

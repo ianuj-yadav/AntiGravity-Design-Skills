@@ -1,0 +1,67 @@
+{
+  "id": "rivr-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Navbar",
+    "HeroBadge",
+    "BottomLeftCard",
+    "BottomRightCorner"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "fullscreen object-cover looping hero background video sitting behind the glass content layer (autoplay, muted, playsInline); object-position 65% on mobile, centered on large screens"
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "lucide-react glyph set tinted navy; distinct glyphs used: ChevronRight (nav dropdown carets + Documentation 'Library' link), ArrowUpRight (Book Demo / Join Discord / Documentation circle buttons), Sparkles (HeroBadge)"
+    },
+    {
+      "id": "display-font-file",
+      "type": "font",
+      "card": 1,
+      "notes": "the single web font face loaded via @font-face (eot/woff2/woff/ttf/svg) and exposed as the --font-helvetica Tailwind theme token applied to :root; backs both display and body roles"
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Helvetica Regular\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Helvetica Regular\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f0f0f0",
+      "surface": "#ffffff",
+      "fg": "#5E6470",
+      "fgMuted": "rgba(94,100,112,0.8)",
+      "accent": "rgba(30,50,90,0.9)",
+      "accent2": "rgb(45,45,45)",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "nav-labels",
+      "cta-label",
+      "stat-value",
+      "stat-label",
+      "secondary-cta-label",
+      "doc-title",
+      "doc-link-label"
+    ]
+  },
+  "mechanic": "Single-screen glassmorphism hero: a rounded-card viewport holds a fullscreen looping video background under a glass content layer, with a fade/scale-in headline, floating frosted stat and CTA cards, and an SVG faux-cutout notch masking the bottom-right corner.",
+  "techDelivery": "Vite React + TypeScript (.tsx components + src/index.css) with Tailwind v4 (@import \"tailwindcss\" + @theme token), motion/react for entrance/hover animations, and lucide-react for icons.",
+  "reskinNotes": "Page color #f0f0f0 is baked into two inline SVG <path fill=\"#f0f0f0\"> corner-cutout masks (and the BottomRightCorner background), so changing bg means editing the raw SVG fills too. The navy accent is hardcoded as rgba(30,50,90,...) literals scattered across many className strings rather than a CSS variable, and nav text uses a separate rgb(45,45,45). All copy (headline, eyebrow, nav labels, stats, CTA text) is hardcoded inline in JSX. The display font is fetched from a third-party onlinewebfonts.com URL."
+}

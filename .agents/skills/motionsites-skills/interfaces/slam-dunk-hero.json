@@ -1,0 +1,31 @@
+{
+  "id": "slam-dunk-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-preview-media",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "UNVERIFIED PLACEHOLDER. The only artifact harvested for this template is the gallery preview pair referenced in the site bundle: image '/assets/hero-slam-dunk-preview-Cmg3K_S4.gif' (self-looping motion reel) and poster '/assets/hero-slam-dunk-poster-Cd-dE4fD.png'. This implies the live hero is built around one dominant looping motion/visual surface, but the actual component source (the real socket count, aspect, alpha, and role) was never captured. Treat this as a single primary hero media socket to be re-derived from the live app, not as a confirmed spec."
+    }
+  ],
+  "skin": {
+    "fontRoles": {},
+    "colorRoles": {},
+    "copySlots": [
+      "hero-headline",
+      "hero-subcopy",
+      "hero-cta-label"
+    ]
+  },
+  "mechanic": "UNVERIFIED: a 3D/landing hero (motionsites category 'Hero Section', types 3d-website + landing-page) whose signature motion could not be determined because the template source was never harvested; the preview is a short looping motion reel.",
+  "techDelivery": "Unknown — not harvested. The template is a premium (is_free=false) Google AI Studio app hosted at https://ai.studio/apps/8ee73ec4-4850-4bb7-95b1-c7d4dd3eef19 (premiumUtm utm_content=slam-dunk); the local export contains only catalog metadata, not the authored React/CSS/component code.",
+  "reskinNotes": "SPEC NOT AVAILABLE — DO NOT TRUST THESE VALUES FOR BRAND SKINNING. Contrary to the task premise, no inline spec exists for slam-dunk-hero in this export. Every local source — prompts/slam-dunk-hero.txt, the prompt-assets/ record, catalog-current.json, prompts-with-text.json, and prompt-status.tsv (textlen=86) — contains only the 86-char stub 'Built with Google AI Studio. Open the live app via the Google AI Studio link to remix.' The deep-harvest set (harvest-manifest.json) covers 15 templates and does NOT include slam-dunk-hero, so its fonts, hex/rgba colors, CSS, component structure, motion, and asset URLs were never captured (the preview GIF and poster binaries are not even present on disk). fontRoles and colorRoles are therefore left EMPTY rather than fabricated, and ownSections is a single placeholder HeroSection. To complete this interface faithfully, re-harvest the rendered source from the live Google AI Studio app (https://ai.studio/apps/8ee73ec4-4850-4bb7-95b1-c7d4dd3eef19) and re-derive every field from the real markup, exactly as was done for the templates that were deep-harvested (e.g. wisa-space-hero, 3d-jack-portfolio-hero)."
+}

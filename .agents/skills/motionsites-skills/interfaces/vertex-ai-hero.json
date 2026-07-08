@@ -1,0 +1,77 @@
+{
+  "id": "vertex-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroContent",
+    "FooterElements"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. The ONLY true brand-fill asset socket. Rendered as <video autoPlay loop muted playsInline> with position:absolute inset:0, width/height 100%, object-fit:cover, z-index:-1, pointer-events:none, behind everything with NO tint or overlay — so the footage must read on its own and tolerate full-bleed cropping at any viewport ratio (16:9 nominal but cover-cropped to 100vw x 100vh). Must be muted + a short seamless loop since it autoplays inline and repeats continuously. Native source is a CloudFront placeholder .mp4 (socket to fill)."
+    },
+    {
+      "id": "logo-mark-icon",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The brand logo mark in the top-left navbar: a 2x2 grid of four circles (cx/cy 8/16, r 4) rendered as an inline 24x24 SVG, fill white at fillOpacity 0.8. Sits left of the 'VertexAI' wordmark. Themeable via fill/currentColor (currently literal white at 80% opacity). Authored inline in Navbar.tsx, not an external asset — a brand swaps it by replacing the inline SVG."
+    },
+    {
+      "id": "arrow-action-icon",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Diagonal up-right arrow glyph inside the 44x44 circular glass icon-button in the footer action-row (path 'M7 17L17 7M17 7H7M17 7V17', stroke white, strokeWidth 2, round caps/joins, 20x20 viewBox 0 0 24 24). On hover the whole button rotates 45deg so the arrow appears to flip toward bottom-right. Inline SVG in FooterElements.tsx; themeable via stroke/currentColor. Single decorative/functional glyph, not a brand asset per se but the one swappable icon socket."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Italic-serif accent face used for the single headline phrase 'Redefine space' only (class .serif-italic), sized at 1.14em of the base headline size with letter-spacing -0.01em. Native family: Cormorant Garamond, italic, weights 400/500/600 (ital,wght@1,400;1,500;1,600). Loaded via Google Fonts @import in index.css. Signature typographic contrast of the template — must be a genuine italic serif or the mixed sans+serif headline collapses."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Primary sans face for everything except the one italic-serif phrase: the :root base font-family, brand wordmark, nav links, both buttons, the rest of the headline ('Meet VertexAI.', 'with', 'intelligent design'), the footer description and tag buttons. Native family: Inter, weights 400/500/600, with system-ui/-apple-system/sans-serif fallbacks. Loaded via Google Fonts @import in index.css."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Cormorant Garamond', serif",
+      "body": "'Inter', system-ui, -apple-system, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0a",
+      "surface": "rgba(255, 255, 255, 0.08)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.12)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "login-cta-label",
+      "hero-headline",
+      "cta-label",
+      "footer-description",
+      "tag-labels"
+    ]
+  },
+  "mechanic": "A static 100vw x 100vh flex column (logo+nav row top, mixed sans/italic-serif headline + CTA middle, description/tag-button row bottom) layered over a fullscreen muted looping CloudFront background video at z-index -1, with all motion confined to per-element 0.3s hover micro-interactions (CTA scale 1.05 + white glow, Login lift -1px, tag buttons fill, and the footer arrow button rotating 45deg).",
+  "techDelivery": "React 19 + TypeScript + Vite, authored as one component per section (App / Navbar / HeroContent / FooterElements) each with its own plain hand-written CSS file (no Tailwind, no animation library); Inter + Cormorant Garamond pulled via a Google Fonts @import in index.css; CSS custom properties (--glass-*, --primary-white, --secondary-white) declared on :root.",
+  "reskinNotes": "Colors are baked as literal hex/rgba inline and in per-component CSS rather than fully tokenized: only --glass-bg, --glass-border, --glass-blur, --primary-white (#ffffff) and --secondary-white (rgba(255,255,255,0.7)) are variables, while the dark bg #0a0a0a is hardcoded on body/.hero-section, the base text color rgba(255,255,255,0.87) and the warm nav-pill fill rgba(20,18,16,0.42) are literals with NO colorRole (the 0.87 body text and the 20/18/16 warm fill are not captured by the colorRoles block), button text color #000 is inline, and tag-btn redeclares its border twice (the second '0.75px solid white' wins over var(--glass-border)). The logo mark and footer arrow are inline SVGs whose colors are literal white / fillOpacity 0.8 / stroke white, so retinting them means editing markup. Layout is font-metric dependent: the headline is clamp(36px,4.4vw,72px) with line-height 0.95 and the italic serif set to 1.14em of base, so a wider replacement face or a non-italic-serif swap breaks the three-line break pattern and the sans/serif size contrast; a single leading space before 'with' is significant. All copy is hardcoded in JSX: 'VertexAI' wordmark + logo-link, nav labels (Product/Platform/Customers/Company), 'Login', the three-line headline split across five spans, 'Start free decoration' CTA, the 4-line <br>-delimited footer description, and the tag-button labels ('Solutions for complex spaces', 'Conversational & Action'). Responsive geometry is CSS-only (nav links display:none and footer stacks below 900px; section padding 30px 20px and headline letter-spacing -1px below 768px)."
+}

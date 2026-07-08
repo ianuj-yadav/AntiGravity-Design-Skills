@@ -1,0 +1,40 @@
+{
+  "name": "Thoughtseed",
+  "source": "landingpage-ts-2026 (src/index.css + tailwind.config.js)",
+  "fonts": {
+    "display": "Instrument Serif",
+    "body": "Inter",
+    "mono": "Space Mono",
+    "accent": null
+  },
+  "palette": {
+    "bg": "#050505",
+    "surface": "#111118",
+    "fg": "#ffffff",
+    "fgMuted": "rgba(255,255,255,0.65)",
+    "border": "rgba(255,255,255,0.10)",
+    "accent": "#50E3C2",
+    "accent2": "#4A90E2"
+  },
+  "extraColors": { "purple": "#6B66FF", "amber": "#FFD700" },
+  "invariants": ["nav", "accent", "bg", "easing:out-expo", "radius:pill"],
+  "motion": {
+    "easing": "cubic-bezier(0.19, 1, 0.22, 1)",
+    "reveal": "1000ms cubic-bezier(0.19, 1, 0.22, 1)",
+    "snap": "300ms cubic-bezier(0.4, 0, 0.2, 1)"
+  },
+  "nav": { "component": "glass-pill Header", "logo": "Thoughtseed Labs", "cta": "Get in touch" },
+  "radius": { "language": "pill", "pill": "14px", "card": "16px" },
+  "utilities": ["glass-pill", "glass-card", "section-label", "text-gradient-teal", "dot-grid"],
+  "voice": "Systems that think in centuries, not quarters — at the edge of intelligence, ecology, and craft.",
+  "copyOverrides": {
+    "luxury-botanical": {
+      "JOIN AN EXCLUSIVE COMMUNITY OF SAILORS. WHETHER YOU CRAVE THE THRILL OF THE OPEN": "JOIN A COLLECTIVE BUILDING AT THE EDGE OF INTELLIGENCE, ECOLOGY, AND CRAFT.",
+      "SHOP THE COLLECTION": "EXPLORE THE SYSTEM",
+      "Shop the collection": "Explore the system",
+      "BUY COLLECTION": "ENTER THE SYSTEM",
+      "Bentley": "Thoughtseed"
+    }
+  },
+  "assetPool": "TBD — Thoughtseed's own curated media. For engine demos, the MotionSites pool (asset-features.json) stands in as the candidate set."
+}

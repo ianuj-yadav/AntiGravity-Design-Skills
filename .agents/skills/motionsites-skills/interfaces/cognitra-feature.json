@@ -1,0 +1,43 @@
+{
+  "id": "cognitra-feature",
+  "role": "features",
+  "ownSections": [
+    "FeatureStatement"
+  ],
+  "slots": [
+    {
+      "id": "background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background film fixed to the viewport BEHIND everything (position:fixed, top/left 0, width 100%, height 100vh, objectFit cover, zIndex 0), rendered <video autoPlay muted loop playsInline>. The 100vh feature section itself has no background and sits transparently over this footage at zIndex 1, so the entire section reads directly on the video. White uppercase headline + rgba(255,255,255,0.85) body are placed straight over it with no gradient scrim declared, so legibility depends on the footage staying dark/calm in the left band where the left-aligned content block (max-width 720px) lives. Native source is a CloudFront placeholder mp4."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface used GLOBALLY (applied to * ) for both display and body: 'Helvetica Now Var', imported via CSS @import from db.onlinewebfonts.com and applied as font-family: 'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif. Drives the uppercase headline (clamp(26px,3vw,42px), weight 700, lineHeight 1.08, letterSpacing -0.01em) and the 14px body paragraph. The word-split headline relies on a tight, wide neo-grotesque metric, so any replacement should be a variable/neo-grotesque sans with similar metrics. Supply the brand sans for this one role; there is no separate body or accent face."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+      "body": "'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "transparent",
+      "fg": "#fff",
+      "fgMuted": "rgba(255,255,255,0.85)"
+    },
+    "copySlots": [
+      "headline",
+      "body"
+    ]
+  },
+  "mechanic": "A transparent 100vh flex-column section centered over a fixed fullscreen looping background video, whose left-aligned uppercase headline is split into per-word spans that fade-rise in a staggered sequence (opacity 0 + y 32 -> 0, delay 0.15 + 0.08 per word) followed by the body paragraph at delay 0.9, all via a single Framer Motion FadeUp wrapper using whileInView with viewport once.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS 3 + Framer Motion 12 component spec. Motion is a single reusable FadeUp wrapper over framer-motion (whileInView + viewport { once:true, amount:0.2 }, ease [0.22,1,0.36,1]). Font loads via a CSS @import; the section geometry and the single max-width 900px breakpoint (padding swap) are author-defined CSS, not a UI library.",
+  "reskinNotes": "Both copy strings are hardcoded in JSX: the headline 'WE BUILD END-TO-END AI AUTOMATION SYSTEMS.' is space-split into per-word FadeUp spans (flexWrap + gap 0.25em) and the body 'We provide all-in-one AI automation services in one place.'. Headline layout is font-metric dependent: uppercase at clamp(26px,3vw,42px), lineHeight 1.08, letterSpacing -0.01em, so a wider/taller display face or longer words will rewrap the heading and shift the per-word stagger. The over-video text colors are literal #fff and rgba(255,255,255,0.85) baked into inline styles and assume dark footage; there is no background or accent token (the section is transparent), so retinting for light footage means editing those white literals and likely adding a scrim. The 720px content max-width and 260px body max-width are hardcoded inline."
+}

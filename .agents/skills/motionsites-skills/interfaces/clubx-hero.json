@@ -1,0 +1,70 @@
+{
+  "id": "clubx-hero",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping, muted, autoplaying hero background video covering the entire viewport via object-cover; all content layers above it at z-10."
+    },
+    {
+      "id": "social-proof-avatars",
+      "type": "image",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Five overlapping circular avatar portraits (w-8 h-8 rounded-full, -space-x-2.5) inside the social-proof badge; professional headshots, cropped to circle."
+    },
+    {
+      "id": "logo-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Small circular brand logo mark in the nav (h-10 w-10) — native is a circular orange-red disc with a white stylized letter; tints to the brand accent color."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter",
+      "accent": "Instrument Serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(201, 100%, 13%)",
+      "surface": "rgba(255, 255, 255, 0.1)",
+      "fg": "#111827",
+      "fgMuted": "#4b5563",
+      "accent": "#111827",
+      "border": "rgba(17, 24, 39, 0.1)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "social-proof-text",
+      "headline",
+      "subtext",
+      "hero-cta-label",
+      "stat-1-value",
+      "stat-1-label",
+      "stat-2-value",
+      "stat-2-label",
+      "stat-3-value",
+      "stat-3-label",
+      "stat-4-value",
+      "stat-4-label"
+    ]
+  },
+  "mechanic": "Fullscreen object-cover looping video background with a z-10 centered content stack, revealed by three staggered fade-rise keyframes (24px translate-up + opacity, 0.8s ease-out, delays 0/0.2/0.4s) and a glassmorphic backdrop-blur stats bar pinned at the bottom.",
+  "techDelivery": "single-file CDN Tailwind utility classes with hand-authored @keyframes in a <style> block; HSL CSS custom property for the background fallback.",
+  "reskinNotes": "Colors are expressed as Tailwind utility classes (gray-900/800/600, white/10, white/20, gray-900/10) hardcoded in markup rather than CSS variables, so reskinning means find-replacing class names, not editing tokens; only the dark-blue --background fallback is a real variable. All copy (headline, subtext, nav labels, the four stat value/label pairs, social-proof line) is hardcoded inline. The logo is generated as a raster/SVG mark with the orange-red fill baked in, so accent retint requires regenerating the asset. Instrument Serif is imported but not bound to any declared element (latent accent font)."
+}

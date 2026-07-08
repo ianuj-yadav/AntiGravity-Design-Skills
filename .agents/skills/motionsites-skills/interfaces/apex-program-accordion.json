@@ -1,0 +1,48 @@
+{
+  "id": "apex-program-accordion",
+  "role": "faq",
+  "ownSections": [
+    "CurriculumSection"
+  ],
+  "slots": [
+    {
+      "id": "body-display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Inter (weights 300-700) loaded globally via Google Fonts; the single typeface for everything in the section - eyebrow pill, the 'A fully modern curriculum.' heading, module titles/subtitles, and lesson rows. Acts as both display and body since no second face is declared."
+    },
+    {
+      "id": "icon-font-glyphs",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Material Symbols Outlined icon font (variable axes FILL/wght/GRAD/opsz) loaded globally; supplies the two glyphs the accordion uses - 'expand_more' chevron in the 36px circular toggle (rotates 180 on open) and 'check' in the 20px lesson bullet. Tinted via currentColor (foreground / foreground/80), not swappable image assets."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#161616",
+      "surface2": "rgba(255, 255, 255, 0.10)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.5)",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "module-title",
+      "module-subtitle",
+      "lesson-item"
+    ]
+  },
+  "mechanic": "A single-open-at-a-time accordion of module rows inside a #161616 card whose 1px border carries a cursor-tracked radial white spotlight, each row's body collapsing via a framer-motion height+opacity transition (300ms easeInOut) with a 180-degree chevron rotation, and pill/heading/rows fading up on scroll with a 0.15s per-row stagger.",
+  "techDelivery": "React 18 + Vite + TypeScript + TailwindCSS (HSL semantic tokens) + framer-motion, with a clsx/tailwind-merge cn() helper; authored as a multi-file drop-in component spec (CurriculumSection + ModuleAccordion plus MIcon/FadeUp/SpotlightBorder primitives), not a single-file CDN bundle.",
+  "reskinNotes": "The card background #161616 is hardcoded as an inline style (style={{ backgroundColor }}) rather than a token, so it ignores a palette swap. Colors come from three different sources that must all be edited to reskin: Tailwind HSL CSS variables (bg-background / text-foreground in index.css), raw white/N utility opacities baked across the markup (white/10 borders, white/[0.04] and white/[0.06] fills, foreground/50-85 text), and the inline hex. A second surface tone, the pill background rgba(255,255,255,0.10) (Tailwind token landing.surface, recorded as surface2), is distinct from the card surface. The spotlight glow is a hardcoded white rgba inside the radial-gradient string in SpotlightBorder, so accent re-tinting needs a code edit. The design is monochrome (no accent color declared). All course copy - eyebrow 'Course Curriculum', heading 'A fully modern curriculum.', and the four modules with their titles, subtitles, and lesson arrays - is hardcoded in a modules array in the component, and the icons are Material Symbols glyph names ('expand_more','check') rather than swappable assets."
+}

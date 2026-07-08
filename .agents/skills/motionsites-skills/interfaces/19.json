@@ -1,0 +1,90 @@
+{
+  "id": "19",
+  "role": "hero",
+  "ownSections": [
+    "HeroPage",
+    "ProjectDetailsPage"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two distinct fullscreen looping background films, one per page of the two-page architectural portfolio. Each renders as a <video muted playsInline loop preload=\"auto\"> filling the viewport edge-to-edge behind all foreground content; Page 1 (Hero / 'Modern Architect') carries a desktop radial vignette (70% transparent center to 70% black edges) plus a mobile bottom-fade gradient, Page 2 (Project Details / 'Projecty Engine') carries a subtle elliptical vignette for text legibility. On mobile both videos shrink to the top half (h-[50vh]) with a gradient transition into the content below. Native sources are two CloudFront-hosted MP4s. Keep footage dark and low-key (the theme is black background / white text) so the white display type and glass UI stay legible through the vignettes."
+    },
+    {
+      "id": "project-card-thumbnail",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Square project thumbnail inside the Page 1 bottom glass-morphism card (bg-white/5, backdrop-blur-xl) next to the 'VK-01: React Engine' title and 'View Project' button. Rendered at ~200x200 (native placeholder is https://picsum.photos/seed/tech/200/200). Supply a representative square project/preview still; it sits on the frosted card so a clean centered subject reads best."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a dependency), not brand assets: Snowflake, Maximize and Zap as small accent/spec glyphs, plus ArrowLeft / ArrowRight for the Page 2 circular-border navigation arrows and the 'Back Home' / 'Next Project' nav affordances. All currentColor, tinted white by their containers. Optional socket: swap only if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display/heading face for the large titles: Page 1 'Viktor-O // MODERN ARCHITECT' (uppercase, tracking-tighter) and the massive Page 2 'PROJECTY ENGINE' (uppercase, leading-[0.85]). Native value is the Google Font 'Orbitron' (a wide geometric techno display face). Layout leans on its wide caps with tight tracking/leading, so a substitute should be a broad uppercase-friendly display face or the negative-tracking, near-zero-leading treatment will break."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/sans face for descriptions, labels and values. Native value is the Google Font 'Space Grotesk'. Used light-weight for the max-w-[450px] hero description and the right-aligned Page 2 paragraph; needs a light cut to match the airy body treatment."
+    },
+    {
+      "id": "font-mono",
+      "type": "font",
+      "card": 1,
+      "notes": "Monospace face for technical/UI micro-copy: the top-nav '1/01' counter and 'Next Project' button, the Technical Specs list (Stack / Logic / Uptime / Scale labels + values), the pill-shaped tags (TS/JS, V1, Full-Stack, Cloud-Ready), and the Page 2 '01 // CORE ARCHITECTURE' / '02 // PERFORMANCE METRICS' uppercase subtext. Native value is the Google Font 'JetBrains Mono'; tabular monospaced figures keep the counters and spec rows aligned."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Orbitron",
+      "body": "Space Grotesk",
+      "mono": "JetBrains Mono"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255,255,255,0.05)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255,255,255,0.6)",
+      "border": "rgba(255,255,255,0.2)"
+    },
+    "copySlots": [
+      "nav-project-counter",
+      "nav-next-project-label",
+      "hero-title",
+      "hero-description",
+      "tech-spec-labels",
+      "tech-spec-values",
+      "card-project-title",
+      "card-cta-label",
+      "tag-pills",
+      "page2-back-home-label",
+      "page2-title",
+      "page2-description",
+      "page2-read-more-label",
+      "page2-info-block-headings",
+      "page2-info-block-subtext",
+      "page2-meta-caption"
+    ]
+  },
+  "mechanic": "A cinematic dark two-page architectural portfolio (each page a fullscreen looping background video under vignette overlays with a top nav, large display title, body/spec column, and a bottom info/card row) that crossfades between pages via AnimatePresence opacity/exit transitions, with text and cards entering on opacity + y-offset reveals.",
+  "techDelivery": "React + Tailwind CSS + Framer Motion (motion/react) component spec, using lucide-react for icons (Snowflake / Maximize / Zap / ArrowLeft / ArrowRight) and Google Fonts Orbitron / Space Grotesk / JetBrains Mono; page transitions via AnimatePresence, no asset build pipeline (videos are remote MP4 URLs).",
+  "reskinNotes": "Strictly a black/white theme: bg is literal #000 with white text and opacity-modified white surfaces (bg-white/5, border-white/20, text-white/60) rather than fully token-driven color, so most retinting is swapping those white-alpha utilities. A custom ::selection style forces white background / black text and must be re-themed alongside any palette change. Layout is font-metric dependent on Orbitron's wide caps — the Page 2 title uses leading-[0.85] and the Page 1 title uses tracking-tighter at large sizes, so a narrower/taller display substitute will break the intended wraps. Both hero videos are placeholder CloudFront MP4s and the glass-card thumbnail is a picsum.photos placeholder — all are sockets to fill with brand footage/imagery. Essentially all copy is hardcoded in markup: the '1/01' counter and 'Next Project' button; the 'Viktor-O // MODERN ARCHITECT' title and its description; the Stack/Logic/Uptime/Scale spec rows; the 'VK-01: React Engine' card title with 'View Project'; the TS/JS / V1 / Full-Stack / Cloud-Ready tag pills; and on Page 2 the 'Back Home' button, the 'PROJECTY ENGINE' title, the flagship-engine paragraph + 'Read More' link, the '01 // CORE ARCHITECTURE' and '02 // PERFORMANCE METRICS' blocks, and the italicized Date | Project meta caption."
+}

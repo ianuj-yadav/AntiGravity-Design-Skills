@@ -1,0 +1,55 @@
+{
+  "id": "cinematic-brand",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay hero background video, absolute inset-0 object-cover behind the z-10 centered hero content; a useRef+useEffect .play() call backs up the autoPlay attribute."
+    },
+    {
+      "id": "logo-mark",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand logo glyph sitting left of the 'VERTX' wordmark in the fixed navbar (24x24, strokeWidth 1.5, white) — native is a Lucide Hexagon that rotates 30deg on hover; tints to the foreground/white color."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Quire Sans Pro\", sans-serif",
+      "body": "\"Quire Sans Pro\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.05)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.6)",
+      "accent": "#020617",
+      "border": "rgba(255, 255, 255, 0.15)"
+    },
+    "copySlots": [
+      "page-title",
+      "logo-wordmark",
+      "nav-labels",
+      "eyebrow",
+      "headline",
+      "subheading",
+      "primary-cta-label",
+      "secondary-cta-label"
+    ]
+  },
+  "mechanic": "A non-scrolling 100vh black section where a fullscreen object-cover looping video sits behind a z-10 centered stack: the h1 reveals character-by-character via a Framer Motion TypingEffect (0.045s stagger) while the eyebrow, subheading, and CTA row fade-rise on staggered FadeUp delays, under a fixed glassy navbar that drops in from the top.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS (tailwind.config.js binds the sans family to the CDN 'Quire Sans Pro' font loaded in index.html) + Framer Motion (FadeUp/TypingEffect via useInView) + lucide-react icons; the primary-button inner-glow is a hand-authored .btn-glow class (outline + inset box-shadow) in index.css.",
+  "reskinNotes": "Palette is expressed almost entirely as Tailwind utility classes hardcoded in markup (bg-black, bg-slate-950, white/5, white/15, white/30, white/40, white/50, white/60) rather than design tokens, so reskinning means find-replacing classes, not editing variables; the btn-glow white inner glow (rgba(255,255,255,0.7)/0.6) is baked into index.css and assumes a dark scene. The display font 'Quire Sans Pro' is a proprietary face pulled from a third-party onlinewebfonts.com CDN URL (single point of failure / licensing concern), and the heading layout (leading-[1.15], tracking-tight, responsive 1.75rem to 7xl) is tuned to its metrics. The logo is a Lucide Hexagon icon plus a hardcoded 'VERTX' text wordmark, so rebranding the mark means swapping the icon component (and the hover rotate-30 affordance), not retinting an asset. All copy — page title, eyebrow, the full typed headline (whose per-character motion.span splitting is structural), subheading, and the four button/nav labels — is hardcoded inline. Dark-scene only; no light theme."
+}

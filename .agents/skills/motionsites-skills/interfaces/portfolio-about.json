@@ -1,0 +1,39 @@
+{
+  "id": "portfolio-about",
+  "role": "about",
+  "ownSections": [
+    "About"
+  ],
+  "slots": [
+    {
+      "id": "corner-decor-images",
+      "type": "image",
+      "card": 4,
+      "aspect": "auto",
+      "alpha": true,
+      "notes": "An orbit of 4 decorative floating PNGs pinned absolutely to the section corners at z-0, behind the centered content. Each must be a transparent cutout (w-auto h-auto, no frame/crop) and each fades in on mount sliding horizontally toward center: top-left moon (w 120->210px, slides x:-80, delay 0.1), bottom-left 3D object (w 100->180px, slides x:-80, delay 0.25), top-right lego (w 120->210px, slides x:+80, delay 0.15), bottom-right 3D group (w 130->220px, slides x:+80, delay 0.3), all duration 0.9. Supply four brand cutout props/objects that read as ambient accents on a near-black field; these are sockets, not the placeholder shrug-person figma.site PNG URLs declared in the spec."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Kanit', sans-serif",
+      "body": "'Kanit', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0C0C0C",
+      "fg": "#D7E2EA",
+      "fgMuted": "#646973",
+      "accent": "#B600A8",
+      "accent2": "#BE4C00",
+      "border": "#E3E3E3"
+    },
+    "copySlots": [
+      "headline",
+      "body",
+      "cta-label"
+    ]
+  },
+  "mechanic": "A single min-h-screen center-stacked About section whose four corner cutouts fade/slide inward on mount (staggered 0.1-0.3s) while a clamp()-sized gradient-fill 'About me' heading and a 'Contact Me' pill CTA bookend a scroll-driven per-character opacity reveal (useScroll over the container offset start 0.8 -> end 0.2, each span ramping 0.2 -> 1 left-to-right as you scroll through).",
+  "techDelivery": "React + Tailwind CSS + framer-motion component spec: a reusable FadeIn wrapper built via motion.create() with whileInView (once, margin 50px) cubic-bezier [0.25,0.1,0.25,1] entrance variants, plus a useScroll + useTransform per-character paragraph reveal; Google Font 'Kanit' (300-900) loaded via <link> in the HTML head.",
+  "reskinNotes": "Monolithic section, so all copy is hardcoded in markup: the 'About me' heading, the 'Contact Me' label, and the long ~270-char bio paragraph (which is split into per-character <span>s for the scroll reveal, so swapping copy means the character-mapping math re-derives off the new length and very long brand copy lengthens the reveal). All brand color is baked inline rather than tokenized: the heading gradient is a .hero-heading CSS class (linear-gradient(180deg,#646973,#BBCCD7) with -webkit-background-clip:text + transparent fill) and the CTA carries a 4-stop inline background linear-gradient(123deg,#18011F,#B600A8,#7621B0,#BE4C00) plus an inset/drop box-shadow (rgba(181,1,167,0.25) + #7721B1 inset) and a 2px #E3E3E3 outline at outlineOffset -3px, so a recolor must edit the class and the inline gradient/shadow/outline together. The heading uses fluid clamp(3rem,12vw,160px) with leading-none tracking-tight and the body clamp(1rem,2vw,1.35rem) tuned to Kanit's metrics, so a substitute font can shift the intended composition. Corner PNGs require true transparency and fixed responsive pixel widths, so off-cutout or opaque brand art will look pasted-on against #0C0C0C. The paragraph reveal uses \\u00A0 for spaces and depends on framer-motion's useScroll, so a non-JS/SSR render shows the start (dim 0.2) state."
+}

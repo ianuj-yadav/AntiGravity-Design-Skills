@@ -1,0 +1,70 @@
+{
+  "id": "saas-pricing-flow",
+  "role": "hero",
+  "ownSections": [
+    "Header",
+    "Watermark",
+    "Grid"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fixed fullscreen (100vw x 100vh) object-cover background video at z-index:-1 behind the whole pricing section; autoPlay/muted/playsInline with NO native loop attribute. Looping is hand-implemented as a boomerang (forward play, then a throttled requestAnimationFrame reverse-seek back to 0) driven by useRef/useEffect, so the clip should read well played forwards and backwards. No overlays sit on top of it."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Header brand mark (.c3-header logo), absolute-left, 32px wide. Rendered through filter: brightness(0) invert(1) so it is forced to solid white regardless of source colors; supply a single-color/flat transparent SVG that reads at 32px on the video background."
+    },
+    {
+      "id": "checklist-check-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The checkmark glyph inside each .c3-list bullet (one reusable 14px white-stroke check, path M20 6L9 17l-5-5, stroke-width 4, round caps) seated in a 28px rgba(255,255,255,0.15) circle. One icon socket reused across all 5 checklist items per card (15 total render instances)."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Inter, sans-serif",
+      "body": "Inter, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000",
+      "surface": "rgba(0,0,0,0.7)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255,255,255,0.45)",
+      "accent": "#00d2ff",
+      "accent2": "rgba(164,244,253,1)",
+      "border": "rgba(255,255,255,0.15)"
+    },
+    "copySlots": [
+      "watermark-eyebrow",
+      "watermark-headline",
+      "nav-labels",
+      "nav-cta-label",
+      "tier-names",
+      "tier-prices-monthly",
+      "tier-prices-yearly",
+      "tier-descriptions",
+      "tier-checklist-items",
+      "card-cta-label",
+      "billing-toggle-label"
+    ]
+  },
+  "mechanic": "A boomerang-looping fullscreen background video (forward play then throttled rAF reverse-seek to 0) sits behind a giant noise-filtered gradient 'Pricing' watermark and a 3-up row of frosted-glass pricing cards whose prices swap between monthly and yearly via a sliding pill toggle, collapsing to a horizontal scroll-snap card row on mobile.",
+  "techDelivery": "React 18 + TypeScript + Vite single-component App.tsx; no animation library — state via useState (menuOpen, yearly) and the video boomerang via useRef + useEffect + requestAnimationFrame seek-throttling. All styling is plain CSS with a c3- class prefix (no Tailwind); Inter assumed present with system sans-serif fallback (no font import).",
+  "reskinNotes": "The cyan brand identity is baked into hand-authored CSS/SVG, not tokens: the .c3-watermark-main text-clip gradient (linear-gradient(to right, #091020 0%, #0B2551 25%, #A4F4FD 65%, #00d2ff 100%)) and the inline SVG #c3-noise filter (feTurbulence fractalNoise baseFrequency 0.5 / feComponentTransfer / feComposite / feBlend overlay) must be edited directly, and the mobile breakpoint replaces that whole gradient+filter with a solid #00d2ff, so an accent change touches at least three places. Card surfaces use literal rgba gradient stops (linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)) plus a .c3-card-pro darker variant and the rgba(255,255,255,0.1->0) ::before sheen) and the cyan hover border rgba(34,211,238,0.7) is hardcoded, not read from --accent. The 16rem (line-height 0.9, letter-spacing -0.05em) watermark and the -20px/-90px overlap offsets between 'Forma AI' and 'Pricing' are font-metric-dependent and tuned to Inter; a substitute display font can break the overlap or overflow (mobile drops it to 6rem). All copy is hardcoded in markup — brand name 'Forma'/'Forma AI', nav labels (Home/Pricing/FAQ/Contact/Download), the three tier names, EU-comma-formatted prices in BOTH monthly ($9,99/m, $19,99/m) and yearly ($99,99/y, $199,99/y) sets that the toggle swaps, descriptions, and all 15 checklist strings — with no data/props source. The boomerang depends on video.duration, so very long source clips make the reverse leg slow; supply a short clip. The hamburger 3-line span, the nav close-circle, and the 52x28 toggle pill+knob are pure CSS shapes (no assets)."
+}

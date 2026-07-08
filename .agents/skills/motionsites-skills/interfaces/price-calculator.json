@@ -1,0 +1,56 @@
+{
+  "id": "price-calculator",
+  "role": "pricing",
+  "ownSections": [
+    "CalculatorSection"
+  ],
+  "slots": [
+    {
+      "id": "checkbox.checkmark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "White check glyph rendered inside each custom add-on checkbox when checked - a single reused inline-SVG mark (w-5 h-5 box) drawn in white over the accent-filled (#FF5656) square. The only typed asset socket in the template: no hero video, image, logo, or icon-set is shipped."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "mono": "font-mono (Tailwind/shadcn monospace utility on the uppercase tracking-widest eyebrow label; no concrete typeface family is declared)"
+    },
+    "colorRoles": {
+      "bg": "bg-background (shadcn semantic token for the full-width section; no concrete hex declared in the prompt)",
+      "surface": "#0D0D0D",
+      "fg": "#FFFFFF",
+      "fgMuted": "text-muted-foreground (shadcn semantic token; no concrete hex declared)",
+      "accent": "#FF5656",
+      "accent2": "#F97316",
+      "border": "#1E1E1E"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "service-question",
+      "service-option-labels",
+      "pages-question",
+      "addon-question",
+      "addon-labels",
+      "addon-price-labels",
+      "timeline-question",
+      "timeline-option-labels",
+      "estimate-heading",
+      "estimate-description",
+      "agency-card-title",
+      "agency-card-subtitle",
+      "freelancer-card-title",
+      "freelancer-card-subtitle",
+      "your-price-card-title",
+      "your-price-card-subtitle",
+      "brand-name"
+    ]
+  },
+  "mechanic": "A two-column rounded-2xl card (left: a #0D0D0D form of divide-y-stacked radios / shadcn Slider / checkboxes / radios; right: a live cost-estimate panel) whose React useState drives a reactive pricing formula that re-renders three stacked cost cards, the brand card lit by a from-pink-500 to-orange-500 gradient.",
+  "techDelivery": "Single-file React component spec on Tailwind utility classes with shadcn/ui (Slider + useToast); state via useState, prices formatted with toLocaleString(); no animation library.",
+  "reskinNotes": "Accent #FF5656 is hardcoded inline across the radio dots, slider current-value text, checkbox fill, and the +$ add-on/timeline price labels. The headline brand card hardwires a two-stop from-pink-500 (#EC4899) to-orange-500 (#F97316) gradient - a literal palette pair, NOT a single accent - so accent2 maps to the far (orange) stop while the pink near-stop has no role and a faithful retint must edit both Tailwind stops. Two surface tones exist but only one surface role: the #0D0D0D form column (mapped) and the bg-muted/50 estimate cards (shadcn token, unmapped); the section bg (bg-background) and divider/border use semantic tokens (border-[#1E1E1E] vs border-white/10) so border carries two values too. All copy - including the literal brand name 'Webfluin Studio' / 'With Webfluin Studio' - and every numeric constant in the pricing logic (base/perPage tiers, agency 8000, freelancer 3000, +50/+100/+25 add-on deltas) are hardcoded in markup/JS, not data-driven. No display/body/accent typeface is named (only a font-mono eyebrow cue), so type reskin has no native family to map from. The checked-state check glyph is an inline SVG with its white fill baked in."
+}

@@ -1,0 +1,104 @@
+{
+  "id": "luxury-focus",
+  "role": "landing",
+  "ownSections": [
+    "BackgroundVideoStage",
+    "ProgressBar",
+    "EditorialOverlay",
+    "ProductSheet"
+  ],
+  "slots": [
+    {
+      "id": "background-scrub-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scroll-scrubbed",
+      "notes": "The two fullscreen cinematic background films behind the entire 650vh page (two <video> elements stacked absolutely in the fixed z-0 stage, object-cover, muted playsInline preload='auto', pointer-events-none). They are NOT autoplayed or looped: the rAF loop scrubs each one by lerping currentVideoTime toward targetRatio*video.duration (factor 0.08) and setting video.currentTime, guarded by !video.seeking. Video 1 carries scroll phase 0-0.40 (visible while progress<0.48, opacity 0.85), Video 2 carries phase 0.50-0.90 (visible while progress>=0.48), cross-fading via transition-opacity duration-700. So each asset must be a CORS-seekable .mp4 whose motion reads as a continuous forward timeline when scrubbed (slow ambient/establishing jewelry footage), cover-cropped ~16:9, no alpha. Three black gradient overlays (top h-44, bottom h-56, left w-1/2 lg-only) sit on top for type contrast. Native sources are two Cloudinary placeholder mp4s (sockets to fill)."
+    },
+    {
+      "id": "hero-product-cutout",
+      "type": "image",
+      "card": 1,
+      "aspect": "4:5",
+      "alpha": true,
+      "colorRole": "bg",
+      "notes": "The hero product still (a ring) shown in the editorial overlay's right-hand caption block. Renders as an <img object-contain> inside a transparent product card (aspect-[4/5], group hover:scale-[1.04], inner group-hover:scale-105) over the near-black #020202 stage, so the subject MUST be a transparent (alpha) PNG cutout that floats on the dark video without a visible plate. It melts upward/blurs away on scroll via the card stagger window (0.18-0.29). Native source is a Cloudinary placeholder PNG (rng_*.png), socket to fill."
+    },
+    {
+      "id": "panel-product-images",
+      "type": "image",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "colorRole": "surface",
+      "notes": "The two product images that headline the slide-in product sheet, one per card, selected by isSecondCard (progress>=0.90). Card 1 = earrings (Aura Fine Earrings / 18K White Gold & Pink Sapphire, price 1850), Card 2 = ring (Sterling Silver Sculpture Ring, price 1350). Each renders centered inside the warm off-white #FAF9F5 sheet at max-w-[460px] (image element capped to max-w-[460px]), so these read on a LIGHT surface (opposite of the dark hero) and need no transparency — a clean catalog/editorial shot on or matching the off-white panel works. Native sources are two Cloudinary placeholder JPGs (sockets to fill)."
+    },
+    {
+      "id": "brand-crest",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "The 48x48 brand crest in the top-left of the editorial header: a 5-petal abstract floral logo authored as a multi-path inline SVG drawn in white (fg). It is the brand's primary mark; swap with the brand's own monochrome logo SVG. Themeable via fill/currentColor (rendered white on the dark stage). Fades/blurs upward first on scroll (stagger window 0.00-0.12)."
+    },
+    {
+      "id": "nav-and-ui-icons",
+      "type": "icon",
+      "card": 4,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Four lucide-react glyphs: User (account link in the right nav) and ShoppingBag (cart button carrying a pulsing #FBFF8D 6.5px dot badge, smooth-scrolls to page bottom) in the editorial header; ArrowLeft (the 'BACK TO SERIES' button in the product sheet, smooth-scrolls back into the video sequence) and the quantity-stepper +/- controls in the sheet footer. Rendered in fg white on the dark overlay and near-black #121212 on the light sheet; themeable via stroke/currentColor. Default lucide set is usually kept."
+    },
+    {
+      "id": "font-serif-display",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Serif display face for the giant hero headline ('SCULPTED / BY TIME. WORN / BY YOU', uppercase, italic on two lines, color #FBFF8D, leading-[0.88], fluid fontSize clamp(2.5rem,5.6vw,7.5rem)), the hero price '$1,850', the product-caption <h2> ('18K White Gold & Rough Onyx'), and the product-sheet <h2> titles + the large dynamic price (price*quantity). Native family: Instrument Serif (Google Fonts, weights 400 + 400 italic), declared as --font-serif and used via Tailwind font-serif. Layout is font-metric dependent: the headline is clamp()/viewport sized with tight leading and forced three-line breaks, so a wider replacement face reflows the lines."
+    },
+    {
+      "id": "font-sans-ui",
+      "type": "font",
+      "card": 1,
+      "colorRole": "fg",
+      "notes": "Sans UI/body face for the root container base font and everything non-display: the sub-header ('Contemporary Luxury For The Discerning Minimalist'), all manifesto/description paragraphs, the nav links (Collections / Atelier / Our story / Contact), product labels, the BACK TO SERIES / ADD TO ATELIER BAG button text (uppercase, tracking 0.15-0.16em), and the quantity stepper. Native family: Manrope (Google Fonts, weights 200-800), declared as --font-sans and applied as the root font-sans. Tracking values (-0.03em on the sub-header, 0.15em+ on buttons/labels) are tuned to Manrope's metrics."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Instrument Serif\", serif",
+      "body": "\"Manrope\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#020202",
+      "surface": "#FAF9F5",
+      "fg": "#ffffff",
+      "fgMuted": "#8E8B84",
+      "accent": "#FBFF8D",
+      "border": "#E5E5E2"
+    },
+    "copySlots": [
+      "sub-header",
+      "sub-header-body",
+      "nav-labels",
+      "hero-headline",
+      "hero-manifesto",
+      "hero-caption-label",
+      "hero-caption-title",
+      "hero-caption-description",
+      "hero-price",
+      "panel-category-label",
+      "panel-title",
+      "panel-description",
+      "panel-price",
+      "back-button-label",
+      "add-to-bag-cta-label"
+    ]
+  },
+  "mechanic": "Double-lerp scroll smoothing (0.05 scroll + 0.08 media, with a !video.seeking seek guard) over a 650vh page scrubs two fixed background videos while staggered editorial elements melt upward and blur away (opacity + translateY -75 + blur 16px), then two off-white product sheets slide in from the left via translate-x with a 1100ms cubic-bezier(0.16,1,0.3,1) transform at the ~40-50% and ~90%+ scroll phases.",
+  "techDelivery": "Single-component React 19 + TypeScript + Vite 6 app: one src/App.tsx, Tailwind CSS v4 via @tailwindcss/vite with @theme font tokens in src/index.css, lucide-react icons, Instrument Serif + Manrope from Google Fonts; animation values held in refs and driven by a requestAnimationFrame loop (only progress + quantity are React state), plus an embedded <style> block for the dark webkit scrollbar, scrollLine keyframes, and a max-height media query.",
+  "reskinNotes": "Brand colors are literal hex/rgba inline (Tailwind arbitrary values), not tokens: the #FBFF8D accent recurs across the headline, top progress bar (bg-[#FBFF8D]), nav hover/underline, the pulsing cart dot, and the hover price color; the page bg #020202, the sheet surface #FAF9F5 with its #121212 text and muted greys #8E8B84 / #73716C / #E5E5E2, plus the white/50, white/70 and rgba(0,0,0,x) gradient stops are all hardcoded with no shared variable. The 5-petal brand crest is a multi-path inline SVG drawn in literal white, not an asset file. ALL copy is hardcoded in JSX, including the per-card product data object switched on isSecondCard (category / title / price 1850 vs 1350 / image / description for the earrings vs the sculpture ring), the hero's forced three-line headline (with leading non-breaking spaces '&nbsp;&nbsp;&nbsp;&nbsp;SCULPTED' and italic word wrapping), the two manifesto paragraphs, the sub-header, the four nav links, and the BACK TO SERIES / ADD TO ATELIER BAG / BACK labels. The hero headline is clamp()/viewport sized with leading-[0.88] and hand-placed line breaks, so a non-condensed replacement serif reflows it. The entire scroll choreography is logic-coupled in JS, not CSS-overridable: the 650vh page height, the phase thresholds (0.40 / 0.48 / 0.50 / 0.90), the panel open windows (0.40-0.50 and >=0.90), totalFrames=480 with the per-phase frame math (1+ratio*239, hold 240, 241+ratio*239, 480), the lerp factors (0.05 / 0.08), and every getStaggerStyle window (logo 0.00-0.12, subheader 0.06-0.18, nav 0.03-0.15, title lines 0.09/0.12/0.15, manifesto 0.18/0.21, caption 0.14-0.25, card 0.18-0.29, price 0.20-0.31) all live in script rather than being prop-overridable. A hidden <canvas display:none> and the /public/main + /public/second JPG frame sequences are vestigial fallbacks — the live page scrubs the two MP4s, not the JPGs."
+}

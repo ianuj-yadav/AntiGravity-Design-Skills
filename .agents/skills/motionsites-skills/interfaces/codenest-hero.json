@@ -1,0 +1,89 @@
+{
+  "id": "codenest-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Rendered absolute inset-0 object-cover behind all content, then dimmed to 60% opacity and layered with a left-to-transparent dark gradient (#070b0a) plus a bottom-up gradient for text legibility. Played via hls.js with enableWorker:false for sandbox stability (HLS .m3u8 stream); native application/vnd.apple.mpegurl fallback expected. Pick calm, dark footage that reads under white headline text. Native source is a Mux HLS stream URL."
+    },
+    {
+      "id": "center-glow",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Large horizontal SVG ellipse glow in the center-top area, cyan/dark-green hue, blurred with a 25px Gaussian blur (feGaussianBlur) filter. Decorative ambient light layer above the video, below the content. Native palette is the mint/cyan accent; deliver as a soft single-color blurred ellipse tintable by the accent role rather than a baked hex."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "White minimalist wordmark/logo glyph in the sticky header, left side. Spec calls only for a 'white minimalist logo' with no path declared, so supply the brand mark as a single-color (currentColor / white-fill) SVG so it stays tintable by the white-on-dark header scheme."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display face for the main H1 headline 'LAUNCH YOUR CODING CAREER.' — Inter Extra Bold (weight 800), uppercase, tracking-tight, scaling 40px (mobile) to 72px (desktop). Also drives the desktop nav links (16px) and body description (14px). Native value: 'Inter'."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "notes": "Italic serif accent face used only for the word 'Industry' inside the liquid-glass card's 'Taught by Industry Professionals' headline (18px). Native value: 'Instrument Serif' (italic)."
+    },
+    {
+      "id": "font-eyebrow",
+      "type": "font",
+      "card": 1,
+      "notes": "Bold geometric sans for the eyebrow 'Career-Ready Curriculum' (11px, color #5ed29c). Native value: 'Plus Jakarta Sans' (bold)."
+    },
+    {
+      "id": "icon-set",
+      "type": "icon",
+      "card": 3,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Three lucide-react line icons: ArrowRight (inside the 'Get Started' CTA, rendered on the dark #070b0a button text color), Menu (hamburger trigger) and X (close) for the mobile full-screen overlay menu. Stroke icons that inherit currentColor."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif",
+      "accent": "'Instrument Serif', serif"
+    },
+    "colorRoles": {
+      "bg": "#070b0a",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "accent": "#5ed29c",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "body",
+      "cta-label",
+      "nav-labels",
+      "card-tag",
+      "card-headline",
+      "card-description"
+    ]
+  },
+  "mechanic": "A single full-screen dark hero layers a 60%-opacity hls.js background video under dual readability gradients, quarter-mark vertical grid lines and a blurred cyan SVG ellipse glow, then centers a CSS 'liquid-glass' frosted card (backdrop-blur + mask-composite gradient border) floated above an Inter Extra-Bold uppercase headline with a green accent period, an eyebrow, a description and a rounded-full mint CTA; the only interaction is the hamburger toggling a full-screen mobile overlay plus hover color shifts.",
+  "techDelivery": "React + Tailwind CSS single hero component using utility classes plus inline CSS for the liquid-glass effect, with the hls.js library (enableWorker:false) streaming a Mux HLS .m3u8 background video and lucide-react supplying the icons; fonts Inter, Plus Jakarta Sans and Instrument Serif loaded externally.",
+  "reskinNotes": "The mint accent #5ed29c is reused literally across many places — the eyebrow color, the headline's final green period, the CTA background, the nav hover state and the SVG glow hue — so retinting means find-replacing the hex throughout markup rather than swapping one token. The liquid-glass card is a fixed 200x200px box pulled up exactly translate-y-[-50px] with its frame produced by a ::before pseudo-element using -webkit-mask-composite:xor / mask-composite:exclude and a 1.4px 180deg white gradient (background rgba(255,255,255,0.01) + background-blend-mode:luminosity + inset box-shadow), all hardcoded and tuned to the dark bg — fragile to size/copy changes and unsupported in some engines. The three grid lines are hardcoded at the 25/50/75% marks. The 'Industry' word inside the card headline is individually wrapped in the italic Instrument Serif face, so that mixed-font line breaks if the copy changes. All copy is hardcoded in JSX: eyebrow 'Career-Ready Curriculum', headline 'LAUNCH YOUR CODING CAREER.' (with its detached green period), description, 'Get Started' CTA, the four nav labels PROJECTS/BLOG/ABOUT/RESUME, and the card's '[ 2025 ]' tag / 'Taught by Industry Professionals' headline / small description. The headline layout is tuned to Inter's metrics (Extra Bold, tracking-tight, 40->72px clamp), so a font swap or longer copy shifts the composition."
+}

@@ -1,0 +1,70 @@
+{
+  "id": "apex-saas-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero",
+    "SocialProof"
+  ],
+  "slots": [
+    {
+      "id": "social-proof-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping background video behind the Social Proof section, rendered as a <video autoPlay muted playsInline> positioned absolute inset-0 w-full h-full object-cover. It starts at opacity:0 (faded up by the page) and sits under a top-and-bottom bg-gradient-to-b from-background via-transparent to-background scrim, with the stats row, spacer, and logo marquee overlaid on top (relative z-10). Native source is a CloudFront-hosted MP4. Keep footage dark/atmospheric so the from-background fades blend and the white/foreground text stays legible."
+    },
+    {
+      "id": "navbar-logo-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand glyph in the top-left of the floating glass Navbar (currently an inline SVG: a circle plus 4 crosshair lines, white strokes). It sits inside a w-7 h-7 rounded-lg div with a bg-gradient-to-b from-secondary to-muted + border, beside the 'APEX' wordmark. Single-color flat mark that tints to fg (white-on-dark). Supply a ~28px-box transparent glyph; it is currently hardcoded as inline SVG markup, not an asset file."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a dependency), not brand assets: ChevronDown (on the 'Features' and 'Learning' nav buttons), ChevronRight (in the hero 'Explore' badge pill, w-3 h-3), and the three Social Proof stat icons Clock / DollarSign / ShieldCheck (each w-4 h-4 text-foreground/70 inside a liquid-glass w-8 h-8 rounded-lg box). All currentColor / foreground-tinted. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "'Geist Sans', 'Inter', system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(260 87% 3%)",
+      "surface": "hsl(240 6% 9%)",
+      "fg": "hsl(40 6% 95%)",
+      "fgMuted": "hsl(240 5% 65%)",
+      "accent": "hsl(262 83% 58%)",
+      "accent2": "hsl(240 4% 16%)",
+      "border": "hsl(240 4% 20%)"
+    },
+    "copySlots": [
+      "nav-logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "hero-badge-text",
+      "hero-badge-pill-label",
+      "hero-headline",
+      "hero-subheading",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "stats-labels",
+      "marquee-eyebrow",
+      "marquee-logo-names"
+    ]
+  },
+  "mechanic": "A dark glassmorphic single-screen SaaS hero — a floating liquid-glass pill navbar over a centered badge/headline/subhead/dual-CTA stack — capped by a social-proof band where an object-cover looping CloudFront video sits behind from-background top/bottom gradient fades, a glass-iconed stats row, and an infinite CSS keyframe logo marquee (translateX 0 to -50% over a duplicated track, 20s linear).",
+  "techDelivery": "React + Tailwind CSS + TypeScript component spec; body font via @fontsource/geist-sans (weights 400/500/600/700) with 'Inter'/system-ui fallback, lucide-react for icons. Design tokens are HSL custom properties in :root with hero.heading / hero.sub registered as Tailwind colors; the .liquid-glass frosted utility (rgba(255,255,255,0.01) fill, background-blend-mode:luminosity, backdrop-blur(4px), inset highlight + a ::before mask-composite gradient-border) and the marquee keyframes/animation live in CSS/tailwind.config.",
+  "reskinNotes": "Color tokens are space-separated HSL channel triples (e.g. --background: 260 87% 3%) consumed via hsl(var(--x)); --primary 262 83% 58% is the single purple accent and there is no second brand hue (accent2 here maps to the dark --secondary 240 4% 16% used only for the logo-chip gradient). The .liquid-glass effect is the load-bearing visual identity and is fully hardcoded in CSS — rgba(255,255,255,0.01) fill, background-blend-mode:luminosity, fixed backdrop-blur(4px), inset white highlight shadow, and a ::before gradient-border built from a white linear-gradient + -webkit-mask-composite:xor / mask-composite:exclude — so retinting the glass means editing those encoded rgba stops, not flipping a variable. The navbar logo is an inline SVG (circle + crosshair, white strokes) hardcoded in markup, not an asset file. All copy is hardcoded in JSX: nav items (Features/Solutions/Plans/Learning) + 'APEX' wordmark + 'Sign Up'; the hero 'Nova+ Launched!'/'Explore' badge, the headline 'Accelerate Your<br>Revenue Growth Now', the subhead, and the 'Start Free Right Now'/'Schedule a Consult' CTAs; the three stat labels (3-5 week turnround / Upfront cost clarity / Full refund assurance); and the marquee 'Relied on by brands across the globe' eyebrow plus six partner names (Vortex, Nimbus, Prysma, Cirrus, Kynder, Halcyn). Those six marquee logos are rendered as text + a glass box showing the name's first letter (no image assets), and the track is duplicated in markup for the seamless -50% loop, so editing names means editing both copies. The headline uses leading-[1.05] tracking-tight with a hardcoded <br>, so a wider replacement display face can change the two-line wrap. The only placeholder media to socket is the one CloudFront MP4 background video; the poster/initial state is opacity:0 (no poster still)."
+}

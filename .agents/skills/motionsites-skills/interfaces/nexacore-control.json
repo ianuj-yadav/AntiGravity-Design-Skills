@@ -1,0 +1,75 @@
+{
+  "id": "nexacore-control",
+  "role": "features",
+  "ownSections": [
+    "FreedomSection"
+  ],
+  "slots": [
+    {
+      "id": "center-circle-hls-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Single fullscreen-within-circle looping background video sitting in the center column between the negatives and positives card columns. Rendered inside a clamp(200px,22vw,400px) square circular container (border-radius 50%, overflow hidden) by an absolutely-positioned <video> blown up to 160% x 160% and centered with translate(-50%,-50%) so it fills the disc with no letterboxing; autoplay muted loop playsInline, no controls, no overlaid text. Native source is an HLS adaptive stream (Mux .m3u8, pinned to the highest level) loaded via hls.js with a native Safari application/vnd.apple.mpegurl fallback, so the brand asset is ideally an HLS manifest (a plain mp4 also works if the loader is simplified). Supply a seamless square-friendly loop; since it is cropped to a circle keep the subject centered."
+    },
+    {
+      "id": "negative-bullet-cross-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Single 'cross' / X bullet marker reused once per negatives card (the 5 left-column 'pain' cards all reference the same asset). Loaded as a flat <img src> from a fixed Webflow CDN .svg URL (alt=\"\", aria-hidden) at width clamp(16px,1.25vw,20px), flex-shrink 0, sitting to the left of each negative line. Its own color is whatever the source SVG paints (native is a Webflow bullet-list-cross glyph) - it is NOT tinted by a fill/currentColor prop, so a recolor means editing or replacing the SVG file itself. Pairs visually with the green check used on the positives side."
+    },
+    {
+      "id": "positive-bullet-check-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Single 'check' / tick bullet marker reused once per positives card (the 5 right-column 'benefit' cards all reference the same asset). Loaded as a flat <img src> from a fixed Webflow CDN .svg URL (alt=\"\", aria-hidden) at width clamp(16px,1.25vw,20px), flex-shrink 0, sitting to the left of each positive line. Self-colored by the source SVG (native is a Webflow bullet-list glyph) and not tinted via a prop, so recoloring requires swapping/editing the SVG file. Mirror of the cross marker on the negatives side."
+    },
+    {
+      "id": "header-badge-heart-icon",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Small decorative heart/burst glyph inside the header 'Control' badge pill, immediately left of the badge label text. Authored as INLINE SVG markup directly in the component (viewBox 0 0 17 16, width 19px / height 18px, flex-shrink 0, fill none, with a clipPath) - not an external file - and its single path fill is the literal hex rgb(200,111,255) light-purple, so re-tinting means hand-editing that baked fill value in the JSX. Swap by replacing the inline path data."
+    },
+    {
+      "id": "global-font-mazzard",
+      "type": "font",
+      "card": 1,
+      "notes": "The single sans typeface for every string in the section, registered via two @font-face blocks (weights 400 and 500, woff2/woff/ttf from onlinewebfonts CDN) and applied globally (html, body, * { font-family }). Carries the clamp(32px,4vw,56px) medium (500) H2 headline at line-height 1.15 incl. the gradient second line, the 18px medium badge pill label, and the clamp(13px,1.15vw,17px) card body lines in both columns. Native face is 'Mazzard H' with a generic sans-serif fallback. Pick a clean humanist/geometric sans that holds at the large headline size; only weights 400 and 500 are used."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Mazzard H', sans-serif",
+      "body": "'Mazzard H', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "rgb(255, 255, 255)",
+      "fg": "rgb(26, 11, 84)",
+      "fgMuted": "rgb(131, 121, 158)",
+      "accent": "rgb(200, 111, 255)",
+      "accent2": "rgb(43, 167, 255)",
+      "border": "rgb(249, 249, 249)"
+    },
+    "copySlots": [
+      "badge-label",
+      "headline-line-1",
+      "headline-line-2-gradient",
+      "negatives-list",
+      "positives-list"
+    ]
+  },
+  "mechanic": "A static pure-white centered features section: a header (purple-hearted 'Control' badge pill + a two-line H2 whose second line uses a blue->magenta->orange linear-gradient text clip) above a responsive three-column layout (left negatives cards | center circular looping HLS video | right positives cards) that is flex-col on mobile with the video forced order-first and becomes a 26vw / 1fr / 26vw CSS grid at lg, with no animation, hover, or scroll motion - the only 'motion' is the autoplaying looped video inside the clip-to-circle disc.",
+  "techDelivery": "Single React + TypeScript + Tailwind CSS v3 component (FreedomSection.tsx) using useRef/useEffect and hls.js for adaptive HLS playback, with a non-exported HlsVideo sub-component; icons are inline SVG and <img>-loaded CDN SVGs (no icon library); the 'Mazzard H' font and Tailwind directives are declared in index.css.",
+  "reskinNotes": "Every color is baked as a literal rgb()/hex inline style, not a token: the white #ffffff section bg, the deep-indigo rgb(26,11,84) used for the badge text / headline / positive-card text, the muted rgb(131,121,158) negative-card text, the rgb(249,249,249) badge pill fill, the purple rgb(200,111,255) inline-SVG heart fill, the three-stop headline gradient (rgb(43,167,255) -> rgb(202,69,255) @50% -> rgb(254,136,27)) and the two card box-shadows (#3f4a7e0d / #3f4a7e1a) must each be hand-edited. All copy is hardcoded in markup: the 'Control' badge label, the two headline lines ('Stop absorbing the chaos.' / gradient 'Run with confidence.') split by a <br>, and especially the two 5-item string arrays `negatives` and `positives` at the top of the file (a brand swap must rewrite these ten lines in source). The cross and check bullet markers are external Webflow CDN .svg files referenced by URL and self-colored, so their color cannot be themed without swapping the files, while the header heart is a third, inline-SVG glyph with its own baked fill - three separate icon-recolor surfaces. Layout leans on viewport-relative sizing (grid-template-columns 26vw 1fr 26vw, clamp() padding/font-sizes, the badge pill's vw padding and the circle's clamp(200px,22vw,400px) diameter) so very long reskin strings in the cards can overflow or unbalance the columns; the center video is intentionally over-scaled to 160% and translate-centered to fill the circular crop, so a differently-proportioned brand clip must keep its subject centered."
+}

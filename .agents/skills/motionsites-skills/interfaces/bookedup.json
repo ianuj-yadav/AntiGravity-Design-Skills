@@ -1,0 +1,77 @@
+{
+  "id": "bookedup",
+  "role": "hero",
+  "ownSections": [
+    "HeroSection"
+  ],
+  "slots": [
+    {
+      "id": "client-avatars",
+      "type": "image",
+      "card": 4,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Pool of 4 square client/consultation headshots (the AVATARS array, placeholder Unsplash photo-* URLs at 100x100 crop). Reused in two places: (a) the right-side infinite ClientCard marquee, where each agenda row shows a person's face inside DeepShadowAvatar / AvatarWithShadow on a black blur backdrop, and (b) the left-side 'VERIFIED CLIENTS' social-proof row of 4 DeepShadowAvatar elements (the 2nd gets hasGlow + orange glow, sizes alternate md/lg). Opaque, rendered circular and small (sm/md/lg), so supply tightly-cropped face shots that read at thumbnail scale. Replace the Unsplash placeholders with brand client photos."
+    },
+    {
+      "id": "headline-trend-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Single glyph embedded INSIDE the H1 headline: a white lucide TrendingUp icon, rotated -6deg, wrapped in the DeepShadowIcon plaque (orange #F25C40 box + blur glow + inset/outset shadows, p-2 rounded-2xl) so it reads as an inline 'Expanding [icon] reach' token. White currentColor tint over the orange plaque. Swap geometry while keeping it a flat white single-color vector so it stays legible on the accent plaque."
+    },
+    {
+      "id": "cta-play-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Lucide Play icon inside the secondary white 'Start Here' CTA button (white bg, border, grey text), sitting to the left of the label next to the dark DeepShadowButton. Transparent, tinted the muted/grey button text color via currentColor. Replace geometry, keep single-color currentColor tint."
+    },
+    {
+      "id": "rating-star-icons",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent2",
+      "notes": "Row of 5 identical lucide Star icons forming the 'TOP TIER QUALITY 5/5' rating on the right half of the social-proof block. Each is amber both stroke and fill (text-[#FFB648] fill-[#FFB648]). Transparent, tinted via the gold accent2 color. Swap to a brand rating glyph but keep all 5 filled the same accent color."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "SK Reykjavik Rounded Regular",
+      "body": "Inter"
+    },
+    "colorRoles": {
+      "bg": "#F7F7F7",
+      "surface": "#FFFFFF",
+      "fg": "#202020",
+      "fgMuted": "#737373",
+      "accent": "#F25C40",
+      "accent2": "#FFB648",
+      "border": "#D1F2D1"
+    },
+    "copySlots": [
+      "pulse-badge-label",
+      "headline",
+      "headline-emphasis",
+      "subheadline",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "verified-clients-label",
+      "rating-label",
+      "card-day",
+      "card-date",
+      "call-item-name",
+      "call-item-time",
+      "call-item-duration"
+    ]
+  },
+  "mechanic": "Static two-column hero (max-w-1440 1.2fr/0.8fr grid): a left value-prop column (green pulsing 'BOOKING FOR SUMMER' pill, SK-Reykjavik headline with an inline orange DeepShadowIcon TrendingUp plaque, soft-shadow CTA pair, and a verified-clients + 5-star social-proof strip) beside a right column of dual framer-motion vertical tracks endlessly translating Y (tripled ClientCard list, y:[0,-1200] over 40s linear) under top/bottom #F7F7F7 fade masks, with each card fade-scaling in on load and alternately rotated +/-3deg.",
+  "techDelivery": "React (TypeScript) + Tailwind CSS v4 (@theme + @layer base in index.css, arbitrary-value utilities) + motion/react for the infinite marquee + load animations + lucide-react icons; two web fonts (Inter via Google Fonts, SK Reykjavik Rounded via onlinewebfonts CDN). Authored as index.css + App.tsx with inline mock data.",
+  "reskinNotes": "Brand identity is almost entirely in inline Tailwind arbitrary-value hexes rather than CSS variables, so reskinning means rewriting class strings: the orange #F25C40 is baked into DeepShadowIcon (box + blur glow), DeepShadowAvatar's hasGlow, and the headline plaque; the soft-3D 'deep shadow' look depends on hand-tuned multi-layer box-shadows (e.g. shadow-[0px_0px_5px_rgba(255,255,255,0.5)_inset,0px_8px_20px_rgba(242,92,64,0.35)] on the icon, the #212121/#202020 button glow+inset stack, black blur backdrops on avatars) whose rgba values must be recolored by hand per brand. Several non-role hexes live only in markup: pulse dot bg #52D352 + its 0.6-alpha green glow and the #D1F2D1 pill border (green 'summer' accent, distinct from the orange/gold brand accents), star color #FFB648, and DeepShadowButton bg #202020. The page has no real background image; bg is the flat #F7F7F7 that also drives the marquee fade-mask gradients. The marquee motion is hardcoded in pixel space (y:[0,-1200] and the tablet track's y:[-600,-1800]) and assumes a specific ClientCard height x tripled-list length, so changing card count/size requires retuning those keyframes. All copy (the 'BOOKING FOR SUMMER' badge, the 'Expanding ... reach with every lead' headline with its inline icon split, the subheadline, both CTA labels, the VERIFIED CLIENTS / TOP TIER QUALITY 5/5 labels, and every CLIENT_CALLS day/date/name/time/duration) is hardcoded in App.tsx and must be edited in code. SK Reykjavik Rounded is loaded from a third-party onlinewebfonts CDN (licensing/availability caveat) and the negative-tracking headline is metric-dependent on it."
+}

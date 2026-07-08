@@ -1,0 +1,29 @@
+{
+  "id": "celestia-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplay hero background video, absolute inset-0 w-full h-full object-cover at z-0 behind all foreground content; it is the sole visual element and carries the entire cinematic dark aesthetic of the section."
+    }
+  ],
+  "skin": {
+    "fontRoles": {},
+    "colorRoles": {
+      "bg": "#000000"
+    },
+    "copySlots": []
+  },
+  "mechanic": "A single full-screen hero where one muted autoplay video loops as an absolutely-positioned object-cover background filling the viewport behind a dark stage, with no foreground motion.",
+  "techDelivery": "Single React/JSX hero snippet using Tailwind utility classes (absolute inset-0 w-full h-full object-cover z-0) with a Cloudinary-hosted .mp4 <source>; no fonts, build tooling, or animation library declared.",
+  "reskinNotes": "The spec is intentionally minimal: it declares only the looping background video plus an implied dark/black stage, with no fonts, no foreground copy, and no other color values. The single Cloudinary .mp4 URL is hardcoded inline in the <video><source> markup and must be swapped for the brand asset. Because the video is the only content, the entire mood, palette, and motion of the section are baked into that one asset rather than into themeable tokens."
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@booplex/stitch-kit",
+  "version": "1.11.0",
+  "description": "Design superpowers for AI coding agents — 35 skills that teach agents to ideate, generate, iterate, and ship production UIs using Google Stitch MCP. Works with Claude Code, Codex CLI, and any MCP-compatible agent.",
+  "bin": {
+    "stitch-kit": "./bin/stitch-kit.mjs",
+    "stitch-session": "./scripts/stitch-session.mjs"
+  },
+  "type": "module",
+  "files": [
+    "bin/",
+    "skills/",
+    "agents/",
+    "docs/",
+    "scripts/",
+    "hooks/",
+    ".codex-plugin/",
+    "AGENTS.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "stitch",
+    "stitch-mcp",
+    "google-stitch",
+    "ui-design",
+    "ai-design",
+    "text-to-ui",
+    "claude-code",
+    "claude-code-plugin",
+    "codex-cli",
+    "mcp",
+    "mcp-tools",
+    "model-context-protocol",
+    "design-agent",
+    "agent-skills",
+    "design-to-code",
+    "figma-alternative",
+    "nextjs",
+    "svelte",
+    "react-native",
+    "swiftui",
+    "design-system",
+    "ui-generation"
+  ],
+  "author": "gabelul",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gabelul/stitch-kit.git"
+  },
+  "homepage": "https://github.com/gabelul/stitch-kit#readme"
+}

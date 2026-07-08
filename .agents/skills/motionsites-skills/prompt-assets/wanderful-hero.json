@@ -1,0 +1,17 @@
+{
+  "id": "wanderful-hero",
+  "title": "Wanderful Hero",
+  "category": "Travel",
+  "sort_order": 999,
+  "type": "hero",
+  "types": null,
+  "created_at": "2026-05-10T06:25:03.919772+00:00",
+  "page_type": "hero",
+  "row_span": 1,
+  "is_free": true,
+  "image_preview_url": null,
+  "video_preview_url": "https://stream.mux.com/loU9GqELzagaHuXwR2ucJx02Fpy00LnEAsr4TAHnTriho.m3u8",
+  "sections": [],
+  "status": 200,
+  "ok": true
+}

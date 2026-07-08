@@ -1,0 +1,98 @@
+{
+  "id": "pro-ai-deck",
+  "role": "hero",
+  "ownSections": [
+    "TitleSlide",
+    "ProblemSlide",
+    "CapabilitiesSlide",
+    "WhyUsSlide",
+    "StatsSlide",
+    "TestimonialsSlide",
+    "CtaSlide",
+    "SlideControls"
+  ],
+  "slots": [
+    {
+      "id": "slide-background-videos",
+      "type": "video",
+      "card": 7,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "The seven fullscreen looping background films, one per slide (Title, Problem, Capabilities, WhyUs, Stats, Testimonials, Cta). Each is mounted absolute inset-0 object-cover behind a relative z-10 content layer as either a raw <video autoPlay loop muted playsInline> (slides 1/4/6/7) or the HlsVideo component (slides 2/3/5, which play Mux .m3u8 streams via hls.js with a direct-src fallback). Per-slide treatments are baked into markup, NOT the asset: slide 1/6/7 have NO overlay (footage must self-dim for legibility), slide 2 gets a bg-black/60 scrim, slide 3 is forced opacity:0.5 over a black base, slide 4 has a bottom h-[50%] black-to-transparent gradient, slide 5 is filter:saturate(0) grayscale with no overlay. Native sources are CloudFront MP4s + Mux HLS streams. Supply seven dark/atmospheric silent seamless loops; white headings and white/40 body copy overlay every one, so keep them legible (especially the no-overlay slides 1/5/6/7)."
+    },
+    {
+      "id": "capability-card-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two inset product/feature reels filling the media strip of the two CapabilitiesSlide cards (slide 3). Each sits in an h-44 lg:h-56 overflow-hidden region at the top of a liquid-glass rounded-2xl card (corners clipped, landscape crop enforced), object-cover, above the card's italic title + muted body. Card 1 is a raw <video autoPlay loop muted playsInline> (native: CloudFront MP4); card 2 is the HlsVideo component (native: Mux .m3u8). Cards fade-up (y:30->0) staggered by i*0.15. Brand fill = two looping motion reels or product-UI captures in roughly 16:9; transparency not needed since the glass frame clips them."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif",
+      "accent": "'Material Symbols Rounded'"
+    },
+    "colorRoles": {
+      "bg": "hsl(213 45% 67%)",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(0 0% 100% / 0.7)",
+      "accent": "hsl(213 45% 72%)",
+      "accent2": "hsl(213 45% 62%)",
+      "border": "hsl(0 0% 100% / 0.2)"
+    },
+    "copySlots": [
+      "brand-logo-mark",
+      "brand-wordmark",
+      "deck-meta-label",
+      "slide-section-labels",
+      "slide-nav-labels",
+      "title-pill-badge",
+      "title-pill-text",
+      "title-headline",
+      "title-subtitle",
+      "title-cta-label",
+      "title-trusted-by-label",
+      "title-trusted-by-logos",
+      "problem-headline",
+      "problem-body",
+      "problem-card-titles",
+      "problem-card-descriptions",
+      "problem-card-icon-glyphs",
+      "capabilities-headline",
+      "capabilities-card-titles",
+      "capabilities-card-bodies",
+      "whyus-headline",
+      "whyus-subtitle",
+      "whyus-card-titles",
+      "whyus-card-descriptions",
+      "stats-headline",
+      "stats-numbers",
+      "stats-descriptions",
+      "testimonials-headline",
+      "testimonials-quotes",
+      "testimonials-names",
+      "testimonials-roles",
+      "cta-headline",
+      "cta-body",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "cta-contact-label",
+      "cta-contact-email",
+      "cta-contact-phone",
+      "cta-locations",
+      "footer-copyright",
+      "footer-legal-links"
+    ]
+  },
+  "mechanic": "A 7-slide fullscreen deck navigated horizontally (wheel/keyboard/touch-swipe with an 800ms animation lock) whose signature motion is an AnimatePresence mode='wait' direction-aware slide transition (incoming x:100%/-100% + opacity 0 + scale 0.95 -> center, outgoing x:-30%/30%, 0.65s cubic-bezier) layered over a per-word BlurText reveal (blur 10px->0 + y 50->0, IntersectionObserver-triggered, stagger i*delay) on the title headline, all atop fullscreen looping/HLS background video and .liquid-glass frosted cards.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS v3 + Motion (motion/react, formerly framer-motion) + hls.js + lucide-react. Fonts (Instrument Serif italic, Barlow 300/400/500/600, Material Symbols Rounded) loaded via Google Fonts <link> in index.html; font-heading / font-body wired into tailwind.config fontFamily. HSL :root design tokens + glass/blur variables + the .liquid-glass / .liquid-glass-strong @layer components utilities live in index.css. Multi-file component structure (App.tsx + components/{HlsVideo,BlurText,SlideControls} + slides/{Title,Problem,Capabilities,WhyUs,Stats,Testimonials,Cta}).",
+  "reskinNotes": "Two competing color systems coexist and must be reconciled on reskin: the :root tokens are a BLUE palette in space-separated HSL channels (--background 213 45% 67%, --card 213 45% 62%, --secondary/--accent 213 45% 72%, --muted 213 35% 60%, --primary 0% white), yet the global body CSS hard-sets background:#000 and color:#fff, so the literal rendered ground is black film + white text and the blue tokens mostly surface only through any component that reads them — retinting means editing both layers. --radius is 9999px (everything pill/rounded) and is the borderRadius.full source. The .liquid-glass and .liquid-glass-strong effects are the load-bearing identity and are fully hardcoded in CSS, not token-driven: rgba(255,255,255,0.01) fills, background-blend-mode:luminosity, fixed backdrop-blur (4px subtle / 50px strong), inset white highlight box-shadows, and a ::before gradient-border built from a 180deg white linear-gradient (0.45/0.15/0 stops subtle, 0.5/0.2 stops strong) with mask-composite:exclude and 1.4px padding. Per-slide video darkening (slide 2 bg-black/60, slide 3 opacity:0.5, slide 4 bottom black gradient, slide 5 saturate(0)) is in markup, and slides 1/5/6/7 have NO overlay at all, so footage legibility is the designer's responsibility regardless of tokens. Icons come from TWO sources: lucide-react (Zap/Palette/BarChart3/Shield on slide 4; ChevronLeft/Right in controls; ArrowUpRight; Mail) are code-imported React components, while slide 2's three icons are Material Symbols Rounded WEBFONT glyphs referenced by hardcoded names ('query_stats','psychology','integration_instructions') via <span class='material-symbols-rounded'> — swapping them means editing glyph-name strings, and the font itself must stay loaded. Display type is tuned to Instrument Serif italic metrics with aggressive negative tracking (title tracking-[-3px] leading-[0.85], headings tracking-tight) and very large clamp sizes (up to xl:text-[10rem] on Capabilities, lg:text-[9.5rem] stat numbers), so a wider/taller replacement display face will break the intended composition. ALL copy is hardcoded in JSX across the seven slide files: the 'S' logo letter + 'Studio' wordmark + 'Pitch Deck 2026' meta, the seven section labels (Introduction/The Process/Capabilities/Differentiators/Traction/Social Proof/Next Steps) and their nav titles, the 'New / AI-powered web design' pill, the title headline 'The Website Your Brand Deserves' + subtitle + 'Get Started' + the five trusted-by names (Stripe/Vercel/Linear/Notion/Figma), the three Problem card title/description pairs, the two Capabilities card title/body pairs, the four WhyUs card title/desc pairs, the four Stats number/description pairs (200+/98%/3.2x/5 days), the three Testimonial quote/name/role triples (Sarah Chen-Luminary, Marcus Webb-Arcline, Elena Voss-Helix), and the entire Cta block (headline 'Your next website starts here.', body, 'Book a Call'/'View Pricing', hello@studio.ai, +1 (555) 000-0000, San Francisco/London, (c) 2026 Studio copyright, Privacy/Terms/Contact). Placeholder media (seven CloudFront/Mux slide backgrounds + two CloudFront/Mux capability-card reels) are the asset sockets to fill — none should be stored as values."
+}

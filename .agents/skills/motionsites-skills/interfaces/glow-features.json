@@ -1,0 +1,39 @@
+{
+  "id": "glow-features",
+  "role": "features",
+  "ownSections": [
+    "FeatureCardGrid"
+  ],
+  "slots": [
+    {
+      "id": "feature-icon-glyphs",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "lucide-react line-icon glyphs, one per feature card across the 3-card grid (placeholders Monitor, Palette, Zap). Rendered size 32 / strokeWidth 2.5, sitting top-left of each card and wrapped in a text-white/90 div so they tint via currentColor; not swappable image assets, swap by picking different lucide glyph names."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "ui-sans-serif (Tailwind font-sans system stack; no custom face declared)"
+    },
+    "colorRoles": {
+      "bg": "#0A0A0B",
+      "surface": "#1A1A1C",
+      "fg": "#FFFFFF",
+      "fgMuted": "#9CA3AF",
+      "accent": "#FF3D77",
+      "accent2": "#06B6D4",
+      "border": "linear-gradient (per-card gradient border via padding-box/border-box clip, no flat border color)"
+    },
+    "copySlots": [
+      "card-title",
+      "card-description"
+    ]
+  },
+  "mechanic": "A 3-up responsive grid of glassy #1A1A1C cards, each ringed by an 8px transparent border filled with a per-card linear gradient via the padding-box/border-box background-clip trick and underlaid by a blurred (45px) opacity-60 copy of that same gradient as a glow, with cards fading and rising in (opacity 0->1, y 30->0, 0.8s easeOut) on a staggered 0.1s-per-card delay.",
+  "techDelivery": "React 19 + Vite + Tailwind CSS v4, with lucide-react for icons and motion/react (Framer Motion) for the entry animation; authored as a reusable FeatureCard component spec instantiated three times in a grid.",
+  "reskinNotes": "Brand color lives entirely in three per-card CSS gradients hardcoded in the card data array (Card1 linear-gradient(137deg,#FF3D77 0%,#FFB1CE 45%,#FF9D3C 100%); Card2 linear-gradient(137deg,#FFFFFF 0%,#7DD3FC 45%,#06B6D4 100%); Card3 linear-gradient(137deg,#4361EE 0%,#E0AEFF 45%,#F72585 100%)) and each gradient is consumed twice per card - once as the blurred glow background and once as the border-box layer of the background-clip border - so a single swap must update both inline-style usages. The card surface #1A1A1C is baked literally into both the padding-box gradient string and any flat fill, and the page bg #0A0A0B plus white/gray-400 text are Tailwind arbitrary-value utilities in the markup, not tokens. All card titles (Hardware/Studio/Motion) and descriptions, plus the icon glyph choices and per-card stagger delays, are hardcoded in the component data array. Layout depends on fixed pixel card metrics (max-w 260/300px, h 260/300px, rounded 40px, 8px border, p-7) rather than fluid sizing."
+}

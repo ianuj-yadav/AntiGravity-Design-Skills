@@ -1,0 +1,88 @@
+{
+  "id": "20",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroContent",
+    "PartnersBar"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background film. Rendered as a <video autoPlay loop muted playsInline preload=\"auto\"> positioned absolute inset-0 object-cover z-0 so it fills the entire viewport edge-to-edge behind all foreground content, with a bg-black/5 scrim div over it. A poster still (/images/hero_bg.jpeg) shows before playback and both the video and poster are <link rel=preload> hinted in index.html <head>. Native source is a CloudFront-hosted MP4. Keep footage in a bright muted-sky register so it reads under the periwinkle-blue theme while white headline + glass text stay legible."
+    },
+    {
+      "id": "hero-poster-still",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Pre-playback poster frame for the hero background video (poster attribute + a <link rel=preload as=image> hint). Native source is a local JPEG (/images/hero_bg.jpeg). Supply a representative still from the looping reel at matching fullscreen object-cover framing so there is no flash before the MP4 starts."
+    },
+    {
+      "id": "brand-logo-icon",
+      "type": "image",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "notes": "Square brand mark in the fixed Navbar, top-left, rendered h-12 w-12 (~48px). Supply a transparent (alpha) square logo/glyph so it floats cleanly over the video-backed page; no background plate."
+    },
+    {
+      "id": "ui-glyphs",
+      "type": "icon",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI chrome from lucide-react (a dependency), not brand assets: ArrowUpRight in the nav 'Claim a Spot' pill (h-4 w-4) and in the primary 'Start Your Voyage' CTA (h-5 w-5), plus a filled Play (h-4 w-4 fill-current) in the secondary 'View Liftoff' text link. All currentColor / white- or black-tinted by their container. Optional socket: only swap if the brand ships an equivalent line-icon set; otherwise the lucide defaults stand."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Heading/display face for the H1 BlurText headline and the five PartnersBar partner names, both rendered italic. Native value is the Google Font 'Instrument Serif' (italic), wired into tailwind.config fontFamily as font-heading with a serif fallback. The headline relies on very tight metrics — leading-[0.8] and tracking-[-4px] at up to text-[5.5rem] — so a substitute must tolerate that condensed negative-tracking treatment or the wraps break."
+    },
+    {
+      "id": "font-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Body/UI face for nav links, badges, subheading, CTA labels, and the partners eyebrow label. Native value is the Google Font 'Barlow' (weights 300/400/500/600), wired into tailwind.config fontFamily as font-body with a sans-serif fallback; needs the light 300 weight for the subheading."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Barlow', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#85A7D1",
+      "surface": "rgba(255,255,255,0.01)",
+      "fg": "#FFFFFF",
+      "fgMuted": "rgba(255,255,255,0.9)",
+      "accent": "#FFFFFF",
+      "accent2": "#000000",
+      "border": "rgba(255,255,255,0.45)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "hero-eyebrow-new-tag",
+      "hero-eyebrow-badge",
+      "hero-headline",
+      "hero-body",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "partners-eyebrow",
+      "partner-names"
+    ]
+  },
+  "mechanic": "A full-screen video-backed cinematic hero (fixed glass pill navbar up top, centered badge + headline + subtext + dual CTAs in the middle, partners bar pinned at the bottom) whose signature motion is a BlurText component that dissolves the headline in word-by-word from below (blur(10px)/opacity:0/y:50 through blur(5px)/opacity:0.5/y:-5 to blur(0)/opacity:1/y:0, ~0.35s stepDuration, 100ms per-word stagger, IntersectionObserver-triggered), echoed by delayed blur-in fades on the subheading (delay 0.8) and the CTA row (delay 1.1), all reading through frosted liquid-glass surfaces built from backdrop-blur plus a mask-composite gradient-border pseudo-element.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS + motion/react (Framer Motion) component spec, with lucide-react for icons (ArrowUpRight / Play). Fonts (Instrument Serif italic + Barlow 300/400/500/600) via a Google Fonts @import and wired into tailwind.config.ts fontFamily as font-heading / font-body. The .liquid-glass / .liquid-glass-strong utilities and the HSL-channel :root tokens (--background, --foreground, --radius:9999px) live in index.css under @layer components, and index.html carries <link rel=preload> hints for the hero video + poster.",
+  "reskinNotes": "The declared :root palette is a PERIWINKLE / muted-sky LIGHT theme expressed as space-separated HSL channels — --background:213 45% 67% (#85A7D1) and --foreground:0 0% 100% (white) — so retinting means editing HSL channel triples, not hex tokens, and text is largely fixed white at literal opacities (text-foreground/90, text-white) rather than token-driven. The two liquid-glass effects are the load-bearing visual identity and are fully hardcoded in CSS: rgba(255,255,255,0.01) fills, background-blend-mode:luminosity, fixed backdrop-blur (4px subtle / 50px strong), inset white highlight shadows, and a ::before gradient-border built with a white linear-gradient (alpha 0.45/0.15 subtle, 0.5/0.2 strong) plus the -webkit-mask-composite:xor / mask-composite:exclude trick — retinting the glass means editing these encoded gradients and rgba stops, not flipping a variable. --radius is 9999px (everything pill/round); solid white CTA pills bake bg-white with text-black, and a bg-black/5 scrim sits over the video. All copy is hardcoded in JSX: nav items (Home/Voyages/Worlds/Innovation/Plan Launch) + the 'Claim a Spot' pill; the hero 'New' tag + 'Maiden Crewed Voyage to Mars Arrives 2026' badge; the BlurText headline 'Venture Past Our Sky Across the Universe'; the subheading; the 'Start Your Voyage' / 'View Liftoff' CTAs; and the partners bar label 'Collaborating with top aerospace pioneers globally' with five partner names (Aeon/Vela/Apex/Orbit/Zeno). Layout is font-metric dependent on Instrument Serif italic: the headline uses leading-[0.8] with tracking-[-4px] at up to text-[5.5rem] and max-w-2xl, so a wider/taller replacement display face will break the tight three-ish-line wrap. The hero video is a placeholder CloudFront MP4 with a local poster JPEG — both are sockets to fill with brand footage."
+}

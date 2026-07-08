@@ -1,0 +1,99 @@
+{
+  "id": "rivr-defi-landing",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "Metrics",
+    "Features",
+    "CTA",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping background video for the Hero section, sitting absolute behind the glass content layer (autoPlay + muted + loop + playsInline). Fills the rounded-[3rem] hero card; no scrim overlay, so footage carries the backdrop behind the navy headline and frosted floating cards. Currently a CloudFront placeholder mp4 (d8j0ntlcm91z4.cloudfront.net/...4286c423...) to be replaced by a brand-owned loop."
+    },
+    {
+      "id": "cta-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Second, distinct fullscreen object-cover looping background video for the CTA section (layout identical to Hero: centered max-w rounded box), absolute inset-0. White headline + buttons layer on top, so this footage should read darker for legibility. Currently a separate CloudFront placeholder mp4 (d8j0ntlcm91z4.cloudfront.net/...bfd355f7...); must be a different clip from the hero video."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 4,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Functional lucide-react glyph set used in nav, badges and buttons, tinted navy/dark. Distinct glyphs: Sparkles (HeroBadge 'Fluid Staking' pill), ChevronRight ('Economics' nav item + Footer/Library links), ArrowUpRight (Book Demo button, BottomLeftCard Join Discord, BottomRightCorner Documentation circle, Features Card 4 cross-chain circle button). Supply single-color / currentColor marks that inherit the surrounding text fill."
+    },
+    {
+      "id": "feature-watermark-icons",
+      "type": "icon",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Giant decorative background watermark glyphs inside the Features cards, rendered at opacity-[0.02] and scaled up, that grow on hover (group-hover:scale-110). Two glyphs: Layers (Card 1, tall left) and Activity (Card 2, anchored bottom-right). Decorative only; supply oversized single-color marks that read as a faint texture, not foreground iconography."
+    },
+    {
+      "id": "display-font-file",
+      "type": "font",
+      "card": 1,
+      "notes": "Single web font face loaded via @font-face in eot/woff2/woff/ttf/svg formats and exposed as the --font-helvetica Tailwind theme token applied to :root; backs both the display and body roles across all five sections. Native source is the third-party 'Helvetica Regular' from onlinewebfonts.com; substitute must carry headlines, metric numerals, nav and body alike."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Helvetica Regular\", ui-sans-serif, system-ui, sans-serif",
+      "body": "\"Helvetica Regular\", ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#f0f0f0",
+      "surface": "#ffffff",
+      "fg": "#5E6470",
+      "fgMuted": "rgba(94,100,112,0.8)",
+      "accent": "rgba(30,50,90,0.9)",
+      "accent2": "rgba(30,50,90,0.02)",
+      "border": "rgba(30,50,90,0.05)"
+    },
+    "copySlots": [
+      "nav-labels",
+      "nav-cta-label",
+      "eyebrow",
+      "headline",
+      "subhead",
+      "metric-value",
+      "metric-label",
+      "features-headline",
+      "features-cta-label",
+      "feature-card-title",
+      "feature-card-body",
+      "feature-card-cta-label",
+      "stat-card-value",
+      "stat-card-label",
+      "secondary-cta-label",
+      "doc-title",
+      "doc-link-label",
+      "cta-headline",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "footer-brand",
+      "footer-description",
+      "footer-group-heading",
+      "footer-link-labels"
+    ]
+  },
+  "mechanic": "A vertically stacked #f0f0f0 landing page of rounded glass cards: a full-screen looping-video hero (frosted nav, badge, floating stat/CTA cards and an SVG faux-cutout corner notch) flows into a divider-gridded metrics block, a white-card bento Features grid with oversized hover-scaling icon watermarks, a second looping-video CTA card, and a bordered footer — all entrances are staggered fade/scale-in (whileInView) with the videos and hover transitions carrying the rest of the motion.",
+  "techDelivery": "Vite React + TypeScript (Hero/Metrics/Features/CTA/Footer .tsx components + src/index.css + App.tsx) with Tailwind v4 (@import \"tailwindcss\" + @theme token), motion/react (Framer Motion) for staggered entrance/whileInView and hover animations, and lucide-react for icons; native <video> elements (autoPlay/muted/loop/playsInline) for the hero and CTA backgrounds.",
+  "reskinNotes": "Page color #f0f0f0 is baked into inline SVG <path fill=\"#f0f0f0\"> corner-cutout masks (two 3.5rem path d=\"M56 56V0C56 30.9279 30.9279 56 0 56H56Z\") and the BottomRightCorner background, so changing bg means editing raw SVG fills too. The navy accent and its tints are hardcoded as rgba(30,50,90,x) literals (0.9 buttons, 0.02 metrics box fill, 0.05 borders, 0.1 dividers) scattered across className strings rather than a single CSS variable, and the headline color #5E6470 plus white/20 and white/60 glass values are likewise inline; a brand reskin must sweep all of them. The 'dark blue' Book Demo button color is described but never given an exact hex. All copy across the five sections (nav labels, 'Fluid Asset Streams' headline, four metric value/label pairs, four feature-card titles/bodies, 'Melt rigid assets into fluid yield.' CTA, and footer link groups) is hardcoded inline in JSX. The display font is fetched from a third-party onlinewebfonts.com URL. Two separate CloudFront placeholder mp4s (hero vs CTA) are inlined and must both be swapped."
+}

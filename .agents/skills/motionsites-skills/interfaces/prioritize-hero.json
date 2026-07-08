@@ -1,0 +1,72 @@
+{
+  "id": "prioritize-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "aspect": "1:1",
+      "colorRole": "accent",
+      "notes": "Brand mark reused in the navbar (w-8) and inside the hero's dropshadowed white icon box; single-color glyph that tints to the accent color (declared as three staggered blocks stepping up bottom-left to top-right)."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 9,
+      "alpha": true,
+      "aspect": "1:1",
+      "notes": "Inline UI glyph set from lucide-react: Menu, X (mobile hamburger toggle), Folder, Check, Mail, Slack, Calendar, Clock, Timer used across navbar and the four floating decorative folder groups; some are color-tinted per-instance (Mail #EA4335, Slack #4A154B, Calendar #4285F4, Check on accent box)."
+    },
+    {
+      "id": "sprint-avatars",
+      "type": "image",
+      "card": 4,
+      "alpha": true,
+      "aspect": "1:1",
+      "notes": "Overlapping circular user/team avatars inside the 'Active Sprints' task cards (two cards x two avatars); placeholder source is DiceBear avataaars, to be replaced with brand team/persona avatars."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "body": "Inter",
+      "accent": "Caveat"
+    },
+    "colorRoles": {
+      "bg": "#FDFDFD",
+      "surface": "#FFFFFF",
+      "fg": "#141414",
+      "fgMuted": "#9CA3AF",
+      "accent": "#2563EB",
+      "accent2": "#FFF188",
+      "border": "rgba(0,0,0,0.1)"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "signin-label",
+      "cta-secondary-label",
+      "headline",
+      "headline-accent",
+      "subtitle",
+      "cta-primary-label",
+      "sticky-note-body",
+      "sprint-group-title",
+      "sprint-task-names",
+      "sync-group-title",
+      "deadlines-group-title",
+      "deadlines-project-title",
+      "deadlines-subtitle",
+      "deadlines-time-badge",
+      "deadlines-meetings-pill"
+    ]
+  },
+  "mechanic": "A fixed navbar over a full-bleed white hero card (radial-dot noise) whose centered headline stack fades/slides up in a staggered cascade while four absolutely-positioned decorative folder UI clusters rotate and slide in around it on Framer Motion entrance delays.",
+  "techDelivery": "React + Tailwind CSS component spec using Framer Motion (import { motion } from \"motion/react\") and lucide-react icons; Google Fonts (Inter, Caveat) via custom Tailwind theme tokens (--font-sans, --font-handwriting).",
+  "reskinNotes": "Accent hex #2563EB is baked directly into the inline brand-logo SVG path fill (must be patched in markup, not via CSS); all copy, the multi-color task badges/avatars, lucide tint colors (#EA4335/#4A154B/#4285F4/#FF5722/#00C853), and progress-bar colors are hardcoded inline; layout uses fixed pixel folder widths (w-[450px]/w-[420px]) plus a responsive scale ladder (scale-[0.4]→lg:scale-90), so swapped assets and longer copy can break the absolute floating-block composition; the handwriting sticky note is font-metric-dependent (Caveat at 21px in a fixed w-56 box)."
+}

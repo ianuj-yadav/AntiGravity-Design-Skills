@@ -1,0 +1,73 @@
+{
+  "id": "lumina-footer",
+  "role": "footer",
+  "ownSections": [
+    "ContentWrapper",
+    "Footer"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen fixed object-cover background video behind all content (fixed inset-0 w-full h-full z-0); autoplays, muted, loops."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "24x24 brand mark in the footer's first column, inline SVG using fill=currentColor so it inherits the white text color; sits left of the LUMINA wordmark."
+    },
+    {
+      "id": "display-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single sans typeface declared via @font-face (Helvetica Regular) and wired to Tailwind --font-sans; carries the entire page including the wordmark, link-group headings, links, and microcopy."
+    },
+    {
+      "id": "social-icons",
+      "type": "icon",
+      "card": 5,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Bottom-bar social link glyphs (Music2, Facebook, Twitter, Youtube, Instagram), rendered at size 16 via lucide-react, tinted with currentColor at opacity-70 brightening to white on hover."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Helvetica Regular",
+      "body": "Helvetica Regular"
+    },
+    "colorRoles": {
+      "bg": "transparent",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "cta-placeholder",
+      "brand-name",
+      "brand-description",
+      "discover-heading",
+      "discover-links",
+      "mission-heading",
+      "mission-links",
+      "concierge-heading",
+      "concierge-links",
+      "curated-credit",
+      "social-label"
+    ]
+  },
+  "mechanic": "A fixed fullscreen looping video sits behind a max-w-7xl column whose liquid-glass footer (rgba border drawn via a mask-composite gradient pseudo-element) fades and slides up on mount (opacity 0->1, y 40->0), laying the brand wordmark over a 12-column grid of three link lists above a bottom social bar.",
+  "techDelivery": "Tailwind CSS v4 (@font-face wired to --font-sans) + motion/react animation spec + lucide-react icons, authored as React App.tsx / index.css.",
+  "reskinNotes": "Brand wordmark is hardcoded inline SVG path data (must be swapped per brand). All copy (LUMINA name, description, the three link-list groups, the @GotInGeorgiG credit, and the Join the Journey label) is hardcoded in JSX. The liquid-glass effect and full palette are white-on-video rgba values baked into custom CSS, so reskinning to a light or non-white scheme requires editing the .liquid-glass gradient stops and inset box-shadow, not just tokens. The @font-face URL points at a third-party onlinewebfonts CDN that should be self-hosted or replaced."
+}

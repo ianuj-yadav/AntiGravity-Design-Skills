@@ -1,0 +1,65 @@
+{
+  "id": "reveal-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "base-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Default fullscreen base layer of the hero (BG_IMAGE_1), an absolutely-positioned bg-center bg-cover bg-no-repeat div at z-10 that fills the 100vh section. This is the image shown everywhere outside the cursor spotlight; center-weighted full-bleed photos read best."
+    },
+    {
+      "id": "reveal-bg-image",
+      "type": "image",
+      "card": 1,
+      "aspect": "auto",
+      "alpha": false,
+      "notes": "Spotlight-revealed fullscreen layer (BG_IMAGE_2) inside RevealLayer at z-30, a bg-center bg-cover bg-no-repeat div masked by a canvas radial gradient so it is only visible within a 260px-radius soft circle that follows the cursor. Should be the same framing/subject as base-bg-image (an alternate take, lit/colored differently) since the two register pixel-for-pixel through the moving mask."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally via the universal reset (* { font-family: 'Inter', sans-serif }) and re-asserted inline on the root div. Drives the nav links, the bold hero headline, the tracked uppercase eyebrow, and the button labels. Weights used: 300/400/500/600/700. Native family 'Inter', loaded from Google Fonts in src/index.css."
+    },
+    {
+      "id": "logo-glyph",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Brand mark, first child of the fixed nav, authored as an inline 28x28 SVG (viewBox 0 0 256 256) with a single angular path filled fill=#111111. Replace with the brand logo glyph; supply transparent so it sits on the white nav, and note the fill is hardcoded in markup (not a CSS var) so retinting means editing the SVG."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#ffffff",
+      "surface": "#111827",
+      "fg": "#111827",
+      "fgMuted": "#4b5563",
+      "accent": "#4ade80",
+      "border": "#f3f4f6"
+    },
+    "copySlots": [
+      "eyebrow",
+      "headline",
+      "nav-labels",
+      "reserve-cta-label",
+      "hero-primary-cta-label",
+      "hero-secondary-cta-label",
+      "status-dot-label"
+    ]
+  },
+  "mechanic": "A cursor-following 260px radial-gradient spotlight, drawn each frame onto a hidden canvas and used as a maskImage, wipes a second background image over a base image inside a 100vh hero, while a faint inline-SVG grid (48px cells) parallax-eases its pattern offset toward the rAF-smoothed mouse position.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS multi-component spec (App + inline RevealLayer using useRef + requestAnimationFrame, no external animation libs); lucide-react for the Play/Menu/X icons; @supabase/supabase-js listed as a dependency but unused; Inter loaded via @import in src/index.css.",
+  "reskinNotes": "The reveal effect requires two near-identical full-bleed images that line up under the moving mask, so a brand reskin must supply a coordinated image pair rather than one hero asset. The logo SVG fill #111111 is hardcoded in markup, not a CSS var. All neutral colors are expressed as Tailwind utility classes (bg-gray-900, text-gray-900, text-gray-600/700, border-gray-100, bg-green-400) and the grid stroke #64748b is inline on the SVG path, so reskinning means editing class names / SVG attributes rather than a :root token block. All copy is hardcoded in JSX: the 'PureFlow One' eyebrow, the 'Clean Air, Clear / Mind. Anywhere.' headline (with a manual <br /> line break tuned to Inter's metrics and the max-w-[260px] block width), the five nav labels, and the 'Reserve Yours' / 'Discover' / 'View Specs' button labels. The spotlight radius (260px), grid cell (48px), and easing factors are fixed constants in the code."
+}

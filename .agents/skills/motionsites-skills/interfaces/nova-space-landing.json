@@ -1,0 +1,76 @@
+{
+  "id": "nova-space-landing",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroSection",
+    "RocketScienceSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video filling the entire HeroSection (h-[calc(100vh-spacing.16)]) behind the giant 'ROCKETS' headline (autoPlay muted loop playsInline, object-cover). There is deliberately NO overlay or gradient over it, so the clip is fully visible at 100% opacity; the white display headline, white/90 body copy and the white CTA button sit directly on top, so the supplied loop must stay dark/low-contrast enough on its upper-left and lower regions to keep that white type legible unaided. object-position shifts the focal point rightward on smaller screens (85% mobile, 75% tablet, center desktop), so keep the subject roughly centered and crop-tolerant. Supply one seamless cinematic loop (spec ships a single CloudFront mp4)."
+    },
+    {
+      "id": "rocket-science-grid-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "auto",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two independent background clips occupying the tall video cells of the RocketScienceSection staggered CSS grid (each w-full h-full object-cover with p-6 framing, autoPlay muted loop playsInline): the top-right cell spanning 2 rows and the bottom-left cell spanning 2 rows. Each tall cell sits diagonally opposite a black text card ('How do we get to space?' and 'Launch vehicles'). No fixed aspect — the cells are tall portrait-ish grid areas on desktop and full-width blocks when stacked on mobile/tablet, so the clips must be crop-tolerant. No text is overlaid on these videos (captions live in the sibling text cards), so they need not reserve legibility space. Spec ships 2 distinct CloudFront mp4s."
+    },
+    {
+      "id": "ui-glyph-icons",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI glyphs from lucide-react: Search and Menu (right side of the desktop navbar beside the 'Search' label, and Menu alone on the mobile navbar) and ArrowUpRight (inside the white 'View Our Fleet' CTA button, sitting in a w-10 h-10 inverted bg-background square). Single-color library glyphs inheriting currentColor (white on the dark hero, black inside the inverted CTA square); a reskin can swap the icon set wholesale."
+    },
+    {
+      "id": "space-grotesk-font",
+      "type": "font",
+      "card": 1,
+      "notes": "The single typeface used across the ENTIRE page for both display and body (fontFamily.display and fontFamily.body both map to it), loaded from Google Fonts at weights 400;500;600;700 via a <link> in index.html with fonts.googleapis/gstatic preconnects. Native value is 'Space Grotesk'. It must hold up across an extreme weight + size range on one family: the hero 'ROCKETS' wordmark at font-black up to text-[12rem] with leading-[0.85] tracking-tighter, the font-extralight uppercase 'ROCKET SCIENCE' title up to text-[7rem], the font-bold tracking-widest 'NOVA' logo, plus normal-weight body and tracking-wide small nav labels. A substitute must read at very large display sizes in both black and extralight weights with tight tracking."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "\"Space Grotesk\", sans-serif",
+      "body": "\"Space Grotesk\", sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "#000000",
+      "fg": "#ffffff",
+      "fgMuted": "#a6a6a6",
+      "accent": "#ffffff",
+      "border": "#404040"
+    },
+    "copySlots": [
+      "nav-links",
+      "nav-logo",
+      "nav-search-label",
+      "hero-headline",
+      "hero-description",
+      "hero-cta-label",
+      "rocket-science-title",
+      "rocket-science-card1-heading",
+      "rocket-science-card1-body",
+      "rocket-science-card2-heading",
+      "rocket-science-card2-body"
+    ]
+  },
+  "mechanic": "A static single-vertical-scroll dark monochrome aerospace page: a 100vh hero with an autoplay looping background video under a colossal font-black 'ROCKETS' headline and a right-aligned caption + inverted CTA, followed by a staggered CSS Grid (grid-cols-[auto_1fr_auto_1fr_auto], 3 rows) that interleaves two tall object-cover videos with two black text cards, the whole section ruled by 1px nav-border divider lines and zero border-radius (--radius: 0rem) everywhere; there is no signature scroll/scrub motion beyond the looping clips.",
+  "techDelivery": "React 18 + TypeScript + Vite (@vitejs/plugin-react-swc) + Tailwind CSS v3 (tailwindcss-animate plugin) + shadcn/ui (installed only for its monochrome design tokens — none of the three sections use shadcn components, the navbar and cards are hand-built). HSL color tokens in CSS variables (index.css), display/body fontFamily wired in tailwind.config.ts, Space Grotesk loaded from Google Fonts in index.html.",
+  "reskinNotes": "Colors are authored as raw HSL channel triplets in CSS variables (--background: 0 0% 0%, --foreground: 0 0% 100%, --muted-foreground: 0 0% 65%, --nav-border: 0 0% 35%, --border: 0 0% 25%), not hex tokens, so retinting means editing those triplets. The palette is pure black/white monochrome with NO real accent or second accent — accent is mapped to white here only to satisfy the role; a brand that introduces a hue must add a token that does not exist in the source. surface equals bg (#000000) since the page is edge-to-edge black with no raised cards (the text cards are also black, separated only by 1px lines). fgMuted (#a6a6a6 = 0 0% 65%) is the body-text grey. The signature look is the global border-radius:0 (--radius: 0rem) and the decorative 1px bg-nav-border divider lattice (vertical insets with mt/mb/ml-3, horizontal h-px segments in flex gap-4 groups) framing the navbar and the RocketScience grid — these hand-tuned rule lines, inset offsets and the grid-template (grid-cols-[auto_1fr_auto_1fr_auto] grid-rows-3 with 2-row spans) are layout-critical and must be preserved or re-derived on reskin. All copy is hardcoded in the TSX: nav links ('Programs','Systems','Discover'), the 'NOVA' logo, 'Search', the hero 'ROCKETS' headline + its paragraph + 'View Our Fleet' CTA, and the 'ROCKET'/'SCIENCE' title plus both card headings ('How do we get to space?','Launch vehicles') and bodies. Layout is font-metric-dependent: the hero headline uses leading-[0.85] tracking-tighter at text-[12rem] and the 'SCIENCE' line is indented with ml-[1.5em] md:ml-[3.5em], so a wider substitute font or a longer brand word will rewrap/overflow; the 'SCIENCE' em-based indent is tied to the glyph width of the chosen face. The mono and accent font roles are unused (single-family design)."
+}

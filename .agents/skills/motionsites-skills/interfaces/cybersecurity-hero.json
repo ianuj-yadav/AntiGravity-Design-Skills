@@ -1,0 +1,78 @@
+{
+  "id": "cybersecurity-hero",
+  "role": "hero",
+  "ownSections": [
+    "Navbar",
+    "HeroCard",
+    "BrandsRow"
+  ],
+  "slots": [
+    {
+      "id": "brand-logomark",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Center-node brand logomark (the 'Xero X'), viewBox 0 0 40 40, rendered 28x28 fill:white inside the 64x64 neumorphic hub; the focal point of the icon pipeline."
+    },
+    {
+      "id": "nav-wordmark",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Top-left navbar wordmark, currently the text 'Xero' (700 weight); swap for brand wordmark text or small inline logo."
+    },
+    {
+      "id": "pipeline-side-glyphs",
+      "type": "svg",
+      "card": 2,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Two decorative Lucide-style line glyphs flanking the hub (left: 'layers' stacked diamonds, right: 'shield-check'); 20x20, stroke rgba(255,255,255,0.7), 1.5 width, no fill, round caps. Swappable to brand-thematic line icons."
+    },
+    {
+      "id": "brand-row-logos",
+      "type": "svg",
+      "card": 5,
+      "alpha": true,
+      "colorRole": "fgMuted",
+      "notes": "Monochrome social-proof logo strip (placeholder set: Expedia, asana, zenefits, HubSpot, loom); each a 22x22 inline SVG + wordmark, tinted rgba(255,255,255,0.35). Replace with real customer/partner logos."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Single typeface driving the whole page; Inter (weights 300,400,500,600,700,800) via Google Fonts. Display heading leans on the light 300/400 weights and tight -0.02em tracking."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#0a0a0f",
+      "surface": "#111118",
+      "fg": "#f0f0f5",
+      "fgMuted": "#8888a8",
+      "accent": "#c8a0e0",
+      "accent2": "#b04090",
+      "border": "rgba(255, 255, 255, 0.08)"
+    },
+    "copySlots": [
+      "nav-logo",
+      "nav-links",
+      "btn-login-label",
+      "btn-signup-label",
+      "hero-headline-line1",
+      "hero-headline-emphasis",
+      "hero-subhead",
+      "cta-label",
+      "brand-names"
+    ]
+  },
+  "mechanic": "A requestAnimationFrame state machine (p1 -> splash -> p2 -> idle, ~3.4s loop) slides a bright window along a userSpaceOnUse gradient beam node-to-node across a neumorphic icon pipeline, lighting each side node and firing a scaling radial splash at the central hub, all framed by a stops-tuned radial pink-magenta arc and a masked crosshatch grid.",
+  "techDelivery": "single-page React + TypeScript (Vite) with plain global CSS (no Tailwind in the hero), Inter via Google Fonts, all iconography as hand-authored inline SVG, animation driven by useRef + a single useEffect requestAnimationFrame loop with a resize listener.",
+  "reskinNotes": "Heavy baked-in branding: the signature arc is ~15 hand-tuned rgba/hex stops in a ::before radial-gradient, the beam linearGradient and all node/brand-row icons carry hex/rgba inline in SVG markup, every string (nav links, headline 'The simple way / encryption your data', subhead, CTA, 5 brand names) is hardcoded in JSX, and the light-weight (300/400) heading with -0.02em tracking plus the gradient text-clip is metric-dependent on Inter — substituting a font will shift the arc/heading alignment and the beam path is recomputed from live getBoundingClientRect geometry."
+}

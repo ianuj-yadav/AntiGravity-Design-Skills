@@ -1,0 +1,78 @@
+{
+  "id": "ecovolta-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "LogoMarquee"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video. Fixed inset-0 w-full h-full object-cover at z-0, sitting behind the warm cream (#F5F3EE) page background and all z-10 content. Autoplays, muted, playsInline. Cover-cropped so a centered, mid-tone subject reads best behind the overlaid text; spec source is a CloudFront mp4 placeholder."
+    },
+    {
+      "id": "social-proof-avatars",
+      "type": "image",
+      "card": 3,
+      "aspect": "1:1",
+      "alpha": false,
+      "notes": "Three overlapping circular profile portraits in the bottom-right social-proof cluster (hidden below lg). Order/sizing: [0]=left 40x40 z-0, [1]=center 64x64 with a 4px white border z-10, [2]=right 40x40 z-0; sit beside the '+ 37k Deployments' label. Cropped to circles, so frame faces centered. Spec sources are higgs.ai webp placeholders."
+    },
+    {
+      "id": "brand-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Single UI typeface applied globally (spec: Google Fonts Inter, weights 300-900). Drives the StaggeredFade display heading (up to text-6xl), nav links, badge pill, subheading body, CTA labels, address/label text, and the logo-marquee company names. Native family 'Inter', sans-serif."
+    },
+    {
+      "id": "ui-icon-set",
+      "type": "icon",
+      "card": 11,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Functional UI glyph set from lucide-react, tinted by CSS (currentColor), not by the asset. Glyphs used: Globe (lang selector), Leaf + Play (primary CTA), ArrowRight (secondary CTA), MapPin (bottom-left address, text-[#4A7C5A]), Play (bottom-center liquid-glass button, white), and the bottom-right row RefreshCw, Square, PlusCircle, Grid2X2, Sparkles. No brand logo glyph exists (the logo is text 'EcoVolta'). Optional to reskin; if replaced, supply currentColor-driven icons so CSS tinting still works."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#F5F3EE",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#31463B",
+      "fgMuted": "#4B5563",
+      "accent": "#3C684D",
+      "accent2": "#4A7144",
+      "border": "rgba(0, 0, 0, 0.2)"
+    },
+    "copySlots": [
+      "brand-name",
+      "lang-label",
+      "nav-labels",
+      "signin-label",
+      "header-cta-label",
+      "badge-text",
+      "badge-text-mobile",
+      "headline",
+      "subheading",
+      "cta-primary-label",
+      "cta-secondary-label",
+      "address-line1",
+      "address-line2",
+      "play-caption",
+      "deployments-stat",
+      "marquee-company-names"
+    ]
+  },
+  "mechanic": "Static full-viewport (h-screen, overflow-hidden) hero over a fixed fullscreen looping background video, with a per-letter StaggeredFade reveal on the headline (0.03s stagger, 0.3s fade, once-in-view) plus FadeDown sub-elements, an infinite CSS translateX(-50%) logo marquee, and a glassmorphism 'liquid-glass' play button.",
+  "techDelivery": "React 18 + TypeScript + Vite, Tailwind CSS 3 with utility-class styling, Framer Motion for the StaggeredFade/FadeDown components and useInView triggers, lucide-react icons, clsx + tailwind-merge for className composition, and Google Fonts Inter. Two custom CSS blocks: the .liquid-glass glassmorphism utility (with a masked ::before gradient border) and the @keyframes scroll marquee.",
+  "reskinNotes": "Copy is hardcoded in JSX throughout (brand name 'EcoVolta', 5 nav labels, 'Sign In'/'Clean Energy'/'Explore Options'/'Start Network' buttons, the emoji+arrow badge with a separate mobile string 'Power innovate', the split-per-letter headline, subheading, '4521 Sunvalley,'/'Rd7, USA' address, 'Clean Power System' caption, '+ 37k Deployments', and the 9 marquee company names) and must be edited in markup. The StaggeredFade splits the headline into individual letters, so very long or multi-line headlines may break the layout. Several brand hexes are baked inline rather than referencing tokens: the headline color #31463B, the primary CTA gradient from-[#3C684D] to-[#4A7144] and its inner icon gradient linear-gradient(59deg,#567A5E,#78A873), the secondary CTA icon gradient linear-gradient(59deg,#EEEEEE,#CBCBCB), and the MapPin tint #4A7C5A. The marquee fade overlays and page bg hardcode #F5F3EE, so a bg reskin means editing those gradients too. The .liquid-glass effect depends on backdrop-filter blur and a white-alpha inset/::before gradient that only reads over a darker video region; over a light background it nearly vanishes. Layout (leading-tight, max-w-5xl heading) is tuned to Inter's metrics."
+}

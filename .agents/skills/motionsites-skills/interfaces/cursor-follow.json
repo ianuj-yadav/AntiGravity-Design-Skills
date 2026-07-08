@@ -1,0 +1,77 @@
+{
+  "id": "cursor-follow",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-scrub-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": false,
+      "duration": "scrub-timeline",
+      "notes": "Fullscreen mouse-scrubbed background video (absolute inset-0 h-full w-full object-cover). It does NOT autoplay or loop: it loads paused at currentTime 0, and horizontal mouse movement scrubs forward/backward through its timeline (delta * SENSITIVITY 0.8 * duration, seek-chained on the 'seeked' event). Needs full per-frame seekability and a fairly long shot so the scrub has range; no color overlay sits on top so the footage carries the entire backdrop behind the nav and headline."
+    },
+    {
+      "id": "font-display",
+      "type": "font",
+      "card": 1,
+      "notes": "Display face for the oversized uppercase H1 (Tailwind font-grotesk). Native value is the Google Font 'Anton' (a tall condensed sans, ~400). The headline ramps text-[40px] -> sm:60px -> md:75px -> lg:90px at near-solid leading (1.05 -> 1.0), so a substitute must tolerate Anton's narrow, all-caps, tight-leading metric or the three-line block will rewrap."
+    },
+    {
+      "id": "font-accent",
+      "type": "font",
+      "card": 1,
+      "colorRole": "accent",
+      "notes": "Cursive script face for the floating 'Nft collection' accent span (Tailwind font-condiment). Native value is the Google Font 'Condiment' (cursive). It is absolutely positioned over the top-right of the heading, rotated -1deg, opacity-90, tinted neon #6FFF00 with mixBlendMode 'exclusion', so the swap must be a script/handwritten face whose glyph baseline survives the blend and overlap."
+    },
+    {
+      "id": "brand-logo",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Inline geometric brand mark in the navbar left slot: a 28x28 SVG, viewBox 0 0 256 256, a single custom <path> filled solid #111111 (near-black). Supply as a transparent-background single-color glyph squared to the 256 viewBox; the fill hex is baked into the markup, so retinting means editing the SVG."
+    },
+    {
+      "id": "menu-icons",
+      "type": "icon",
+      "card": 2,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Mobile hamburger toggle icon pair (open + close), the lucide-react 'Menu' and 'X' glyphs at size 22, colored text-gray-900 (near-black). Only rendered below md; swap as a 2-state line-icon pair (open / close) matching the same stroke weight."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Anton, sans-serif",
+      "accent": "Condiment, cursive"
+    },
+    "colorRoles": {
+      "bg": "#010828",
+      "surface": "#111827",
+      "fg": "#EFF4FF",
+      "fgMuted": "#D1D5DB",
+      "accent": "#6FFF00",
+      "accent2": "#4ADE80",
+      "border": "#F3F4F6"
+    },
+    "copySlots": [
+      "site-name",
+      "nav-labels",
+      "primary-cta-label",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-line-3",
+      "accent-script"
+    ]
+  },
+  "mechanic": "A full-screen object-cover background video is scrubbed frame-by-frame by horizontal mouse position (seek-chained on the 'seeked' event, no autoplay) while a bottom-left oversized uppercase Anton headline carries a floating exclusion-blended neon Condiment script accent, beneath a fixed top nav of an inline-SVG logo, a centered dark glassy pill menu, and a green-dot CTA pill.",
+  "techDelivery": "React 18 + TypeScript + Vite + Tailwind CSS 3 (PostCSS/Autoprefixer) component spec; native <video> driven by a mousemove/seeked scrub handler holding mutable state in useRefs (targetTime / isSeeking / prevX), Google Fonts (Anton + Condiment) loaded via <link> in index.html, lucide-react for the Menu/X icons.",
+  "reskinNotes": "The scrub interaction is the whole identity and is metric-sensitive: SENSITIVITY 0.8 and the 0.01s seek-chain threshold are tuned to a long, fully-seekable clip, so a short or sparsely-keyframed brand video will feel jumpy or unresponsive, and since nothing overlays the footage a light/busy video will wash out the white headline and dark nav. The headline is three hardcoded lines with literal spaced parentheses ('( ' its ' )') and a near-solid leading/letter ramp tuned to Anton all-caps, so longer copy or a wider substitute font rewraps the block; the neon accent depends on mixBlendMode 'exclusion' against the video, which renders differently per brand color/footage. The logo is an inline <path> with #111111 baked as the fill, the nav uses raw Tailwind grays (gray-900 pills, gray-300 labels, green-400 dot) rather than the themed tokens, and all nav labels / CTA text / site name are hardcoded in markup; an unused .liquid-glass utility (rgba border via mask-composite exclude) ships in index.css as part of the design system."
+}

@@ -1,0 +1,110 @@
+{
+  "id": "4",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping muted autoplaying object-cover hero background video sitting behind all content under a black overlay (bg-black/60) for text legibility. The single signature media asset. Played through a robust BackgroundVideo component using hls.js for Chrome/Firefox with native HLS for Safari; it auto-plays, loops, mutes, plays inline, and fades the poster out once playback actually starts to avoid black flashes. Native source is a Mux HLS .m3u8 manifest."
+    },
+    {
+      "id": "hero-video-poster",
+      "type": "image",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "notes": "Poster/thumbnail still shown over the video container until the stream starts playing, then faded out to prevent a black flash. Should match the first frame / mood of the background video. Native placeholder is a Cloudflare Stream thumbnail .jpg."
+    },
+    {
+      "id": "logo-mark-icon",
+      "type": "icon",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "bg",
+      "notes": "Navbar brand mark on the left: a 'Command'-style glyph centered inside a solid white rounded square container. Sourced from lucide-react by default; supply as a currentColor/transparent icon that reads dark-on-white inside the white tile."
+    },
+    {
+      "id": "nav-chevron-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Small 'ChevronDown' glyph next to the 'Services' nav item indicating a dropdown. Single reused mark from lucide-react; supply as a currentColor/transparent white icon that reads on the dark video."
+    },
+    {
+      "id": "mobile-menu-icon",
+      "type": "icon",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Hamburger 'Menu' toggle shown on mobile that opens a full-screen black overlay with vertical links. Single glyph from lucide-react (paired with a close glyph when open); supply as a currentColor/transparent white icon."
+    },
+    {
+      "id": "heading-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans heading face for the large ~76px desktop headline ('Your Networks.' / 'One Rapid Interface.'). Native family 'Inter', loaded via Google Fonts CSS import."
+    },
+    {
+      "id": "body-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Global UI sans applied throughout the section (nav links, subtext, default body). Native family 'Manrope', loaded via Google Fonts CSS import."
+    },
+    {
+      "id": "ui-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Buttons and badges face used on the CTA labels and the glassmorphism announcement pill text. Native family 'Cabin', loaded via Google Fonts CSS import."
+    },
+    {
+      "id": "italic-accent-font",
+      "type": "font",
+      "card": 1,
+      "notes": "Serif italic accent face for the single emphasized word 'Interface' inside the second headline line. Native family 'Instrument Serif', loaded via Google Fonts CSS import."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Inter', sans-serif",
+      "body": "'Manrope', sans-serif",
+      "mono": "'Instrument Serif', serif",
+      "accent": "'Cabin', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(85, 80, 110, 0.4)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.7)",
+      "accent": "#7b39fc",
+      "accent2": "#f87b52",
+      "border": "rgba(164, 132, 215, 0.5)"
+    },
+    "copySlots": [
+      "logo-mark",
+      "nav-labels",
+      "nav-signin-label",
+      "nav-cta-label",
+      "badge-tag",
+      "badge-eyebrow",
+      "headline-line-1",
+      "headline-line-2",
+      "headline-accent-word",
+      "body",
+      "cta-primary-label",
+      "cta-secondary-label"
+    ]
+  },
+  "mechanic": "A fullscreen dark 'Linear-style' hero centers a glassmorphism announcement pill, a two-line ~76px headline with one Instrument-Serif-italic accent word, muted subtext and two layered CTA pills (purple primary, dark-navy secondary) over a looping muted hls.js background video dimmed by a 60% black overlay, under a glass navbar that collapses into a full-screen black overlay menu on mobile.",
+  "techDelivery": "React + Tailwind CSS, with lucide-react for icons and the hls.js library driving a custom BackgroundVideo component (hls.js for Chrome/Firefox, native HLS for Safari, poster fade-out on play) over a native <video>; Inter, Manrope, Cabin and Instrument Serif loaded via Google Fonts CSS import.",
+  "reskinNotes": "The schema only exposes display/body/mono/accent font roles, so the serif italic accent face 'Instrument Serif' is parked in the 'mono' slot despite being a serif (it carries the emphasized word 'Interface', not monospace UI). The palette is declared as raw hexes/rgba with explicit hover variants that are not separate roles (purple #7b39fc hover #6a2ce0, dark-navy #2b2344 hover #352b54), so retinting buttons means editing both the base and hover values; #2b2344/#352b54 (the secondary CTA fill) has no colorRole slot and is dropped from colorRoles. The glass border rgba(164,132,215,0.5) and glass background rgba(85,80,110,0.4) are specific glassmorphism values tuned for dark-on-video. The ~76px headline sizing is tuned to Inter's metrics and the specific two-line copy and will reflow on a font swap. All copy is hardcoded in JSX: logo is the 'Command' icon, nav 'Home / Services / Reviews / Contact us', 'Sign In' and 'Get Started', badge tag 'New' + 'Say Hello to Datacore v3.2', headline 'Your Networks.' / 'One Rapid Interface.' (with 'Interface' as the serif-italic accent word), the 'Platform helps admins...' subtext, and the 'Book a Free Demo' / 'Get Started Now' CTAs. Asset URLs (Mux .m3u8 video, Cloudflare Stream .jpg poster) are placeholders to be replaced with brand media."
+}

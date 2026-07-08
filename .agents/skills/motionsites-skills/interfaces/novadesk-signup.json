@@ -1,0 +1,62 @@
+{
+  "id": "novadesk-signup",
+  "role": "hero",
+  "ownSections": [
+    "SignupCard"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen autoplaying, muted, playsInline background video covering the entire viewport behind the centered signup card (object-cover); sets the page mood, no audio."
+    },
+    {
+      "id": "brand-mark",
+      "type": "svg",
+      "card": 1,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "Square monochrome brand glyph rendered inline as an SVG path (viewBox 0 0 256 256), single-fill tinted by the accent color. Appears twice: 36px in the left-column brand lockup beside the wordmark, and 34px centered in the right glass panel. Transparent background."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "ui-sans-serif, system-ui, sans-serif",
+      "body": "ui-sans-serif, system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(10, 10, 10, 0.92)",
+      "fg": "#ffffff",
+      "fgMuted": "#a1a1aa",
+      "accent": "#DA3F23",
+      "border": "rgba(255, 255, 255, 0.08)"
+    },
+    "copySlots": [
+      "brand-name",
+      "headline",
+      "subtext",
+      "email-placeholder",
+      "password-placeholder",
+      "terms-label",
+      "terms-link-rules",
+      "terms-link-privacy",
+      "submit-cta-label",
+      "divider-label",
+      "social-google-label",
+      "social-apple-label",
+      "social-twitter-label",
+      "footer-prompt",
+      "footer-link-label"
+    ]
+  },
+  "mechanic": "A fullscreen looping muted hero video sits behind a centered two-column glass card (dark opaque form column + translucent decorative panel), with all interaction signaled purely through Tailwind transition-colors hover/active states and no keyframe motion.",
+  "techDelivery": "Single-page React 18 + TypeScript + Tailwind CSS + Vite app using lucide-react icons only; no other UI libraries.",
+  "reskinNotes": "Brand accent hex #DA3F23 is hardcoded both as the wordmark text color and as the fill on the inline SVG logo path, so the mark must be re-tinted in two places (and the glyph geometry itself is the brand's, not swappable as a generic socket); all copy strings (headline, CTA, terms, social labels) are hardcoded inline in JSX markup; fonts use the default Tailwind system stack with no custom families, so display/body cannot be reskinned without adding a font import; many surface tints are expressed as Tailwind zinc/* opacity utilities (zinc-800/70, zinc-700/60, zinc-500, zinc-400) rather than the named color roles."
+}

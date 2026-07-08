@@ -1,0 +1,73 @@
+{
+  "id": "ecovolta-v2-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen looping hero background video, the only backdrop behind all content. Positioned absolutely inset-0 covering the full viewport with object-cover, sitting at the lowest z-index (video behind, nav on top). Autoplays, muted, plays inline. Delivered as an HLS stream via hls.js (with native HLS fallback for Safari/iOS) and forced to the highest quality level once the manifest loads, so the source must be an adaptive HLS (.m3u8) ladder, not a single mp4. Cover-cropped, so a mid-tone subject that reads well behind dark headline text near center works best; spec source is a stream.mux.com .m3u8 placeholder."
+    },
+    {
+      "id": "logo-mark",
+      "type": "svg",
+      "card": 1,
+      "alpha": true,
+      "colorRole": "accent",
+      "notes": "23x23px brand logo icon in the top-left nav lockup, 6px to the left of the 'closer' wordmark. Spec defines it as an inline SVG filled with a blue-to-yellow radial gradient (#368CFB -> #5CAEFE -> #FFEB85) matching the headline accent thread. Because the gradient stops are baked into the SVG markup (not CSS-tinted), reskinning the mark means editing the SVG's gradient or supplying a new brand mark; provide on transparent alpha so it floats over the video."
+    },
+    {
+      "id": "brand-typeface-serif",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary serif display family (spec: Google Fonts Instrument Serif, Regular 400 + Italic 400). Drives the main headline (48px mobile / 70px desktop) and the 'closer' logo wordmark (26px). The italic cut is required for the gradient 'close deals.' phrase. Native family 'Instrument Serif', serif."
+    },
+    {
+      "id": "brand-typeface-sans-body",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans body/nav family (spec: Google Fonts Manrope, Regular 400 / Medium 500 / SemiBold 600). Drives the subheadline (18px mobile / 20px desktop) and the center nav links (Medium 18px). Native family 'Manrope', sans-serif."
+    },
+    {
+      "id": "brand-typeface-sans-ui",
+      "type": "font",
+      "card": 1,
+      "notes": "Sans UI/button family (spec: Google Fonts Instrument Sans, Regular 400 / Medium 500 / SemiBold 600). Drives interactive labels: the 'Get started' CTA (Medium 16px, white) and the 'Login' button (Medium 18px, #212121). Native family 'Instrument Sans', sans-serif. The prompt also names 'SF Pro Display Medium' as an alternate for the main heading; treat that as a system-font display fallback, not a separate webfont socket."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif",
+      "body": "'Manrope', sans-serif",
+      "accent": "'Instrument Sans', sans-serif"
+    },
+    "colorRoles": {
+      "bg": "#FFFFFF",
+      "surface": "rgba(255, 255, 255, 1)",
+      "fg": "#212121",
+      "fgMuted": "rgba(37, 44, 50, 0.7)",
+      "accent": "#368CFB",
+      "accent2": "#FFEB85",
+      "border": "#dde2e4"
+    },
+    "copySlots": [
+      "brand-name",
+      "nav-labels",
+      "login-label",
+      "headline",
+      "headline-accent",
+      "subheadline",
+      "cta-label"
+    ]
+  },
+  "mechanic": "Static full-viewport (h-screen, overflow-hidden) hero with an absolutely centered content stack (left:50%, top:calc(50% - 136.5px)) layered over a fixed fullscreen HLS-streamed looping background video, whose only animation is a multi-stop radial-gradient text fill on the italic 'close deals.' headline phrase plus smooth opacity/color hover transitions on the CTA and nav buttons.",
+  "techDelivery": "React + TypeScript + Tailwind CSS v4, with the hls.js package wired up for cross-browser adaptive HLS playback (custom buffer config, cap-level-off, highest-quality-on-manifest, native-HLS detection for Safari/iOS) and Google Fonts (Instrument Serif, Manrope, Instrument Sans) imported for typography.",
+  "reskinNotes": "Copy is hardcoded in the markup: the split headline ('An AI that does your outbound while you ' + italic gradient 'close deals.'), the subheadline, brand name 'closer', the 5 nav labels (Product / How it works / Pricing / Customers / Docs), and the 'Get started' / 'Login' button labels all live in JSX and must be edited there. The headline accent is a baked SVG radial gradient with six exact stops (#368CFB 0%, #5CAEFE 30%, #85BDE0 47.5%, #AECDC2 65%, #D6DCA3 82.5%, #FFEB85 100%) plus a hardcoded gradientTransform matrix (matrix(35.22 -11.4 433.41 134.85 369.8 114)) tuned to the literal phrase 'close deals', so changing the headline text or its length misaligns the gradient and requires re-tuning that matrix; the logo SVG bakes the same blue->yellow stops. The CTA gradient (linear from #444 to #292929) with its dual outer + inset white-alpha shadows, the subheadline/nav gradient text (rgba(37,44,50,0.7) -> rgba(55,65,74,0.7)), and the login border #dde2e4 are all inline rather than tokenized. The center content's vertical offset is a hardcoded magic number (top:calc(50% - 136.5px)), and layout values (48/70px headline, 64px desktop leading, -0.4px subhead letter-spacing, fixed 152x52 / 108x46 button sizes) are tuned to the Instrument Serif / Manrope / Instrument Sans metrics, so swapping fonts may require re-tuning sizes and the offset. The center nav is hidden below the md breakpoint."
+}

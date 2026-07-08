@@ -1,0 +1,70 @@
+{
+  "id": "ai-workflow",
+  "role": "hero",
+  "ownSections": [
+    "NavBar",
+    "HeroContent",
+    "BottomBar"
+  ],
+  "slots": [
+    {
+      "id": "hero-background-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover background video behind all content (absolute inset-0). Frames are captured to canvas then ping-ponged forward/backward at 30fps for a seamless boomerang loop, so the source clip is a short non-looping shot (any duration works; a short clip keeps the captured frame buffer small). Must be CORS-enabled (loaded crossOrigin='anonymous' so the canvas stays untainted) and is played muted/playsInline/autoplay."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "Six lucide-react glyphs tinted by currentColor: UserPlus + LogIn (nav account links), Menu + X (animated hamburger toggle), Sparkles (bottom-left FluxEngine label), Play (bottom-right video-link button, fill-white). Monochrome line icons sized 12-20px."
+    },
+    {
+      "id": "display-typeface",
+      "type": "font",
+      "card": 1,
+      "notes": "Primary UI face used everywhere as the global body/root stack and explicitly on the hero H1 via inline fontFamily. Spec declares 'Neue Haas Grotesk Display Pro 55 Roman' (loaded from onlinewebfonts CDN) with 'Neue Haas Grotesk Text Pro' as the secondary family in the same stack, falling back to Helvetica Neue/Helvetica/Arial/sans-serif."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "Neue Haas Grotesk Display Pro 55 Roman",
+      "body": "Neue Haas Grotesk Text Pro"
+    },
+    "colorRoles": {
+      "bg": "#1f2a1d",
+      "surface": "rgba(255,255,255,0.70)",
+      "fg": "#1f2a1d",
+      "fgMuted": "#4b5b47",
+      "accent": "#336443",
+      "accent2": "#85AB8B",
+      "border": "rgba(255,255,255,0.60)"
+    },
+    "copySlots": [
+      "logo-wordmark",
+      "nav-labels",
+      "nav-cta-label",
+      "signup-link-label",
+      "login-link-label",
+      "headline-primary",
+      "headline-accent",
+      "subtext",
+      "feature-label",
+      "feature-body",
+      "feature-cta-label",
+      "feature-secondary-cta-label",
+      "video-link-label",
+      "video-link-duration"
+    ]
+  },
+  "mechanic": "A static (non-scrolling) full-viewport hero over a JS-driven boomerang background: video frames are captured into offscreen canvases then ping-ponged forward/backward at 30fps on a display canvas, with glassmorphic white/70 nav, centered two-tone headline, and bottom-left/bottom-right overlay blocks; the only other motion is the CSS-transition mobile drawer (slide + staggered links) and hover/icon transitions.",
+  "techDelivery": "Vite + React 18 + TypeScript, two-file component spec (App.tsx hero + BoomerangVideoBg.tsx canvas player) on Tailwind CSS 3.4 utility classes, lucide-react for icons; no animation library (all motion is CSS transition-* classes plus requestAnimationFrame/requestVideoFrameCallback for the boomerang). Fonts loaded via <link> in index.html (Neue Haas Grotesk Display/Text from onlinewebfonts CDN, Inter from Google Fonts).",
+  "reskinNotes": "Every color is a hardcoded Tailwind arbitrary value baked into JSX (text-[#336443], text-[#85AB8B], bg-[#1f2a1d], hover:bg-[#2a3827], text-[#3d5638], bg-[#3d5638], hover:bg-[#2d4228], white/70..white/95 glass tints) — there are no CSS variables or theme tokens, so reskinning means find-and-replacing literals across markup. The hero H1 carries an inline fontFamily plus letterSpacing:-0.035em and leading-[0.95], so layout is tuned to Neue Haas Grotesk metrics and the line break (<br className='hidden sm:block'/>) is hardcoded. Inter is loaded in index.html but never actually referenced in either component (dead font link). The bottom-left block flips its entire color scheme at the sm: breakpoint (dark-green text on mobile -> white text over the video on desktop), so a reskin must re-tune both states. All copy — wordmark 'LinkFlow(TM)', nav labels Purpose/The Process/Tariffs, 'Try it Live', 'Sign Me Up!', 'Enter', the two-tone headline, subtext, 'FluxEngine(TM)' label + body, 'Know More.', 'How we build?' and the '1:35' duration — is hardcoded in markup; the TM superscripts and the static '1:35' run time are literal strings, not data."
+}

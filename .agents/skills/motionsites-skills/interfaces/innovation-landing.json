@@ -1,0 +1,103 @@
+{
+  "id": "innovation-landing",
+  "role": "hero",
+  "ownSections": [
+    "Hero",
+    "AboutSection",
+    "FeaturedVideoSection",
+    "PhilosophySection",
+    "ServicesSection"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover object-bottom hero background video; JS-driven seamless loop with 500ms crossfade to black between plays (muted, autoPlay, playsInline)."
+    },
+    {
+      "id": "featured-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Featured showcase video in a rounded-3xl aspect-video frame with a glass caption card overlaid; native HTML loop (muted, autoPlay, playsInline)."
+    },
+    {
+      "id": "philosophy-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "4:3",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Left-column supporting video in a rounded-3xl aspect-[4/3] frame within the Innovation x Vision two-column block; native HTML loop (muted, autoPlay, playsInline)."
+    },
+    {
+      "id": "service-card-videos",
+      "type": "video",
+      "card": 2,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Two service-card cover videos in aspect-video glass cards; each scales on group-hover (transition-transform duration-700 group-hover:scale-105), native HTML loop (muted, autoPlay, playsInline)."
+    },
+    {
+      "id": "ui-icons",
+      "type": "icon",
+      "card": 6,
+      "aspect": "1:1",
+      "alpha": true,
+      "colorRole": "fg",
+      "notes": "lucide-react line icons rendered in white: Globe (nav brand + social), ArrowRight (email submit), Instagram, Twitter, Globe (social footer), ArrowUpRight (service cards). Stroke icons tinted via currentColor."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "'Instrument Serif', serif"
+    },
+    "colorRoles": {
+      "bg": "#000000",
+      "surface": "rgba(255, 255, 255, 0.01)",
+      "fg": "#ffffff",
+      "fgMuted": "rgba(255, 255, 255, 0.4)",
+      "accent": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "copySlots": [
+      "nav-brand",
+      "nav-labels",
+      "nav-signup-label",
+      "nav-login-label",
+      "hero-headline",
+      "hero-email-placeholder",
+      "hero-subtitle",
+      "hero-manifesto-label",
+      "about-eyebrow",
+      "about-heading",
+      "featured-eyebrow",
+      "featured-body",
+      "featured-cta-label",
+      "philosophy-heading",
+      "philosophy-block1-label",
+      "philosophy-block1-body",
+      "philosophy-block2-label",
+      "philosophy-block2-body",
+      "services-heading",
+      "services-eyebrow",
+      "service-card-tags",
+      "service-card-titles",
+      "service-card-descriptions"
+    ]
+  },
+  "mechanic": "Fullscreen JS-crossfading hero video under a liquid-glass UI, followed by framer-motion useInView fade-and-rise reveals down a bg-black scroll of glass video cards and Instrument-Serif italic editorial headings.",
+  "techDelivery": "React + TypeScript + Vite + Tailwind CSS + framer-motion + lucide-react; Instrument Serif via Google Fonts @import, .liquid-glass defined in index.css @layer components.",
+  "reskinNotes": "The .liquid-glass effect bakes white-alpha gradients, inset highlights and a masked 1.4px border directly into CSS, so a non-white/non-dark brand palette requires editing those rgba stops rather than a single token. Headline emphasis (italic <em>all</em>, 'x', etc.) and all body copy are hardcoded inline in JSX. Hero text uses whitespace-nowrap at text-9xl, so longer headlines will overflow on narrow viewports. The hero crossfade timing (500ms fade, 0.55s tail trigger) assumes a short seamless-loop clip; long or non-loopable footage will read as an abrupt cut."
+}

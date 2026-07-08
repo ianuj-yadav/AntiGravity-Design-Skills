@@ -1,0 +1,47 @@
+{
+  "id": "railroad-ai-hero",
+  "role": "hero",
+  "ownSections": [
+    "Hero"
+  ],
+  "slots": [
+    {
+      "id": "hero-bg-video",
+      "type": "video",
+      "card": 1,
+      "aspect": "16:9",
+      "alpha": false,
+      "loop": true,
+      "duration": "short-loop",
+      "notes": "Fullscreen object-cover looping hero background video covering the entire viewport; autoplay, muted, inline, preloaded, with a bg-black/5 overlay on top."
+    }
+  ],
+  "skin": {
+    "fontRoles": {
+      "display": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif",
+      "body": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif"
+    },
+    "colorRoles": {
+      "bg": "hsl(213 45% 67%)",
+      "surface": "rgba(0,0,0,0.25)",
+      "fg": "hsl(0 0% 100%)",
+      "fgMuted": "hsl(180 9% 33%)",
+      "accent": "hsl(0 0% 100%)",
+      "accent2": "hsl(205 52% 5%)",
+      "border": "rgba(255,255,255,0.45)"
+    },
+    "copySlots": [
+      "logo",
+      "nav-labels",
+      "badge",
+      "headline",
+      "subheading",
+      "email-placeholder",
+      "cta-label-nav",
+      "cta-label-form"
+    ]
+  },
+  "mechanic": "Per-word framer-motion blur-in reveal (blur 10px to 0, fade and rise, 100ms stagger) of the headline, subheading, and email pill, layered over a fullscreen looping background video behind rounded liquid-glass pills.",
+  "techDelivery": "React + Vite + TypeScript + Tailwind CSS with framer-motion, lucide-react icons, and shadcn/ui design tokens (HSL CSS variables).",
+  "reskinNotes": "Fonts: the prompt imports Instrument Serif + Barlow from Google Fonts but then overrides both heading and body to the native system font stack, so the imported fonts are dead and the real typography is the system stack carried in fontRoles. Colors are authored as space-separated HSL channel triplets in CSS variables (e.g. '213 45% 67%') consumed via hsl(var(--token)); colorRoles here wrap them as full hsl()/rgba() values. Logo and nav are hardcoded text ('Railroad.ai', Home/Voyages/Worlds/Innovation) with no logo image slot. The liquid-glass effect bakes white rgba gradient stops and an inset highlight into a ::before mask-composite border that must be preserved for the glass look. Layout depends on Tailwind utility classes with hardcoded tracking (-4px headline, -0.05em subheading) and font-metric-sensitive leading (0.85)."
+}
