@@ -70,6 +70,21 @@ Brings the power of Google Stitch directly into your IDE.
 * **`playwright-test-results`**: Query aggregated DuckDB CI test results to diagnose flaky or slow tests.
 * **`playwright-triage`**: Reproduce and verify bug reports from GitHub issues.
 
+### 🧠 Core Software Engineering Suite (`agent-skills`)
+A comprehensive collection of 24 software development workflows and best practices:
+* **Architecture & Planning**: `api-and-interface-design`, `documentation-and-adrs`, `planning-and-task-breakdown`, `spec-driven-development`, `idea-refine`, `interview-me`.
+* **Implementation & Verification**: `incremental-implementation`, `test-driven-development`, `doubt-driven-development`, `source-driven-development`, `frontend-ui-engineering`.
+* **Quality & Operations**: `code-review-and-quality`, `code-simplification`, `debugging-and-error-recovery`, `performance-optimization`, `security-and-hardening`, `observability-and-instrumentation`, `ci-cd-and-automation`, `deprecation-and-migration`, `git-workflow-and-versioning`, `browser-testing-with-devtools`, `context-engineering`, `using-agent-skills`.
+
+### 🦄 Ponytail Anti-Overengineering Suite (`ponytail`)
+Forces minimalist, YAGNI-first solutions and hunts down unnecessary codebase complexity:
+* **`ponytail`**: Primary mode favoring standard library solutions, shortest paths, and lean implementations.
+* **`ponytail-audit`**: Whole-repository scan for over-engineering and boilerplate to delete or simplify.
+* **`ponytail-review`**: Code review focused exclusively on cutting speculative abstractions and unneeded dependencies.
+* **`ponytail-debt`**: Ledger system tracking intentional ponytail shortcuts and deferrals.
+* **`ponytail-gain`**: Scoreboard showing measured impact (less code, reduced complexity).
+* **`ponytail-help`**: Quick-reference command card.
+
 ---
 
 ## 🚀 How to Install in AntiGravity
