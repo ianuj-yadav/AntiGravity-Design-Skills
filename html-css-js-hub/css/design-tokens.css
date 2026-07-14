@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Universal UI/UX Design System Tokens (Stitch MCP + Dark Bento + Blank 2.7)
+   ========================================================================== */
+
+:root {
+  /* Google Stitch MCP Base Tokens */
+  --stitch-bg-primary: #0a0a0a;
+  --stitch-bg-secondary: #141414;
+  --stitch-surface: rgba(255, 255, 255, 0.06);
+  --stitch-surface-hover: rgba(255, 255, 255, 0.1);
+  --stitch-border: rgba(255, 255, 255, 0.12);
+  --stitch-accent-indigo: #818cf8;
+  --stitch-accent-purple: #c084fc;
+  --stitch-accent-emerald: #34d399;
+  --stitch-accent-amber: #fbbf24;
+  --stitch-text-primary: #ffffff;
+  --stitch-text-secondary: #a3a3a3;
+  --stitch-text-muted: #525252;
+
+  /* Blank 2.7 Minimal Spacing Scale */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--stitch-bg-primary);
+  color: var(--stitch-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Glassmorphic Bento Cards */
+.bento-card {
+  background: var(--stitch-surface);
+  border: 1px solid var(--stitch-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* Badge Styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-indigo {
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  color: var(--stitch-accent-indigo);
+}
+
+.badge-emerald {
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: var(--stitch-accent-emerald);
+}
+
+.badge-amber {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: var(--stitch-accent-amber);
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #ffffff;
+  box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 15px 25px -10px rgba(99, 102, 241, 0.7);
+}
+
+.btn-secondary {
+  background: var(--stitch-surface);
+  border: 1px solid var(--stitch-border);
+  color: var(--stitch-text-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--stitch-surface-hover);
+}
+
+/* 8bitcn Retro Pixel Arcade Styles */
+.retro-box {
+  border: 3px solid #10b981;
+  background: #052e16;
+  padding: 1.25rem;
+  font-family: monospace;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+/* Responsive Grid System */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .col-span-2 { grid-column: span 2 / span 2; }
+  .col-span-3 { grid-column: span 3 / span 3; }
+}

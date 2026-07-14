@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal UI/UX Design System Hub — HTML5/CSS3/Vanilla JS Edition</title>
+  <link rel="stylesheet" href="css/design-tokens.css" />
+  <!-- Three.js & GSAP CDNs for 3D & Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      border-bottom: 1px solid var(--stitch-border);
+      backdrop-filter: blur(16px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--stitch-text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-btn.active {
+      background: #ffffff;
+      color: #000000;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    .section-tab { display: none; }
+    .section-tab.active { display: block; }
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header class="header">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #6366f1, #a855f7); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff;">UI</div>
+      <div>
+        <h1 style="font-size: 1rem; font-weight: 800;">Universal UI/UX Design System Hub</h1>
+        <p style="font-size: 0.75rem; color: var(--stitch-text-secondary);">Pure HTML5 • Vanilla CSS • JavaScript • Google Stitch MCP</p>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-btn active" onclick="switchTab('all')">All UI Kits</button>
+      <button class="nav-btn" onclick="switchTab('bento')">Dark Bento</button>
+      <button class="nav-btn" onclick="switchTab('minimal')">Blank 2.7</button>
+      <button class="nav-btn" onclick="switchTab('dashboard')">MagicDraft & FinStack</button>
+      <button class="nav-btn" onclick="switchTab('enterprise')">ElementX Enterprise</button>
+      <button class="nav-btn" onclick="switchTab('finance')">Zeus & ChainStock</button>
+      <button class="nav-btn" onclick="switchTab('retro')">8bitcn Retro</button>
+      <button class="nav-btn" onclick="switchTab('stitch')">Stitch MCP Studio</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 1. Magic UI / React Bits 3D Hero -->
+    <section id="hero-section" class="bento-card" style="margin-bottom: 2.5rem; padding: 3rem 2rem; position: relative; overflow: hidden;">
+      <div id="canvas-container"></div>
+      <div style="position: relative; z-index: 10; max-width: 680px;">
+        <span class="badge badge-indigo">✦ Magic UI + React Bits 3D Hero</span>
+        <h2 style="font-size: 2.75rem; font-weight: 900; margin: 1rem 0; line-height: 1.15;">
+          Universal UI/UX Hub & <span style="background: linear-gradient(90deg, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Google Stitch MCP</span>
+        </h2>
+        <p style="color: var(--stitch-text-secondary); margin-bottom: 1.5rem;">
+          Implement standalone HTML5 + CSS3 + JS design systems across Dark Bento SaaS grids, Blank 2.7 minimal tokens, ElementX enterprise tables, Three.js 3D motion, and Stitch prompt generation.
+        </p>
+        <div style="display: flex; gap: 1rem;">
+          <button class="btn btn-primary" onclick="switchTab('bento')">Explore Bento Grid</button>
+          <button class="btn btn-secondary" onclick="switchTab('stitch')">Launch Stitch Studio</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Dark Bento UI Kit -->
+    <div id="tab-bento" class="section-tab active" style="margin-bottom: 2.5rem;">
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800;">Dark Bento UI Kit</h2>
+        <p style="color: var(--stitch-text-secondary); font-size: 0.875rem;">SaaS dashboard cards in a responsive bento grid layout.</p>
+      </div>
+      <div class="grid grid-cols-3">
+        <div class="bento-card col-span-2">
+          <span class="badge badge-indigo">Realtime Telemetry</span>
+          <h3 style="font-size: 2rem; font-weight: 800; margin-top: 0.75rem;">1.84M Requests/s</h3>
+          <p style="color: var(--stitch-text-secondary); font-size: 0.875rem;">Global edge delivery across 24 cloud regions with 99.999% SLA.</p>
+        </div>
+        <div class="bento-card">
+          <span class="badge badge-emerald">Zero-Trust</span>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.75rem;">Policy Guard</h3>
+          <p style="color: var(--stitch-text-secondary); font-size: 0.8rem; margin-top: 0.5rem;">Automated secret inspection and policy compliance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Blank 2.7 Clean Minimal Design System -->
+    <div id="tab-minimal" class="section-tab active" style="margin-bottom: 2.5rem;">
+      <div class="bento-card">
+        <span class="badge badge-indigo">Blank 2.7 Minimal System</span>
+        <h2 style="font-size: 2rem; font-weight: 300; margin: 1rem 0;">Minimalism is clarity of function.</h2>
+        <p style="color: var(--stitch-text-secondary); max-width: 600px;">
+          Blank 2.7 removes superfluous ornamentation so that content hierarchy, data clarity, and interactive feedback state shine.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. Google Stitch MCP Studio -->
+    <div id="tab-stitch" class="section-tab active" style="margin-bottom: 2.5rem;">
+      <div class="bento-card" style="border-color: rgba(192, 132, 252, 0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span class="badge badge-indigo">✦ Google Stitch MCP Studio</span>
+          <button class="btn btn-primary" onclick="copyStitchPrompt()">Copy Stitch Prompt</button>
+        </div>
+        <pre id="stitch-prompt-text" style="background: #000; padding: 1.25rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.85rem; color: #e5e5e5; overflow-x: auto;">[Context] Universal UI/UX Design System Hub building a modern Dark Bento Glassmorphism interface.
+[Layout] High Density Enterprise layout with responsive 12-column grid.
+[Theme Tokens] Primary: #818cf8 (Indigo), Background: #0a0a0a, Surface: rgba(255,255,255,0.06), Roundness: 16px.
+[Components] Stats KPI cards, interactive data table with search/filter, and CTA hero banner.</pre>
+      </div>
+    </div>
+
+    <!-- 5. ElementX Enterprise Table -->
+    <div id="tab-enterprise" class="section-tab active" style="margin-bottom: 2.5rem;">
+      <div class="bento-card">
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem;">ElementX Enterprise Data Table</h3>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--stitch-border); text-align: left; color: var(--stitch-text-secondary);">
+              <th style="padding: 0.75rem;">Service ID</th>
+              <th style="padding: 0.75rem;">Service Name</th>
+              <th style="padding: 0.75rem;">Status</th>
+              <th style="padding: 0.75rem;">SLA Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 0.75rem; font-family: monospace; color: #818cf8;">EX-1049</td>
+              <td style="padding: 0.75rem;">Stitch MCP Pipeline</td>
+              <td style="padding: 0.75rem;"><span class="badge badge-emerald">Active</span></td>
+              <td style="padding: 0.75rem;">99.999%</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; font-family: monospace; color: #818cf8;">EX-1050</td>
+              <td style="padding: 0.75rem;">Bento Render Node #4</td>
+              <td style="padding: 0.75rem;"><span class="badge badge-emerald">Active</span></td>
+              <td style="padding: 0.75rem;">99.99%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6. 8bitcn Retro Pixel Arcade -->
+    <div id="tab-retro" class="section-tab active">
+      <div class="retro-box">
+        <h3 style="color: #34d399; font-size: 1.25rem; margin-bottom: 0.5rem;">[ 8BITCN RETRO ARCADE SYSTEM ]</h3>
+        <p style="color: #e5e5e5; font-size: 0.85rem;">System latency nominal. 100% retro frame buffer efficiency across all browser render threads.</p>
+        <button class="btn" style="background: #10b981; color: #000; font-family: monospace; margin-top: 1rem; font-weight: 900;" onclick="alert('XP BOOSTED +100!')">+100 BOOST XP</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
