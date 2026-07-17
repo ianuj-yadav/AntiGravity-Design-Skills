@@ -7,7 +7,7 @@
 
 ## ⚡ Instant Global Installation (Antigravity / Claude Code / Codex CLI)
 
-Whenever you paste this repository link into **Antigravity**, **Claude Code**, or **Codex CLI**, paste the following prompt so the AI agent installs all 45+ design skills and UI kits globally across your system:
+Whenever you paste this repository link into **Antigravity**, **Claude Code**, or **Codex CLI**, paste the following prompt so the AI agent installs all 65+ design skills and UI kits globally across your system:
 
 ```text
 Clone https://github.com/ianuj-yadav/AntiGravity-Design-Skills.git and run the global installer (install.ps1 on Windows or install.sh on macOS/Linux) to register all 45+ design skills and universal UI kits globally in my system.
