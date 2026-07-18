@@ -1,4 +1,4 @@
-# AntiGravity Design Skills & Universal UI/UX Hub (`AntiGravity-Design-Skills`)
+# AntiGravity Design Skills & Universal UI/UX Hub 
 
 > **Comprehensive UI/UX Design System, SaaS Component Hub & Agent Skills Repository**  
 > Repository Link: `https://github.com/ianuj-yadav/AntiGravity-Design-Skills.git`
