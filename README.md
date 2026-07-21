@@ -13,7 +13,7 @@ Whenever you paste this repository link into **Antigravity**, **Claude Code**, o
 Clone https://github.com/ianuj-yadav/AntiGravity-Design-Skills.git and run the global installer (install.ps1 on Windows or install.sh on macOS/Linux) to register all 45+ design skills and universal UI kits globally in my system.
 ```
 
-### Manual One-Line Installer
+### Manual Installer
 
 #### Windows PowerShell:
 ```powershell
